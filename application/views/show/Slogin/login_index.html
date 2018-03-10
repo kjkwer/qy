@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+	<link rel="stylesheet" href="public/yz/css/css.css" />
+	<script type="text/javascript" src="public/yz/js/jquery-1.9.1.min.js" ></script>
+	<script type="text/javascript" src="public/yz/js/script.js" ></script>
+	<link rel="stylesheet" href="public/layer/theme/default/layer.css">
+	<script src="public/layer/layer.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="login-back fixed">
+	<div class="table">
+		<div class="table-cell">
+			<div class="login">
+				<form action="index.php?p=show&c=login&a=check" id="myfrom" method="post">
+					<div class="login-logo"><a href="/"><img src="public/yz/images/login-logo_03.png"/></a></div>
+					<div class="denlu">
+						<input type="text" name="zhanghao" id="zhanghao" value="" class="login-input fl box" placeholder="账号"/>
+						<div class="login-tou box fl">
+							<a href=""><img src="public/yz/images/tou-inmg_03.jpg"/></a>
+						</div>
+						<input type="password" name="mima" id="mima" value="" class="login-input fl box" placeholder="密码"/>
+					</div>
+					<input type="submit" name="submit" id="submit" value="登 陆" class="login-den"/>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--数据验证-->
+<script type="text/javascript">
+    $("#myfrom").submit(function () {
+        var zhanghao = $("#zhanghao").val();
+        var mima = $("#mima").val();
+        if (zhanghao==""){
+            layer.alert("请输入账号")
+            return false;
+        }
+        if (mima==""){
+            layer.alert("请输入密码")
+            return false;
+        }
+    })
+</script>
+</body>
+</html>
+

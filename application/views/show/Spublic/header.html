@@ -1,0 +1,55 @@
+
+
+<div class="xt-head fixed">
+    <div class="content">
+        <div class="xt-logo fl">
+            <a href=""><img src="public/yz/images/xt-logo_03.png"/></a>
+        </div>
+        <div class="xt-minxi fr">
+            <div class="xt-kexiao fl">
+                <ul>
+                    <li>
+                        <a href=""><img src="public/yz/images/xt-xin1_03.png" />客服</a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <img src="public/yz/images/xt-xin_06.png" /> 消息
+                            <em>8</em>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="nei-tou fr">
+                <div class="nei-tous fl">
+                    <a href=""><img src="public/yz/images/neitou_04.jpg" /></a>
+                    <p></p>
+                </div>
+                <!--加 下拉css-->
+                <style>
+                    .min{position:relative;line-height:30px; margin-top:32px;}
+                    .min:hover .min-xia{display:block;}
+                    .min-xia{position:absolute; top:98%; left:-40px; width:100px; padding-top:23px; display:none;}
+                    .min-xiadiv{background:#fff; border:1px solid #ddd; line-height:35px;}
+                    .min-xiadiv a{line-height:35px;color:#333;font-size:12px; border-top:1px solid #ddd;
+                        margin-top:-1px;display:block; text-align: center;
+                    }
+                    .min-xiadiv a:hover{background:#e83014;color:#fff;}
+                </style>
+                <div class="min fl">
+                    <?=$_SESSION['xingming']?$_SESSION['xingming']:'<a href="index.php?p=show&c=login&a=index">登录</a>' ?>
+
+
+                    <!--加 下拉html-->
+                    <div class="min-xia">
+                        <div class="min-xiadiv">
+                            <a href="">修改资料</a>
+                            <a href="">修改密码</a>
+                            <a href="">退出登录</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

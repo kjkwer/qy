@@ -1,0 +1,29 @@
+<div class="swiper-container banner">
+    <div class="banner-ab absolute">
+        <div class="container">
+            <div class="banner-nav fr">
+                <ul>
+                    <?php
+                    foreach($articleGlassifyData as $articleGlassify){
+                        echo "<li><a href=''>".$articleGlassify['fenleimingcheng']." </a></li>";
+                        }
+                    ?>
+                    <!--<li><a href="">“不忘初心 牢记使命”教育活动 </a></li>-->
+                    <!--<li><a href="">“两学一做”、“走基层”专题</a></li>-->
+                    <!--<li><a href="">农牧民夜校专栏</a></li>-->
+                    <!--<li><a href="">三会一课、主题党日专栏</a></li>-->
+                    <!--<li><a href="">藏汉双语培训专栏</a></li>-->
+                    <!--<li><a href="">村务经费公开专栏</a></li>-->
+                    <!--<li><a href="">党的建设</a></li>-->
+                    <!--<li><a href="">精准扶贫专栏</a></li>-->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="swiper-wrapper">
+        <div class="swiper-slide" style="background:url(public/yz/images/banner_01.jpg) no-repeat center;"></div>
+        <div class="swiper-slide" style="background:url(public/yz/images/banner_01.jpg) no-repeat center;"></div>
+        <div class="swiper-slide" style="background:url(public/yz/images/banner_01.jpg) no-repeat center;"></div>
+    </div>
+    <div class="swiper-pagination"></div>
+</div>

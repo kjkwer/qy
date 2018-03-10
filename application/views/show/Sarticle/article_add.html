@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="public/yz/css/css.css" />
+    <link href="public/yz/css/mobiscroll_002.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="public/yz/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="public/yz/js/script.js"></script>
+    <script src="public/yz/js/mobiscroll_002.js" type="text/javascript"></script>
+    <script src="public/yz/js/mobiscroll.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="public/layer/theme/default/layer.css">
+    <script src="public/layer/layer.js" type="text/javascript"></script>
+
+    <!--[if lte IE 9]>
+    <script type="text/javascript" src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js" ></script>
+    <![endif]-->
+
+</head>
+
+<body class="body">
+
+<!--header-->
+<?php include CUR_VIEW_PATH."Spublic/header.html";?>
+
+
+<div class="xt-ycatou"></div>
+
+<?php include CUR_VIEW_PATH."Spublic/bianlan.html";?>
+
+<!--neirongbianji-->
+<div class="body-edit box">
+    <div class="edit-top">
+        <img src="public/yz/images/nei-dinwei_03.png" />
+        <a href="">系统主页</a>
+        <em>&gt;</em>
+        <a href="">公文</a>
+        <em>&gt;</em> 发文章
+    </div>
+
+    <div class="edit-input box">
+        <form id="myfrom" action="index.php?p=show&c=article&a=addArticle" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="<?=$articleData['id']?$articleData['id']:'' ?>">
+            <div class="edit-sse">
+                <span>文章标题</span>
+                <input type="text" name="biaoti" id="biaoti" value="<?=$articleData['biaoti']?$articleData['biaoti']:'' ?>" style="width:600px;"/>
+                <em>*请输入公文的标题，标题最多50字</em>
+            </div>
+            <div class="edit-sse relative">
+                <span>是否首页</span>
+                <div class="inp-xia">
+                    <select name="shouye" id="shouye">
+                        <option value="1"  <?=$articleData['shouye']==1?'selected':'' ?>  >是</option>
+                        <option value="2"  <?=$articleData['shouye']==2?'selected':'' ?>  >否</option>
+                    </select>
+                </div>
+                <em>*请按照公文标签的编号进行输入</em>
+            </div>
+
+            <div class="edit-sse relative">
+                <span>缩略图</span>
+                <div class="edit-chuan fl">上传<input type="file" name="tupian" id="tupian" value="" /></div>
+            </div>
+
+
+            <div class="edit-sse relative" style="overflow: hidden; height:auto;">
+                <span>文章正文</span>
+            </div>
+                <!--<textarea name="neirong" class="box"></textarea>-->
+                <script id="container" name="neirong" id="neirong" type="text/plain" style="height:500px">
+                    <?=$articleData['neirong']?$articleData['neirong']:'' ?>
+                </script>
+                <!-- 配置文件 -->
+                <script type="text/javascript" src="/public/xz/ueditor_p/ueditor.config.js"></script>
+                <!-- 编辑器源码文件 -->
+                <script type="text/javascript" src="/public/xz/ueditor_p/ueditor.all.js"></script>
+                <!-- 实例化编辑器 -->
+                <script type="text/javascript">
+                    var ue = UE.getEditor('container', {
+                        toolbars: [
+                            ['fullscreen', 'source', 'undo', 'redo', 'bold','indent','italic','underline','formatmatch',
+                                'simpleupload','searchreplace','justifyleft','justifyright','justifycenter','justifyjustify',
+                                'forecolor','backcolor','lineheight','autotypeset',]
+                        ],
+                        autoHeightEnabled: true,
+                        autoFloatEnabled: true
+                    });
+                </script>
+            <div class="edit-sse relative" style="overflow: hidden; height:auto; margin:20px 0;"></div>
+
+            <div class="edit-sse relative">
+                <span>分类ID</span>
+                <div class="inp-xia">
+                    <select name="zhuanlan" id="zhuanlan">
+                        <div class="adit-xuan box">
+                            <?php if($fenleiData):?>
+                                <?php foreach($fenleiData as $fenlei):?>
+                                    <option value="<?=$fenlei['id']?>" <?=$articleData['zhuanlan']==$fenlei['id']?'selected':'' ?>><?=$fenlei['fenleimingcheng']?></option>
+                                <?php endforeach;?>
+                            <?php endif;?>
+                        </div>
+                    </select>
+                </div>
+            </div>
+
+            <div class="edit-sse relative">
+                <span>排序</span>
+                <input type="text" name="paixu" id="paixu" value="<?=$articleData['paixu']?$articleData['paixu']:'' ?>" class="edit-inwidt" />
+            </div>
+
+            <div class="edit-sse relative">
+                <span>更新时间</span>
+                <div class="time-ico">
+                    <input type="text" name="gengxinshijian" id="appDateTime" value="" class="edit-inwidt" />
+                </div>
+            </div>
+            <div class="edit-quedin">
+                <input type="submit" value="确认操作">
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<script>
+
+
+    $(".inp-xia input").on("click", function() {
+        $(this).siblings().slideToggle();
+    })
+
+    $(".adit-xuan p").on("click", function() {
+        $(this).parent().siblings().val($(this).text());
+        $(this).parent().slideUp();
+    })
+
+</script>
+
+<script type="text/javascript">
+    $(function() {
+        var oDate = new Date();
+        var currYear = (new Date()).getFullYear();
+        var opt = {};
+        opt.date = {
+            preset: 'date'
+        };
+
+        opt.datetime = {
+            preset: 'datetime'
+        };
+        opt.time = {
+            preset: 'time'
+        };
+
+        opt.default = {
+            theme: 'android-ics light', //皮肤样式
+            display: 'modal', //显示方式
+            mode: 'scroller', //日期选择模式
+            dateFormat: 'yyyy-mm-dd',
+            lang: 'zh',
+            showNow: true,
+            nowText: "今天",
+            startYear: currYear - 10, //开始年份
+            endYear: currYear + 10 //结束年份
+        };
+
+        var optDateTime = $.extend(opt['datetime'], opt['default']);
+        console.log()
+        $("#appDateTime").mobiscroll(optDateTime).datetime(optDateTime);
+
+        $("#appDateTime").val(oDate.getFullYear() + "-" + (oDate.getMonth() + 1) + "-" + oDate.getDate() + " " + oDate.getHours() + ":" + oDate.getMinutes() + ":" + oDate.getSeconds())
+    });
+</script>
+
+<!--表单验证-->
+<script type="text/javascript">
+    $("#myfrom").submit(function () {
+        var biaoti = $("#biaoti").val();
+        var neirong = $("#neirong").val();
+        if (biaoti==""){
+            layer.alert("标题不能为空")
+            return false;
+        }
+        if (ue.hasContents()==false){
+            layer.alert("内容不能为空")
+            return false;
+        }
+
+    })
+</script>
+</body>
+
+</html>

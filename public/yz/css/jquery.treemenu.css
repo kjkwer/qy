@@ -1,0 +1,17 @@
+/* For treemenu.js */
+
+.treemenu li { list-style: none; }
+
+.treemenu .toggler {
+    cursor: pointer;
+}
+.tree ul{padding-left:15px;}
+.treemenu .toggler:before {
+    display: inline-block;
+    margin-right: 2pt;
+}
+
+li.tree-empty > .toggler { color: #aaa; }
+li.tree-empty > .toggler:before { content: "-";}
+li.tree-closed > .toggler:before {content:""; float: left; display:block; background:url(../images/role-ico2_03.png) no-repeat center;width:25px;height:44px; }
+li.tree-opened > .toggler:before {content: "";float: left; display:block;background:url(../images/role-ico4_03.png) no-repeat center; width:25px;height:44px; }

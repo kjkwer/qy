@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="public/yz/css/css.css" />
+    <link href="public/yz/css/mobiscroll_002.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="public/yz/js/jquery-1.9.1.min.js" ></script>
+    <script type="text/javascript" src="public/yz/js/script.js" ></script>
+    <script src="public/yz/js/mobiscroll_002.js" type="text/javascript"></script>
+    <script src="public/yz/js/mobiscroll.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="public/layer/theme/default/layer.css">
+    <script src="public/layer/layer.js" type="text/javascript"></script>
+    <!--[if lte IE 9]>
+    <script type="text/javascript" src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js" ></script>
+    <![endif]-->
+</head>
+<body class="body">
+
+<!--header-->
+<?php include CUR_VIEW_PATH."Spublic/header.html";?>
+
+
+<div class="xt-ycatou"></div>
+
+<?php include CUR_VIEW_PATH."Spublic/bianlan.html";?>
+
+<!--neirongbianji-->
+<div class="body-edit box">
+    <div class="edit-top">
+        <img src="public/yz/images/nei-dinwei_03.png"/>
+        <a href="">系统主页</a>
+        <em>&gt;</em>
+        <a href="">公文</a>
+        <em>&gt;</em>
+        发文章
+    </div>
+
+    <div class="xt-wenzhan">
+        <div class="xtwenz-time">
+            <div class="xtwen-input box time-ico">
+                <input type="text" name="" id="appDate" value="2018-01-12" />
+            </div>
+            <span class="fl">至</span>
+            <div class="xtwen-input box time-ico">
+                <input type="text" name="" id="appDate1" value="2018-01-12" />
+            </div>
+            <div class="xtwen-input inp-xia box fl" style="margin-left:16px;">
+                <input type="text" name="" id="" value="精准扶贫" class="edit-inwidt" readonly/>
+                <div class="adit-xuan box">
+                    <p>精准扶贫</p>
+                    <p>精准扶贫1</p>
+                </div>
+            </div>
+
+            <div class="xtwen-sou xtwen-input fl box">
+                <input type="" name="" id="" value="" placeholder="关键字收索"/>
+                <a href=""><img src="public/yz/images/wenzi-sou_03.png"/></a>
+            </div>
+
+            <a href="index.php?p=show&c=article&a=add"><div class="xtwen-fabu fr">+ 发布文章</div></a>
+        </div>
+
+        <div class="xtable">
+            <table>
+                <tr>
+                    <th>排序</th>
+                    <th>标题</th>
+                    <th>人气</th>
+                    <th>发布时间</th>
+                    <th>操作</th>
+                </tr>
+                <?php if($articleData):?>
+                    <?php foreach($articleData as $article):?>
+                        <tr>
+                            <td class="table-paixu">
+                                <em class="box" nameCheck="check" nameid="<?=$article['id']?>"></em>
+                                <span>1</span>
+                            </td>
+                            <td class="table-biaoti">
+                                <p><?=$article["biaoti"]?></p>
+                            </td>
+                            <td class="table-renqi">
+                                <?=$article["renqi"]?>
+                            </td>
+                            <td class="table-time">
+                                <?=$article["dtime"]?>
+                            </td>
+                            <td class="table-cao">
+                                <a href=""><img src="public/yz/images/look_07.png"/>查看</a>
+                                <a href="index.php?p=show&c=article&a=add&id=<?=$article['id']?>"><img src="public/yz/images/look1_06.png"/>编辑</a>
+                                <a href="index.php?p=show&c=article&a=delete&id=<?=$article['id']?>"><img src="public/yz/images/lock2_08.png"/>删除</a>
+                            </td>
+                        </tr>
+                    <?php endforeach;?>
+                <?php endif;?>
+            </table>
+        </div>
+        <div class="xt-quanxuan fl">
+            <p><em class="box"></em>全选</p>
+            <span id="piliangshanchu"><img src="public/yz/images/lock2_08.png"/>删除</span>
+        </div>
+        <div class="page fr" style="margin-top:24px;">
+            <a href="">首页</a>
+            <strong>1</strong>
+            <a href="">2</a>
+            <a href="">3</a>
+            <a href="">4</a>
+            <a href="">5</a>
+            <a href="">6</a>
+            <em>···</em>
+            <a href="">22</a>
+            <a href="">下一页</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+    $(".adit-xuan p").on("click",function(){
+        $(this).parent().siblings().val($(this).text());
+        $(this).parent().slideUp();
+    })
+
+    $(".inp-xia input").on("click",function(){
+        $(this).siblings().slideToggle();
+    })
+
+</script>
+
+<script type="text/javascript">
+    for (var i=0; i<=$(".xtable tr").length-1; i++) {
+        $(".xtable tr:eq("+(i+1)+")").find(".table-paixu span").text(i+1);
+
+
+
+    }
+
+    $(".table-paixu em").on("click",function(){
+        $(this).toggleClass("em-add");
+    })
+
+    $(".xt-quanxuan p").on("click",function(){
+        $(this).find("em").toggleClass("em-add");
+        if($(this).find("em").attr("class").indexOf("em-add")>-1){
+            $(".table-paixu em").addClass("em-add");
+        }else{
+            $(".table-paixu em").removeClass("em-add");
+        }
+
+    })
+
+
+</script>
+<script type="text/javascript">
+    $(function() {
+        var oDate = new Date();
+        var currYear = (new Date()).getFullYear();
+        var opt = {};
+        opt.date = {
+            preset: 'date'
+        };
+
+        opt.datetime = {
+            preset: 'datetime'
+        };
+        opt.time = {
+            preset: 'time'
+        };
+
+        opt.default = {
+            theme: 'android-ics light', //皮肤样式
+            display: 'modal', //显示方式
+            mode: 'scroller', //日期选择模式
+            dateFormat: 'yyyy-mm-dd',
+            lang: 'zh',
+            showNow: true,
+            nowText: "今天",
+            startYear: currYear - 10, //开始年份
+            endYear: currYear + 10 //结束年份
+        };
+
+        $("#appDate").mobiscroll($.extend(opt['date'], opt['default']));
+        $("#appDate1").mobiscroll($.extend(opt['date'], opt['default']));
+        var optDateTime = $.extend(opt['datetime'], opt['default']);
+    });
+</script>
+<!--批量删除-->
+<script type="text/javascript">
+    $("#piliangshanchu").click(function () {
+        alert(1111);
+        var lists = $("em[class='box em-add']");
+        var ids = new Array();
+        var i = 0;
+        lists.each(function () {
+            ids[i] =  $(this).attr("nameid")
+            i++;
+        });
+        if (ids.length==0){
+            layer.alert("请选择要删除的选项")
+            return false;
+        }
+
+    })
+</script>
+</body>
+</html>

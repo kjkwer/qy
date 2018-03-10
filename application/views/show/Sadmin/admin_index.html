@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="public/yz/css/css.css" />
+    <link href="public/yz/css/mobiscroll_002.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="public/layer/theme/default/layer.css">
+    <script type="text/javascript" src="public/yz/js/jquery-1.9.1.min.js" ></script>
+    <script type="text/javascript" src="public/yz/js/script.js" ></script>
+    <script src="public/yz/js/mobiscroll_002.js" type="text/javascript"></script>
+    <script src="public/yz/js/mobiscroll.js" type="text/javascript"></script>
+    <script src="public/layer/layer.js" type="text/javascript"></script>
+    <!--[if lte IE 9]>
+    <script type="text/javascript" src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js" ></script>
+    <![endif]-->
+    <style>
+        .xtable table td{color:#6f6f6f; font-size:13px; font-weight:200;}
+        .page{margin-top: 24px;}
+    </style>
+</head>
+<body class="body">
+
+<!--header-->
+<?php include CUR_VIEW_PATH."Spublic/header.html";?>
+
+<div class="xt-ycatou"></div>
+
+<!--边栏-->
+<?php include CUR_VIEW_PATH."Spublic/bianlan.html";?>
+
+<!--neirongbianji-->
+<div class="body-edit box">
+    <div class="edit-top">
+        <img src="public/yz/images/nei-dinwei_03.png"/>
+        <a href="">系统主页</a>
+        <em>&gt;</em>
+        <a href="">公文</a>
+        <em>&gt;</em>
+        发文章
+    </div>
+
+    <div class="xt-wenzhan">
+        <div class="xtwenz-time">
+            <div class="xtwen-sou xtwen-input fl box">
+                <input type="" name="" id="" value="" placeholder="关键字收索"/>
+                <a href=""><img src="public/yz/images/wenzi-sou_03.png"/></a>
+            </div>
+
+            <div class="xtwen-fabu fr">+ 添加人员</div>
+        </div>
+
+        <div class="xtable">
+            <table>
+                <tr>
+                    <th>排序</th>
+                    <th>姓名</th>
+                    <th>手机号码</th>
+                    <th>所属职称</th>
+                    <th>所属部门</th>
+                    <th>员工状态</th>
+                    <th>操作</th>
+                </tr>
+                <?php  if($adminDatas):?>
+                    <?php foreach($adminDatas as $adminData):?>
+                    <tr>
+                        <td>
+                            <em class="box"></em>
+                            <span><?=$adminData['paixu']?></span>
+                        </td>
+                        <td>
+                            <p><?=$adminData['xingming']?></p>
+                        </td>
+                        <td>
+                            <?=$adminData['shoujihaoma']?>
+                        </td>
+                        <td>
+                            <?=$adminData['zhicheng']?>
+                        </td>
+                        <td>
+                            <?=$adminData['bumen']?>
+                        </td>
+                        <td>
+                            <?=$adminData['zhuangtai']==1?"在职":"离职"?>
+                        </td>
+                        <td class="table-cao">
+                            <a href=""><img src="public/yz/images/look_07.png"/>查看</a>
+                            <a href=""><img src="public/yz/images/look1_06.png"/>编辑</a>
+                            <a href="index.php?p=show&c=admin&a=delete&id=<?=$adminData['id']?>"><img src="public/yz/images/lock2_08.png"/>删除</a>
+                        </td>
+                    </tr>
+                    <?php endforeach;?>
+                <?php endif;?>
+            </table>
+        </div>
+        <div class="xt-quanxuan fl">
+            <p><em class="box"></em>全选</p>
+            <span><img src="public/yz/images/lock2_08.png"/>删除</span>
+        </div>
+        <div class="page fr">
+            <a href="">首页</a>
+            <strong>1</strong>
+            <a href="">2</a>
+            <a href="">3</a>
+            <a href="">4</a>
+            <a href="">5</a>
+            <a href="">6</a>
+            <em>···</em>
+            <a href="">22</a>
+            <a href="">下一页</a>
+        </div>
+    </div>
+</div>
+
+<!--弹出框-->
+<div class="tanchu fixed">
+    <div class="table">
+        <div class="table-cell">
+            <div class="Add-to">
+                <div class="add-top">
+                    <span>添加人员</span>
+                    <img src="public/yz/images/Close_03.png" class="Close"/>
+                </div>
+                <form action="index.php?p=show&c=admin&a=add" id="addAdmin" method="post">
+                    <div class="add-toinput">
+                        <div class="add-min">
+                            <span><em>*</em> 登录账号：</span>
+                            <input type="text" name="zhanghao" id="zhanghao" value="" />
+                        </div>
+                        <div class="add-min">
+                            <span><em>*</em> 密码：</span>
+                            <input type="password" name="mima" id="mima" value="" />
+                        </div>
+                        <div class="add-min">
+                            <span><em>*</em> 姓名：</span>
+                            <input type="text" name="xingming" id="xingming" value="" />
+                        </div>
+                        <div class="add-min">
+                            <span><em>*</em> 所属部门：</span>
+                            <input type="text" name="bumen" id="bumen" value="" />
+                        </div>
+                        <div class="add-min">
+                            <span><em>*</em> 手机号码：</span>
+                            <input type="number" name="shoujihaoma" id="shoujihaoma" value="" />
+                        </div>
+                        <div class="add-min">
+                            <span><em>*</em> 所属职称：</span>
+                            <input type="text" name="zhicheng" id="zhicheng" value="" />
+                        </div>
+                        <div class="add-min">
+                            <span>联系电话：</span>
+                            <input type="number" name="dianhua" id="dianhua" value="" />
+                        </div>
+                        <div class="add-min">
+                            <span><em>*</em> 管理员：</span>
+                            <div class="add-xiala inp-xia relative">
+                                <input type="text" name="guanliyuan" id="guanliyuan" value="" readonly class="xiala"/>
+                                <div class="adit-xuan box">
+                                    <p>是</p>
+                                    <p>否</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="add-min">
+                            <span>员工状态：</span>
+                            <div class="add-xiala inp-xia relative">
+                                <input type="text" name="zhuangtai" id="zhuangtai" value="" readonly class="xiala"/>
+                                <div class="adit-xuan box">
+                                    <p>在职</p>
+                                    <p>离职</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="add-baos ">
+                            <input type="submit" name="submit" id="submit" value="保存" class="add-bao"/>
+                        </div>
+                </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(".adit-xuan p").on("click",function(){
+        $(this).parent().siblings().val($(this).text());
+        $(this).parent().slideUp();
+    })
+
+    $(".inp-xia input").on("click",function(){
+        $(this).siblings().slideToggle();
+    })
+
+</script>
+
+<script type="text/javascript">
+    for (var i=0; i<=$(".xtable tr").length-1; i++) {
+        $(".xtable tr:eq("+(i+1)+")").find(".table-paixu span").text(i+1);
+    }
+
+    $(".table-paixu em").on("click",function(){
+        $(this).toggleClass("em-add");
+    })
+
+    $(".xt-quanxuan p").on("click",function(){
+        $(this).find("em").toggleClass("em-add");
+        if($(this).find("em").attr("class").indexOf("em-add")>-1){
+            $(".table-paixu em").addClass("em-add");
+        }else{
+            $(".table-paixu em").removeClass("em-add");
+        }
+
+    })
+
+    $(".xtwen-fabu").on("click",function(){
+        $(".tanchu").show(200);
+    })
+
+    $(".Close").on("click",function(){
+        $(".tanchu").hide(200);
+    })
+
+</script>
+
+<!--数据验证-->
+<script type="text/javascript">
+    $("#addAdmin").submit(function () {
+        var zhanghao = $("#zhanghao").val();
+        var mima = $("#mima").val();
+        var xingming = $("#xingming").val();
+        var bumen = $("#bumen").val();
+        var shoujihaoma = $("#shoujihaoma").val();
+        var zhicheng = $("#zhicheng").val();
+        var guanliyuan = $("#guanliyuan").val();
+        if (zhanghao==""){
+            layer.alert("登录账号不能为空")
+            return false;
+        }
+        if (mima==""){
+            layer.alert("密码不能为空")
+            return false;
+        }
+        if (xingming==""){
+            layer.alert("姓名不能为空")
+            return false;
+        }
+        if (bumen==""){
+            layer.alert("部门不能为空")
+            return false;
+        }
+        if (shoujihaoma==""){
+            layer.alert("手机号码不能为空")
+            return false;
+        }
+        if (zhicheng==""){
+            layer.alert("职称不能为空")
+            return false;
+        }
+        if (guanliyuan==""){
+            layer.alert("请选择是否为管理员")
+            return false;
+        }
+    })
+</script>
+</body>
+</html>
