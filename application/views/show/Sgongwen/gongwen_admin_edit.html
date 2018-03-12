@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="public/yz/css/css.css" />
+    <link href="public/yz/css/mobiscroll_002.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="public/yz/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="public/yz/js/script.js"></script>
+    <script src="public/yz/js/mobiscroll_002.js" type="text/javascript"></script>
+    <script src="public/yz/js/mobiscroll.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" href="public/layer/theme/default/layer.css">
+    <script src="public/layer/layer.js" type="text/javascript"></script>
+
+    <!--[if lte IE 9]>
+    <script type="text/javascript" src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js" ></script>
+    <![endif]-->
+
+</head>
+
+<body class="body">
+
+<!--header-->
+<?php include CUR_VIEW_PATH."Spublic/header.html";?>
+
+<div class="xt-ycatou"></div>
+<!--边栏-->
+<?php include CUR_VIEW_PATH."Spublic/bianlan.html";?>
+
+<!--neirongbianji-->
+<div class="body-edit box">
+    <div class="edit-top">
+        <img src="public/yz/images/nei-dinwei_03.png" />
+        <a href="">系统主页</a>
+        <em>&gt;</em>
+        <a href="">公文</a>
+        <em>&gt;</em> 发文章
+    </div>
+
+    <div class="edit-input box">
+        <form id="myfrom" action="index.php?p=show&c=gongwen&a=editAdmin" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="<?=$gwData['id']?$gwData['id']:'' ?>">
+            <div class="edit-sse">
+                <span>公文标题</span>
+                <input type="text" name="biaoti" id="biaoti" value="<?=$gwData['biaoti']?$gwData['biaoti']:'' ?>" style="width:600px;" />
+                <em>*请输入公文的标题，标题最多50字</em>
+            </div>
+            <div class="edit-sse">
+                <span>公文编号</span>
+                <input type="text" name="bianhao" id="bianhao" value="<?=$gwData['bianhao']?$gwData['bianhao']:'' ?>" style="width:600px;" />
+                <em>*请按照公文标签的编号进行输入</em>
+            </div>
+            <div class="edit-sse relative fl">
+                <span>公文类型</span>
+                <select name="leixing" id="leixing">
+                    <div class="adit-xuan box">
+                        <?php if($lxData):?>
+                        <?php foreach($lxData as $lx):?>
+                        <option value="<?=$lx['id']?>" <?=$gwData['leixing']==$lx['id']?selected:'' ?> ><?=$lx['leixing']?></option>
+                        <?php endforeach;?>
+                        <?php endif;?>
+                    </div>
+                </select>
+            </div>
+            <div class="edit-sse relative fl">
+                <span>截止时间</span>
+                <div class="time-ico">
+                    <input type="text" name="jiezhishijian" id="appDateTime" value="" class="edit-inwidt" />
+                </div>
+            </div>
+            <div class="clear"></div>
+
+            <div class="edit-sse relative" style="overflow: hidden; height:auto;">
+                <span>文章正文</span>
+            </div>
+            <!--<textarea name="neirong" class="box"></textarea>-->
+            <script id="container" name="neirong" id="neirong" type="text/plain" style="height:500px">
+                <?=$gwData['neirong']?$gwData['neirong']:'' ?>
+            </script>
+            <!-- 配置文件 -->
+            <script type="text/javascript" src="/public/xz/ueditor_p/ueditor.config.js"></script>
+            <!-- 编辑器源码文件 -->
+            <script type="text/javascript" src="/public/xz/ueditor_p/ueditor.all.js"></script>
+            <!-- 实例化编辑器 -->
+            <script type="text/javascript">
+                var ue = UE.getEditor('container', {
+                    toolbars: [
+                        ['fullscreen', 'source', 'undo', 'redo', 'bold','indent','italic','underline','formatmatch',
+                            'simpleupload','searchreplace','justifyleft','justifyright','justifycenter','justifyjustify',
+                            'forecolor','backcolor','lineheight','autotypeset',]
+                    ],
+                    autoHeightEnabled: true,
+                    autoFloatEnabled: true
+                });
+            </script>
+            <div class="edit-sse relative" style="overflow: hidden; height:auto; margin:20px 0;"></div>
+
+
+            <div class="edit-sse" style="overflow: hidden; height:auto;">
+                <span>抄送人</span>
+                <div class="edit-duoxuan">
+                    <?php if($jsrys):?>
+                        <?php foreach($jsrys as $jsry):?>
+                            <label><input type="checkbox" name="jsrs[]" value="<?=$jsry['id']?>" id="" <?=$gwData['id']?self::isfasongAction($jsry['id'],$gwData['id']):''   ?>   ><?=$jsry['xingming']?></label><br>
+                        <?php endforeach;?>
+                    <?php endif;?>
+                </div>
+            </div>
+
+            <div class="edit-sse">
+                <div class="edit-rideo">
+                    <p><em></em>全选</p>
+                    <p><em></em>反选</p>
+                </div>
+            </div>
+
+            <div class="edit-quedin">
+                <input type="submit" value="确认操作">
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<script>
+
+
+    $(".edit-duoxuan label").on("click", function() {
+        $(this).find("em").toggleClass("em-add");
+    })
+
+    $(".edit-rideo p").on("click",function(){
+        if($(this).index()==0){
+            $(this).find("em").toggleClass("em-add").parent().siblings().find("em").removeClass("em-add");
+            if($(this).find("em").attr("class").indexOf("em-add")>-1){
+                $(".edit-duoxuan em").addClass("em-add");
+            }else{
+                $(".edit-duoxuan em").removeClass("em-add");
+            }
+        }else if($(this).index()==1){
+            $(this).find("em").addClass("em-add").parent().siblings().find("em").removeClass("em-add");
+            $(".edit-duoxuan label").each(function(){
+                if($(this).find("em").attr("class")=="em-add"){
+                    $(this).find("em").removeClass("em-add");
+                }else{
+                    $(this).find("em").addClass("em-add");
+                }
+
+            })
+        }
+
+    })
+
+    $(".edit-inwidt").on("click", function() {
+        $(this).siblings(".adit-xuan").slideToggle();
+    })
+    $(".adit-xuan p").on("click",function(){
+        $(this).parent().siblings().val($(this).text());
+        $(this).parent().slideUp();
+    })
+
+</script>
+
+<script type="text/javascript">
+    $(function() {
+        var oDate = new Date();
+        var currYear = (new Date()).getFullYear();
+        var opt = {};
+        opt.date = {
+            preset: 'date'
+        };
+
+        opt.datetime = {
+            preset: 'datetime'
+        };
+        opt.time = {
+            preset: 'time'
+        };
+
+        opt.default = {
+            theme: 'android-ics light', //皮肤样式
+            display: 'modal', //显示方式
+            mode: 'scroller', //日期选择模式
+            dateFormat: 'yyyy-mm-dd',
+            lang: 'zh',
+            showNow: true,
+            nowText: "今天",
+            startYear: currYear - 10, //开始年份
+            endYear: currYear + 10 //结束年份
+        };
+
+        var optDateTime = $.extend(opt['datetime'], opt['default']);
+        console.log()
+        $("#appDateTime").mobiscroll(optDateTime).datetime(optDateTime);
+
+        $("#appDateTime").val(oDate.getFullYear() + "-" + (oDate.getMonth() + 1) + "-" + oDate.getDate() + " " + oDate.getHours() + ":" + oDate.getMinutes() + ":" + oDate.getSeconds())
+    });
+</script>
+
+<!--设置接收人信息-->
+<script type="text/javascript">
+    $("#myfrom").submit(function () {
+        var biaoti = $("#biaoti").val();
+        var bianhao = $("#bianhao").val();
+        var neirong = $("#neirong").val();
+        if (biaoti==""){
+            layer.alert("标题不能为空")
+            return false;
+        }
+        if (bianhao==""){
+            layer.alert("编号不能为空")
+            return false;
+        }
+        if (ue.hasContents()==false){
+            layer.alert("内容不能为空")
+            return false;
+        }
+        if (!$("input[type='checkbox']").is(':checked')){
+            layer.alert("请选择接收人")
+            return false;
+        }
+    })
+</script>
+
+
+</body>
+
+</html>

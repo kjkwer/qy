@@ -8,20 +8,25 @@
 
 class ArticleController  extends BaseController
 {
-//    public function  __construct()
-//    {
-//        ob_end_clean();
-//        if(!$_SESSION){
-//            $this->jump('index.php?p=show&c=login&a=index','请先登录',3);
-//        }
-//    }
+    public static $userData = null;
+    public function  __construct()
+    {
+        ob_end_clean();
+        if(!$_SESSION["user"]){
+            $this->jump('index.php?p=show&c=login&a=index','请先登录',3);
+        }else{
+            self::$userData = $_SESSION["user"];
+        }
+    }
 
     public function listAction(){
         //>>获取所有文章数据
         $model = new ModelNew("article");
         $articleData = $model->findBySql("select * from `sl_article`");
 //        var_dump($articleData);exit();
-
+        //>>获取专栏
+        $zhuanlanModel = new ModelNew("wzfl");
+        $zhuanlanData = $model->findBySql("select * from `sl_wzfl`");
         include CUR_VIEW_PATH."Sarticle" . DS . "article_list.html";
     }
 
@@ -73,9 +78,16 @@ class ArticleController  extends BaseController
         }
     }
     //>>批量删除
-//    public function deleteAction(){
-//
-//    }
+    public function deletePiliangAction(){
+        //>>获取要删除的id
+        $result=["code"=>500,"message"=>"删除失败"];
+        $ids = $_POST["data"];
+        $model = new ModelNew("article");
+        if ($model->delete($ids)){
+            $result=["code"=>200,"message"=>"删除成功"];
+        }
+        echo json_encode($result);
+    }
 
     public function addAction(){
         //>>获取所有专栏

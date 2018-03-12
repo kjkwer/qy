@@ -36,7 +36,7 @@
                     .min-xiadiv a:hover{background:#e83014;color:#fff;}
                 </style>
                 <div class="min fl">
-                    <?=$_SESSION['xingming']?$_SESSION['xingming']:'<a href="index.php?p=show&c=login&a=index">登录</a>' ?>
+                    <?=self::$userData["xingming"]?self::$userData["xingming"]:'<a href="index.php?p=show&c=login&a=index">登录</a>' ?>
 
 
                     <!--加 下拉html-->
@@ -44,7 +44,7 @@
                         <div class="min-xiadiv">
                             <a href="">修改资料</a>
                             <a href="">修改密码</a>
-                            <a href="">退出登录</a>
+                            <a href="index.php?p=show&c=admin&a=quit">退出登录</a>
                         </div>
 
                     </div>

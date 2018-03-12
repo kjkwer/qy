@@ -8,11 +8,14 @@
 
 class AdminController extends BaseController
 {
+    public static $userData = null;
     public function  __construct()
     {
         ob_end_clean();
-        if(!$_SESSION){
+        if(!$_SESSION["user"]){
             $this->jump('index.php?p=show&c=login&a=index','请先登录',3);
+        }else{
+            self::$userData = $_SESSION["user"];
         }
     }
 
@@ -79,6 +82,11 @@ class AdminController extends BaseController
             }
         }
     }
+    //>>退出登录
+    public function quitAction(){
+        unset($_SESSION["user"]);
+        $this->jump('index.php?p=show&c=index&a=index','退出成功，回到首页',3);
+    }
 
     //>>获取当前做大排序
     public static function getSortAction(){
@@ -93,5 +101,6 @@ class AdminController extends BaseController
             return 1;
         }
     }
+
 
 }

@@ -27,13 +27,17 @@ class LoginController extends Controller
         if ($rs){
             $mima=md5($_POST['mima']);
             if ($rs['mima']==$mima){
-                $_SESSION['id']=$rs['id'];
-                $_SESSION['zhanghao']=$rs['zhanghao'];
-                $_SESSION['xingming']=$rs['xingming'];
-                $_SESSION['bumen']=$rs['bumen'];
-                $_SESSION['shoujihaoma']=$rs['shoujihaoma'];
-                $_SESSION['zhicheng']=$rs['zhicheg'];
-                $_SESSION['guanliyuan']=$rs['guanliyuan'];
+                if ($rs['status']==2){
+                    //>>已离职
+                    $this->jump('index.php?p=show&c=login&a=index','已离职，禁止登录',3);
+                }
+                $_SESSION["user"]['id']=$rs['id'];
+                $_SESSION["user"]['zhanghao']=$rs['zhanghao'];
+                $_SESSION["user"]['xingming']=$rs['xingming'];
+                $_SESSION["user"]['bumen']=$rs['bumen'];
+                $_SESSION["user"]['shoujihaoma']=$rs['shoujihaoma'];
+                $_SESSION["user"]['zhicheng']=$rs['zhicheng'];
+                $_SESSION["user"]['guanliyuan']=$rs['guanliyuan'];
                 $this->jump('index.php?p=show&c=admin&a=index','登录成功',3);
             }else{
                 $this->jump('index.php?p=show&c=login&a=index','密码错误',3);
