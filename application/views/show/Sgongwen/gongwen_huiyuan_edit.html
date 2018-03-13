@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="public/yz/css/css.css" />
+    <script type="text/javascript" src="public/yz/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="public/yz/js/script.js"></script>
+
+    <!--[if lte IE 9]>
+    <script type="text/javascript" src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js" ></script>
+    <![endif]-->
+
+</head>
+
+<body class="body">
+
+<!--header-->
+<?php include CUR_VIEW_PATH."Spublic/header.html";?>
+<div class="xt-ycatou"></div>
+
+<?php include CUR_VIEW_PATH."Spublic/bianlan.html";?>
+
+<!--neirongbianji-->
+<div class="body-edit box">
+    <div class="edit-top">
+        <img src="public/yz/images/nei-dinwei_03.png" />
+        <a href="">系统主页</a>
+        <em>&gt;</em>
+        <a href="">公文</a>
+        <em>&gt;</em> 发文章
+    </div>
+
+    <div class="edit-input box">
+        <div class="edit-sse">
+            <span>公文标题</span>
+            <input type="text" name="" id="" value="" style="width:600px;" />
+            <em>*请输入公文的标题，标题最多50字</em>
+        </div>
+        <div class="edit-sse">
+            <span>公文编号</span>
+            <input type="text" name="" id="" value="" style="width:600px;" />
+            <em>*请按照公文标签的编号进行输入</em>
+        </div>
+        <div class="edit-sse relative fl">
+            <span>公文类型</span>
+            <div class="inp-xia">
+                <input type="text" name="" id="" value="周报一" class="edit-inwidt" readonly/>
+                <div class="adit-xuan box">
+                    <p>周报一</p>
+                    <p>周报二</p>
+                    <p>周报三</p>
+                </div>
+            </div>
+        </div>
+        <div class="edit-sse relative fl">
+            <span>公文来源</span>
+            <div class="inp-xia">
+                <input type="text" name="" id="" value="鸡窝村党支部" class="edit-inwidt" readonly/>
+                <div class="adit-xuan box">
+                    <p>鸡窝村党支部</p>
+                    <p>鸡窝村党支部</p>
+                    <p>鸡窝村党支部</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+        <div class="edit-sse relative">
+            <span>缩略图</span>
+            <input type="text" name="" id="" value="" class="edit-inwidt" readonly/>
+            <div class="edit-chuan fl">上传<input type="file" name="" id="" value="" /></div>
+            <!--<div class="adit-tiqu fl">
+                <input type="submit" name="" id="" value="提取图片" />
+            </div>-->
+        </div>
+        <div class="edit-sse relative" style="overflow: hidden; height:auto; margin:30px 0;">
+            <span>文章正文</span>
+            <textarea class="box"></textarea>
+        </div>
+
+
+
+
+        <div class="edit-quedin">
+            <a href="" class="wdit-a box">保存</a>
+            <a href="">发布公文</a>
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+
+    $(".edit-inwidt").on("click", function() {
+        $(this).siblings(".adit-xuan").slideToggle();
+    })
+    $(".adit-xuan p").on("click",function(){
+        $(this).parent().siblings().val($(this).text());
+        $(this).parent().slideUp();
+    })
+
+
+
+</script>
+</body>
+
+</html>

@@ -9,17 +9,13 @@
     <script type="text/javascript" src="public/yz/js/script.js" ></script>
     <script src="public/yz/js/mobiscroll_002.js" type="text/javascript"></script>
     <script src="public/yz/js/mobiscroll.js" type="text/javascript"></script>
-
-    <link rel="stylesheet" href="public/layer/theme/default/layer.css">
-    <script src="public/layer/layer.js" type="text/javascript"></script>
-
     <!--[if lte IE 9]>
     <script type="text/javascript" src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js" ></script>
     <![endif]-->
+    <style>
+        .table-tai{width:auto !important;}
+    </style>
 </head>
-<style>
-    .table-tai{width:auto !important;}
-</style>
 <body class="body">
 
 <!--header-->
@@ -42,11 +38,11 @@
     <div class="xt-wenzhan">
         <div class="xtwenz-time">
             <div class="xtwen-input box time-ico">
-                <input type="text" name="" id="appDate" value="2018-01-15" />
+                <input type="text" name="" id="appDate" value="2018-01-11" />
             </div>
             <span class="fl">至</span>
             <div class="xtwen-input box time-ico">
-                <input type="text" name="" id="appDate1" value="2018-01-15" />
+                <input type="text" name="" id="appDate1" value="2018-01-11" />
             </div>
             <div class="xtwen-input inp-xia box fl" style="margin-left:16px;">
                 <input type="text" name="" id="" value="" class="edit-inwidt" readonly placeholder="类型选择"/>
@@ -58,7 +54,8 @@
             <div class="xtwen-input inp-xia box fl" style="margin-left:16px;">
                 <input type="text" name="" id="" value="" class="edit-inwidt" readonly placeholder="选择状态"/>
                 <div class="adit-xuan box">
-                    <p>未过期</p>
+                    <p>未完成</p>
+                    <p>已完成</p>
                     <p>已过期</p>
                 </div>
             </div>
@@ -67,7 +64,7 @@
                 <a href=""><img src="public/yz/images/wenzi-sou_03.png"/></a>
             </div>
 
-            <a href="index.php?p=show&c=gongwen&a=edit"><div class="xtwen-fabu fr">+ 发布文章</div></a>
+
         </div>
 
         <div class="xtable">
@@ -76,41 +73,34 @@
                     <th>排序</th>
                     <th>标题</th>
                     <th>类型</th>
-                    <th>抄送人</th>
                     <th>发送时间</th>
                     <th>截至时间</th>
                     <th>状态</th>
                     <th>操作</th>
                 </tr>
-                <?php if($gongwenData):?>
-                    <?php foreach($gongwenData as $gongwen):?>
+                <?php if($gwDate):?>
+                    <?php foreach($gwDate as $gw):?>
                         <tr>
                             <td class="table-paixu">
                                 <em class="box"></em>
                                 <span>1</span>
                             </td>
                             <td class="table-biaoti" >
-                                <p><?=$gongwen["biaoti"]?></p>
+                                <p><?=$gw["biaoti"]?></p>
                             </td>
                             <td class="table-zou">
-                                <?=self::getGwLxAction($gongwen["leixing"])?>
+                                <?=self::getGwLxAction($gw["leixing"])?>
                             </td>
-                            <td class="table-ren">
-                                <p>
-                                    <?=self::getJsrAction($gongwen["id"])?>
-                                </p>
+
+                            <td class="table-time">
+                                <?=$gw["dtime"]?>
                             </td>
                             <td class="table-time">
-                                <?=$gongwen["dtime"]?>
+                                <?=$gw["jiezhishijian"]?>
                             </td>
-                            <td class="table-time">
-                                <?=$gongwen["jiezhishijian"]?>
-                            </td>
-                            <td class="table-tai"><?=self::isDateAction($gongwen["id"])?></td>
+                            <td class="table-tai">未完成</td>
                             <td class="table-cao">
-                                <a href="index.php?p=show&c=gongwen&a=sendDetail&id=<?=$gongwen['id']?>"><img src="public/yz/images/look_07.png"/>查看</a>
-                                <a href="index.php?p=show&c=gongwen&a=edit&id=<?=$gongwen['id']?>"><img src="public/yz/images/look1_06.png"/>编辑</a>
-                                <a href="javascript:void(0)" class="deleteSingle" deleteId="<?=$gongwen['id']?>"><img src="public/yz/images/lock2_08.png"/>删除</a>
+                                <a href="index.php?p=show&c=gongwen&a=acceptDetail&id=<?=$gw['id']?>"><img src="public/yz/images/look_07.png"/>查看</a>
                             </td>
                         </tr>
                     <?php endforeach;?>
@@ -157,6 +147,8 @@
 
         if($(".xtable tr:eq("+(i+1)+")").find(".table-tai").text()=="已过期"){
             $(".xtable tr:eq("+(i+1)+")").find(".table-tai").css("color","#e83014")
+        }else if($(".xtable tr:eq("+(i+1)+")").find(".table-tai").text()=="未完成"){
+            $(".xtable tr:eq("+(i+1)+")").find(".table-tai").css("color","#a2a2a2")
         }
     }
 
@@ -207,22 +199,11 @@
         $("#appDate").mobiscroll($.extend(opt['date'], opt['default']));
         $("#appDate1").mobiscroll($.extend(opt['date'], opt['default']));
         var optDateTime = $.extend(opt['datetime'], opt['default']);
+
+
+
+
     });
-</script>
-<!--删除（单个）-->
-<script type="text/javascript">
-    $(".deleteSingle").click(function () {
-        //>>获取当前公文Id
-        var id = $(this).attr("deleteId");
-        //>>删除公文
-        $.post("index.php?p=show&c=gongwen&a=deleteSingle",{id:id},function (data) {
-            if (data.code==200){
-                location.reload()
-            }else {
-                layer.alert("删除失败："+data.message)
-            }
-        },"json")
-    })
 </script>
 </body>
 </html>

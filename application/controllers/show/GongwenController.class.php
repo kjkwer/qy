@@ -21,16 +21,33 @@ class GongwenController extends BaseController
     //>>发文列表
     public function  listAction(){
         if (self::$userData["guanliyuan"]==1){   //>>管理员
-            //>>获取所有公文数据
+            //>>获取用户发送的公文数据
             $user_id = self::$userData["id"];
             $gongwenModel = new ModelNew("gw");
             $gongwenData = $gongwenModel->findBySql("select * from `sl_gw` WHERE zuozhe=$user_id ORDER BY dtime DESC ");
-
-            include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_list.html";
+            include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_admin_send_list.html";
         }else{    //>>非管理员
-
+            //>>获取用户发送的公文数据
+            $user_id = self::$userData["id"];
+            $gongwenModel = new ModelNew("gw");
+            $gongwenData = $gongwenModel->findBySql("select * from `sl_gw` WHERE zuozhe=$user_id ORDER BY dtime DESC ");
+            include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_huiyuan_send_list.html";
         }
     }
+    //>>接收列表
+    public function acceptAction(){
+        if (self::$userData["guanliyuan"]==1){   //>>管理员
+            //>>
+        }else{    //>>非管理员
+            //>>获取所有公文数据
+            $user_id = self::$userData["id"];
+            $Model = new ModelNew("fasong");
+            $gwDate = $Model->findBySql("select b.* from sl_fasong as a join sl_gw as b on a.gongwen=b.id where a.jieshouren=$user_id ORDER BY b.dtime DESC ");
+            include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_huiyuan_accept_list.html";
+        }
+    }
+
+
     //>>编辑文章
     public function editAction(){
         $id = $_GET["id"]?$_GET["id"]:null;
@@ -47,7 +64,7 @@ class GongwenController extends BaseController
                 $jsrys = $adminModel->findBySql("select id,xingming from sl_yhlb WHERE id != $user_id");
                 include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_admin_edit.html";
             }else{    //>>非管理员
-                echo 111;
+                include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_huiyuan_edit.html";
             }
         }else{
             //>>编辑
@@ -141,6 +158,20 @@ class GongwenController extends BaseController
 
         }
     }
+    //>>接收公文详情
+    public function acceptDetailAction(){
+        //>>公文id
+        $id=$_GET["id"];
+        //>>获取公文内容
+        $model = new ModelNew("gw");
+        $gwData = $model->findOne($id);
+//        var_dump($gwData);exit();
+        if(self::$userData["guanliyuan"]==1){    //管理员
+            //>>获取公文内容
+        }else{     //非管理员
+            include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_huiyuan_detail.html";
+        }
+    }
 
 
 
@@ -150,11 +181,7 @@ class GongwenController extends BaseController
         $model = new ModelNew("gw");
         $data = $model->find("jiezhishijian")->where(["id"=>$id])->one();
         $data1 = strtotime($data["jiezhishijian"]);
-        if ( time()>= $data1){
-            echo  "已过期";
-        }else{
-            echo  "未过期";
-        }
+        return $data1;
     }
 
     //>>通过接收人的id和公文编号确定是否已发送给改编辑人（管理员公文编辑回显时使用）
@@ -181,7 +208,7 @@ class GongwenController extends BaseController
         $fsr = self::$userData["id"];
 //        var_dump($gwId,$fsr);exit();
         $model = new ModelNew("fasong");
-        $names = $model->findBySql("select b.xingming from sl_fasong as a JOIN sl_yhlb as b on a.jieshouren=b.id where a.fasongren=$fsr and a.gongwen=$gwId");
+        $names = $model->findBySql("select b.xingming from sl_fasong as a JOIN sl_yhlb as b on a.jieshouren=b.id where a.gongwen=$gwId");
         if ($names){
             $str = "";
             foreach ($names as $name){
@@ -191,7 +218,6 @@ class GongwenController extends BaseController
         $str = trim($str,"，");
         return $str;
     }
-
     //>>删除公文<dan>
     public function deleteSingleAction(){
         $id = $_POST["id"];
@@ -206,6 +232,29 @@ class GongwenController extends BaseController
             }
         }else{
             $result = ["code"=>501,"message"=>"删除抄送人失败"];
+        }
+        echo json_encode($result);
+    }
+    //>>删除公文批量
+    public function deletePiliangAction(){
+        //>>获取要删除的id
+        $result=["code"=>500,"message"=>"删除失败"];
+        $ids = $_POST["data"];
+        $model = new ModelNew("gw");
+        //>>删除与公文抄送人信息
+        $fasongModel = new ModelNew("fasong");
+        if ($ids){
+            foreach ($ids as $id){
+                if (!$fasongModel->where(["gongwen"=>$id])->delete()){
+                    $result = ["code"=>501,"message"=>"删除抄送人失败"];
+                }else{
+                    if ($model->delete($id)){
+                        $result = ["code"=>200,"message"=>"删除公文成功"];
+                    }else{
+                        $result = ["code"=>502,"message"=>"删除公文失败"];
+                    }
+                }
+            }
         }
         echo json_encode($result);
     }
