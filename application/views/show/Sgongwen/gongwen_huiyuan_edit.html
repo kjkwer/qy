@@ -8,6 +8,8 @@
     <script type="text/javascript" src="public/yz/js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="public/yz/js/script.js"></script>
 
+    <link rel="stylesheet" href="public/layer/theme/default/layer.css">
+    <script src="public/layer/layer.js" type="text/javascript"></script>
     <!--[if lte IE 9]>
     <script type="text/javascript" src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js" ></script>
     <![endif]-->
@@ -33,67 +35,93 @@
     </div>
 
     <div class="edit-input box">
-        <div class="edit-sse">
-            <span>公文标题</span>
-            <input type="text" name="" id="" value="" style="width:600px;" />
-            <em>*请输入公文的标题，标题最多50字</em>
-        </div>
-        <div class="edit-sse">
-            <span>公文编号</span>
-            <input type="text" name="" id="" value="" style="width:600px;" />
-            <em>*请按照公文标签的编号进行输入</em>
-        </div>
-        <div class="edit-sse relative fl">
-            <span>公文类型</span>
-            <div class="inp-xia">
-                <input type="text" name="" id="" value="周报一" class="edit-inwidt" readonly/>
-                <div class="adit-xuan box">
-                    <p>周报一</p>
-                    <p>周报二</p>
-                    <p>周报三</p>
+        <form id="myform">
+            <input type="hidden" name="id" id="gwId" value="<?=$gwData['id']?$gwData['id']:'' ?>">
+            <div class="edit-sse">
+                <span>公文标题</span>
+                <input type="text" name="biaoti" id="biaoti" value="<?=$gwData['biaoti']?$gwData['biaoti']:'' ?>" style="width:600px;" />
+                <em>*请输入公文的标题，标题最多50字</em>
+            </div>
+            <div class="edit-sse">
+                <span>公文编号</span>
+                <input type="text" name="bianhao" id="bianhao" value="<?=$gwData['bianhao']?$gwData['bianhao']:'' ?>" style="width:600px;" />
+                <em>*请按照公文标签的编号进行输入</em>
+            </div>
+            <div class="edit-sse relative fl">
+                <span>公文类型</span>
+                <div class="inp-xia">
+                    <input type="text" name="leixing" id="leixing" value="<?=$gwData['leixing']?self::getGwLxAction($gwData['leixing']):''  ?>" class="edit-inwidt" readonly/>
+                    <div class="adit-xuan box">
+                        <?php if($lxData):?>
+                            <?php foreach($lxData as $lx):?>
+                                <p><?=$lx["leixing"]?></p>
+                            <?php endforeach;?>
+                        <?php endif;?>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="edit-sse relative fl">
-            <span>公文来源</span>
-            <div class="inp-xia">
-                <input type="text" name="" id="" value="鸡窝村党支部" class="edit-inwidt" readonly/>
-                <div class="adit-xuan box">
-                    <p>鸡窝村党支部</p>
-                    <p>鸡窝村党支部</p>
-                    <p>鸡窝村党支部</p>
+            <div class="edit-sse relative fl" style="z-index: 10000">
+                <span>公文来源</span>
+                <div class="inp-xia">
+                    <input  type="text" name="laiyuan" id="laiyuan" value="<?=$gwData['laiyuan']?self::getlaiyuanAction($gwData['laiyuan']):''  ?>" class="edit-inwidt" readonly/>
+                    <div class="adit-xuan box">
+                        <?php if($laiyuanData):?>
+                            <?php foreach($laiyuanData as $laiyuan):?>
+                                <p><?=$laiyuan["laiyuan"]?></p>
+                            <?php endforeach;?>
+                        <?php endif;?>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="clear"></div>
-        <div class="edit-sse relative">
-            <span>缩略图</span>
-            <input type="text" name="" id="" value="" class="edit-inwidt" readonly/>
-            <div class="edit-chuan fl">上传<input type="file" name="" id="" value="" /></div>
-            <!--<div class="adit-tiqu fl">
-                <input type="submit" name="" id="" value="提取图片" />
-            </div>-->
-        </div>
-        <div class="edit-sse relative" style="overflow: hidden; height:auto; margin:30px 0;">
-            <span>文章正文</span>
-            <textarea class="box"></textarea>
-        </div>
+            <div class="clear"></div>
+            <div class="edit-sse relative">
+                <span>缩略图</span>
+                <input type="text" name="" id="" value="<?=$gwData['tupian']?basename($gwData['tupian']):'' ?>" class="edit-inwidt" readonly/>
+                <div class="edit-chuan fl">上传<input type="file" name="tupian" id="tupian" value="" /></div>
+                <!--<div class="adit-tiqu fl">
+                    <input type="submit" name="" id="" value="提取图片" />
+                </div>-->
+            </div>
+
+            <div class="edit-sse relative" style="overflow: hidden; height:auto;">
+                <span>文章正文</span>
+            </div>
+                <!--<textarea name="neirong" class="box"></textarea>-->
+                <script id="container" name="neirong" id="neirong" type="text/plain" style="height:500px">
+                    <?=$gwData['neirong']?$gwData['neirong']:'' ?>
+                </script>
+                <!-- 配置文件 -->
+                <script type="text/javascript" src="/public/xz/ueditor_p/ueditor.config.js"></script>
+                <!-- 编辑器源码文件 -->
+                <script type="text/javascript" src="/public/xz/ueditor_p/ueditor.all.js"></script>
+                <!-- 实例化编辑器 -->
+                <script type="text/javascript">
+                    var ue = UE.getEditor('container', {
+                        toolbars: [
+                            ['fullscreen', 'source', 'undo', 'redo', 'bold','indent','italic','underline','formatmatch',
+                                'simpleupload','searchreplace','justifyleft','justifyright','justifycenter','justifyjustify',
+                                'forecolor','backcolor','lineheight','autotypeset',]
+                        ],
+                        autoHeightEnabled: true,
+                        autoFloatEnabled: true
+                    });
+                </script>
+            <div class="edit-sse relative" style="overflow: hidden; height:auto; margin:20px 0;"></div>
 
 
 
 
-        <div class="edit-quedin">
-            <a href="" class="wdit-a box">保存</a>
-            <a href="">发布公文</a>
-        </div>
+            <div class="edit-quedin">
+                <a id="baocun" href="javascript:void(0)" class="wdit-a box">保存</a>
+                <a id="fabugongwen" href="javascript:void(0)">发布公文</a>
+            </div>
+        </form>
     </div>
 
 </div>
 
 <script>
-
-
     $(".edit-inwidt").on("click", function() {
         $(this).siblings(".adit-xuan").slideToggle();
     })
@@ -101,9 +129,118 @@
         $(this).parent().siblings().val($(this).text());
         $(this).parent().slideUp();
     })
+</script>
 
+<!--验证表单-->
 
-
+<!--保存数据-->
+<script type="text/javascript">
+    $("#baocun").click(function () {
+        var form = new FormData(document.getElementById("myform"));
+        var biaoti = $("#biaoti").val();
+        var bianhao = $("#bianhao").val();
+        var id = $("#gwId").val();
+        var tupian = $("#tupian").val();
+        if (biaoti==""){
+            layer.alert("标题不能为空")
+            return false;
+        }
+        if (bianhao==""){
+            layer.alert("编号不能为空")
+            return false;
+        }
+        if (id==""){
+            if (tupian==""){
+                layer.alert("请上传图片")
+                return false;
+            }
+        }
+        if (ue.hasContents()==false){
+            layer.alert("内容不能为空")
+            return false;
+        }
+        // console.log(form);return;
+        $.ajax({
+            url:"index.php?p=show&c=gongwen&a=editHuiyuan",
+            type:"post",
+            data:form,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success:function(data){
+                if (data){
+                    //>>保存成功
+                    // layer.alert("保存成功")
+                    // window.location.href='http://www.qy.com/index.php?p=show&c=gongwen&a=list';
+                    layer.open({
+                        content: '保存成功！',
+                        btn: ['确认'],
+                        yes: function(index, layero) {
+                            window.location.href='http://www.qy.com/index.php?p=show&c=gongwen&a=list';
+                        },
+                    });
+                }
+            },
+            error:function(e){
+                layer.alert("保存失败")
+                return false;
+            }
+        })
+    })
+</script>
+<!--发送公文-->
+<script type="text/javascript">
+    $("#fabugongwen").click(function () {
+        var form = new FormData(document.getElementById("myform"));
+        var biaoti = $("#biaoti").val();
+        var bianhao = $("#bianhao").val();
+        var id = $("#gwId").val();
+        var tupian = $("#tupian").val();
+        if (biaoti==""){
+            layer.alert("标题不能为空")
+            return false;
+        }
+        if (bianhao==""){
+            layer.alert("编号不能为空")
+            return false;
+        }
+        if (id==""){
+            if (tupian==""){
+                layer.alert("请上传图片")
+                return false;
+            }
+        }
+        if (ue.hasContents()==false){
+            layer.alert("内容不能为空")
+            return false;
+        }
+        // console.log(form);return;
+        $.ajax({
+            url:"index.php?p=show&c=gongwen&a=editHuiyuan",
+            type:"post",
+            data:form,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success:function(data){
+                if (data){
+                    if (id==""){
+                        id = data;
+                    }
+                    $.post('index.php?p=show&c=gongwen&a=fasong',{'gwId':id},function (data) {
+                        if(data==200){
+                            //>>保存成功
+                            window.location.href='http://www.qy.com/index.php?p=show&c=gongwen&a=list';
+                        }
+                    },"josn")
+                }
+            },
+            error:function(e){
+                layer.alert("保存失败")
+                return false;
+            }
+        })
+    })
 </script>
 </body>
 

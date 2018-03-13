@@ -61,6 +61,6 @@ $(".date_selector").bind("click",function(e){
 			})
 			
 			$(".inp-xia input").on("click",function(){
-				$(this).siblings().slideToggle();
+				$(this).siblings().slideDown();
 			})
 })

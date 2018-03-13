@@ -204,7 +204,6 @@
     $("#myfrom").submit(function () {
         var biaoti = $("#biaoti").val();
         var bianhao = $("#bianhao").val();
-        var neirong = $("#neirong").val();
         if (biaoti==""){
             layer.alert("标题不能为空")
             return false;
@@ -218,7 +217,7 @@
             return false;
         }
         if (!$("input[type='checkbox']").is(':checked')){
-            layer.alert("请选择接收人")
+            layer.alert("请选择抄送人")
             return false;
         }
     })
