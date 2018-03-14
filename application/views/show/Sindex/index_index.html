@@ -22,8 +22,8 @@
 					<em></em>
 					<div class="head-navxia">
 						<p>
-							<a href="">收文</a>
-							<a href="">发文</a>
+							<a href="index.php?p=show&c=gongwen&a=accept">收文</a>
+							<a href="index.php?p=show&c=gongwen&a=list">发文</a>
 						</p>
 					</div>
 				</li>
@@ -32,8 +32,8 @@
 					<em></em>
 					<div class="head-navxia">
 						<p>
-							<a href="">收文</a>
-							<a href="">发文</a>
+							<a href="index.php?p=show&c=article&a=add">发布文章</a>
+							<a href="index.php?p=show&c=article&a=list">文章列表</a>
 						</p>
 					</div>
 				</li>
@@ -95,42 +95,27 @@
 				</div>
 				<div style="height:15px;"></div>
 				<div class="in-fptop fl">
-					<div class="in-img"><a href=""><img src="public/yz/images/in-img_03.jpg"/></a></div>
+					<div class="in-img"><a href="index.php?p=show&c=index&a=detail&id=<?=$fpData[0]['id']?>"><img src="<?=$fpData[0]['tupian']?>"/></a></div>
 					<div class="in-text">
-						<p><a href="">习近平主席发表2018年新年贺词</a></p>
-						<span>聆听，这深沉绵长的人民情怀！</span>
+						<p><a href="index.php?p=show&c=index&a=detail&id=<?=$fpData[0]['id']?>"><?=$fpData[0]['biaoti']?></a></p>
+						<span><?=$fpData[0]['biaoti']?></span>
 					</div>
 				</div>
 				<div class="in-fptop fr">
 					<ul>
-						<li>
-							<div class="in-toplist"><a href=""><img src="public/yz/images/in-img1_05.jpg"/></a></div>
-							<div class="in-toptext">
-								<p><a href="">回访湘西花垣县十八洞村</a></p>
-								<span>书写伟大复兴的时代画卷</span>
-							</div>
-						</li>
-						<li>
-							<div class="in-toplist"><a href=""><img src="public/yz/images/in-img2_03.jpg"/></a></div>
-							<div class="in-toptext">
-								<p><a href="">回访湘西花垣县十八洞村</a></p>
-								<span>书写伟大复兴的时代画卷</span>
-							</div>
-						</li>
-						<li>
-							<div class="in-toplist"><a href=""><img src="public/yz/images/in-img3_06.jpg"/></a></div>
-							<div class="in-toptext">
-								<p><a href="">回访湘西花垣县十八洞村</a></p>
-								<span>书写伟大复兴的时代画卷</span>
-							</div>
-						</li>
-						<li>
-							<div class="in-toplist"><a href=""><img src="public/yz/images/in-img4_06.jpg"/></a></div>
-							<div class="in-toptext">
-								<p><a href="">回访湘西花垣县十八洞村</a></p>
-								<span>书写伟大复兴的时代画卷</span>
-							</div>
-						</li>
+						<?php if($fpData):?>
+							<?php foreach($fpData as $k=>$fp):?>
+								<?php if($k>0):?>
+								<li>
+									<div class="in-toplist"><a href="index.php?p=show&c=index&a=detail&id=<?=$fp['id']?>"><img src="<?=$fp['tupian']?>"/></a></div>
+									<div class="in-toptext">
+										<p><a href="index.php?p=show&c=index&a=detail&id=<?=$fp['id']?>"><?=$fp['biaoti']?></a></p>
+										<span><?=$fp['biaoti']?></span>
+									</div>
+								</li>
+								<?php endif;?>
+							<?php endforeach;?>
+						<?php endif;?>
 					</ul>
 				</div>
 			</div>

@@ -168,7 +168,7 @@
             processData: false,
             contentType: false,
             success:function(data){
-                if (data){
+                if (data != 500){
                     //>>保存成功
                     // layer.alert("保存成功")
                     // window.location.href='http://www.qy.com/index.php?p=show&c=gongwen&a=list';
@@ -191,55 +191,30 @@
 <!--发送公文-->
 <script type="text/javascript">
     $("#fabugongwen").click(function () {
-        var form = new FormData(document.getElementById("myform"));
-        var biaoti = $("#biaoti").val();
-        var bianhao = $("#bianhao").val();
         var id = $("#gwId").val();
-        var tupian = $("#tupian").val();
-        if (biaoti==""){
-            layer.alert("标题不能为空")
+        if(id==""){
+            layer.alert("请先保存公文");
             return false;
         }
-        if (bianhao==""){
-            layer.alert("编号不能为空")
-            return false;
-        }
-        if (id==""){
-            if (tupian==""){
-                layer.alert("请上传图片")
-                return false;
+        $.post("index.php?p=show&c=gongwen&a=fasong",{"gwId":id},function (data) {
+            if (data==200){
+                layer.open({
+                    content: '发送成功！',
+                    btn: ['确认'],
+                    yes: function(index, layero) {
+                        window.location.href='http://www.qy.com/index.php?p=show&c=gongwen&a=list';
+                    },
+                });
+            }else {
+                layer.open({
+                    content: '发送失败！',
+                    btn: ['确认'],
+                    yes: function(index, layero) {
+                        location.reload();
+                    },
+                });
             }
-        }
-        if (ue.hasContents()==false){
-            layer.alert("内容不能为空")
-            return false;
-        }
-        // console.log(form);return;
-        $.ajax({
-            url:"index.php?p=show&c=gongwen&a=editHuiyuan",
-            type:"post",
-            data:form,
-            cache: false,
-            processData: false,
-            contentType: false,
-            success:function(data){
-                if (data){
-                    if (id==""){
-                        id = data;
-                    }
-                    $.post('index.php?p=show&c=gongwen&a=fasong',{'gwId':id},function (data) {
-                        if(data==200){
-                            //>>保存成功
-                            window.location.href='http://www.qy.com/index.php?p=show&c=gongwen&a=list';
-                        }
-                    },"josn")
-                }
-            },
-            error:function(e){
-                layer.alert("保存失败")
-                return false;
-            }
-        })
+        },"json")
     })
 </script>
 </body>

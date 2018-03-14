@@ -9,6 +9,8 @@
 class ArticleController  extends BaseController
 {
     public static $userData = null;
+    public static $shouye1 = [1=>"是",2=>"否"];
+
     public function  __construct()
     {
         ob_end_clean();
@@ -22,7 +24,7 @@ class ArticleController  extends BaseController
     public function listAction(){
         //>>获取所有文章数据
         $model = new ModelNew("article");
-        $articleData = $model->findBySql("select * from `sl_article`");
+        $articleData = $model->findBySql("select * from `sl_article` ORDER BY dtime DESC ");
 //        var_dump($articleData);exit();
         //>>获取专栏
         $zhuanlanModel = new ModelNew("wzfl");
@@ -34,8 +36,13 @@ class ArticleController  extends BaseController
         $model = new ModelNew('article');
         $data["biaoti"] = $_POST["biaoti"]?$_POST["biaoti"]:null;
         $data["shouye"] = $_POST["shouye"]?$_POST["shouye"]:null;
+        if ($data["shouye"]=="是"){
+            $data["shouye"] = 1;
+        }else{
+            $data["shouye"] = 2;
+        }
         $data["neirong"] = $_POST["neirong"]?$_POST["neirong"]:null;
-        $data["zhuanlan"] = $_POST["zhuanlan"]?$_POST["zhuanlan"]:null;
+        $data["zhuanlan"] = $_POST["zhuanlan"]?self::getfenleiIdAction($_POST["zhuanlan"]):null;
         $data["paixu"] = $_POST["paixu"]?$_POST["paixu"]:null;
         $data["gengxinshijian"] = $_POST["gengxinshijian"]?$_POST["gengxinshijian"]:null;
         //>>保存图片
@@ -55,15 +62,15 @@ class ArticleController  extends BaseController
                 unset($data["tupian"]);
             }
             if ($model->where(['id'=>$_POST["id"]])->update($data)){
-                $this->jump('index.php?p=show&c=article&a=list','编辑文章成功',3);
+                echo $_POST["id"];
             }else{
-                $this->jump('index.php?p=show&c=article&a=list','编辑文章失败',3);
+                echo 500;
             }
         }else{
-            if($model->insert($data)){
-                $this->jump('index.php?p=show&c=article&a=list','发布文章成功',3);
+            if($rs = $model->insert($data)){
+                echo $rs;
             }else{
-                $this->jump('index.php?p=show&c=article&a=list','发布文章失败',3);
+                echo 500;
             }
         }
     }
@@ -103,5 +110,21 @@ class ArticleController  extends BaseController
 //            var_dump($articleData);exit();
             include CUR_VIEW_PATH."Sarticle" . DS . "article_add.html";
         }
+    }
+
+    public static function getShouye($id){
+        return self::$shouye1[$id];
+    }
+
+    public static function getfenleiAction($id){
+        $fenleiModel = new ModelNew("wzfl");
+        $data = $fenleiModel->where(["id"=>$id])->find("fenleimingcheng")->one();
+        return $data["fenleimingcheng"];
+    }
+
+    public static function getfenleiIdAction($mingcheng){
+        $fenleiModel = new ModelNew("wzfl");
+        $data = $fenleiModel->where(["fenleimingcheng"=>$mingcheng])->find("id")->one();
+        return $data["id"];
     }
 }

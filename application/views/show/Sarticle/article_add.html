@@ -50,12 +50,12 @@
             <div class="edit-sse relative">
                 <span>是否首页</span>
                 <div class="inp-xia">
-                    <select name="shouye" id="shouye">
-                        <option value="1"  <?=$articleData['shouye']==1?'selected':'' ?>  >是</option>
-                        <option value="2"  <?=$articleData['shouye']==2?'selected':'' ?>  >否</option>
-                    </select>
+                    <input type="text" name="shouye" id="" value="<?=$articleData['shouye']?self::getShouye($articleData['shouye']):'' ?>" class="edit-inwidt" readonly/>
+                    <div class="adit-xuan box">
+                        <p>是</p>
+                        <p>否</p>
+                    </div>
                 </div>
-                <em>*请按照公文标签的编号进行输入</em>
             </div>
 
             <div class="edit-sse relative">
@@ -95,15 +95,14 @@
             <div class="edit-sse relative">
                 <span>分类ID</span>
                 <div class="inp-xia">
-                    <select name="zhuanlan" id="zhuanlan">
-                        <div class="adit-xuan box">
-                            <?php if($fenleiData):?>
-                                <?php foreach($fenleiData as $fenlei):?>
-                                    <option value="<?=$fenlei['id']?>" <?=$articleData['zhuanlan']==$fenlei['id']?'selected':'' ?>><?=$fenlei['fenleimingcheng']?></option>
-                                <?php endforeach;?>
-                            <?php endif;?>
-                        </div>
-                    </select>
+                    <input type="text" name="zhuanlan" id="" value="<?=$articleData['zhuanlan']?self::getfenleiAction($articleData['zhuanlan']):'' ?>" class="edit-inwidt" readonly/>
+                    <div class="adit-xuan box">
+                        <?php if($fenleiData):?>
+                            <?php foreach($fenleiData as $fenlei):?>
+                                <p><?=$fenlei["fenleimingcheng"]?></p>
+                        <?php endforeach;?>
+                        <?php endif;?>
+                    </div>
                 </div>
             </div>
 
@@ -119,7 +118,7 @@
                 </div>
             </div>
             <div class="edit-quedin">
-                <input type="submit" value="确认操作">
+                <a id="baocun" href="javascript:void(0)">确认操作</a>
             </div>
         </form>
     </div>
@@ -178,11 +177,17 @@
 
 <!--表单验证-->
 <script type="text/javascript">
-    $("#myfrom").submit(function () {
+    $("#baocun").click(function () {
+        var form = new FormData(document.getElementById("myfrom"));
         var biaoti = $("#biaoti").val();
-        var neirong = $("#neirong").val();
+        var bianhao = $("#bianhao").val();
+        var id = $("#gwId").val();
         if (biaoti==""){
             layer.alert("标题不能为空")
+            return false;
+        }
+        if (bianhao==""){
+            layer.alert("编号不能为空")
             return false;
         }
         if (ue.hasContents()==false){
@@ -190,6 +195,43 @@
             return false;
         }
 
+        var lists = $("em[class='em-add']");
+        var ids = new Array();
+        var i = 0;
+        lists.each(function () {
+            if ($(this).attr("nameid")){
+                ids[i] = $(this).attr("nameid")
+            }
+            i++;
+        });
+//        if (ids.length==0){
+//            layer.alert("请选择抄送人")
+//            return false;
+//        }
+
+        $.ajax({
+            url:"index.php?p=show&c=article&a=addArticle",
+            type:"post",
+            data:form,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success:function(data){
+                if (data != 500){
+                    layer.open({
+                        content: '保存成功！',
+                        btn: ['确认'],
+                        yes: function(index, layero) {
+                            window.location.href='http://www.qy.com/index.php?p=show&c=article&a=list';
+                        },
+                    });
+                }
+            },
+            error:function(e){
+                layer.alert("保存失败")
+                return false;
+            }
+        })
     })
 </script>
 </body>

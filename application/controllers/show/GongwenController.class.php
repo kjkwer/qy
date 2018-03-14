@@ -41,7 +41,8 @@ class GongwenController extends BaseController
             //>>获取所有公文数据
             $user_id = self::$userData["id"];
             $Model = new ModelNew("fasong");
-            $gwDate = $Model->findBySql("from sl_fasong as a join sl_gw as b on a.gongwen=b.id where a.jieshouren=1");
+            $gwDate = $Model->findBySql("select b.* from sl_fasong as a join sl_gw as b on a.gongwen=b.id where a.jieshouren=1 ORDER BY b.dtime");
+            include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_admin_accept_list.html";
         }else{    //>>非管理员
             //>>获取所有公文数据
             $user_id = self::$userData["id"];
@@ -102,51 +103,77 @@ class GongwenController extends BaseController
         $model = new ModelNew('gw');
         $data["biaoti"] = $_POST["biaoti"]?$_POST["biaoti"]:null;
         $data["bianhao"] = $_POST["bianhao"]?$_POST["bianhao"]:null;
-        $data["leixing"] = $_POST["leixing"]?$_POST["leixing"]:null;
+        $data["leixing"] = $_POST["leixing"]?self::getLeixingIdAction($_POST["leixing"]):null;
         $data["jiezhishijian"] = $_POST["jiezhishijian"]?$_POST["jiezhishijian"]:null;
         $data["neirong"] = $_POST["neirong"]?$_POST["neirong"]:null;
         $data["zuozhe"] = self::$userData["id"];
         if ($_POST["id"] != ''){   //编辑
             if ($rs = $model->where(["id"=>$_POST["id"]])->update($data)){
-                //>>删除原有接收人
-                $fasongModel = new ModelNew("fasong");
-                $fasongModel->where(["fasongren"=>$data["zuozhe"]])->where(["gongwen"=>$_POST["id"]])->delete();
-                //>>设置新的接收人
-                $jsrIds = $_POST["jsrs"];
-                if ($jsrIds){
-                    foreach ($jsrIds as $jsrId){
-                        $model = new ModelNew("fasong");
-                        $data["gongwen"] = $_POST["id"];
-                        $data["fasongren"] = self::$userData["id"];
-                        $data["jieshouren"] = $jsrId;
-                        $data["zhuangtai"] = 1;
-                        $model->insert($data);
-                    }
-                }
-                $this->jump('index.php?p=show&c=gongwen&a=list','修改公文成功',3);
+//                //>>删除原有接收人
+//                $fasongModel = new ModelNew("fasong");
+//                $fasongModel->where(["fasongren"=>$data["zuozhe"]])->where(["gongwen"=>$_POST["id"]])->delete();
+//                //>>设置新的接收人
+//                $jsrIds = $_POST["jsrs"];
+//                if ($jsrIds){
+//                    foreach ($jsrIds as $jsrId){
+//                        $model = new ModelNew("fasong");
+//                        $data["gongwen"] = $_POST["id"];
+//                        $data["fasongren"] = self::$userData["id"];
+//                        $data["jieshouren"] = $jsrId;
+//                        $data["zhuangtai"] = 1;
+//                        $model->insert($data);
+//                    }
+//                }
+                echo $_POST["id"];
             }else{
-                $this->jump('index.php?p=show&c=gongwen&a=list','修改公文失败',3);
+                echo 500;
             }
         }else{    //新增
             if($rs=$model->insert($data)){
-                //>>设置接收人
-                $jsrIds = $_POST["jsrs"];
-                if ($jsrIds){
-                    foreach ($jsrIds as $jsrId){
-                        $model = new ModelNew("fasong");
-                        $data["gongwen"] = $rs;
-                        $data["fasongren"] = self::$userData["id"];
-                        $data["jieshouren"] = $jsrId;
-                        $data["zhuangtai"] = 1;
-                        $model->insert($data);
-                    }
-                }
-                $this->jump('index.php?p=show&c=gongwen&a=list','发布公文成功',3);
+//                //>>设置接收人
+//                $jsrIds = $_POST["jsrs"];
+//                if ($jsrIds){
+//                    foreach ($jsrIds as $jsrId){
+//                        $model = new ModelNew("fasong");
+//                        $data["gongwen"] = $rs;
+//                        $data["fasongren"] = self::$userData["id"];
+//                        $data["jieshouren"] = $jsrId;
+//                        $data["zhuangtai"] = 1;
+//                        $model->insert($data);
+//                    }
+//                }
+                echo $rs;
             }else{
-                $this->jump('index.php?p=show&c=gongwen&a=list','发布公文失败',3);
+                echo 500;
             }
         }
     }
+    //>>设置抄送人
+    public function setJsrAction(){
+        $gwId = $_POST["gwId"];
+        $model = new ModelNew("gw");
+        $data = $model->findOne($gwId);
+        //>>删除原有接收人
+        $fasongModel = new ModelNew("fasong");
+        $fasongModel->where(["fasongren"=>$data["zuozhe"]])->where(["gongwen"=>$gwId])->delete();
+        //>>设置新的接收人
+        $jsrIds = $_POST["jsrs"];
+        if ($jsrIds){
+            $result = 1;
+            foreach ($jsrIds as $jsrId){
+                $model = new ModelNew("fasong");
+                $arr["gongwen"] = $gwId;
+                $arr["fasongren"] = self::$userData["id"];
+                $arr["jieshouren"] = $jsrId;
+                $arr["zhuangtai"] = 1;
+                if (!$model->insert($arr)){
+                    $result = 0;
+                }
+            }
+        }
+        echo $result;
+    }
+
 
     //>>非管理员编辑公文
     public function editHuiyuanAction(){
@@ -180,13 +207,13 @@ class GongwenController extends BaseController
             }
         }else{
             if($rs = $model->insert($data)){
-//                //>>设置接收数据
-//                $fsModel = new ModelNew("fasong");
-//                $array["gongwen"] = $rs;
-//                $array["fasongren"] = self::$userData["id"];
-//                $array["jieshouren"] = 1;
-//                $array["zhuangtai"] = 0;
-//                $fsModel->insert($array);
+                //>>设置接收数据
+                $fsModel = new ModelNew("fasong");
+                $array["gongwen"] = $rs;
+                $array["fasongren"] = self::$userData["id"];
+                $array["jieshouren"] = 1;
+                $array["zhuangtai"] = 0;
+                $fsModel->insert($array);
                 echo $rs;
             }else{
                 echo 500;
@@ -221,6 +248,7 @@ class GongwenController extends BaseController
 //        var_dump($gwData);exit();
         if(self::$userData["guanliyuan"]==1){    //管理员
             //>>获取公文内容
+            include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_admin_accept_detail.html";
         }else{     //非管理员
             include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_huiyuan_accept_detail.html";
         }
@@ -230,19 +258,27 @@ class GongwenController extends BaseController
         $data["gongwen"] = $_POST["gwId"];
         $data["fasongren"] = self::$userData["id"];
         $data["jieshouren"] = 1;
+        $data["zhuangtai"] = 1;
         $model = new ModelNew("fasong");
-        $isLife = $model->where($data)->find()->one();
-        if ($isLife){
-
-        }else{
-            $data["zhuangtai"] = 1;
-            if ($model->insert($data)){
+        $zhuangtai = self::getGwStatusAction(self::$userData["id"],$data["gongwen"]);
+        if ($zhuangtai == 0){
+            if ($model->where(["gongwen"=>$data["gongwen"]])->where(["fasongren"=>$data["fasongren"]])->where(["jieshouren"=>$data["jieshouren"]])->update($data)){
                 echo 200;
             }else{
                 echo 500;
             }
+        }elseif ($zhuangtai == 1){
+            echo 200;
         }
     }
+    //>>获取发送公文状态
+    public static function getGwStatusAction($fsr,$gwId){
+        $model = new ModelNew("fasong");
+        $zhuangtai = $model->where(["gongwen"=>$gwId])->where(["fasongren"=>$fsr])->find("zhuangtai")->one();
+        return $zhuangtai["zhuangtai"];
+    }
+
+
 
     //>>判断公文是否过期
     public static function isDateAction($id){
@@ -254,13 +290,13 @@ class GongwenController extends BaseController
     }
 
     //>>通过接收人的id和公文编号确定是否已发送给改编辑人（管理员公文编辑回显时使用）
-    public function isfasongAction($id,$bianhao){
+    public function isfasongAction($id,$gwId){
         $model = new ModelNew("fasong");
-        $data = $model->where(["jieshouren"=>$id])->where(["gongwen"=>$bianhao])->find()->one();
+        $data = $model->where(["jieshouren"=>$id])->where(["gongwen"=>$gwId])->find()->one();
         if ($data){
-            echo "checked";
+            echo "em-add";
         }else{
-            echo "111";
+            echo "";
         }
     }
     //>>获取公文类型

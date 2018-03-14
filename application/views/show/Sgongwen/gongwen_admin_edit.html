@@ -52,17 +52,18 @@
                 <input type="text" name="bianhao" id="bianhao" value="<?=$gwData['bianhao']?$gwData['bianhao']:'' ?>" style="width:600px;" />
                 <em>*请按照公文标签的编号进行输入</em>
             </div>
-            <div class="edit-sse relative fl">
+            <div class="edit-sse relative fl" style="z-index: 10000">
                 <span>公文类型</span>
-                <select name="leixing" id="leixing">
+                <div class="inp-xia">
+                    <input type="text" name="leixing" id="" value="<?=$gwData['leixing']?self::getGwLxAction($gwData['leixing']):''  ?>" class="edit-inwidt" readonly/>
                     <div class="adit-xuan box">
                         <?php if($lxData):?>
                         <?php foreach($lxData as $lx):?>
-                        <option value="<?=$lx['id']?>" <?=$gwData['leixing']==$lx['id']?selected:'' ?> ><?=$lx['leixing']?></option>
+                            <p><?=$lx["leixing"]?></p>
                         <?php endforeach;?>
                         <?php endif;?>
                     </div>
-                </select>
+                </div>
             </div>
             <div class="edit-sse relative fl">
                 <span>截止时间</span>
@@ -103,7 +104,7 @@
                 <div class="edit-duoxuan">
                     <?php if($jsrys):?>
                         <?php foreach($jsrys as $jsry):?>
-                            <label><input type="checkbox" name="jsrs[]" value="<?=$jsry['id']?>" id="" <?=$gwData['id']?self::isfasongAction($jsry['id'],$gwData['id']):''   ?>   ><?=$jsry['xingming']?></label><br>
+                            <label><em nameid="<?=$jsry['id']?>" class="<?=$gwData['id']?self::isfasongAction($jsry['id'],$gwData['id']):''   ?>"></em><?=$jsry["xingming"]?></label>
                         <?php endforeach;?>
                     <?php endif;?>
                 </div>
@@ -117,7 +118,7 @@
             </div>
 
             <div class="edit-quedin">
-                <input type="submit" value="确认操作">
+                <a id="baocun" href="javascript:void(0)">确认操作</a>
             </div>
         </form>
     </div>
@@ -199,11 +200,13 @@
     });
 </script>
 
-<!--设置接收人信息-->
+<!--保存公文-->
 <script type="text/javascript">
-    $("#myfrom").submit(function () {
+    $("#baocun").click(function () {
+        var form = new FormData(document.getElementById("myfrom"));
         var biaoti = $("#biaoti").val();
         var bianhao = $("#bianhao").val();
+        var id = $("#gwId").val();
         if (biaoti==""){
             layer.alert("标题不能为空")
             return false;
@@ -216,10 +219,49 @@
             layer.alert("内容不能为空")
             return false;
         }
-        if (!$("input[type='checkbox']").is(':checked')){
-            layer.alert("请选择抄送人")
-            return false;
-        }
+
+        var lists = $("em[class='em-add']");
+        var ids = new Array();
+        var i = 0;
+        lists.each(function () {
+            if ($(this).attr("nameid")){
+                ids[i] = $(this).attr("nameid")
+            }
+            i++;
+        });
+//        if (ids.length==0){
+//            layer.alert("请选择抄送人")
+//            return false;
+//        }
+
+        $.ajax({
+            url:"index.php?p=show&c=gongwen&a=editAdmin",
+            type:"post",
+            data:form,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success:function(data){
+                if (data != 500){
+                    //>>保存成功
+                    // layer.alert("保存成功")
+                    // window.location.href='http://www.qy.com/index.php?p=show&c=gongwen&a=list';
+                    $.post("index.php?p=show&c=gongwen&a=setJsr",{gwId:data,jsrs:ids},function (data) {
+                        layer.open({
+                            content: '保存成功！',
+                            btn: ['确认'],
+                            yes: function(index, layero) {
+                                window.location.href='http://www.qy.com/index.php?p=show&c=gongwen&a=list';
+                            },
+                        });
+                    });
+                }
+            },
+            error:function(e){
+                layer.alert("保存失败")
+                return false;
+            }
+        })
     })
 </script>
 
