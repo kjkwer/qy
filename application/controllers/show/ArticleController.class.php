@@ -24,7 +24,7 @@ class ArticleController  extends BaseController
     public function listAction(){
         //>>获取所有文章数据
         $model = new ModelNew("article");
-        $articleData = $model->findBySql("select * from `sl_article` ORDER BY dtime DESC ");
+        $articleData = $model->findBySql("select * from `sl_article` ORDER BY id DESC ");
 //        var_dump($articleData);exit();
         //>>获取专栏
         $zhuanlanModel = new ModelNew("wzfl");

@@ -1,0 +1,25 @@
+<div class="header">
+    <div class="container">
+        <div class="logo fl"><a href="index.php"></a></div>
+        <div class="head-soulogin fr">
+            <div class="head-sou fl relative">
+                <input type="text" name="" id="" value="" />
+                <img src="public/yz/images/head-sou_03.png"/>
+            </div>
+            <div class="head-login fr">
+                <?php if(self::$userData==null):?>
+                <a href="index.php?p=show&c=login&a=index">
+                    <img src="public/yz/images/head-login_05.png"/>
+                    登录
+                </a>
+                <?php else:?>
+                <a href="index.php?p=show&c=admin&a=index">
+                    <img src="public/yz/images/head-login_05.png"/>
+                    <?=self::$userData["xingming"]?>
+                </a>
+                <?php endif;?>
+            </div>
+        </div>
+    </div>
+
+</div>

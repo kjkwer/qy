@@ -99,7 +99,15 @@
                                 <?=$gongwen["dtime"]?>
                             </td>
 
-                            <td class="table-tai"></td>
+                            <td class="table-tai">
+                                <?php if(self::getGwStatusAction($gongwen["zuozhe"],$gongwen["id"])==0):?>
+                                    未发送
+                                <?php elseif(self::getGwStatusAction($gongwen["zuozhe"],$gongwen["id"])==1):?>
+                                    已发送
+                                <?php elseif(self::getGwStatusAction($gongwen["zuozhe"],$gongwen["id"])==2):?>
+                                    已审核
+                                <?php endif;?>
+                            </td>
                             <td class="table-cao">
                                 <a href="index.php?p=show&c=gongwen&a=sendDetail&id=<?=$gongwen['id']?>"><img src="public/yz/images/look_07.png"/>查看</a>
                                 <a href="index.php?p=show&c=gongwen&a=edit&id=<?=$gongwen['id']?>"><img src="public/yz/images/look1_06.png"/>编辑</a>

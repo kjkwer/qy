@@ -11,75 +11,7 @@
 </head>
 <body class="body">
 
-<div class="header">
-	<div class="container">
-		<div class="logo fl"><a href="/"></a></div>
-
-		<div class="head-nav fl">
-			<ul>
-				<li>
-					公文
-					<em></em>
-					<div class="head-navxia">
-						<p>
-							<a href="index.php?p=show&c=gongwen&a=accept">收文</a>
-							<a href="index.php?p=show&c=gongwen&a=list">发文</a>
-						</p>
-					</div>
-				</li>
-				<li>
-					文章管理
-					<em></em>
-					<div class="head-navxia">
-						<p>
-							<a href="index.php?p=show&c=article&a=add">发布文章</a>
-							<a href="index.php?p=show&c=article&a=list">文章列表</a>
-						</p>
-					</div>
-				</li>
-				<li>
-					统计
-					<em></em>
-					<div class="head-navxia">
-						<p>
-							<a href="">收文</a>
-							<a href="">发文</a>
-						</p>
-					</div>
-				</li>
-				<li>
-					基础设置
-					<em></em>
-					<div class="head-navxia">
-						<p>
-							<a href="">人员管理</a>
-							<a href="">角色管理</a>
-							<a href="">权限管理</a>
-						</p>
-					</div>
-				</li>
-			</ul>
-		</div>
-
-
-
-		<div class="head-soulogin fr">
-			<div class="head-sou fl relative">
-				<input type="text" name="" id="" value="" />
-				<img src="public/yz/images/head-sou_03.png"/>
-			</div>
-			<div class="head-login fr">
-				<a href="index.php?p=show&c=login&a=index">
-					<img src="public/yz/images/head-login_05.png"/>
-					登录
-				</a>
-			</div>
-
-
-		</div>
-	</div>
-
-</div>
+<?php include CUR_VIEW_PATH."Spublic/index_header.html";?>
 <!--banner-->
 <?php include CUR_VIEW_PATH."Spublic/baner.html";?>
 
@@ -91,7 +23,7 @@
 			<div class="fupin-lft fl">
 				<div class="in-h1">
 					<p>精准扶贫专栏  </p>
-					<a href="">更多&gt;&gt;</a>
+					<a href="index.php?p=show&c=index&a=tw&id=17">更多&gt;&gt;</a>
 				</div>
 				<div style="height:15px;"></div>
 				<div class="in-fptop fl">
@@ -452,10 +384,10 @@
 <div class="in-bom">
 	<div class="container">
 		<ul>
-			<li><a href=""><img src="public/yz/images/in-bom_03.jpg"/></a></li>
-			<li><a href=""><img src="public/yz/images/in-bom1_05.jpg"/></a></li>
-			<li><a href=""><img src="public/yz/images/in-bom3_05.jpg"/></a></li>
-			<li><a href=""><img src="public/yz/images/in-bom2_05.jpg"/></a></li>
+			<li><a href="index.php?p=show&c=index&a=wb&id=25"><img src="public/yz/images/in-bom_03.jpg"/></a></li>
+			<li><a href="index.php?p=show&c=index&a=wb&id=26"><img src="public/yz/images/in-bom1_05.jpg"/></a></li>
+			<li><a href="index.php?p=show&c=index&a=wb&id=27"><img src="public/yz/images/in-bom3_05.jpg"/></a></li>
+			<li><a href="index.php?p=show&c=index&a=wb&id=28"><img src="public/yz/images/in-bom2_05.jpg"/></a></li>
 		</ul>
 
 	</div>
@@ -467,77 +399,12 @@
 </div>
 
 <!--侧边栏-->
-<div class="celan fixed">
-	<ul>
-		<li class="box">
-			<a href="javascript:void(0)"></a>
-			<div class="cellan-img">
-				<img src="public/yz/images/cebians_03.png" class="cebiane"/>
-				<img src="public/yz/images/cebian_03.png" class="cebianes"/>
-			</div>
-			<p>电话</p>
-			<div class="hua-xia absolute">
-				<em>TEL: 028-85530019</em>
-				<img src="public/yz/images/shanjiao_03.png"/>
-			</div>
-		</li>
-		<li class="box">
-			<a href=""></a>
-			<div class="cellan-img">
-				<img src="public/yz/images/cebian1s_06.png" class="cebiane"/>
-				<img src="public/yz/images/cebian1_06.png" class="cebianes"/>
-			</div>
-			<p>邮箱</p>
-			<div class="hua-xia absolute" style="width:250px; font-size:16px;">
-				<em>MAIL:12345678910@163.com</em>
-				<img src="public/yz/images/shanjiao_03.png"/>
-			</div>
-		</li>
-		<li class="tan-kuan box">
-			<a href="javascript:void(0)"></a>
-			<div class="cellan-img">
-				<img src="public/yz/images/cebian2s_07.png" class="cebiane"/>
-				<img src="public/yz/images/cebian2_07.png" class="cebianes"/>
-			</div>
-			<p>举报直通车 </p>
-		</li>
-		<li class="box">
-			<a href="javascript:void(0)"></a>
-			<div class="cellan-img">
-				<img src="public/yz/images/cebian3s_06.png" class="cebiane"/>
-				<img src="public/yz/images/cebian3_06.png" class="cebianes"/>
-			</div>
-			<p>回到顶部</p>
-		</li>
-	</ul>
-</div>
+<?php include CUR_VIEW_PATH."Spublic/index_cebianlan.html";?>
 
 
 
 <!--弹出框-->
-<div class="in-fixed fixed">
-	<div class="table">
-		<div class="table-cell">
-			<div class="in-fixeds">
-				<div class="in-tanti">举报直通车</div>
-				<div class="in-tan-input box">
-					<input type="text" name="" id="" value="" placeholder="姓名" class="fl"/>
-					<input type="text" name="" id="" value="" placeholder="电话" class="fr"/>
-					<input type="text" name="" id="" value="" placeholder="邮箱" class="fl"/>
-					<input type="text" name="" id="" value="" placeholder="QQ" class="fr"/>
-					<input type="text" name="" id="" value="" placeholder="举报标题" class="in-taninti"/>
-					<textarea class="box"></textarea>
-					<div class="in-tanxuan">
-						<a href="javascript:void(0)" class="in-qudi box">取消</a>
-						<a href="" class="in-quxiao box">提交举报</a>
-					</div>
-				</div>
-
-			</div>
-
-		</div>
-	</div>
-</div>
+<?php include CUR_VIEW_PATH."Spublic/index_tanchukuang.html";?>
 
 
 <script type="text/javascript">

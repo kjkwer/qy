@@ -3,11 +3,11 @@
         <div class="container">
             <div class="banner-nav fr">
                 <ul>
-                    <?php
-                    foreach($articleGlassifyData as $articleGlassify){
-                        echo "<li><a href=''>".$articleGlassify['fenleimingcheng']." </a></li>";
-                        }
-                    ?>
+                    <?php if($articleGlassifyData):?>
+                    <?php foreach($articleGlassifyData as $articleGlassify):?>
+                    <li><a href="index.php?p=show&c=index&a=tw&id=<?=$articleGlassify['id']?>"><?=$articleGlassify['fenleimingcheng']?></a></li>
+                    <?php endforeach;?>
+                    <?php endif;?>
                     <!--<li><a href="">“不忘初心 牢记使命”教育活动 </a></li>-->
                     <!--<li><a href="">“两学一做”、“走基层”专题</a></li>-->
                     <!--<li><a href="">农牧民夜校专栏</a></li>-->
