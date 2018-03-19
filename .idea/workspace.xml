@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b8784d69-c6cb-43d4-8965-3c3ba56aaf9e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/qyu.iml" afterPath="$PROJECT_DIR$/.idea/qyu.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/show/AdminController.class.php" afterPath="$PROJECT_DIR$/application/controllers/show/AdminController.class.php" />
       <change beforePath="$PROJECT_DIR$/application/views/show/Sadmin/admin_index.html" afterPath="$PROJECT_DIR$/application/views/show/Sadmin/admin_index.html" />
+      <change beforePath="$PROJECT_DIR$/application/views/show/Spublic/bianlan.html" afterPath="$PROJECT_DIR$/application/views/show/Spublic/bianlan.html" />
+      <change beforePath="$PROJECT_DIR$/application/views/show/Spublic/header.html" afterPath="$PROJECT_DIR$/application/views/show/Spublic/header.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,21 +24,43 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GongwenController.class.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/controllers/show/GongwenController.class.php">
+      <file leaf-file-name="organizationController.class.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/controllers/show/organizationController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2204">
-              <caret line="310" column="13" lean-forward="true" selection-start-line="310" selection-start-column="13" selection-end-line="310" selection-end-column="13" />
+            <state relative-caret-position="627">
+              <caret line="38" column="33" lean-forward="false" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="organization_index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/views/show/Sorganization/organization_index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="661">
+              <caret line="512" column="32" lean-forward="true" selection-start-line="512" selection-start-column="32" selection-end-line="512" selection-end-column="32" />
               <folding>
-                <marker date="1521422862734" expanded="true" signature="698:761" ph="select * fro... sl_gw" />
-                <marker date="1521422862734" expanded="true" signature="1052:1115" ph="select * fro... sl_gw" />
-                <marker date="1521422862734" expanded="true" signature="1530:1632" ph="select b.* f... sl_fasong" />
-                <marker date="1521422862734" expanded="true" signature="1906:2020" ph="select b.* f... sl_fasong" />
-                <marker date="1521422862734" expanded="true" signature="2321:2351" ph="select id,le... sl_gwlx" />
-                <marker date="1521422862734" expanded="true" signature="2665:2709" ph="select id,xi... sl_yhlb" />
-                <marker date="1521422862734" expanded="true" signature="3494:3538" ph="select id,xi... sl_yhlb" />
-                <marker date="1521422862734" expanded="true" signature="11908:12001" ph="select b.xin... sl_fasong" />
+                <element signature="e#1437#1441#1" expanded="true" />
+                <element signature="e#1485#1489#1" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#div#2;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#style#0;n#div#4;n#div#2;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#script#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#script#1;n#body#0;n#html#0;n#!!top" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="header.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/show/Spublic/header.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="528">
+              <caret line="46" column="68" lean-forward="true" selection-start-line="46" selection-start-column="37" selection-end-line="46" selection-end-column="68" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -83,7 +104,6 @@
         <option value="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_accept_list.html" />
         <option value="$PROJECT_DIR$/application/controllers/show/GongwenController.class.php" />
         <option value="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_accept_detail.html" />
-        <option value="$PROJECT_DIR$/application/views/show/Spublic/bianlan.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sarticle/article_detail.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_huiyuan_send_list.html" />
         <option value="$PROJECT_DIR$/application/views/show/Spublic/baner.html" />
@@ -91,14 +111,17 @@
         <option value="$PROJECT_DIR$/application/views/show/Spublic/index_tanchukuang.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sarticle/article_tw_list.html" />
         <option value="$PROJECT_DIR$/application/views/show/Spublic/index_header.html" />
-        <option value="$PROJECT_DIR$/application/views/show/Spublic/header.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sindex/index_index.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sarticle/article_wb_list.html" />
         <option value="$PROJECT_DIR$/application/controllers/show/ArticleController.class.php" />
         <option value="$PROJECT_DIR$/application/controllers/show/IndexController.class.php" />
         <option value="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_edit.html" />
-        <option value="$PROJECT_DIR$/application/views/show/Sadmin/admin_index.html" />
         <option value="$PROJECT_DIR$/application/controllers/show/AdminController.class.php" />
+        <option value="$PROJECT_DIR$/application/views/show/Spublic/bianlan.html" />
+        <option value="$PROJECT_DIR$/application/views/show/Sadmin/admin_index.html" />
+        <option value="$PROJECT_DIR$/application/views/show/Spublic/header.html" />
+        <option value="$PROJECT_DIR$/application/controllers/show/organizationController.class.php" />
+        <option value="$PROJECT_DIR$/application/views/show/Sorganization/organization_index.html" />
       </list>
     </option>
   </component>
@@ -129,7 +152,7 @@
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1382" />
@@ -214,6 +237,22 @@
               <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="show" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Sindex" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="show" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Sorganization" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="show" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Spublic" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
@@ -327,15 +366,15 @@
       <workItem from="1520904347827" duration="27315000" />
       <workItem from="1521033164278" duration="17913000" />
       <workItem from="1521081576339" duration="6463000" />
-      <workItem from="1521422981314" duration="13459000" />
+      <workItem from="1521422981314" duration="19950000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93517000" />
+    <option name="totallyTimeSpent" value="100008000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22707888" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -389,30 +428,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/controllers/show/GongwenController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5830">
-          <caret line="270" column="36" lean-forward="false" selection-start-line="270" selection-start-column="36" selection-end-line="270" selection-end-column="36" />
-          <folding>
-            <marker date="1521422862734" expanded="true" signature="698:761" ph="select * fro... sl_gw" />
-            <marker date="1521422862734" expanded="true" signature="1052:1115" ph="select * fro... sl_gw" />
-            <marker date="1521422862734" expanded="true" signature="1530:1632" ph="select b.* f... sl_fasong" />
-            <marker date="1521422862734" expanded="true" signature="1906:2020" ph="select b.* f... sl_fasong" />
-            <marker date="1521422862734" expanded="true" signature="2321:2351" ph="select id,le... sl_gwlx" />
-            <marker date="1521422862734" expanded="true" signature="2665:2709" ph="select id,xi... sl_yhlb" />
-            <marker date="1521422862734" expanded="true" signature="3494:3538" ph="select id,xi... sl_yhlb" />
-            <marker date="1521422862734" expanded="true" signature="11908:12001" ph="select b.xin... sl_fasong" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_huiyuan_edit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_huiyuan_send_list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5192">
@@ -518,6 +533,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="874">
           <caret line="46" column="61" lean-forward="false" selection-start-line="46" selection-start-column="56" selection-end-line="46" selection-end-column="61" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -648,20 +666,6 @@
     <entry file="file://$PROJECT_DIR$/application/views/show/Spublic/index_cebianlan.html" />
     <entry file="file://$PROJECT_DIR$/application/views/show/Spublic/index_tanchukuang.html" />
     <entry file="file://$PROJECT_DIR$/application/views/show/Spublic/index_header.html" />
-    <entry file="file://$PROJECT_DIR$/application/views/show/Spublic/header.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-439">
-          <caret line="5" column="30" lean-forward="false" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/show/Spublic/bianlan.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="50" column="76" lean-forward="false" selection-start-line="50" selection-start-column="24" selection-end-line="50" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/show/Sarticle/article_tw_list.html" />
     <entry file="file://$PROJECT_DIR$/application/views/show/Sarticle/article_wb_list.html" />
     <entry file="file://$PROJECT_DIR$/framework/databases/CPdo.class.php">
@@ -732,29 +736,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/show/AdminController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1406">
-          <caret line="112" column="82" lean-forward="false" selection-start-line="112" selection-start-column="82" selection-end-line="112" selection-end-column="82" />
-          <folding>
-            <marker date="1521450631190" expanded="true" signature="715:738" ph="select * fro... sl_yhlb" />
-            <marker date="1521450631190" expanded="true" signature="715:754" ph="select * fro... sl_yhlb" />
-            <marker date="1521450631190" expanded="true" signature="3656:3695" ph="update sl_yhlb... " />
-            <marker date="1521450631190" expanded="true" signature="3656:3697" ph="update sl_yhlb... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/show/Sadmin/admin_index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="66" column="65" lean-forward="false" selection-start-line="66" selection-start-column="65" selection-end-line="66" selection-end-column="65" />
-          <folding>
-            <element signature="n#script#4;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/framework/core/ModelNew.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
@@ -796,10 +777,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/show/Spublic/bianlan.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="635">
+          <caret line="90" column="64" lean-forward="false" selection-start-line="90" selection-start-column="64" selection-end-line="90" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/show/GongwenController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2204">
-          <caret line="310" column="13" lean-forward="true" selection-start-line="310" selection-start-column="13" selection-end-line="310" selection-end-column="13" />
+        <state relative-caret-position="418">
+          <caret line="27" column="60" lean-forward="false" selection-start-line="27" selection-start-column="60" selection-end-line="27" selection-end-column="60" />
           <folding>
             <marker date="1521422862734" expanded="true" signature="698:761" ph="select * fro... sl_gw" />
             <marker date="1521422862734" expanded="true" signature="1052:1115" ph="select * fro... sl_gw" />
@@ -809,6 +798,65 @@
             <marker date="1521422862734" expanded="true" signature="2665:2709" ph="select id,xi... sl_yhlb" />
             <marker date="1521422862734" expanded="true" signature="3494:3538" ph="select id,xi... sl_yhlb" />
             <marker date="1521422862734" expanded="true" signature="11908:12001" ph="select b.xin... sl_fasong" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/show/AdminController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="604">
+          <caret line="146" column="43" lean-forward="false" selection-start-line="146" selection-start-column="20" selection-end-line="146" selection-end-column="43" />
+          <folding>
+            <marker date="1521450631190" expanded="true" signature="715:738" ph="select * fro... sl_yhlb" />
+            <marker date="1521450631190" expanded="true" signature="715:754" ph="select * fro... sl_yhlb" />
+            <marker date="1521450631190" expanded="true" signature="3656:3695" ph="update sl_yhlb... " />
+            <marker date="1521450631190" expanded="true" signature="3656:3697" ph="update sl_yhlb... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/show/Sadmin/admin_index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="607">
+          <caret line="328" column="30" lean-forward="true" selection-start-line="328" selection-start-column="30" selection-end-line="328" selection-end-column="30" />
+          <folding>
+            <element signature="n#script#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#script#4;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/show/Spublic/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="46" column="68" lean-forward="true" selection-start-line="46" selection-start-column="37" selection-end-line="46" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/show/organizationController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="627">
+          <caret line="38" column="33" lean-forward="false" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/show/Sorganization/organization_index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="661">
+          <caret line="512" column="32" lean-forward="true" selection-start-line="512" selection-start-column="32" selection-end-line="512" selection-end-column="32" />
+          <folding>
+            <element signature="e#1437#1441#1" expanded="true" />
+            <element signature="e#1485#1489#1" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#2;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#4;n#div#2;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#script#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#script#1;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
