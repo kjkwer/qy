@@ -56,7 +56,6 @@
                     <th>排序</th>
                     <th>姓名</th>
                     <th>手机号码</th>
-                    <th>所属职称</th>
                     <th>所属部门</th>
                     <th>员工状态</th>
                     <th>操作</th>
@@ -64,18 +63,15 @@
                 <?php  if($adminDatas):?>
                     <?php foreach($adminDatas as $adminData):?>
                     <tr>
-                        <td>
-                            <em class="box"></em>
-                            <span><?=$adminData['paixu']?></span>
+                        <td class="table-paixu">
+                            <em class="box" nameid="<?=$adminData['id']?>"></em>
+                            <span>1</span>
                         </td>
                         <td>
                             <p><?=$adminData['xingming']?></p>
                         </td>
                         <td>
                             <?=$adminData['shoujihaoma']?>
-                        </td>
-                        <td>
-                            <?=$adminData['zhicheng']?>
                         </td>
                         <td>
                             <?=$adminData['bumen']?>
@@ -85,8 +81,8 @@
                         </td>
                         <td class="table-cao">
                             <a href=""><img src="public/yz/images/look_07.png"/>查看</a>
-                            <a href=""><img src="public/yz/images/look1_06.png"/>编辑</a>
-                            <a href="index.php?p=show&c=admin&a=delete&id=<?=$adminData['id']?>"><img src="public/yz/images/lock2_08.png"/>删除</a>
+                            <a href="javascript:void(0)" nameid="<?=$adminData['id']?>" class="edit"><img src="public/yz/images/look1_06.png"/>编辑</a>
+                            <a href="javascript:void(0)" class="deleteSingle" nameid="<?=$adminData['id']?>"><img src="public/yz/images/lock2_08.png"/>删除</a>
                         </td>
                     </tr>
                     <?php endforeach;?>
@@ -95,7 +91,7 @@
         </div>
         <div class="xt-quanxuan fl">
             <p><em class="box"></em>全选</p>
-            <span><img src="public/yz/images/lock2_08.png"/>删除</span>
+            <span id="piliangshanchu"><img src="public/yz/images/lock2_08.png"/>删除</span>
         </div>
         <div class="page fr">
             <a href="">首页</a>
@@ -121,7 +117,8 @@
                     <span>添加人员</span>
                     <img src="public/yz/images/Close_03.png" class="Close"/>
                 </div>
-                <form action="index.php?p=show&c=admin&a=add" id="addAdmin" method="post">
+                <form id="myform" method="post">
+                    <input type="hidden" name="id" id="id">
                     <div class="add-toinput">
                         <div class="add-min">
                             <span><em>*</em> 登录账号：</span>
@@ -137,15 +134,20 @@
                         </div>
                         <div class="add-min">
                             <span><em>*</em> 所属部门：</span>
-                            <input type="text" name="bumen" id="bumen" value="" />
+                            <div class="add-xiala inp-xia relative">
+                                <input type="text" name="bumen" id="bumen" value="" readonly class="xiala"/>
+                                <div class="adit-xuan box">
+                                    <?php if($bumenData):?>
+                                    <?php foreach($bumenData as $bumen):?>
+                                        <p><?=$bumen["laiyuan"]?></p>
+                                    <?php endforeach;?>
+                                    <?php endif;?>
+                                </div>
+                            </div>
                         </div>
                         <div class="add-min">
                             <span><em>*</em> 手机号码：</span>
                             <input type="number" name="shoujihaoma" id="shoujihaoma" value="" />
-                        </div>
-                        <div class="add-min">
-                            <span><em>*</em> 所属职称：</span>
-                            <input type="text" name="zhicheng" id="zhicheng" value="" />
                         </div>
                         <div class="add-min">
                             <span>联系电话：</span>
@@ -172,7 +174,7 @@
                             </div>
                         </div>
                         <div class="add-baos ">
-                            <input type="submit" name="submit" id="submit" value="保存" class="add-bao"/>
+                            <input type="button" name="submit" id="baocun" value="保存" class="add-bao"/>
                         </div>
                 </form>
 
@@ -223,16 +225,15 @@
     })
 
 </script>
-
-<!--数据验证-->
+<!--添加人员-->
 <script type="text/javascript">
-    $("#addAdmin").submit(function () {
+    $("#baocun").click(function () {
+        var form = new FormData(document.getElementById("myform"));
         var zhanghao = $("#zhanghao").val();
         var mima = $("#mima").val();
         var xingming = $("#xingming").val();
         var bumen = $("#bumen").val();
         var shoujihaoma = $("#shoujihaoma").val();
-        var zhicheng = $("#zhicheng").val();
         var guanliyuan = $("#guanliyuan").val();
         if (zhanghao==""){
             layer.alert("登录账号不能为空")
@@ -254,14 +255,93 @@
             layer.alert("手机号码不能为空")
             return false;
         }
-        if (zhicheng==""){
-            layer.alert("职称不能为空")
-            return false;
-        }
         if (guanliyuan==""){
             layer.alert("请选择是否为管理员")
             return false;
         }
+        $.ajax({
+            url:"index.php?p=show&c=admin&a=add",
+            type:"post",
+            data:form,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success:function(data){
+                if (data != 500){
+                    //>>保存成功
+                    // layer.alert("保存成功")
+                    // window.location.href='http://www.qy.com/index.php?p=show&c=gongwen&a=list';
+                    layer.open({
+                        content: '保存成功！',
+                        btn: ['确认'],
+                        yes: function(index, layero) {
+                            location.reload()
+                        },
+                    });
+                }
+            },
+            error:function(e){
+                layer.alert("保存失败")
+                return false;
+            }
+        })
+    })
+</script>
+<!--编辑人员-->
+<script type="text/javascript">
+    $(".edit").on("click",function(){
+        //>>获取人员数据
+        var id = $(this).attr("nameid");
+        $.post("index.php?p=show&c=admin&a=getOne",{id:id},function (data) {
+            $("#id").val(data.id);
+            $("#zhanghao").val(data.zhanghao);
+            $("#mima").val(data.mima);
+            $("#xingming").val(data.xingming);
+            $("#bumen").val(data.bumen);
+            $("#shoujihaoma").val(data.shoujihaoma);
+            $("#dianhua").val(data.dianhua);
+            $("#guanliyuan").val(data.guanliyuan);
+            $("#zhuangtai").val(data.zhuangtai);
+        },"json")
+        $(".tanchu").show(200);
+    })
+</script>
+
+<!--删除人员（单）-->
+<script type="text/javascript">
+    $(".deleteSingle").click(function () {
+        //>>获取当前公文Id
+        var id = $(this).attr("nameid");
+        //>>删除公文
+        $.post("index.php?p=show&c=admin&a=deleteSingle",{id:id},function (data) {
+            if (data==200){
+                location.reload()
+            }else {
+                layer.alert("删除失败")
+            }
+        },"json")
+    })
+</script>
+
+<script type="text/javascript">
+    $("#piliangshanchu").click(function () {
+        var lists = $("em[class='box em-add']");
+        var ids = new Array();
+        var i = 0;
+        lists.each(function () {
+            ids[i] =  $(this).attr("nameid")
+            i++;
+        });
+        if (ids.length==0){
+            layer.alert("请选择要删除的选项")
+            return false;
+        }
+        $.post('index.php?p=show&c=admin&a=deletePiliang',{'data[]':ids},function (data) {
+            if(data.code==200){
+                //>>删除成功
+                location.reload()
+            }
+        },"json")
     })
 </script>
 </body>

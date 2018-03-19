@@ -9,6 +9,8 @@
 class AdminController extends BaseController
 {
     public static $userData = null;
+    public static $isAdmin = [1=>"是",2=>"否"];
+    public static $zhuangtai = [1=>"在职",2=>"离职"];
     public function  __construct()
     {
         ob_end_clean();
@@ -23,8 +25,12 @@ class AdminController extends BaseController
     public function indexAction(){
         $model = new ModelNew('yhlb');
 //        $adminDatas = $model->orderBy('{$this->paixu} desc')->all();
-        $adminDatas = $model->findBySql('select * from `sl_yhlb`');
+        $adminDatas = $model->findBySql('select * from `sl_yhlb` WHERE shanchu=1');
 //        var_dump($adminDatas);exit();
+        //>>查找所有部门
+        $bumenModel = new ModelNew('gwlxy');
+        $bumenData = $bumenModel->find()->all();
+
         include CUR_VIEW_PATH."Sadmin" . DS . "admin_index.html";
     }
     //>>添加员工
@@ -35,9 +41,9 @@ class AdminController extends BaseController
         //>>
         $data["zhanghao"] = $_POST["zhanghao"]?$_POST["zhanghao"]:null;
 
-        $data["mima"] = $_POST["mima"]?md5($_POST["mima"]):null;
+        $data["mima"] = $_POST["mima"]?$_POST["mima"]:null;
         $data["xingming"] = $_POST["xingming"]?$_POST["xingming"]:null;
-        $data["bumen"] = $_POST["bumen"]?$_POST["bumen"]:null;
+        $data["bumen"] = $_POST["bumen"]?self::getBumenIdAction($_POST["bumen"]):null;
         $data["shoujihaoma"] = $_POST["shoujihaoma"]?$_POST["shoujihaoma"]:null;
         $data["zhicheng"] = $_POST["zhicheng"]?$_POST["zhicheng"]:null;
         $data["dianhua"] = $_POST["dianhua"]?$_POST["dianhua"]:null;
@@ -53,54 +59,96 @@ class AdminController extends BaseController
         }else{
             $data["zhuangtai"]=2;
         }
-        $data["paixu"] = self::getSortAction();
-        if($data){
+//        var_dump($_POST["id"]);exit();
+        if($_POST["id"]==""){
+            $data["mima"] = md5($_POST["mima"]);
             if ($model->insert($data)){
 //                echo "添加成功";
-                $this->jump('index.php?p=show&c=admin&a=index','添加成功',3);
+                echo 200;
             }else{
 //                echo "添加失败";
-                $this->jump('index.php?p=show&c=admin&a=index','添加失败',3);
+                echo 500;
             }
         }else{
-//            echo "数据错误";
-            $this->jump('index.php?p=show&c=admin&a=index','数据错误',3);
+            $getMima = $model->where(["id"=>$_POST["id"]])->find("mima")->one();
+            if ($data["mima"] == substr($getMima["mima"],0,6)){
+                unset($data["mima"]);
+            }else{
+                $data["mima"] = md5($_POST["mima"]);
+            }
+//            var_dump($_POST["id"]);exit();
+            if ($model->where(["id"=>$_POST["id"]])->update($data)){
+//                echo "添加成功";
+                echo 200;
+            }else{
+//                echo "添加失败";
+                echo 500;
+            }
         }
     }
-    //>>删除人员
-    public function deleteAction($id){
-        $id = $_GET["id"]?$_GET["id"]:null;
+    //>>删除人员(单)
+    public function deleteSingleAction($id){
+        $id = $_POST["id"]?$_POST["id"]:null;
         $model = new ModelNew("yhlb");
         if ($id){
             //>>查询id是否存在
-            if ($model->delete($id)){
+            if ($model->where(["id"=>$id])->update(["shanchu"=>-1])){
                 //>>删除成功，修改排序
 //                self::updateSortAction($id);
-                $this->jump('index.php?p=show&c=admin&a=index','删除成功',3);
+                echo 200;
             }else{
-                $this->jump('index.php?p=show&c=admin&a=index','删除失败，请刷新重试',3);
+                echo 500;
             }
         }
     }
+    public function deletePiliangAction(){
+        //>>获取要删除的id
+//        var_dump(111,$_POST);exit();
+        $result=["code"=>200,"message"=>"删除成功"];
+        $ids = $_POST["data"];
+        $model = new ModelNew("yhlb");
+        //>>删除与公文抄送人信息
+        if ($ids){
+            foreach ($ids as $id){
+                $model->findBySql("update sl_yhlb set shanchu=-1 WHERE id={$id}");
+            }
+        }
+        echo json_encode($result);
+    }
+
     //>>退出登录
     public function quitAction(){
         unset($_SESSION["user"]);
         $this->jump('index.php?p=show&c=index&a=index','退出成功，回到首页',3);
     }
 
-    //>>获取当前做大排序
-    public static function getSortAction(){
-        $model = new ModelNew('admin');
-        $sort = $model->findBySql('select paixu from sl_yhlb');
-        if ($sort){
-            for ($i=0;$i<count($sort);$i++){
-                $data[] = $sort[$i]["paixu"];
-            }
-            return max($data)+1;
-        }else{
-            return 1;
+    //>>通过id获取人员数据
+    public function getOneAction(){
+        $id = $_POST["id"];
+        $model = new ModelNew("yhlb");
+        $data = $model->where(["id"=>$id])->find()->one();
+        $data["bumen"] = self::getBumenMingchengAction($data["bumen"]);
+        $data["guanliyuan"] = self::$isAdmin[$data["guanliyuan"]];
+        $data["zhuangtai"] = self::$zhuangtai[$data["zhuangtai"]];
+        $data["mima"] = substr($data["mima"],0,6);
+        echo json_encode($data);
+    }
+
+    //>>通过部门名称查找id
+    public static function getBumenIdAction($laiyuan){
+        $model = new ModelNew("gwlxy");
+        $data = $model ->where(["laiyuan"=>$laiyuan])->find("id")->one();
+        if ($data){
+            return $data["id"];
         }
     }
 
-
+    //>>通过部门id获取部门名称
+    public function getBumenMingchengAction($id){
+        $model = new ModelNew("gwlxy");
+        $data = $model ->where(["id"=>$id])->find("laiyuan")->one();
+        if ($data){
+            return $data["laiyuan"];
+        }
+    }
 }
