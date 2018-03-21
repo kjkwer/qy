@@ -21,7 +21,6 @@ class organizationController
 
     //>>页面
     public function indexAction(){
-
         include CUR_VIEW_PATH."Sorganization" . DS . "organization_index.html";
     }
 
@@ -37,5 +36,17 @@ class organizationController
         $model = new ModelNew("sl_zzjg");
         $datas = $model->where(["fuid"=>$id])->find()->all();
         echo json_encode($datas);
+    }
+    //>>添加部门
+    public function addNextAction(){
+        $data["fuid"] = $_POST["fuid"]?$_POST["fuid"]:0;
+        $data["cengji"] = $_POST["peed"]?$_POST["peed"]:"";
+        $data["mingcheng"] = $_POST["mingcheng"]?$_POST["mingcheng"]:"";
+        $model = new ModelNew("zzjg");
+        if ($model->insert($data)){
+            echo 200;
+        }else{
+            echo 500;
+        }
     }
 }

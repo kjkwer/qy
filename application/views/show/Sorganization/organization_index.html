@@ -12,6 +12,11 @@
     <script src="public/yz/js/mobiscroll_002.js" type="text/javascript"></script>
     <script src="public/yz/js/mobiscroll.js" type="text/javascript"></script>
     <script type="text/javascript" src="public/yz/js/jquery.treemenu.js" ></script>
+
+    <link rel="stylesheet" href="public/layer/theme/default/layer.css">
+    <script src="public/layer/layer.js" type="text/javascript"></script>
+
+
     <style>
         .newodd-role .role-h1{background:none; color:#282828;}
         .newodd-role .role-h1 p {background:url(images/role-ico4_03.png) no-repeat 15px center;}
@@ -52,7 +57,7 @@
                 </ul>
             </div>
             <div class="odd-role" style="margin-top: 20px;">
-                <div class="zong-he" nameid="0"><p>雅江党建（256人）</p></div>
+                <div class="zong-he manager" nameid="0" peed="0"><p>雅江党建（256人）</p></div>
                 <ul class="tree">
                     <?php if($datas = self::getNextDataAction(0)):?>
                     <?php foreach($datas as $data):?>
@@ -73,6 +78,8 @@
                                         </li>
                                     <?php endforeach;?>
                                 <?php endif;?>
+                            </ul>
+                        </li>
                     <?php endforeach;?>
                     <?php endif;?>
                 </ul>
@@ -375,16 +382,16 @@
                     <span>添加部门</span>
                     <img src="public/yz/images/Close_03.png" class="Close" />
                 </div>
-                <form id="myform">
+                <form id="myform1">
                     <input type="hidden" name="fuid" id="fuid" value="">
                     <input type="hidden" name="peed" id="peed" value="">
                     <div class="add-toinput">
                         <div class="add-min">
                             <span><em>*</em>添加部门：</span>
-                            <input type="text" name="" id="" value="" class="bum-input" />
+                            <input type="text" name="mingcheng" id="mingcheng" value="" class="bum-input" />
                         </div>
                         <div class="add-baos" >
-                            <input type="submit" name="" id="" value="保存" class="add-bao"  />
+                            <input type="button" name="addBumen" id="addBumen" value="保存" class="add-bao"  />
                         </div>
                     </div>
                 </form>
@@ -510,9 +517,47 @@
         //>>获取当前部门的id和层级
         var id = $(this).attr("nameid");
         var peed = $(this).attr("peed");
-        alert(1+parseInt(peed));
+        $("#fuid").val(id);
+        $("#peed").val(1+parseInt(peed));
+    })
+    $("#addBumen").click(function () {
+        var form = new FormData(document.getElementById("myform1"));
+        var mingcheng = $("#mingcheng").val();
+        if (mingcheng==""){
+            layer.alert("请输入部门名称")
+            return false;
+        }
+        $.ajax({
+            url:"index.php?p=show&c=organization&a=addNext",
+            type:"post",
+            data:form,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success:function(data){
+                if (data != 500){
+                    //>>保存成功
+                    // layer.alert("保存成功")
+                    // window.location.href='http://www.qy.com/index.php?p=show&c=gongwen&a=list';
+                    layer.open({
+                        content: '保存成功！',
+                        btn: ['确认'],
+                        yes: function(index, layero) {
+                            location.reload();
+                        },
+                    });
+                }
+            },
+            error:function(e){
+                layer.alert("保存失败")
+                return false;
+            }
+        })
     })
 </script>
+
+
+
 </body>
 
 </html>

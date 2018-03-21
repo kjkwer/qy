@@ -48,12 +48,12 @@
                     <p><?=$gwData["bianhao"]?></p>
                 </li>
                 <li>
-                    <div class="li-span"><em>公文类型</em></div>
-                    <p><?=self::getGwLxAction($gwData["leixing"])?></p>
+                    <div class="li-span"><em>工作专栏</em></div>
+                    <p><?=self::getZlNameAction($gwData['zhuanlan'])?></p>
                 </li>
                 <li>
                     <div class="li-span"><em>公文来源</em></div>
-                    <p><?=self::getlaiyuanAction($gwData["laiyuan"])?></p>
+                    <p><?=self::getCunMingchengAction($gwData["xiangzhen"])."-".self::getCunMingchengAction($gwData["cun"])?></p>
                 </li>
                 <li>
                     <div class="li-span"><em>发送人</em></div>
@@ -66,7 +66,7 @@
                 <li>
                     <div class="li-span">
                         <div class="table">
-									<span class="table-cell"><em>缩略图</em>
+                            <span class="table-cell"><em>缩略图</em></span>
                         </div>
                     </div>
                     <p><img src="<?=$gwData['tupian']?>" class="suoluetu"/></p>
@@ -77,8 +77,6 @@
 									<span class="table-cell"><em>文章正文</em>
                         </div>
                     </div>
-
-
                     <div class="wnzi">
                         <?=$gwData["neirong"]?>
                     </div>
@@ -87,8 +85,8 @@
         </div>
 
         <div class="edit-quedin" style="text-align: right;">
-            <a id="shenhe" fsr="<?=$gwData["zuozhe"]?>" gwId="<?=$gwData["id"]?>" href="javascript:void(0)" class="wdit-a box">设为已审核</a>
-            <a href="javascript:void(0)">推荐公文</a>
+            <a id="shenhe" gwId="<?=$gwData['id']?>" gwStatus="<?=$gwData['zhuangtai']?>" href="javascript:void(0)" class="wdit-a box">设为已审核</a>
+            <a href="javascript:void(0)" gwStatus="<?=$gwData['zhuangtai']?>">推荐公文</a>
         </div>
 
 
@@ -105,38 +103,28 @@
                 <div class="tui-nei box">
                     <div class="tui-lei">
                         <span>公文标题：</span>
-                        <p>四川加快优质米产业发展国标1级优质水稻品种已达3个</p>
+                        <p><?=$gwData["biaoti"]?></p>
                     </div>
                     <div class="tui-lei">
                         <span>公文编号：</span>
-                        <p>ML-9600</p>
+                        <p><?=$gwData["bianhao"]?></p>
                     </div>
                     <div class="tui-lei">
-                        <span>公文类型：</span>
-                        <p>周报一</p>
+                        <span>工作专栏：</span>
+                        <p><?=self::getZlNameAction($gwData['zhuanlan'])?></p>
                     </div>
                     <div class="tui-lei">
-                        <span>抄送人：</span>
-                        <p>张三</p>
+                        <span>发送人：</span>
+                        <p><?=self::getfsrAction($gwData["zuozhe"])?></p>
                     </div>
                     <div class="tui-lei">
                         <span>发布时间：</span>
-                        <p>2018-01-15 15:25:22</p>
-                    </div>
-                    <div class="tui-leis">
-                        <span>推荐到：</span>
-                        <div class="xtwen-input inp-xia box fl" style="margin-left:16px;">
-                            <input type="text" name="" id="" value="" class="edit-inwidt" readonly placeholder="党的建设"/>
-                            <div class="adit-xuan box">
-                                <p>党的建设</p>
-                                <p>党的建设</p>
-                            </div>
-                        </div>
+                        <p><?=$gwData["dtime"]?></p>
                     </div>
                     <div class="clear"></div>
                     <div class="tui-qudin">
                         <a href="javascript:void(0)" class="tui-yes fl box">取消</a>
-                        <a href="" class="tui-none fr">确定推荐</a>
+                        <a href="javascript:void(0)" class="tui-none fr" id="tuijian" gwId="<?=$gwData['id']?>">确定推荐</a>
                     </div>
                 </div>
             </div>
@@ -146,7 +134,16 @@
 
 
 <script>
-    $(".edit-quedin a").click(function(){
+    $(".edit-quedin a:eq(1)").click(function(){
+        var gwStatus = $(this).attr("gwStatus");
+        if (gwStatus==3){
+            layer.alert("该公文已退回，需重新提交");
+            return false;
+        }
+        if (gwStatus==5){
+            layer.alert("该公文已推荐");
+            return false;
+        }
         $(".fixed-tui").show(200);
     })
 
@@ -167,10 +164,65 @@
 <script type="text/javascript">
     $("#shenhe").click(function () {
         var gwTd = $(this).attr("gwId");
-        alert(gwTd);
-        return;
+        var gwStatus = $(this).attr("gwStatus");
+        if (gwStatus==3){
+            layer.alert("该公文已退回，需重新提交");
+            return false;
+        }
+        if (gwStatus==4){
+            layer.alert("该公文已审核");
+            return false;
+        }
+        if (gwStatus==5){
+            layer.alert("该公文已审核");
+            return false;
+        }
+        $.post("index.php?p=show&c=gongwen&a=sheheGw",{gwId:gwTd},function (data) {
+            if (data==200){
+                layer.open({
+                    content: '审核通过！',
+                    btn: ['确认'],
+                    yes: function(index, layero) {
+                        window.location.href='http://www.qy.com/index.php?p=show&c=gongwen&a=accept';
+                    },
+                });
+            }else {
+                layer.open({
+                    content: '审核失败！',
+                    btn: ['确认'],
+                    yes: function(index, layero) {
+                        location.reload();
+                    },
+                });
+            }
+        })
+        return false;
     })
 </script>
-
+<!--推荐公文-->
+<script type="text/javascript">
+    $("#tuijian").click(function () {
+        var id = $(this).attr("gwId");
+        $.post("index.php?p=show&c=gongwen&a=tuijianGw",{gwId:id},function (data) {
+            if (data==200){
+                layer.open({
+                    content: '推荐成功！',
+                    btn: ['确认'],
+                    yes: function(index, layero) {
+                        window.location.href='http://www.qy.com/index.php?p=show&c=gongwen&a=accept';
+                    },
+                });
+            }else {
+                layer.open({
+                    content: '推荐失败！',
+                    btn: ['确认'],
+                    yes: function(index, layero) {
+                        location.reload();
+                    },
+                });
+            }
+        })
+    })
+</script>
 </body>
 </html>

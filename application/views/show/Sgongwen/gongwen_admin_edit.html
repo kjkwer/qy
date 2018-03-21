@@ -40,7 +40,7 @@
     </div>
 
     <div class="edit-input box">
-        <form id="myfrom" action="index.php?p=show&c=gongwen&a=editAdmin" method="post" enctype="multipart/form-data">
+        <form id="myfrom" action="index.php?p=show&c=gongwen&a=editAdmin" method="get" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?=$gwData['id']?$gwData['id']:'' ?>">
             <div class="edit-sse">
                 <span>公文标题</span>
@@ -52,14 +52,14 @@
                 <input type="text" name="bianhao" id="bianhao" value="<?=$gwData['bianhao']?$gwData['bianhao']:'' ?>" style="width:600px;" />
                 <em>*请按照公文标签的编号进行输入</em>
             </div>
-            <div class="edit-sse relative fl" style="z-index: 10000">
-                <span>公文类型</span>
+            <div class="edit-sse relative fl">
+                <span>工作专栏</span>
                 <div class="inp-xia">
-                    <input type="text" name="leixing" id="" value="<?=$gwData['leixing']?self::getGwLxAction($gwData['leixing']):''  ?>" class="edit-inwidt" readonly/>
-                    <div class="adit-xuan box">
-                        <?php if($lxData):?>
-                        <?php foreach($lxData as $lx):?>
-                            <p><?=$lx["leixing"]?></p>
+                    <input type="text" name="zhuanlan" id="zhuanlan" value="<?=$gwData['zhuanlan']?self::getZlNameAction($gwData['zhuanlan']):''  ?> " class="edit-inwidt" readonly/>
+                    <div class="adit-xuan box" style="z-index: 10000">
+                        <?php if($flData):?>
+                        <?php foreach($flData as $fl):?>
+                        <p><?=$fl["mingcheng"]?></p>
                         <?php endforeach;?>
                         <?php endif;?>
                     </div>
@@ -87,11 +87,6 @@
             <!-- 实例化编辑器 -->
             <script type="text/javascript">
                 var ue = UE.getEditor('container', {
-                    toolbars: [
-                        ['fullscreen', 'source', 'undo', 'redo', 'bold','indent','italic','underline','formatmatch',
-                            'simpleupload','searchreplace','justifyleft','justifyright','justifycenter','justifyjustify',
-                            'forecolor','backcolor','lineheight','autotypeset',]
-                    ],
                     autoHeightEnabled: true,
                     autoFloatEnabled: true
                 });
@@ -264,7 +259,9 @@
         })
     })
 </script>
-
+<script type="text/javascript">
+    $("")
+</script>
 
 </body>
 

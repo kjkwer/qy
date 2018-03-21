@@ -44,12 +44,12 @@
                     <p><?=$gwData["bianhao"]?></p>
                 </li>
                 <li>
-                    <div class="li-span"><em>公文类型</em></div>
-                    <p><?=self::getGwLxAction($gwData["leixing"])?></p>
+                    <div class="li-span"><em>工作专栏</em></div>
+                    <p><?=self::getZlNameAction($gwData["zhuanlan"])?></p>
                 </li>
                 <li>
                     <div class="li-span"><em>公文来源</em></div>
-                    <p><?=self::getlaiyuanAction($gwData["laiyuan"])?></p>
+                    <p><?=self::getCunMingchengAction($gwData["xiangzhen"])."-".self::getCunMingchengAction($gwData["cun"])?></p>
                 </li>
                 <li>
                     <div class="li-span"><em>发送人</em></div>

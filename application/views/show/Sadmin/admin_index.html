@@ -47,7 +47,7 @@
                 <a href=""><img src="public/yz/images/wenzi-sou_03.png"/></a>
             </div>
 
-            <div class="xtwen-fabu fr">+ 添加人员</div>
+            <div class="xtwen-fabu fr" showType="1">+ 添加人员</div>
         </div>
 
         <div class="xtable">
@@ -81,7 +81,7 @@
                         </td>
                         <td class="table-cao">
                             <a href=""><img src="public/yz/images/look_07.png"/>查看</a>
-                            <a href="javascript:void(0)" nameid="<?=$adminData['id']?>" class="edit"><img src="public/yz/images/look1_06.png"/>编辑</a>
+                            <a href="javascript:void(0)" nameid="<?=$adminData['id']?>" class="edit" showType="2"><img src="public/yz/images/look1_06.png"/>编辑</a>
                             <a href="javascript:void(0)" class="deleteSingle" nameid="<?=$adminData['id']?>"><img src="public/yz/images/lock2_08.png"/>删除</a>
                         </td>
                     </tr>
@@ -114,7 +114,7 @@
         <div class="table-cell">
             <div class="Add-to">
                 <div class="add-top">
-                    <span>添加人员</span>
+                    <span id="editSpan">添加人员</span>
                     <img src="public/yz/images/Close_03.png" class="Close"/>
                 </div>
                 <form id="myform" method="post">
@@ -124,7 +124,7 @@
                             <span><em>*</em> 登录账号：</span>
                             <input type="text" name="zhanghao" id="zhanghao" value="" />
                         </div>
-                        <div class="add-min">
+                        <div class="add-min" id="fumima">
                             <span><em>*</em> 密码：</span>
                             <input type="password" name="mima" id="mima" value="" />
                         </div>
@@ -138,9 +138,9 @@
                                 <input type="text" name="bumen" id="bumen" value="" readonly class="xiala"/>
                                 <div class="adit-xuan box">
                                     <?php if($bumenData):?>
-                                    <?php foreach($bumenData as $bumen):?>
-                                        <p><?=$bumen["laiyuan"]?></p>
-                                    <?php endforeach;?>
+                                        <?php foreach($bumenData as $bumen):?>
+                                            <p><?=$bumen["mingcheng"]?></p>
+                                        <?php endforeach;?>
                                     <?php endif;?>
                                 </div>
                             </div>
@@ -217,6 +217,18 @@
     })
 
     $(".xtwen-fabu").on("click",function(){
+        if ($(this).attr("showType")==1){
+            $("#editSpan").text("添加人员")
+            $("#fumima").show();
+            $("#zhanghao").attr("value",'');
+            $("#mima").attr("value",'');
+            $("#xingming").attr("value",'');
+            $("#bumen").attr("value",'');
+            $("#shoujihaoma").attr("value",'');
+            $("#dianhua").attr("value",'');
+            $("#guanliyuan").attr("value",'');
+            $("#zhuangtai").attr("value",'');
+        }
         $(".tanchu").show(200);
     })
 
@@ -303,6 +315,10 @@
             $("#guanliyuan").val(data.guanliyuan);
             $("#zhuangtai").val(data.zhuangtai);
         },"json")
+        if ($(this).attr("showType")==2){
+            $("#editSpan").text("编辑人员")
+            $("#fumima").show();
+        }
         $(".tanchu").show(200);
     })
 </script>

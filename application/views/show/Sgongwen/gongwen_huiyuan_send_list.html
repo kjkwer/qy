@@ -76,7 +76,7 @@
                 <tr>
                     <th>排序</th>
                     <th>标题</th>
-                    <th>类型</th>
+                    <th>工作专栏</th>
                     <th>发送时间</th>
                     <th>状态</th>
                     <th>操作</th>
@@ -92,26 +92,29 @@
                                 <p><?=$gongwen["biaoti"]?></p>
                             </td>
                             <td class="table-zou">
-                                <?=self::getGwLxAction($gongwen["leixing"])?>
+                                <?=self::getZlNameAction($gongwen["zhuanlan"])?>
                             </td>
-
                             <td class="table-time">
                                 <?=$gongwen["dtime"]?>
                             </td>
 
                             <td class="table-tai">
-                                <?php if(self::getGwStatusAction($gongwen["zuozhe"],$gongwen["id"])==0):?>
+                                <?php if($gongwen["zhuangtai"]==1):?>
                                     未发送
-                                <?php elseif(self::getGwStatusAction($gongwen["zuozhe"],$gongwen["id"])==1):?>
+                                <?php elseif($gongwen["zhuangtai"]==2):?>
                                     已发送
-                                <?php elseif(self::getGwStatusAction($gongwen["zuozhe"],$gongwen["id"])==2):?>
+                                <?php elseif($gongwen["zhuangtai"]==3):?>
+                                    已退回
+                                <?php elseif($gongwen["zhuangtai"]==4):?>
                                     已审核
+                                <?php elseif($gongwen["zhuangtai"]==5):?>
+                                    已推荐
                                 <?php endif;?>
                             </td>
                             <td class="table-cao">
                                 <a href="index.php?p=show&c=gongwen&a=sendDetail&id=<?=$gongwen['id']?>"><img src="public/yz/images/look_07.png"/>查看</a>
                                 <a href="index.php?p=show&c=gongwen&a=edit&id=<?=$gongwen['id']?>"><img src="public/yz/images/look1_06.png"/>编辑</a>
-                                <a href="javascript:void(0)" class="deleteSingle" deleteId="<?=$gongwen['id']?>"><img src="public/yz/images/lock2_08.png"/>删除</a>
+                                <a href="javascript:void(0)" class="deleteSingle" deleteId="<?=$gongwen['id']?>" gwStatus="<?=$gongwen['zhuangtai']?>"><img src="public/yz/images/lock2_08.png"/>删除</a>
                             </td>
                         </tr>
                     <?php endforeach;?>
@@ -217,8 +220,22 @@
     $(".deleteSingle").click(function () {
         //>>获取当前公文Id
         var id = $(this).attr("deleteId");
+        var gwStatus = $(this).attr("gwStatus");
+        if (gwStatus==2){
+            layer.alert("该公文已发送，不能删除");
+            return false;
+        }
+        if (gwStatus==4){
+            layer.alert("该公文已发送，不能删除");
+            return false;
+        }
+        if (gwStatus==5){
+            layer.alert("该公文已发送，不能删除");
+            return false;
+        }
+
         //>>删除公文
-        $.post("index.php?p=show&c=gongwen&a=deleteSingle",{id:id},function (data) {
+        $.post("index.php?p=show&c=gongwen&a=deleteSingleO",{id:id},function (data) {
             if (data.code==200){
                 location.reload()
             }else {
@@ -241,12 +258,18 @@
             layer.alert("请选择要删除的选项")
             return false;
         }
-        $.post('index.php?p=show&c=gongwen&a=deletePiliang',{'data[]':ids},function (data) {
-            if(data.code==200){
-                //>>删除成功
-                location.reload()
-            }
-        },"json")
+        layer.alert('已发送的公文将不能被删除', {
+            skin: 'layui-layer-molv' //样式类名
+            ,closeBtn: 0
+        }, function(){
+            $.post('index.php?p=show&c=gongwen&a=deletePiliangO',{'data[]':ids},function (data) {
+                if(data.code==200){
+                    //>>删除成功
+                    location.reload()
+                }
+            },"json")
+        });
+
     })
 </script>
 </body>

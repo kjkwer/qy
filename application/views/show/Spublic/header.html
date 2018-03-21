@@ -3,7 +3,7 @@
 <div class="xt-head fixed" style="z-index: 10001">
     <div class="content">
         <div class="xt-logo fl">
-            <a href="index.php"><img src="public/yz/images/xt-logo_03.png"/></a>
+            <a href=""><img src="public/yz/images/xt-logo_03.png"/></a>
         </div>
         <div class="xt-minxi fr">
             <div class="xt-kexiao fl">
@@ -42,8 +42,8 @@
                     <!--加 下拉html-->
                     <div class="min-xia">
                         <div class="min-xiadiv">
-                            <a href="javascript:void(0)">修改资料</a>
-                            <a href="javascript:void(0)">修改密码</a>
+                            <a href="">修改资料</a>
+                            <a href="">修改密码</a>
                             <a href="index.php?p=show&c=admin&a=quit">退出登录</a>
                         </div>
 
@@ -53,49 +53,3 @@
         </div>
     </div>
 </div>
-<!--加 下拉html-->
-<div class="min-tank fixed" style="z-index: 10002">
-    <div class="table">
-        <div class="table-cell">
-            <div class="Add-to">
-                <div class="add-top">
-                    <span>修改密码</span>
-                    <img src="public/yz/images/Close_03.png" class="Close" />
-                </div>
-                <div class="add-toinput">
-                    <div class="add-min">
-                        <span><em>*</em> 旧密码：</span>
-                        <input type="text" name="" id="" value="" />
-                    </div>
-                    <div class="add-min">
-                        <span><em>*</em> 新密码：</span>
-                        <input type="text" name="" id="" value="" />
-                    </div>
-                    <div class="add-min">
-                        <span><em>*</em> 确认密码：</span>
-                        <input type="text" name="" id="" value="" />
-                    </div>
-                    <div class="add-baos ">
-                        <input type="submit" name="" id="" value="确认修改" class="add-bao" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!--加 下拉js-->
-<script>
-    $(function(){
-        $(".min-xiadiv a").on("click",function(){
-            if($(this).index()==0){
-                $(".tanchu").show(200);
-            }else if($(this).index()==1){
-                $(".min-tank").show(200);
-            }
-        })
-        $(".Close").on("click",function(){
-            $(".min-tank").hide(200);
-        })
-    })
-</script>

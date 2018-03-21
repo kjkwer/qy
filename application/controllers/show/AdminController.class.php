@@ -28,9 +28,9 @@ class AdminController extends BaseController
         $adminDatas = $model->findBySql('select * from `sl_yhlb` WHERE shanchu=1');
 //        var_dump($adminDatas);exit();
         //>>查找所有部门
-        $bumenModel = new ModelNew('gwlxy');
-        $bumenData = $bumenModel->find()->all();
-
+        $jgModel = new ModelNew('zzjg');
+        $bumenData = $jgModel->findBySql("select * from sl_zzjg WHERE cengji<=2");
+//        var_dump($bumenData);exit();
         include CUR_VIEW_PATH."Sadmin" . DS . "admin_index.html";
     }
     //>>添加员工
@@ -48,6 +48,7 @@ class AdminController extends BaseController
         $data["zhicheng"] = $_POST["zhicheng"]?$_POST["zhicheng"]:null;
         $data["dianhua"] = $_POST["dianhua"]?$_POST["dianhua"]:null;
         $data["guanliyuan"] = $_POST["guanliyuan"]?$_POST["guanliyuan"]:null;
+        $data["shanchu"] = 1;
         if ($data["guanliyuan"]=="是"){
             $data["guanliyuan"]=1;
         }else{
@@ -136,8 +137,8 @@ class AdminController extends BaseController
 
     //>>通过部门名称查找id
     public static function getBumenIdAction($laiyuan){
-        $model = new ModelNew("gwlxy");
-        $data = $model ->where(["laiyuan"=>$laiyuan])->find("id")->one();
+        $model = new ModelNew("zzjg");
+        $data = $model ->where(["mingcheng"=>$laiyuan])->find("id")->one();
         if ($data){
             return $data["id"];
         }
@@ -145,10 +146,10 @@ class AdminController extends BaseController
 
     //>>通过部门id获取部门名称
     public function getBumenMingchengAction($id){
-        $model = new ModelNew("gwlxy");
-        $data = $model ->where(["id"=>$id])->find("laiyuan")->one();
+        $model = new ModelNew("zzjg");
+        $data = $model ->where(["id"=>$id])->find("mingcheng")->one();
         if ($data){
-            return $data["laiyuan"];
+            return $data["mingcheng"];
         }
     }
 }

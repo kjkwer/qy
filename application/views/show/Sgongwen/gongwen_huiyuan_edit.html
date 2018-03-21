@@ -47,28 +47,39 @@
                 <input type="text" name="bianhao" id="bianhao" value="<?=$gwData['bianhao']?$gwData['bianhao']:'' ?>" style="width:600px;" />
                 <em>*请按照公文标签的编号进行输入</em>
             </div>
-            <div class="edit-sse relative fl">
-                <span>公文类型</span>
+            <div class="edit-sse">
+                <span>工作专栏</span>
                 <div class="inp-xia">
-                    <input type="text" name="leixing" id="leixing" value="<?=$gwData['leixing']?self::getGwLxAction($gwData['leixing']):''  ?>" class="edit-inwidt" readonly/>
-                    <div class="adit-xuan box">
-                        <?php if($lxData):?>
-                            <?php foreach($lxData as $lx):?>
-                                <p><?=$lx["leixing"]?></p>
-                            <?php endforeach;?>
+                    <input type="text" name="zhuanlan" id="zhuanlan" value="<?=$gwData['zhuanlan']?self::getZlNameAction($gwData['zhuanlan']):''  ?>" class="edit-inwidt" readonly/>
+                    <div class="adit-xuan box" style="z-index: 10001">
+                        <?php if($flData):?>
+                        <?php foreach($flData as $fl):?>
+                        <p><?=$fl["mingcheng"]?></p>
+                        <?php endforeach;?>
                         <?php endif;?>
                     </div>
                 </div>
             </div>
             <div class="edit-sse relative fl" style="z-index: 10000">
-                <span>公文来源</span>
+                <span>乡镇</span>
                 <div class="inp-xia">
-                    <input  type="text" name="laiyuan" id="laiyuan" value="<?=$gwData['laiyuan']?self::getlaiyuanAction($gwData['laiyuan']):''  ?>" class="edit-inwidt" readonly/>
+                    <input  type="text" name="xiangzhen" id="xiangzhen" value="<?=$gwData['xiangzhen']?self::getCunMingchengAction($gwData['xiangzhen']):''  ?>" class="edit-inwidt" readonly/>
                     <div class="adit-xuan box">
-                        <?php if($laiyuanData):?>
-                            <?php foreach($laiyuanData as $laiyuan):?>
-                                <p><?=$laiyuan["laiyuan"]?></p>
+                        <?php if($xiangzhenData):?>
+                            <?php foreach($xiangzhenData as $xiangzhen):?>
+                                <p class="xiangzhen"><?=$xiangzhen["mingcheng"]?></p>
                             <?php endforeach;?>
+                        <?php endif;?>
+                    </div>
+                </div>
+                <span>村</span>
+                <div class="inp-xia">
+                    <input  type="text" name="cun" id="cun" value="<?=$gwData['cun']?self::getCunMingchengAction($gwData['cun']):''  ?>" class="edit-inwidt" readonly/>
+                    <div class="adit-xuan box cun">
+                        <?php if($cunData):?>
+                        <?php foreach($cunData as $cun):?>
+                        <p><?=$cun["mingcheng"]?></p>
+                        <?php endforeach;?>
                         <?php endif;?>
                     </div>
                 </div>
@@ -113,8 +124,8 @@
 
 
             <div class="edit-quedin">
-                <a id="baocun" href="javascript:void(0)" class="wdit-a box">保存</a>
-                <a id="fabugongwen" href="javascript:void(0)">发布公文</a>
+                <a id="baocun" href="javascript:void(0)" class="wdit-a box" gwStatus="<?=$gwData['zhuangtai']?$gwData['zhuangtai']:'' ?>">保存</a>
+                <a id="fabugongwen" href="javascript:void(0)" gwStatus="<?=$gwData['zhuangtai']?$gwData['zhuangtai']:'' ?>">发送公文</a>
             </div>
         </form>
     </div>
@@ -159,6 +170,19 @@
             layer.alert("内容不能为空")
             return false;
         }
+        var gwStatus = $(this).attr("gwStatus");
+        if (gwStatus==2){
+            layer.alert("该公文已发送，不能修改");
+            return false;
+        }
+        if (gwStatus==4){
+            layer.alert("该公文已发送，不能修改");
+            return false;
+        }
+        if (gwStatus==5){
+            layer.alert("该公文已发送，不能修改");
+            return false;
+        }
         // console.log(form);return;
         $.ajax({
             url:"index.php?p=show&c=gongwen&a=editHuiyuan",
@@ -196,6 +220,19 @@
             layer.alert("请先保存公文");
             return false;
         }
+        var gwStatus = $(this).attr("gwStatus");
+        if (gwStatus==2){
+            layer.alert("该公文已发送");
+            return false;
+        }
+        if (gwStatus==4){
+            layer.alert("该公文已发送");
+            return false;
+        }
+        if (gwStatus==5){
+            layer.alert("该公文已发送");
+            return false;
+        }
         $.post("index.php?p=show&c=gongwen&a=fasong",{"gwId":id},function (data) {
             if (data==200){
                 layer.open({
@@ -217,6 +254,21 @@
         },"json")
     })
 </script>
+
+<!--&lt;!&ndash;乡镇 村联动&ndash;&gt;-->
+<!--<script type="text/javascript">-->
+    <!--$(".xiangzhen").click(function () {-->
+        <!--var xiangzhen = $(this).text()-->
+        <!--var str = "";-->
+        <!--$.post("index.php?p=show&c=gongwen&a=getCun",{mingcheng:xiangzhen},function (data) {-->
+            <!--$.each(data,function (index,rs) {-->
+                <!--str += "<p>"+rs.mingcheng+"</p>"-->
+            <!--})-->
+            <!--$(".cun").html(str);-->
+        <!--},"json")-->
+    <!--})-->
+<!--</script>-->
+
 </body>
 
 </html>

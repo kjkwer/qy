@@ -20,34 +20,100 @@ class GongwenController extends BaseController
     }
     //>>发文列表
     public function  listAction(){
+        //>>获取分类数据
+        $flModel = new ModelNew("wzfl");
+        $flData = $flModel->findBySql("select id,fenleimingcheng as mingcheng from sl_wzfl WHERE type=1");
         if (self::$userData["guanliyuan"]==1){   //>>管理员
-            //>>获取用户发送的公文数据
-            $user_id = self::$userData["id"];
+            //>>设置筛选条件
+            $seachList = [];
+            $url=[];
+            if (!empty($_GET['date1']) && !empty($_GET['date2'])){
+                $seachList[] = "Date(dtime) BETWEEN '".$_GET["date1"]."' and '".$_GET["date2"]."'";
+                $urlList[] = "date1=".$_GET["date1"];
+                $urlList[] = "date2=".$_GET["date2"];
+            }
+            if (!empty($_GET['zhuanlan'])){
+                if ($_GET['zhuanlan']!="所有"){
+                    $zhuanlanId = self::getZlIdAction($_GET["zhuanlan"]);
+                    if ($zhuanlanId){
+                        $seachList[] = "zhuanlan = ".$zhuanlanId;
+                    }
+                    $urlList[] = "zhuanlan=".$_GET['zhuanlan'];
+                }
+            }
+            if (!empty($_GET['zhuangtai'])){
+                if ($_GET['zhuangtai']!="所有"){
+                    if ($_GET['zhuangtai'] == "正常"){
+                        $seachList[] = "jiezhishijian > ".time();
+                    }else{
+                        $seachList[] = "jiezhishijian <= ".time();
+                    }
+                }
+                $urlList[] = "zhuangtai=".$_GET['zhuangtai'];
+            }
+            if (!empty($_GET['guanjianci'])){
+                $seachList[] = "biaoti like '%".$_GET["guanjianci"]."%'";
+                $urlList[] = "guanjianci=".$_GET['guanjianci'];
+            }
+            $where = "";
+            if (count($seachList)>0){
+                $where = "where ".implode(" and ",$seachList);
+                $url = '&'.implode('&',$urlList);
+            }
+//            var_dump($where);exit();
             $gongwenModel = new ModelNew("gw");
-            $gongwenData = $gongwenModel->findBySql("select * from `sl_gw` WHERE zuozhe=$user_id ORDER BY dtime DESC ");
+            //>设置分页数据
+            $count = $gongwenModel->findBySql("select count(*) as total from `sl_gw` $where");
+            $totalNum = $count[0]["total"];  //数据总数
+            $pageSize = 5;  //每页数量
+            $maxPage=$totalNum==0?1:ceil($totalNum/$pageSize); //总共有的页数
+//
+            $page=isset($_GET['page'])?$_GET['page']:1;
+            if($page < 1)
+            {
+                $page=1;
+            }
+            if($page > $maxPage)
+            {
+                $page=$maxPage;
+            }
+//            var_dump($maxPage);exit();
+            $limit=" limit ".($page-1)*$pageSize.",$pageSize";
+
+            $gongwenData = $gongwenModel->findBySql("select * from `sl_gw` $where ORDER BY id DESC $limit");
+//            var_dump($gongwenData);
+
+            //>>页码设置
+            $pageData = self::pageSetAction($page,$maxPage);
+            $init = $pageData["init"];
+            $max = $pageData["max"];
+
             include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_admin_send_list.html";
         }else{    //>>非管理员
             //>>获取用户发送的公文数据
             $user_id = self::$userData["id"];
-            $gongwenModel = new ModelNew("gw");
-            $gongwenData = $gongwenModel->findBySql("select * from `sl_gw` WHERE zuozhe=$user_id ORDER BY dtime DESC ");
+            $gongwenModel = new ModelNew("gw_o");
+            $gongwenData = $gongwenModel->findBySql("select * from `sl_gw_o` WHERE zuozhe=$user_id ORDER BY id DESC ");
 //            var_dump($gongwenData);exit();
             include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_huiyuan_send_list.html";
         }
     }
     //>>接收列表
     public function acceptAction(){
+        //>>获取分类数据
+        $flModel = new ModelNew("wzfl");
+        $flData = $flModel->findBySql("select id,fenleimingcheng as mingcheng from sl_wzfl WHERE type=1");
         if (self::$userData["guanliyuan"]==1){   //>>管理员
             //>>获取所有公文数据
             $user_id = self::$userData["id"];
             $Model = new ModelNew("fasong");
-            $gwDate = $Model->findBySql("select b.* from sl_fasong as a join sl_gw as b on a.gongwen=b.id where a.jieshouren=1 ORDER BY b.dtime");
+            $gwDate = $Model->findBySql("select * from sl_gw_o WHERE zhuangtai>1 ORDER BY id DESC ");
             include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_admin_accept_list.html";
         }else{    //>>非管理员
             //>>获取所有公文数据
             $user_id = self::$userData["id"];
             $Model = new ModelNew("fasong");
-            $gwDate = $Model->findBySql("select b.* from sl_fasong as a join sl_gw as b on a.gongwen=b.id where a.jieshouren=$user_id ORDER BY b.dtime DESC ");
+            $gwDate = $Model->findBySql("select b.* from sl_fasong as a join sl_gw as b on a.gongwen=b.id where a.jieshouren=$user_id ORDER BY b.id DESC ");
             include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_huiyuan_accept_list.html";
         }
     }
@@ -59,6 +125,14 @@ class GongwenController extends BaseController
         //>>获取公文类型
         $lxModel = new ModelNew("gwlx");
         $lxData = $lxModel->findBySql("select id,leixing from sl_gwlx");
+        //>>获取分类数据
+        $flModel = new ModelNew("wzfl");
+        $flData = $flModel->findBySql("select id,fenleimingcheng as mingcheng from sl_wzfl WHERE type=1");
+//        var_dump($flData);exit();
+        //>>获取公文来源
+        $model = new ModelNew("zzjg");
+        $xiangzhenData = $model->findBySql("select * from sl_zzjg WHERE cengji=2");
+        $cunData = $model->findBySql("select * from sl_zzjg WHERE cengji=3");
         if(!$id){
             //>>新增
             if (self::$userData["guanliyuan"]==1){   //>>管理员
@@ -69,9 +143,7 @@ class GongwenController extends BaseController
                 $jsrys = $adminModel->findBySql("select id,xingming from sl_yhlb WHERE id != $user_id");
                 include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_admin_edit.html";
             }else{    //>>非管理员
-                //>>获取公文来源
-                $model = new ModelNew("gwlxy");
-                $laiyuanData = $model->find()->all();
+//                var_dump($cunData);exit();
                 include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_huiyuan_edit.html";
             }
         }else{
@@ -88,10 +160,8 @@ class GongwenController extends BaseController
                 include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_admin_edit.html";
             }else{    //>>非管理员
                 //>>获取需编辑公文的数据
-                $model = new ModelNew("gw");
+                $model = new ModelNew("gw_o");
                 $gwData = $model->findOne($id);
-                //>>获取公文来源
-                $model = new ModelNew("gwlxy");
                 $laiyuanData = $model->find()->all();
                 include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_huiyuan_edit.html";
             }
@@ -103,8 +173,8 @@ class GongwenController extends BaseController
         $model = new ModelNew('gw');
         $data["biaoti"] = $_POST["biaoti"]?$_POST["biaoti"]:null;
         $data["bianhao"] = $_POST["bianhao"]?$_POST["bianhao"]:null;
-        $data["leixing"] = $_POST["leixing"]?self::getLeixingIdAction($_POST["leixing"]):null;
-        $data["jiezhishijian"] = $_POST["jiezhishijian"]?$_POST["jiezhishijian"]:null;
+        $data["jiezhishijian"] = $_POST["jiezhishijian"]?strtotime($_POST["jiezhishijian"]):null;
+        $data["zhuanlan"] = $_POST["zhuanlan"]?self::getZlIdAction($_POST["zhuanlan"]):null;
         $data["neirong"] = $_POST["neirong"]?$_POST["neirong"]:null;
         $data["zuozhe"] = self::$userData["id"];
         if ($_POST["id"] != ''){   //编辑
@@ -177,15 +247,18 @@ class GongwenController extends BaseController
 
     //>>非管理员编辑公文
     public function editHuiyuanAction(){
-        $model = new ModelNew("gw");
+        $model = new ModelNew("gw_o");
         $data["biaoti"] = $_POST["biaoti"]?$_POST["biaoti"]:null;
         $data["bianhao"] = $_POST["bianhao"]?$_POST["bianhao"]:null;
-        $data["leixing"] = $_POST["leixing"]?self::getLeixingIdAction($_POST["leixing"]):null;
+        $data["zhuanlan"] = $_POST["zhuanlan"]?self::getZlIdAction($_POST["zhuanlan"]):null;
+        $data["xiangzhen"] = $_POST["xiangzhen"]?self::getCunAction($_POST["xiangzhen"]):null;
+        $data["cun"] = $_POST["cun"]?self::getCunAction($_POST["cun"]):null;
         $data["laiyuan"] = $_POST["laiyuan"]?self::getLaiyuanIdAction($_POST["laiyuan"]):null;
         $data["neirong"] = $_POST["neirong"]?$_POST["neirong"]:null;
         $data["zuozhe"] = self::$userData["id"];
         //>>保存图片
         $imageArray = $_FILES["tupian"]?$_FILES["tupian"]:null;
+        $data["zhuangtai"] = 1;
         $data["tupian"] = null;
         if ($imageArray["error"]==0){
             //>>文件上传正常,设置保存文件路径
@@ -206,14 +279,8 @@ class GongwenController extends BaseController
                 echo 500;
             }
         }else{
+            $data["yuefen"] = date("m",time());
             if($rs = $model->insert($data)){
-                //>>设置接收数据
-                $fsModel = new ModelNew("fasong");
-                $array["gongwen"] = $rs;
-                $array["fasongren"] = self::$userData["id"];
-                $array["jieshouren"] = 1;
-                $array["zhuangtai"] = 0;
-                $fsModel->insert($array);
                 echo $rs;
             }else{
                 echo 500;
@@ -226,15 +293,18 @@ class GongwenController extends BaseController
     public function sendDetailAction(){
         //>>公文id
         $id = $_GET["id"];
-        //>>获取公文内容
-        $model = new ModelNew("gw");
-        $gwData = $model->findOne($id);
 //        var_dump($gwData);exit();
         //>>判断是否为管理员
         if(self::$userData["guanliyuan"]==1){    //管理员
             //>>获取公文内容
+            $model = new ModelNew("gw");
+            $gwData = $model->findOne($id);
+            //>>获取公文内容
             include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_admin_send_detail.html";
         }else{     //非管理员
+            //>>获取公文内容
+            $model = new ModelNew("gw_o");
+            $gwData = $model->findOne($id);
             include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_huiyuan_send_detail.html";
         }
     }
@@ -242,39 +312,40 @@ class GongwenController extends BaseController
     public function acceptDetailAction(){
         //>>公文id
         $id=$_GET["id"];
-        //>>获取公文内容
-        $model = new ModelNew("gw");
-        $gwData = $model->findOne($id);
 //        var_dump($gwData);exit();
         if(self::$userData["guanliyuan"]==1){    //管理员
             //>>获取公文内容
+            $model = new ModelNew("gw_o");
+            $gwData = $model->findOne($id);
+            //>>获取分类数据
+            $flModel = new ModelNew("wzfl");
+            $flData = $flModel->findBySql("select id,fenleimingcheng as mingcheng from sl_wzfl WHERE type=1");
+            //>>获取公文内容
             include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_admin_accept_detail.html";
         }else{     //非管理员
+            //>>获取公文内容
+            $model = new ModelNew("gw");
+            $gwData = $model->findOne($id);
+            //>>设置为已读
+            $fsModel = new ModelNew("fasong");
+            $fsModel->where(["jieshouren"=>self::$userData["id"]])->where(["gongwen"=>$id])->update(["zhuangtai"=>2]);
             include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_huiyuan_accept_detail.html";
         }
     }
     //>>发送公文
     public function fasongAction(){
-        $data["gongwen"] = $_POST["gwId"];
-        $data["fasongren"] = self::$userData["id"];
-        $data["jieshouren"] = 1;
-        $data["zhuangtai"] = 1;
-        $model = new ModelNew("fasong");
-        $zhuangtai = self::getGwStatusAction(self::$userData["id"],$data["gongwen"]);
-        if ($zhuangtai == 0){
-            if ($model->where(["gongwen"=>$data["gongwen"]])->where(["fasongren"=>$data["fasongren"]])->where(["jieshouren"=>$data["jieshouren"]])->update($data)){
-                echo 200;
-            }else{
-                echo 500;
-            }
-        }elseif ($zhuangtai == 1){
+        $id = $_POST["gwId"];
+        $model = new ModelNew("gw_o");
+        if ($model->where(["id"=>$id])->update(["zhuangtai"=>2])){
             echo 200;
+        }else{
+            echo 500;
         }
     }
     //>>获取发送公文状态
-    public static function getGwStatusAction($fsr,$gwId){
+    public static function getGwStatusAction($jsr,$gwId){
         $model = new ModelNew("fasong");
-        $zhuangtai = $model->where(["gongwen"=>$gwId])->where(["fasongren"=>$fsr])->find("zhuangtai")->one();
+        $zhuangtai = $model->where(["gongwen"=>$gwId])->where(["jieshouren"=>$jsr])->find("zhuangtai")->one();
         return $zhuangtai["zhuangtai"];
     }
 
@@ -337,6 +408,18 @@ class GongwenController extends BaseController
         }
         echo json_encode($result);
     }
+    //>>删除公文O
+    public function deleteSingleOAction(){
+        $id = $_POST["id"];
+        $result = ["code"=>501,"message"=>"删除失败"];
+        $gwModel = new ModelNew("gw_o");
+        if ($gwModel->delete($id)){
+            $result = ["code"=>200,"message"=>"删除公文成功"];
+        }else{
+            $result = ["code"=>502,"message"=>"删除公文失败"];
+        }
+        echo json_encode($result);
+    }
     //>>删除公文批量
     public function deletePiliangAction(){
         //>>获取要删除的id
@@ -356,6 +439,52 @@ class GongwenController extends BaseController
             }
         }
         echo json_encode($result);
+    }
+    //>>删除公文批量o
+    public function deletePiliangOAction(){
+        //>>获取要删除的id
+        $result=["code"=>200,"message"=>"删除成功"];
+        $ids = $_POST["data"];
+        $model = new ModelNew("gw_o");
+        if ($ids){
+            foreach ($ids as $id){
+                $model->findBySql("delete from sl_gw_o WHERE id=$id AND (zhuangtai=1 or zhuangtai=3)");
+            }
+        }
+        echo json_encode($result);
+    }
+
+    //>>审核公文
+    public function sheheGwAction(){
+        $id = $_POST["gwId"];
+        $model = new ModelNew("gw_o");
+        if ($model->where(["id"=>$id])->update(["zhuangtai"=>4])){
+            echo 200;
+        }else{
+            echo 500;
+        }
+    }
+    //>>推荐公文
+    public function tuijianGwAction(){
+        $id = $_POST["gwId"];
+        $gwModel = new ModelNew("gw_o");
+        if ($gwModel->where(["id"=>$id])->update(["zhuangtai"=>5])){
+            $data = $gwModel->findOne($id);
+//            var_dump($data);exit();
+            $wzModel = new ModelNew("article");
+            $wz["biaoti"] = $data["biaoti"];
+            $wz["tupian"] = $data["tupian"];
+            $wz["neirong"] = $data["neirong"];
+            $wz["zhuanlan"] = $data["zhuanlan"];
+            $wz["shouye"] = 1;
+            if ($wzModel->insert($wz)){
+                echo 200;
+            }else{
+                echo 502;
+            }
+        }else{
+            echo 501;
+        }
     }
 
     //>>获取公文来源
@@ -391,5 +520,58 @@ class GongwenController extends BaseController
         if ($data){
             return $data["id"];
         }
+    }
+    //>>获取专栏id
+    public static function getZlIdAction($name){
+        $model = new ModelNew("wzfl");
+        $data = $model ->where(["fenleimingcheng"=>$name])->find("id")->one();
+        if ($data){
+            return $data["id"];
+        }
+    }
+    //>>获取专栏名称
+    public static function getZlNameAction($id){
+        $model = new ModelNew("wzfl");
+        $data = $model ->where(["id"=>$id])->find("fenleimingcheng")->one();
+        if ($data){
+            return $data["fenleimingcheng"];
+        }
+    }
+    //>>获取乡镇id
+    public function getCunAction($name){
+        $model = new ModelNew("zzjg");
+        $data = $model ->where(["mingcheng"=>$name])->find("id")->one();
+        return $data["id"];
+    }
+    //>>获取乡镇名称
+    public function getCunMingchengAction($id){
+        $model = new ModelNew("zzjg");
+        $data = $model ->where(["id"=>$id])->find("mingcheng")->one();
+        return $data["mingcheng"];
+    }
+
+    //>>页码设置
+    public static function pageSetAction($page,$maxPage){
+        $pageNum = 5;//页码个数
+        $pageOffer = ($pageNum-1)/2;//页码偏移量
+        if($maxPage<=$pageNum){
+            $init=1;
+            $max = $maxPage;
+        }
+        if($maxPage>$pageNum){
+            if($page<=$pageOffer){
+                $init=1;
+                $max = $pageNum;
+            }else{
+                if($page+$pageOffer>=$maxPage+1){
+                    $init = $maxPage-$pageNum+1;
+                    $max = $pageNum;
+                }else{
+                    $init = $page-$pageOffer;
+                    $max = $page+$pageOffer;
+                }
+            }
+        }
+        return ["init"=>$init,'max'=>$max];
     }
 }
