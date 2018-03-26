@@ -9,6 +9,7 @@
 class organizationController
 {
     public static $userData = null;
+    public static $workDatas = null;
     public function  __construct()
     {
         ob_end_clean();
@@ -17,6 +18,9 @@ class organizationController
         }else{
             self::$userData = $_SESSION["user"];
         }
+        //>>获取工作专栏
+        $zlModel = new ModelNew("wzfl");
+        self::$workDatas = $zlModel->where(["type"=>1])->find()->all();
     }
 
     //>>页面

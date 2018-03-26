@@ -70,26 +70,17 @@
             <div class="edit-sse relative" style="overflow: hidden; height:auto;">
                 <span>文章正文</span>
             </div>
-                <!--<textarea name="neirong" class="box"></textarea>-->
-                <script id="container" name="neirong" id="neirong" type="text/plain" style="height:500px">
-                    <?=$articleData['neirong']?$articleData['neirong']:'' ?>
-                </script>
-                <!-- 配置文件 -->
-                <script type="text/javascript" src="/public/xz/ueditor_p/ueditor.config.js"></script>
-                <!-- 编辑器源码文件 -->
-                <script type="text/javascript" src="/public/xz/ueditor_p/ueditor.all.js"></script>
-                <!-- 实例化编辑器 -->
-                <script type="text/javascript">
-                    var ue = UE.getEditor('container', {
-                        toolbars: [
-                            ['fullscreen', 'source', 'undo', 'redo', 'bold','indent','italic','underline','formatmatch',
-                                'simpleupload','searchreplace','justifyleft','justifyright','justifycenter','justifyjustify',
-                                'forecolor','backcolor','lineheight','autotypeset',]
-                        ],
-                        autoHeightEnabled: true,
-                        autoFloatEnabled: true
-                    });
-                </script>
+            <script id="container" name="neirong" id="neirong" type="text/plain" style="height:700px;width: 1000px;">
+                <?=$articleData['neirong']?$articleData['neirong']:''?>
+            </script>
+            <!-- 配置文件 -->
+            <script type="text/javascript" src="public/ueditor/ueditor.config.js"></script>
+            <!-- 编辑器源码文件 -->
+            <script type="text/javascript" src="public/ueditor/ueditor.all.js"></script>
+            <!-- 实例化编辑器 -->
+            <script type="text/javascript">
+                var ue = UE.getEditor('container');
+            </script>
             <div class="edit-sse relative" style="overflow: hidden; height:auto; margin:20px 0;"></div>
 
             <div class="edit-sse relative">

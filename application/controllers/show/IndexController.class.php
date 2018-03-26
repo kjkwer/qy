@@ -21,7 +21,7 @@ class IndexController extends Controller
     //>>网站首页
     public function indexAction(){
         $model = new ModelNew('wzfl');
-        $articleGlassifyData = $model->find()->limit(0,8)->all();
+        $articleGlassifyData = $model->where(["type"=>1])->find()->all();
         //>>扶贫专栏
         $articleModel = new ModelNew('article');
         $fpData = $articleModel->where(["zhuanlan"=>17])->limit(0,5)->find()->all();

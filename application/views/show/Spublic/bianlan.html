@@ -24,12 +24,25 @@
                     </div>
                 </div>
                 <div class="xtli-ulli">
-                    <p>
-                        <a href="index.php?p=show&c=gongwen&a=accept">收文</a>
-                    </p>
-                    <p>
+                    <?php if(self::$userData["guanliyuan"]==1):?>
+                        <div class="xtli-ullip">
+                            <a href="javascript:;">收文</a>
+                            <div class="tree-selsct">
+                                <?php if(self::$workDatas):?>
+                                <?php foreach(self::$workDatas as $data):?>
+                                    <p><a href="index.php?p=show&c=gongwen&a=accept&zlId=<?=$data['id']?>"><?=$data["fenleimingcheng"]?></a></p>
+                                <?php endforeach;?>
+                                <?php endif;?>
+                            </div>
+                        </div>
+                    <?php else:?>
+                        <div class="xtli-ullip">
+                            <a href="index.php?p=show&c=gongwen&a=accept">收文</a>
+                        </div>
+                    <?php endif;?>
+                    <div class="xtli-ullip">
                         <a href="index.php?p=show&c=gongwen&a=list">发文</a>
-                    </p>
+                    </div>
                 </div>
             </li>
             <li>
@@ -44,12 +57,12 @@
                     </div>
                 </div>
                 <div class="xtli-ulli">
-                    <p>
+                    <div class="xtli-ullip">
                         <a href="index.php?p=show&c=article&a=add">发布文章</a>
-                    </p>
-                    <p>
+                    </div>
+                    <div class="xtli-ullip">
                         <a href="index.php?p=show&c=article&a=list">文章列表</a>
-                    </p>
+                    </div>
                 </div>
             </li>
             <li>
@@ -84,15 +97,15 @@
                     </div>
                 </div>
                 <div class="xtli-ulli">
-                    <p class="xtli-ulli-p">
+                    <div class="xtli-ullip">
                         <a href="index.php?p=show&c=admin&a=index">人员管理</a>
-                    </p>
-                    <p>
+                    </div>
+                    <div class="xtli-ullip">
                         <a href="index.php?p=show&c=organization&a=index">角色管理</a>
-                    </p>
-                    <p>
+                    </div>
+                    <div class="xtli-ullip">
                         <a href="">权限管理</a>
-                    </p>
+                    </div>
                 </div>
             </li>
         </ul>

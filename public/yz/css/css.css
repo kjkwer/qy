@@ -101,13 +101,25 @@ table { border-collapse:collapse; border-spacing:0; }
 	width:100%;
 	z-index:50;
 }
-.banner-nav{
+
+
+.fupin-jian{margin-top:15px;}
+.fupin-jian a{display:block; width:80px; height:28px; border-radius:3px; border:1px solid #fe4529;
+text-align: center; line-height:28px;color:#fe4529;
+}
+.fupin-jian a:hover{color:#fff; background:#fe4529;}
+.banner-scrolls{
 	width:250px;
 	height:496px;
 	background:url(../images/banner-nav_03.png) no-repeat;
 	background-size:100% 100%;
-	
+	overflow: hidden;
 }
+
+.banner-scroll{width:268px;height:496px;overflow-y:scroll;}
+.banner-nav{overflow: hidden; padding-bottom:40px;}
+
+
 .banner-nav li{
 	height:62px;
 }
@@ -926,13 +938,19 @@ table { border-collapse:collapse; border-spacing:0; }
 .xtli-ulli{
 	display:none;
 }
-.xtli-ulli p{
+
+.xtli-ullip{
 	margin-top:-1px;
 	line-height:51px;
-	height:53px;
+	
 	border-top:1px solid #e6e6eb;
 	text-indent:65px;
+	
 }
+.tree-selsct{overflow: hidden;text-indent:85px;display:none;}
+.tree-selsct p{border-top:1px solid #dcdcdc; background:#eee;}
+.tree-selsct p a{display:block;height:100%;}
+
 .xtli-ulli p a{
 	color:#8c8c8c;
 }
@@ -1146,7 +1164,7 @@ table { border-collapse:collapse; border-spacing:0; }
 
 .xtwen-input{
 	position: relative;
-	width:250px;
+	width:198px;
 	height:100%;
 	border-radius:4px;
 	background:#fff;

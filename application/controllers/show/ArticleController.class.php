@@ -10,7 +10,7 @@ class ArticleController  extends BaseController
 {
     public static $userData = null;
     public static $shouye1 = [1=>"是",2=>"否"];
-
+    public static $workDatas = null;
     public function  __construct()
     {
         ob_end_clean();
@@ -19,6 +19,9 @@ class ArticleController  extends BaseController
         }else{
             self::$userData = $_SESSION["user"];
         }
+        //>>获取工作专栏
+        $zlModel = new ModelNew("wzfl");
+        self::$workDatas = $zlModel->where(["type"=>1])->find()->all();
     }
 
     public function listAction(){

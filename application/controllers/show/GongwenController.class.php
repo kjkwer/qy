@@ -9,6 +9,8 @@
 class GongwenController extends BaseController
 {
     public static $userData = null;
+    public static $workDatas = null;
+    public static $gwStatus = [2=>"未审核",3=>"已退回",4=>"已审核",5=>"已推荐"];
     public function  __construct()
     {
         ob_end_clean();
@@ -17,6 +19,9 @@ class GongwenController extends BaseController
         }else{
             self::$userData = $_SESSION["user"];
         }
+        //>>获取工作专栏
+        $zlModel = new ModelNew("wzfl");
+        self::$workDatas = $zlModel->where(["type"=>1])->find()->all();
     }
     //>>发文列表
     public function  listAction(){
@@ -104,10 +109,46 @@ class GongwenController extends BaseController
         $flModel = new ModelNew("wzfl");
         $flData = $flModel->findBySql("select id,fenleimingcheng as mingcheng from sl_wzfl WHERE type=1");
         if (self::$userData["guanliyuan"]==1){   //>>管理员
+            //>>工作专栏id
+            $zlId = $_GET["zlId"];
+            //>>设置筛选条件
+                $seachList = [];
+                $seachList[] = "zhuangtai > 1";
+                $seachList[] = "zhuanlan = ".$zlId;
+                $urlList=[];
+                //>>设置默认乡镇
+                $zzjgModel = new ModelNew("zzjg");
+                $xiangzhenDatas = $zzjgModel->findBySql("select * from sl_zzjg WHERE cengji=2");
+                $defaultXz = $xiangzhenDatas[0]["id"];
+                $xzId = $_GET["xiangzhen"]?self::getCunAction($_GET["xz"]):$defaultXz;
+                $seachList[] = "xiangzhen = ".$xzId;
+                $urlList[] = "xiangzhen=".$xzId;
+                //>>设置默认时间时间段为本月初至今
+                $date1 = $_GET["date1"]?$_GET["date1"]:date("Y-m",time())."-1";
+                $date2 = $_GET["date2"]?$_GET["date2"]:date("Y-m-d",time());
+                $seachList[] = "Date(dtime) BETWEEN '".$date1."' and '".$date2."'";
+                $urlList[] = "date1=".$date1;
+                $urlList[] = "date2=".$date2;
+                //>>公文状态
+                if (!empty($_GET['gwStaus'])){
+                    $seachList[] = "gwStaus =".$_GET["gwStaus"];
+                    $urlList[] = "gwStaus=".$_GET['gwStaus'];
+                }
+                //>>设置关键字搜索
+                if (!empty($_GET['guanjianci'])){
+                    $seachList[] = "biaoti like '%".$_GET["guanjianci"]."%'";
+                    $urlList[] = "guanjianci=".$_GET['guanjianci'];
+                }
+                //>>创建where条件
+                $where = "";
+                if (count($seachList)>0){
+                    $where = "where ".implode(" and ",$seachList);
+                    $url = 'p=show&c=gongwen&a=accept&zlId='.$zlId.'&'.implode('&',$urlList);
+                }
             //>>获取所有公文数据
             $user_id = self::$userData["id"];
             $Model = new ModelNew("fasong");
-            $gwDate = $Model->findBySql("select * from sl_gw_o WHERE zhuangtai>1 ORDER BY id DESC ");
+            $gwDate = $Model->findBySql("select * from sl_gw_o ".$where." ORDER BY id DESC ");
             include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_admin_accept_list.html";
         }else{    //>>非管理员
             //>>获取所有公文数据

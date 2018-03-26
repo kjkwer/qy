@@ -61,7 +61,7 @@
     "fileActionName": "uploadfile", /* controller里,执行上传视频的action名称 */
     "fileFieldName": "upfile", /* 提交的文件表单名称 */
     "filePathFormat": "/public/article/file/{yyyy}{mm}{dd}/{filename}", /* 上传保存路径,可以自定义保存路径和文件名格式 */
-    "fileUrlPrefix": "", /* 文件访问路径前缀 */
+    "fileUrlPrefix": "http://www.qy.com", /* 文件访问路径前缀 */
     "fileMaxSize": 512000000, /* 上传大小限制，单位B，默认50MB */
     "fileAllowFiles": [
         ".png", ".jpg", ".jpeg", ".gif", ".bmp",

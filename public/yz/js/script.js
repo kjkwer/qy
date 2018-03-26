@@ -23,8 +23,10 @@ $(function(){
 	 		
 	 }
 	})
-	
-	
+
+    $(".xtli-ullip").bind("click",function(){
+        $(this).find(".tree-selsct").slideToggle().end().siblings().find(".tree-selsct").slideUp();
+    })
 	
 	
 	$(".tan-kuan").bind("click",function(){
