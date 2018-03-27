@@ -11,6 +11,8 @@ class GongwenController extends BaseController
     public static $userData = null;
     public static $workDatas = null;
     public static $gwStatus = [2=>"未审核",3=>"已退回",4=>"已审核",5=>"已推荐"];
+    public static $gwOStatus = [1=>"未发送",2=>"已发送",3=>"已退回",4=>"已审核",5=>"已推荐"];
+    public static $isRead = [1=>"未读",2=>"已读"];
     public function  __construct()
     {
         ob_end_clean();
@@ -32,11 +34,12 @@ class GongwenController extends BaseController
             //>>设置筛选条件
             $seachList = [];
             $url=[];
-            if (!empty($_GET['date1']) && !empty($_GET['date2'])){
-                $seachList[] = "Date(dtime) BETWEEN '".$_GET["date1"]."' and '".$_GET["date2"]."'";
-                $urlList[] = "date1=".$_GET["date1"];
-                $urlList[] = "date2=".$_GET["date2"];
-            }
+            //>>设置默认时间时间段为本月初至今
+            $date1 = $_GET["date1"]?$_GET["date1"]:date("Y-m",time())."-01";
+            $date2 = $_GET["date2"]?$_GET["date2"]:date("Y-m-d",time());
+            $seachList[] = "Date(dtime) BETWEEN '".$date1."' and '".$date2."'";
+            $urlList[] = "date1=".$date1;
+            $urlList[] = "date2=".$date2;
             if (!empty($_GET['zhuanlan'])){
                 if ($_GET['zhuanlan']!="所有"){
                     $zhuanlanId = self::getZlIdAction($_GET["zhuanlan"]);
@@ -65,15 +68,13 @@ class GongwenController extends BaseController
                 $where = "where ".implode(" and ",$seachList);
                 $url = '&'.implode('&',$urlList);
             }
-//            var_dump($where);exit();
             $gongwenModel = new ModelNew("gw");
             //>设置分页数据
             $count = $gongwenModel->findBySql("select count(*) as total from `sl_gw` $where");
             $totalNum = $count[0]["total"];  //数据总数
-            $pageSize = 5;  //每页数量
+            $pageSize = 10;  //每页数量
             $maxPage=$totalNum==0?1:ceil($totalNum/$pageSize); //总共有的页数
-//
-            $page=isset($_GET['page'])?$_GET['page']:1;
+            $page=isset($_GET['page'])?$_GET['page']:1; //当前页
             if($page < 1)
             {
                 $page=1;
@@ -82,24 +83,74 @@ class GongwenController extends BaseController
             {
                 $page=$maxPage;
             }
-//            var_dump($maxPage);exit();
-            $limit=" limit ".($page-1)*$pageSize.",$pageSize";
-
+            $limit=" limit ".($page-1)*$pageSize.",$pageSize";//分页条件
             $gongwenData = $gongwenModel->findBySql("select * from `sl_gw` $where ORDER BY id DESC $limit");
-//            var_dump($gongwenData);
-
             //>>页码设置
             $pageData = self::pageSetAction($page,$maxPage);
             $init = $pageData["init"];
             $max = $pageData["max"];
-
             include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_admin_send_list.html";
         }else{    //>>非管理员
             //>>获取用户发送的公文数据
             $user_id = self::$userData["id"];
             $gongwenModel = new ModelNew("gw_o");
-            $gongwenData = $gongwenModel->findBySql("select * from `sl_gw_o` WHERE zuozhe=$user_id ORDER BY id DESC ");
-//            var_dump($gongwenData);exit();
+            //>>设置筛选条件
+                $seachList = [];
+                $urlList=[];
+                //设置默认时间时间段为本月初至今
+                $date1 = $_GET["date1"]?$_GET["date1"]:date("Y-m",time())."-01";
+                $date2 = $_GET["date2"]?$_GET["date2"]:date("Y-m-d",time());
+                $seachList[] = "Date(dtime) BETWEEN '".$date1."' and '".$date2."'";
+                $urlList[] = "date1=".$date1;
+                $urlList[] = "date2=".$date2;
+                //工作专栏
+                if (!empty($_GET['zhuanlan'])){
+                    if ($_GET['zhuanlan']!="所有"){
+                        $zhuanlanId = self::getZlIdAction($_GET["zhuanlan"]);
+                        if ($zhuanlanId){
+                            $seachList[] = "zhuanlan = ".$zhuanlanId;
+                        }
+                        $urlList[] = "zhuanlan=".$_GET['zhuanlan'];
+                    }
+                }
+                //状态
+                if (!empty($_GET['zhuangtai'])){
+                    if ($_GET['zhuangtai']!="所有"){
+                            $seachList[] = "zhuangtai = ".array_search($_GET['zhuangtai'],self::$gwOStatus);
+                    }
+                    $urlList[] = "zhuangtai=".$_GET['zhuangtai'];
+                }
+                //关键词
+                if (!empty($_GET['guanjianci'])){
+                    $seachList[] = "biaoti like '%".$_GET["guanjianci"]."%'";
+                    $urlList[] = "guanjianci=".$_GET['guanjianci'];
+                }
+                $where = "";
+                if (count($seachList)>0){
+                    $where = "where ".implode(" and ",$seachList);
+                    $url = '&'.implode('&',$urlList);
+                }
+                //>设置分页数据
+                $count = $gongwenModel->findBySql("select count(*) as total from `sl_gw_o` $where and zuozhe=$user_id");
+                $totalNum = $count[0]["total"];//数据总数
+                $pageSize = 10;  //每页数量
+                $maxPage=$totalNum==0?1:ceil($totalNum/$pageSize); //总共有的页数
+                $page=isset($_GET['page'])?$_GET['page']:1; //当前页
+                if($page < 1)
+                {
+                    $page=1;
+                }
+                if($page > $maxPage)
+                {
+                    $page=$maxPage;
+                }
+                $limit=" limit ".($page-1)*$pageSize.",$pageSize"; //分页条件
+                //>>页码设置
+                $pageData = self::pageSetAction($page,$maxPage);
+                $init = $pageData["init"];
+                $max = $pageData["max"];
+//                var_dump($count);exit();
+            $gongwenData = $gongwenModel->findBySql("select * from `sl_gw_o` $where and zuozhe=$user_id ORDER BY id DESC $limit");
             include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_huiyuan_send_list.html";
         }
     }
@@ -113,25 +164,27 @@ class GongwenController extends BaseController
             $zlId = $_GET["zlId"];
             //>>设置筛选条件
                 $seachList = [];
-                $seachList[] = "zhuangtai > 1";
                 $seachList[] = "zhuanlan = ".$zlId;
                 $urlList=[];
                 //>>设置默认乡镇
                 $zzjgModel = new ModelNew("zzjg");
                 $xiangzhenDatas = $zzjgModel->findBySql("select * from sl_zzjg WHERE cengji=2");
                 $defaultXz = $xiangzhenDatas[0]["id"];
-                $xzId = $_GET["xiangzhen"]?self::getCunAction($_GET["xz"]):$defaultXz;
+                $xzId = $_GET["xiangzhen"]?self::getCunAction($_GET["xiangzhen"]):$defaultXz;
                 $seachList[] = "xiangzhen = ".$xzId;
-                $urlList[] = "xiangzhen=".$xzId;
+                $urlList[] = "xiangzhen=".self::getCunMingchengAction($xzId);
                 //>>设置默认时间时间段为本月初至今
-                $date1 = $_GET["date1"]?$_GET["date1"]:date("Y-m",time())."-1";
+                $date1 = $_GET["date1"]?$_GET["date1"]:date("Y-m",time())."-01";
                 $date2 = $_GET["date2"]?$_GET["date2"]:date("Y-m-d",time());
                 $seachList[] = "Date(dtime) BETWEEN '".$date1."' and '".$date2."'";
                 $urlList[] = "date1=".$date1;
                 $urlList[] = "date2=".$date2;
                 //>>公文状态
-                if (!empty($_GET['gwStaus'])){
-                    $seachList[] = "gwStaus =".$_GET["gwStaus"];
+                if (empty($_GET['gwStaus']) || $_GET['gwStaus'] == "所有"){
+                    $seachList[] = "zhuangtai > 1";
+                    $urlList[] = "gwStaus=所有";
+                }else{
+                    $seachList[] = "zhuangtai = ".array_search($_GET['gwStaus'],self::$gwStatus);
                     $urlList[] = "gwStaus=".$_GET['gwStaus'];
                 }
                 //>>设置关键字搜索
@@ -143,18 +196,93 @@ class GongwenController extends BaseController
                 $where = "";
                 if (count($seachList)>0){
                     $where = "where ".implode(" and ",$seachList);
-                    $url = 'p=show&c=gongwen&a=accept&zlId='.$zlId.'&'.implode('&',$urlList);
+                    $url = '&'.implode('&',$urlList);
                 }
+//                var_dump($where);exit();
             //>>获取所有公文数据
             $user_id = self::$userData["id"];
-            $Model = new ModelNew("fasong");
-            $gwDate = $Model->findBySql("select * from sl_gw_o ".$where." ORDER BY id DESC ");
+            $Model = new ModelNew("gw_o");
+            //>>设置分页数据
+            $count = $Model->findBySql("select count(*) as total from `sl_gw_o` $where");
+            $totalNum = $count[0]["total"];//数据总数
+            $pageSize = 10;  //每页数量
+            $maxPage=$totalNum==0?1:ceil($totalNum/$pageSize); //总共有的页数
+            $page=isset($_GET['page'])?$_GET['page']:1; //当前页
+            if($page < 1)
+            {
+                $page=1;
+            }
+            if($page > $maxPage)
+            {
+                $page=$maxPage;
+            }
+            $limit=" limit ".($page-1)*$pageSize.",$pageSize"; //分页条件
+            //>>页码设置
+            $pageData = self::pageSetAction($page,$maxPage);
+            $init = $pageData["init"];
+            $max = $pageData["max"];
+            $gwDate = $Model->findBySql("select * from sl_gw_o ".$where." ORDER BY id DESC $limit");
             include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_admin_accept_list.html";
         }else{    //>>非管理员
             //>>获取所有公文数据
             $user_id = self::$userData["id"];
             $Model = new ModelNew("fasong");
-            $gwDate = $Model->findBySql("select b.* from sl_fasong as a join sl_gw as b on a.gongwen=b.id where a.jieshouren=$user_id ORDER BY b.id DESC ");
+            //>>设置筛选条件
+                $seachList = [];
+                $urlList=[];
+                //设置默认时间时间段为本月初至今
+                $date1 = $_GET["date1"]?$_GET["date1"]:date("Y-m",time())."-01";
+                $date2 = $_GET["date2"]?$_GET["date2"]:date("Y-m-d",time());
+                $seachList[] = "Date(b.dtime) BETWEEN '".$date1."' and '".$date2."'";
+                $urlList[] = "date1=".$date1;
+                $urlList[] = "date2=".$date2;
+                //工作专栏
+                if (!empty($_GET['zhuanlan'])){
+                    if ($_GET['zhuanlan']!="所有"){
+                        $zhuanlanId = self::getZlIdAction($_GET["zhuanlan"]);
+                        if ($zhuanlanId){
+                            $seachList[] = "b.zhuanlan = ".$zhuanlanId;
+                        }
+                        $urlList[] = "zhuanlan=".$_GET['zhuanlan'];
+                    }
+                }
+                //状态
+                if (!empty($_GET['zhuangtai'])){
+                    if ($_GET['zhuangtai']!="所有"){
+                        $seachList[] = "a.zhuangtai = ".array_search($_GET['zhuangtai'],self::$isRead);
+                    }
+                    $urlList[] = "zhuangtai=".$_GET['zhuangtai'];
+                }
+                //关键词
+                if (!empty($_GET['guanjianci'])){
+                    $seachList[] = "biaoti like '%".$_GET["guanjianci"]."%'";
+                    $urlList[] = "guanjianci=".$_GET['guanjianci'];
+                }
+                $where = "";
+                if (count($seachList)>0){
+                    $where = "where ".implode(" and ",$seachList);
+                    $url = '&'.implode('&',$urlList);
+                }
+                //>设置分页数据
+                $count = $Model->findBySql("select COUNT(*) as total from sl_fasong as a join sl_gw as b on a.gongwen=b.id $where and a.jieshouren=$user_id ORDER BY b.id DESC ");
+                $totalNum = $count[0]["total"];//数据总数
+                $pageSize = 10;  //每页数量
+                $maxPage=$totalNum==0?1:ceil($totalNum/$pageSize); //总共有的页数
+                $page=isset($_GET['page'])?$_GET['page']:1; //当前页
+                if($page < 1)
+                {
+                    $page=1;
+                }
+                if($page > $maxPage)
+                {
+                    $page=$maxPage;
+                }
+                $limit=" limit ".($page-1)*$pageSize.",$pageSize"; //分页条件
+                //>>页码设置
+                $pageData = self::pageSetAction($page,$maxPage);
+                $init = $pageData["init"];
+                $max = $pageData["max"];
+            $gwDate = $Model->findBySql("select b.* from sl_fasong as a join sl_gw as b on a.gongwen=b.id $where and a.jieshouren=$user_id ORDER BY b.id DESC $limit");
             include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_huiyuan_accept_list.html";
         }
     }

@@ -42,33 +42,43 @@
 
     <div class="xt-wenzhan">
         <div class="xtwenz-time">
+            <form action="index.php?p=show&c=gongwen&a=list" style="height: 100%" method="get" id="sousuoForm">
             <div class="xtwen-input box time-ico">
-                <input type="text" name="" id="appDate" value="2018-01-11" />
+                <input type="text" name="date1" id="appDate" value="<?=$date1?>" />
             </div>
             <span class="fl">至</span>
             <div class="xtwen-input box time-ico">
-                <input type="text" name="" id="appDate1" value="2018-01-11" />
+                <input type="text" name="date2" id="appDate1" value="<?=$date2?>" />
             </div>
             <div class="xtwen-input inp-xia box fl" style="margin-left:16px;">
-                <input type="text" name="" id="" value="" class="edit-inwidt" readonly placeholder="类型选择"/>
+                <input type="text" name="zhuanlan" id="zhuanlan" value="<?=$_GET['zhuanlan']?$_GET['zhuanlan']:'所有' ?>" class="edit-inwidt" readonly placeholder="工作专栏"/>
                 <div class="adit-xuan box">
-                    <p>周报一</p>
-                    <p>周报二</p>
+                    <?php if($flData):?>
+                    <p>所有</p>
+                    <?php foreach($flData as $fl):?>
+                    <p><?=$fl["mingcheng"]?></p>
+                    <?php endforeach;?>
+                    <?php endif;?>
                 </div>
             </div>
             <div class="xtwen-input inp-xia box fl" style="margin-left:16px;">
-                <input type="text" name="" id="" value="" class="edit-inwidt" readonly placeholder="选择状态"/>
+                <input type="text" name="zhuangtai" id="zhuangtai" value="<?=$_GET['zhuangtai']?$_GET['zhuangtai']:'所有' ?>" class="edit-inwidt" readonly placeholder="选择状态"/>
                 <div class="adit-xuan box">
-                    <p>已发送</p>
+                    <p>所有</p>
                     <p>未发送</p>
+                    <p>已发送</p>
+                    <p>已退回</p>
+                    <p>已审核</p>
+                    <p>已推荐</p>
                 </div>
             </div>
             <div class="xtwen-sou xtwen-input fl box">
-                <input type="" name="" id="" value="" placeholder="关键字收索"/>
-                <a href=""><img src="public/yz/images/wenzi-sou_03.png"/></a>
+                <input type="text" name="guanjianci" id="guanjianci" value="<?=$_GET['guanjianci']?$_GET['guanjianci']:'' ?>" placeholder="关键字收索"/>
+                <a class="sousuo" href="javascript:void(0)"><img src="public/yz/images/wenzi-sou_03.png"/></a>
             </div>
 
-            <a href="index.php?p=show&c=gongwen&a=edit"><div class="xtwen-fabu fr">+ 发布文章</div></a>
+            <a href="index.php?p=show&c=gongwen&a=edit"><div class="xtwen-fabu fr">+ 发布公文</div></a>
+            </form>
         </div>
 
         <div class="xtable">
@@ -126,22 +136,20 @@
             <span id="piliangshanchu"><img src="public/yz/images/lock2_08.png"/>删除</span>
         </div>
         <div class="page fr" style="margin-top:24px;">
-            <a href="">首页</a>
-            <strong>1</strong>
-            <a href="">2</a>
-            <a href="">3</a>
-            <a href="">4</a>
-            <a href="">5</a>
-            <a href="">6</a>
-            <em>···</em>
-            <a href="">22</a>
-            <a href="">下一页</a>
+            <?php
+              echo "<a href='index.php?p=show&c=gongwen&a=list&page=1{$url}'>首页</a>";
+                for($i=$init;$i<=$max;$i++){
+                if($page == $i){
+                echo  "<strong>".$i."</strong>";
+                }else{
+                echo  "<a href='index.php?p=show&c=gongwen&a=list&page=".$i."{$url}'>".$i."</a>";
+                }
+                }
+                echo  "<a href='index.php?p=show&c=gongwen&a=list&page=".($page+1)."{$url}'>下一页</a>";
+            ?>
         </div>
     </div>
 </div>
-
-
-
 
 <script>
     $(".adit-xuan p").on("click",function(){
@@ -154,7 +162,6 @@
     })
 
 </script>
-
 <script type="text/javascript">
     for (var i=0; i<=$(".xtable tr").length-1; i++) {
         $(".xtable tr:eq("+(i+1)+")").find(".table-paixu span").text(i+1);
@@ -270,6 +277,33 @@
             },"json")
         });
 
+    })
+</script>
+<!--搜索-->
+<script type="text/javascript">
+    $(".sousuo").click(function () {
+        var date1=$("#appDate").val();
+        var date2=$("#appDate1").val();
+        var zhuanlan=$("#zhuanlan").val();
+        var zhuangtai=$("#zhuangtai").val();
+        var guanjianci=$("#guanjianci").val();
+        var str= "";
+        if (date1 != ""){
+            str += "&date1="+date1;
+        }
+        if (date2 != ""){
+            str += "&date2="+date2;
+        }
+        if (zhuanlan != ""){
+            str += "&zhuanlan="+zhuanlan;
+        }
+        if (zhuangtai != ""){
+            str += "&zhuangtai="+zhuangtai;
+        }
+        if (guanjianci != ""){
+            str += "&guanjianci="+guanjianci;
+        }
+        window.location.href="index.php?p=show&c=gongwen&a=list"+str;
     })
 </script>
 </body>

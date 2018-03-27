@@ -43,14 +43,14 @@
         <div class="xtwenz-time">
             <form action="index.php?p=show&c=gongwen&a=list" style="height: 100%" method="get" id="sousuoForm">
             <div class="xtwen-input box time-ico">
-                <input type="text" name="date1" id="appDate" value="<?=$_GET['date1']?date('Y-m-d',strtotime($_GET['date1'])):date('Y-m-d') ?>" />
+                <input type="text" name="date1" id="appDate" value="<?=$date1 ?>" />
             </div>
             <span class="fl">至</span>
             <div class="xtwen-input box time-ico">
-                <input type="text" name="date2" id="appDate1" value="<?=$_GET['date2']?date('Y-m-d',strtotime($_GET['date2'])):date('Y-m-d') ?>" />
+                <input type="text" name="date2" id="appDate1" value="<?=$date2 ?>" />
             </div>
             <div class="xtwen-input inp-xia box fl" style="margin-left:16px;">
-                <input type="text" name="zhuanlan" id="zhuanlan" value="<?=$_GET['zhuanlan']?$_GET['zhuanlan']:'所有' ?>" class="edit-inwidt" readonly placeholder="类型工作专栏"/>
+                <input type="text" name="zhuanlan" id="zhuanlan" value="<?=$_GET['zhuanlan']?$_GET['zhuanlan']:'所有' ?>" class="edit-inwidt" readonly placeholder="工作专栏"/>
                 <div class="adit-xuan box">
                     <?php if($flData):?>
                     <p>所有</p>
@@ -73,7 +73,7 @@
                 <a class="sousuo" href="javascript:void(0)"><img src="public/yz/images/wenzi-sou_03.png"/></a>
             </div>
 
-            <a href="index.php?p=show&c=gongwen&a=edit"><div class="xtwen-fabu fr">+ 发布文章</div></a>
+            <a href="index.php?p=show&c=gongwen&a=edit"><div class="xtwen-fabu fr">+ 发布公文</div></a>
             </form>
         </div>
 
