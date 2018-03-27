@@ -8,7 +8,8 @@
     <script type="text/javascript" src="public/yz/js/jquery-1.9.1.min.js" ></script>
     <script type="text/javascript" src="public/yz/js/swiper.min.js" ></script>
     <script type="text/javascript" src="public/yz/js/script.js" ></script>
-
+    <link rel="stylesheet" href="public/layer/theme/default/layer.css">
+    <script src="public/layer/layer.js" type="text/javascript"></script>
 </head>
 <body class="body">
 
@@ -117,75 +118,10 @@
 </div>
 
 <!--侧边栏-->
-<div class="celan fixed">
-    <ul>
-        <li class="box">
-            <a href="javascript:void(0)"></a>
-            <div class="cellan-img">
-                <img src="public/yz/images/cebians_03.png" class="cebiane"/>
-                <img src="public/yz/images/cebian_03.png" class="cebianes"/>
-            </div>
-            <p>电话</p>
-            <div class="hua-xia absolute">
-                <em>TEL: 028-85530019</em>
-                <img src="public/yz/images/shanjiao_03.png"/>
-            </div>
-        </li>
-        <li class="box">
-            <a href=""></a>
-            <div class="cellan-img">
-                <img src="public/yz/images/cebian1s_06.png" class="cebiane"/>
-                <img src="public/yz/images/cebian1_06.png" class="cebianes"/>
-            </div>
-            <p>邮箱</p>
-            <div class="hua-xia absolute" style="width:250px; font-size:16px;">
-                <em>MAIL:12345678910@163.com</em>
-                <img src="public/yz/images/shanjiao_03.png"/>
-            </div>
-        </li>
-        <li class="tan-kuan box">
-            <a href="javascript:void(0)"></a>
-            <div class="cellan-img">
-                <img src="public/yz/images/cebian2s_07.png" class="cebiane"/>
-                <img src="public/yz/images/cebian2_07.png" class="cebianes"/>
-            </div>
-            <p>举报直通车 </p>
-        </li>
-        <li class="box">
-            <a href="javascript:void(0)"></a>
-            <div class="cellan-img">
-                <img src="public/yz/images/cebian3s_06.png" class="cebiane"/>
-                <img src="public/yz/images/cebian3_06.png" class="cebianes"/>
-            </div>
-            <p>回到顶部</p>
-        </li>
-    </ul>
-</div>
+<?php include CUR_VIEW_PATH."Spublic/index_cebianlan.html";?>
 
 <!--弹出框-->
-<div class="in-fixed fixed">
-    <div class="table">
-        <div class="table-cell">
-            <div class="in-fixeds">
-                <div class="in-tanti">举报直通车</div>
-                <div class="in-tan-input box">
-                    <input type="text" name="" id="" value="" placeholder="姓名" class="fl"/>
-                    <input type="text" name="" id="" value="" placeholder="电话" class="fr"/>
-                    <input type="text" name="" id="" value="" placeholder="邮箱" class="fl"/>
-                    <input type="text" name="" id="" value="" placeholder="QQ" class="fr"/>
-                    <input type="text" name="" id="" value="" placeholder="举报标题" class="in-taninti"/>
-                    <textarea class="box"></textarea>
-                    <div class="in-tanxuan">
-                        <a href="javascript:void(0)" class="in-qudi box">取消</a>
-                        <a href="" class="in-quxiao box">提交举报</a>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-</div>
+<?php include CUR_VIEW_PATH."Spublic/index_tanchukuang.html";?>
 
 
 <script type="text/javascript">

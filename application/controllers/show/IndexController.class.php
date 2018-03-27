@@ -39,9 +39,6 @@ class IndexController extends Controller
         //>>增加人气
         $model->query("update sl_article set renqi = renqi+1 WHERE id=$id");
         $article = $model->findOne($id);
-
-
-
         include CUR_VIEW_PATH."Sarticle" . DS . "article_detail.html";
     }
 

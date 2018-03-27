@@ -198,7 +198,6 @@ class GongwenController extends BaseController
                     $where = "where ".implode(" and ",$seachList);
                     $url = '&'.implode('&',$urlList);
                 }
-//                var_dump($where);exit();
             //>>获取所有公文数据
             $user_id = self::$userData["id"];
             $Model = new ModelNew("gw_o");
@@ -286,7 +285,6 @@ class GongwenController extends BaseController
             include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_huiyuan_accept_list.html";
         }
     }
-
 
     //>>编辑文章
     public function editAction(){
@@ -413,7 +411,6 @@ class GongwenController extends BaseController
         echo $result;
     }
 
-
     //>>非管理员编辑公文
     public function editHuiyuanAction(){
         $model = new ModelNew("gw_o");
@@ -456,7 +453,6 @@ class GongwenController extends BaseController
             }
         }
     }
-
 
     //>>发送公文详情
     public function sendDetailAction(){
@@ -517,8 +513,6 @@ class GongwenController extends BaseController
         $zhuangtai = $model->where(["gongwen"=>$gwId])->where(["jieshouren"=>$jsr])->find("zhuangtai")->one();
         return $zhuangtai["zhuangtai"];
     }
-
-
 
     //>>判断公文是否过期
     public static function isDateAction($id){

@@ -4,16 +4,18 @@
             <div class="in-fixeds">
                 <div class="in-tanti">举报直通车</div>
                 <div class="in-tan-input box">
-                    <input type="text" name="" id="" value="" placeholder="姓名" class="fl"/>
-                    <input type="text" name="" id="" value="" placeholder="电话" class="fr"/>
-                    <input type="text" name="" id="" value="" placeholder="邮箱" class="fl"/>
-                    <input type="text" name="" id="" value="" placeholder="QQ" class="fr"/>
-                    <input type="text" name="" id="" value="" placeholder="举报标题" class="in-taninti"/>
-                    <textarea class="box"></textarea>
+                    <form id="myform" action="index.php?p=show&c=report&a=add" method="post">
+                    <input type="text" name="name" id="name" value="" placeholder="姓名" class="fl"/>
+                    <input type="text" name="phone" id="phone" value="" placeholder="电话" class="fr"/>
+                    <input type="text" name="mail" id="mail" value="" placeholder="邮箱" class="fl"/>
+                    <input type="text" name="qq" id="qq" value="" placeholder="QQ" class="fr"/>
+                    <input type="text" name="title" id="title" value="" placeholder="举报标题" class="in-taninti"/>
+                    <textarea name="content" id="content" class="box"></textarea>
                     <div class="in-tanxuan">
                         <a href="javascript:void(0)" class="in-qudi box">取消</a>
-                        <a href="" class="in-quxiao box">提交举报</a>
+                        <a id="report" href="javascript:void(0)" class="in-quxiao box">提交举报</a>
                     </div>
+                    </form>
                 </div>
 
             </div>
@@ -21,3 +23,48 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $("#report").click(function () {
+        var form = new FormData(document.getElementById("myform"));
+        var name = $("#name").val();
+        var phone = $("#phone").val();
+        var mail = $("#mail").val();
+        var qq = $("#qq").val();
+        var title = $("#title").val();
+        var content = $("#content").val();
+        if (name==""){
+            layer.alert("姓名不能为空")
+            return false;
+        }
+        if (phone==""){
+            layer.alert("电话不能为空")
+            return false;
+        }
+        // console.log(form);return false;
+        // alert($("#content").val());
+        // $("#myform").submit();
+        $.ajax({
+            url:"index.php?p=show&c=report&a=add",
+            type:"post",
+            data:form,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success:function(data){
+                if (data != 500){
+                    layer.open({
+                        content: '保存成功！',
+                        btn: ['确认'],
+                        yes: function(index, layero) {
+                            location.reload();
+                        },
+                    });
+                }
+            },
+            error:function(e){
+                layer.alert("保存失败")
+                return false;
+            }
+        })
+    })
+</script>
