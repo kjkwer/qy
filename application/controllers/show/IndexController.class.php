@@ -22,10 +22,10 @@ class IndexController extends Controller
     public function indexAction(){
         $model = new ModelNew('wzfl');
         $articleGlassifyData = $model->where(["type"=>1])->find()->all();
-        //>>扶贫专栏
-        $articleModel = new ModelNew('article');
-        $fpData = $articleModel->where(["zhuanlan"=>17])->limit(0,5)->find()->all();
-
+        //>>获取所有专栏
+        $zhuanlanModel = new ModelNew('wzfl');
+        $zhuanlanDatas = $zhuanlanModel->findBySql("select * from sl_wzfl WHERE type=1 ORDER by sort asc ");
+//        var_dump($zhuanlanDatas);exit();
         include CUR_VIEW_PATH."Sindex" . DS . "index_index.html";
     }
 
@@ -69,5 +69,12 @@ class IndexController extends Controller
         $model = new ModelNew('wzfl');
         $zhuanlan = $model->where(["id"=>$id])->find("fenleimingcheng")->one();
         return $zhuanlan["fenleimingcheng"];
+    }
+
+    //>>通过专栏id获取改专栏数据
+    public static function getArticleDatasByZlIdAction($id,$offer){
+        $articleModel = new ModelNew("article");
+        $articleDatas = $articleModel->findBySql("select * from sl_article where zhuanlan=$id order by id DESC limit $offer");
+        return $articleDatas;
     }
 }

@@ -26,12 +26,59 @@ class ArticleController  extends BaseController
 
     public function listAction(){
         //>>获取所有文章数据
-        $model = new ModelNew("article");
-        $articleData = $model->findBySql("select * from `sl_article` ORDER BY id DESC ");
-//        var_dump($articleData);exit();
+        $articleModel = new ModelNew("article");
+            //>>设置筛选条件
+            $seachList = [];
+            $urlList=[];
+            //设置默认时间时间段为本月初至今
+            $date1 = $_GET["date1"]?$_GET["date1"]:date("Y-m",time())."-01";
+            $date2 = $_GET["date2"]?$_GET["date2"]:date("Y-m-d",time());
+            $seachList[] = "Date(dtime) BETWEEN '".$date1."' and '".$date2."'";
+            $urlList[] = "date1=".$date1;
+            $urlList[] = "date2=".$date2;
+            //工作专栏
+            if (!empty($_GET['zhuanlan'])){
+                if ($_GET['zhuanlan']!="所有"){
+                    $zhuanlanId = self::getfenleiIdAction($_GET["zhuanlan"]);
+                    if ($zhuanlanId){
+                        $seachList[] = "zhuanlan = ".$zhuanlanId;
+                    }
+                    $urlList[] = "zhuanlan=".$_GET['zhuanlan'];
+                }
+            }
+            //关键词
+            if (!empty($_GET['keyword'])){
+                $seachList[] = "biaoti like '%".$_GET["keyword"]."%'";
+                $urlList[] = "keyword=".$_GET['keyword'];
+            }
+            $where = "";
+            if (count($seachList)>0){
+                $where = "where ".implode(" and ",$seachList);
+                $url = '&'.implode('&',$urlList);
+            }
+            //>设置分页数据
+            $count = $articleModel->findBySql("select COUNT(*) as total from sl_article $where  ORDER BY id DESC ");
+            $totalNum = $count[0]["total"];//数据总数
+            $pageSize = 10;  //每页数量
+            $maxPage=$totalNum==0?1:ceil($totalNum/$pageSize); //总共有的页数
+            $page=isset($_GET['page'])?$_GET['page']:1; //当前页
+            if($page < 1)
+            {
+                $page=1;
+            }
+            if($page > $maxPage)
+            {
+                $page=$maxPage;
+            }
+            $limit=" limit ".($page-1)*$pageSize.",$pageSize"; //分页条件
+            //>>页码设置
+            $pageData = self::pageSetAction($page,$maxPage);
+            $init = $pageData["init"];
+            $max = $pageData["max"];
+        $articleData = $articleModel->findBySql("select * from `sl_article` $where ORDER BY id DESC $limit");
         //>>获取专栏
         $zhuanlanModel = new ModelNew("wzfl");
-        $zhuanlanData = $model->findBySql("select * from `sl_wzfl`");
+        $zhuanlanData = $zhuanlanModel->findBySql("select * from `sl_wzfl`");
         include CUR_VIEW_PATH."Sarticle" . DS . "article_list.html";
     }
 
@@ -129,5 +176,30 @@ class ArticleController  extends BaseController
         $fenleiModel = new ModelNew("wzfl");
         $data = $fenleiModel->where(["fenleimingcheng"=>$mingcheng])->find("id")->one();
         return $data["id"];
+    }
+
+    //>>页码设置
+    public static function pageSetAction($page,$maxPage){
+        $pageNum = 5;//页码个数
+        $pageOffer = ($pageNum-1)/2;//页码偏移量
+        if($maxPage<=$pageNum){
+            $init=1;
+            $max = $maxPage;
+        }
+        if($maxPage>$pageNum){
+            if($page<=$pageOffer){
+                $init=1;
+                $max = $pageNum;
+            }else{
+                if($page+$pageOffer>=$maxPage+1){
+                    $init = $maxPage-$pageNum+1;
+                    $max = $pageNum;
+                }else{
+                    $init = $page-$pageOffer;
+                    $max = $page+$pageOffer;
+                }
+            }
+        }
+        return ["init"=>$init,'max'=>$max];
     }
 }

@@ -24,35 +24,42 @@
 	<div class="container">
 		<div class="fupin">
 			<div class="fupin-lft fl">
-				<div class="in-h1">
-					<p>精准扶贫专栏  </p>
-					<a href="index.php?p=show&c=index&a=tw&id=17">更多&gt;&gt;</a>
-				</div>
-				<div style="height:15px;"></div>
-				<div class="in-fptop fl">
-					<div class="in-img"><a href="index.php?p=show&c=index&a=detail&id=<?=$fpData[0]['id']?>"><img src="<?=$fpData[0]['tupian']?>"/></a></div>
-					<div class="in-text">
-						<p><a href="index.php?p=show&c=index&a=detail&id=<?=$fpData[0]['id']?>"><?=$fpData[0]['biaoti']?></a></p>
-						<span><?=$fpData[0]['biaoti']?></span>
+				<?php if($zhuanlanDatas[0]):?>
+					<div class="in-h1">
+						<p><?=$zhuanlanDatas[0]["fenleimingcheng"]?>  </p>
+						<a href="index.php?p=show&c=index&a=tw&id=<?=$zhuanlanDatas[0]['id']?>">更多&gt;&gt;</a>
 					</div>
-				</div>
-				<div class="in-fptop fr">
-					<ul>
-						<?php if($fpData):?>
-							<?php foreach($fpData as $k=>$fp):?>
+					<div style="height:15px;"></div>
+					<?php $articleDatas = self::getArticleDatasByZlIdAction($zhuanlanDatas[0]['id'],5);?>
+				<?php endif;?>
+				<?php if($articleDatas):?>
+					<?php if($articleDatas[0]):?>
+						<div class="in-fptop fl">
+							<div class="in-img"><a href="index.php?p=show&c=index&a=detail&id=<?=$articleDatas[0]['id']?>"><img src="<?=$articleDatas[0]['tupian']?>"/></a></div>
+							<div class="in-text">
+								<p><a href="index.php?p=show&c=index&a=detail&id=<?=$articleDatas[0]['id']?>"><?=$articleDatas[0]['biaoti']?></a></p>
+								<span><?=$articleDatas[0]['biaoti']?></span>
+							</div>
+						</div>
+					<?php endif;?>
+					<div class="in-fptop fr">
+						<ul>
+							<?php foreach($articleDatas as $k=>$article):?>
 								<?php if($k>0):?>
-								<li>
-									<div class="in-toplist"><a href="index.php?p=show&c=index&a=detail&id=<?=$fp['id']?>"><img src="<?=$fp['tupian']?>"/></a></div>
-									<div class="in-toptext">
-										<p><a href="index.php?p=show&c=index&a=detail&id=<?=$fp['id']?>"><?=$fp['biaoti']?></a></p>
-										<span><?=$fp['biaoti']?></span>
-									</div>
-								</li>
+									<li>
+										<div class="in-toplist"><a href="index.php?p=show&c=index&a=detail&id=<?=$article['id']?>"><img src="<?=$article['tupian']?>"/></a></div>
+										<div class="in-toptext">
+											<p><a href="index.php?p=show&c=index&a=detail&id=<?=$article['id']?>"><?=$article['biaoti']?></a></p>
+											<span><?=$article['dtime']?></span>
+										</div>
+									</li>
 								<?php endif;?>
 							<?php endforeach;?>
-						<?php endif;?>
-					</ul>
-				</div>
+						</ul>
+					</div>
+				<?php endif;?>
+
+
 			</div>
 
 			<div class="fupin-rht fr">
@@ -77,47 +84,28 @@
 
 		<!--“不忘初心 牢记使命”教育活动-->
 		<div class="in-buwan">
-			<div class="in-h1">
-				<p>不忘初心 牢记使命”教育活动</p>
-				<em><img src="public/yz/images/huan-yi_03.png"/>换一批</em>
-			</div>
+			<?php if($zhuanlanDatas[1]):?>
+				<div class="in-h1">
+					<p><?=$zhuanlanDatas[1]["fenleimingcheng"] ?>  </p>
+					<a href="index.php?p=show&c=index&a=tw&id=<?=$zhuanlanDatas[1]['id']?>">更多&gt;&gt;</a>
+				</div>
+				<div style="height:15px;"></div>
+				<?php $articleDatas = self::getArticleDatasByZlIdAction($zhuanlanDatas[1]['id'],4);?>
+			<?php endif;?>
 			<ul>
-				<li>
-					<div class="in-buimg">
-						<a href=""><img src="public/yz/images/buwan-img_03.jpg"/></a>
-					</div>
-					<div class="in-toptext">
-						<p><a href="">烟雾报警器什么情况下会失灵？</a></p>
-						<span>2018-01-12</span>
-					</div>
-				</li>
-				<li>
-					<div class="in-buimg">
-						<a href=""><img src="public/yz/images/buwan-img1_05.jpg"/></a>
-					</div>
-					<div class="in-toptext">
-						<p><a href="">烟雾报警器什么情况下会失灵？</a></p>
-						<span>2018-01-12</span>
-					</div>
-				</li>
-				<li>
-					<div class="in-buimg">
-						<a href=""><img src="public/yz/images/buwan-img2_05.jpg"/></a>
-					</div>
-					<div class="in-toptext">
-						<p><a href="">烟雾报警器什么情况下会失灵？</a></p>
-						<span>2018-01-12</span>
-					</div>
-				</li>
-				<li>
-					<div class="in-buimg">
-						<a href=""><img src="public/yz/images/buwan-img3_05.jpg"/></a>
-					</div>
-					<div class="in-toptext">
-						<p><a href="">烟雾报警器什么情况下会失灵？</a></p>
-						<span>2018-01-12</span>
-					</div>
-				</li>
+				<?php if($articleDatas):?>
+					<?php foreach($articleDatas as $article):?>
+						<li>
+							<div class="in-buimg">
+								<a href="index.php?p=show&c=index&a=detail&id=<?=$article['id']?>"><img src="<?=$article['tupian']?>"/></a>
+							</div>
+							<div class="in-toptext">
+								<p><a href="index.php?p=show&c=index&a=detail&id=<?=$article['id']?>"><?=$article['biaoti']?></a></p>
+								<span><?=$article['dtime']?></span>
+							</div>
+						</li>
+					<?php endforeach;?>
+				<?php endif;?>
 			</ul>
 		</div>
 
@@ -125,52 +113,47 @@
 		<div class="in-buwan">
 			<div class="in-h1">
 				<div class="in-h1nav addnoe">
-					<p class="in-h1navp">“两学一做”“走基层”专题</p>
-					<p>农牧民夜校专栏</p>
+					<?php if($zhuanlanDatas[2]):?>
+					<p class="in-h1navp"><?=$zhuanlanDatas[2]["fenleimingcheng"] ?></p>
+					<?php $articleDatasLeft = self::getArticleDatasByZlIdAction($zhuanlanDatas[2]['id'],4);?>
+					<?php endif;?>
+					<?php if($zhuanlanDatas[3]):?>
+					<p><?=$zhuanlanDatas[3]["fenleimingcheng"] ?></p>
+					<?php $articleDatasRight = self::getArticleDatasByZlIdAction($zhuanlanDatas[3]['id'],4);?>
+					<?php endif;?>
 				</div>
 				<em><img src="public/yz/images/huan-yi_03.png"/>换一批</em>
 			</div>
 			<div class="inlto">
 				<ul>
-					<li>
-						<div class="in-buimg">
-							<a href=""><img src="public/yz/images/buwan-img_03.jpg"/></a>
-						</div>
-						<div class="in-toptext">
-							<p><a href="">烟雾报警器什么情况下会失灵？</a></p>
-							<span>2018-01-12</span>
-						</div>
-					</li>
-					<li>
-						<div class="in-buimg">
-							<a href=""><img src="public/yz/images/buwan-img1_05.jpg"/></a>
-						</div>
-						<div class="in-toptext">
-							<p><a href="">烟雾报警器什么情况下会失灵？</a></p>
-							<span>2018-01-12</span>
-						</div>
-					</li>
-					<li>
-						<div class="in-buimg">
-							<a href=""><img src="public/yz/images/buwan-img2_05.jpg"/></a>
-						</div>
-						<div class="in-toptext">
-							<p><a href="">烟雾报警器什么情况下会失灵？</a></p>
-							<span>2018-01-12</span>
-						</div>
-					</li>
-					<li>
-						<div class="in-buimg">
-							<a href=""><img src="public/yz/images/buwan-img3_05.jpg"/></a>
-						</div>
-						<div class="in-toptext">
-							<p><a href="">烟雾报警器什么情况下会失灵？</a></p>
-							<span>2018-01-12</span>
-						</div>
-					</li>
+					<?php if($articleDatasLeft):?>
+						<?php foreach($articleDatasLeft as $article):?>
+							<li>
+								<div class="in-buimg">
+									<a href="index.php?p=show&c=index&a=detail&id=<?=$article['id']?>"><img src="<?=$article['tupian']?>"/></a>
+								</div>
+								<div class="in-toptext">
+									<p><a href="index.php?p=show&c=index&a=detail&id=<?=$article['id']?>"><?=$article['biaoti']?></a></p>
+									<span><?=$article['dtime']?></span>
+								</div>
+							</li>
+						<?php endforeach;?>
+					<?php endif;?>
 				</ul>
 				<ul>
-					<li>1</li>
+					<?php if($articleDatasRight):?>
+						<?php foreach($articleDatasRight as $article):?>
+							<li>
+								<div class="in-buimg">
+									<a href="index.php?p=show&c=index&a=detail&id=<?=$article['id']?>"><img src="<?=$article['tupian']?>"/></a>
+								</div>
+								<div class="in-toptext">
+									<p><a href="index.php?p=show&c=index&a=detail&id=<?=$article['id']?>"><?=$article['biaoti']?></a></p>
+									<span><?=$article['dtime']?></span>
+								</div>
+							</li>
+						<?php endforeach;?>
+					<?php endif;?>
 				</ul>
 			</div>
 
@@ -183,201 +166,119 @@
 	<div class="container">
 		<div class="fupin">
 			<div class="fupin-lft fl" style="width:100%;">
-				<div class="in-h1">
-					<p>党的建设</p>
-					<em><img src="public/yz/images/huan-yi_03.png"/>换一批</em>
-				</div>
-				<div style="height:15px;"></div>
-				<div class="in-fptop fl">
-					<div class="in-img"><a href=""><img src="public/yz/images/iner-img_14.jpg"/></a></div>
-					<div class="in-text">
-						<p><a href="">习近平主席发表2018年新年贺词</a></p>
-						<span>聆听，这深沉绵长的人民情怀！</span>
+				<?php if($zhuanlanDatas[4]):?>
+					<div class="in-h1">
+						<p><?=$zhuanlanDatas[4]["fenleimingcheng"] ?>  </p>
+						<a href="index.php?p=show&c=index&a=tw&id=<?=$zhuanlanDatas[4]['id']?>">更多&gt;&gt;</a>
 					</div>
-				</div>
-				<div class="in-fptop in-ercen fr" style="width:720px;">
-					<ul>
-						<li>
-							<div class="in-toplist"><a href=""><img src="public/yz/images/iner-img1_16.jpg"/></a></div>
-							<div class="in-toptext">
-								<p><a href="">回访湘西花垣县十八洞村</a></p>
-								<span>书写伟大复兴的时代画卷</span>
+					<div style="height:15px;"></div>
+					<?php $articleDatas = self::getArticleDatasByZlIdAction($zhuanlanDatas[4]['id'],7);?>
+				<?php endif;?>
+				<div style="height:15px;"></div>
+				<?php if($articleDatas):?>
+					<?php if($articleDatas[0]):?>
+						<div class="in-fptop fl">
+							<div class="in-img"><a href="index.php?p=show&c=index&a=detail&id=<?=$articleDatas[0]['id']?>"><img src="<?=$articleDatas[0]['tupian']?>"/></a></div>
+							<div class="in-text">
+								<p><a href="index.php?p=show&c=index&a=detail&id=<?=$articleDatas[0]['id']?>"><?=$article['biaoti']?></a></p>
+								<span><?=$article['dtime']?></span>
 							</div>
-						</li>
-						<li>
-							<div class="in-toplist"><a href=""><img src="public/yz/images/iner-img2_12.jpg"/></a></div>
-							<div class="in-toptext">
-								<p><a href="">回访湘西花垣县十八洞村</a></p>
-								<span>书写伟大复兴的时代画卷</span>
-							</div>
-						</li>
-						<li>
-							<div class="in-toplist"><a href=""><img src="public/yz/images/iner-img3_12.jpg"/></a></div>
-							<div class="in-toptext">
-								<p><a href="">回访湘西花垣县十八洞村</a></p>
-								<span>书写伟大复兴的时代画卷</span>
-							</div>
-						</li>
-						<li>
-							<div class="in-toplist"><a href=""><img src="public/yz/images/iner-img4_18.jpg"/></a></div>
-							<div class="in-toptext">
-								<p><a href="">回访湘西花垣县十八洞村</a></p>
-								<span>书写伟大复兴的时代画卷</span>
-							</div>
-						</li>
-						<li>
-							<div class="in-toplist"><a href=""><img src="public/yz/images/iner-img5_19.jpg"/></a></div>
-							<div class="in-toptext">
-								<p><a href="">回访湘西花垣县十八洞村</a></p>
-								<span>书写伟大复兴的时代画卷</span>
-							</div>
-						</li>
-						<li>
-							<div class="in-toplist"><a href=""><img src="public/yz/images/iner-img6_19.jpg"/></a></div>
-							<div class="in-toptext">
-								<p><a href="">回访湘西花垣县十八洞村</a></p>
-								<span>书写伟大复兴的时代画卷</span>
-							</div>
-						</li>
-					</ul>
-				</div>
+						</div>
+					<?php endif;?>
+					<div class="in-fptop in-ercen fr" style="width:720px;">
+						<ul>
+							<?php foreach($articleDatas as $k=>$article):?>
+								<?php if($k>0):?>
+									<li>
+										<div class="in-toplist"><a href="index.php?p=show&c=index&a=detail&id=<?=$article['id']?>"><img src="<?=$article['tupian']?>"/></a></div>
+										<div class="in-toptext">
+											<p><a href="index.php?p=show&c=index&a=detail&id=<?=$article['id']?>"><?=$article['biaoti']?></a></p>
+											<span><?=$article['dtime']?></span>
+										</div>
+									</li>
+								<?php endif;?>
+							<?php endforeach;?>
+						</ul>
+					</div>
+				<?php endif;?>
 			</div>
 		</div>
-
-
-
 		<!--三会一课、主题党日专栏-->
 		<div class="in-buwan">
 			<div class="in-h1">
 				<div class="in-h1nav addtwo">
-					<p class="in-h1navp">三会一课、主题党日专栏</p>
-					<p>藏汉双语培训专栏</p>
+					<?php if($zhuanlanDatas[5]):?>
+					<p class="in-h1navp"><?=$zhuanlanDatas[5]["fenleimingcheng"] ?></p>
+					<?php $articleDatasLeft = self::getArticleDatasByZlIdAction($zhuanlanDatas[5]['id'],4);?>
+					<?php endif;?>
+					<?php if($zhuanlanDatas[6]):?>
+					<p><?=$zhuanlanDatas[6]["fenleimingcheng"] ?></p>
+					<?php $articleDatasRight = self::getArticleDatasByZlIdAction($zhuanlanDatas[6]['id'],4);?>
+					<?php endif;?>
 				</div>
 				<em><img src="public/yz/images/huan-yi_03.png"/>换一批</em>
 			</div>
 			<div class="inlto">
 				<ul>
+					<?php if($articleDatasLeft):?>
+					<?php foreach($articleDatasLeft as $article):?>
 					<li>
 						<div class="in-buimg">
-							<a href=""><img src="public/yz/images/iner-baimg_26.jpg"/></a>
+							<a href="index.php?p=show&c=index&a=detail&id=<?=$article['id']?>"><img src="<?=$article['tupian']?>"/></a>
 						</div>
 						<div class="in-toptext">
-							<p><a href="">烟雾报警器什么情况下会失灵？</a></p>
-							<span>2018-01-12</span>
+							<p><a href="index.php?p=show&c=index&a=detail&id=<?=$article['id']?>"><?=$article['biaoti']?></a></p>
+							<span><?=$article['dtime']?></span>
 						</div>
 					</li>
-					<li>
-						<div class="in-buimg">
-							<a href=""><img src="public/yz/images/iner-baimg1_26.jpg"/></a>
-						</div>
-						<div class="in-toptext">
-							<p><a href="">烟雾报警器什么情况下会失灵？</a></p>
-							<span>2018-01-12</span>
-						</div>
-					</li>
-					<li>
-						<div class="in-buimg">
-							<a href=""><img src="public/yz/images/iner-baimg2_26.jpg"/></a>
-						</div>
-						<div class="in-toptext">
-							<p><a href="">烟雾报警器什么情况下会失灵？</a></p>
-							<span>2018-01-12</span>
-						</div>
-					</li>
-					<li>
-						<div class="in-buimg">
-							<a href=""><img src="public/yz/images/iner-baimg3_26.jpg"/></a>
-						</div>
-						<div class="in-toptext">
-							<p><a href="">烟雾报警器什么情况下会失灵？</a></p>
-							<span>2018-01-12</span>
-						</div>
-					</li>
+					<?php endforeach;?>
+					<?php endif;?>
 				</ul>
-				<ul><li>2</li></ul>
+				<ul>
+					<?php if($articleDatasRight):?>
+					<?php foreach($articleDatasRight as $article):?>
+					<li>
+						<div class="in-buimg">
+							<a href="index.php?p=show&c=index&a=detail&id=<?=$article['id']?>"><img src="<?=$article['tupian']?>"/></a>
+						</div>
+						<div class="in-toptext">
+							<p><a href="index.php?p=show&c=index&a=detail&id=<?=$article['id']?>"><?=$article['biaoti']?></a></p>
+							<span><?=$article['dtime']?></span>
+						</div>
+					</li>
+					<?php endforeach;?>
+					<?php endif;?>
+				</ul>
 			</div>
 		</div>
 		<!--村务经费公开专栏-->
 		<div class="in-buwan">
-			<div class="in-h1">
-				<p>村务经费公开专栏</p>
-				<em><img src="public/yz/images/huan-yi_03.png"/>换一批</em>
-			</div>
-			<ul>
-				<li>
-					<div class="in-buimg">
-						<a href=""><img src="public/yz/images/iner-baimg4_26.jpg"/></a>
+			<?php if($zhuanlanDatas):?>
+				<?php foreach($zhuanlanDatas as $k=>$zhuanlan):?>
+					<?php if($k>=7):?>
+					<div class="in-h1">
+						<p><?=$zhuanlan['fenleimingcheng']?></p>
+						<a href="index.php?p=show&c=index&a=tw&id=<?=$zhuanlan['id']?>">更多&gt;&gt;</a>
+						<?php $articleDatas = self::getArticleDatasByZlIdAction($zhuanlan['id'],8);?>
 					</div>
-					<div class="in-toptext">
-						<p><a href="">烟雾报警器什么情况下会失灵？</a></p>
-						<span>2018-01-12</span>
-					</div>
-				</li>
-				<li>
-					<div class="in-buimg">
-						<a href=""><img src="public/yz/images/iner-baimg5_26.jpg"/></a>
-					</div>
-					<div class="in-toptext">
-						<p><a href="">烟雾报警器什么情况下会失灵？</a></p>
-						<span>2018-01-12</span>
-					</div>
-				</li>
-				<li>
-					<div class="in-buimg">
-						<a href=""><img src="public/yz/images/iner-baimg6_26.jpg"/></a>
-					</div>
-					<div class="in-toptext">
-						<p><a href="">烟雾报警器什么情况下会失灵？</a></p>
-						<span>2018-01-12</span>
-					</div>
-				</li>
-				<li>
-					<div class="in-buimg">
-						<a href=""><img src="public/yz/images/iner-baimg7_26.jpg"/></a>
-					</div>
-					<div class="in-toptext">
-						<p><a href="">烟雾报警器什么情况下会失灵？</a></p>
-						<span>2018-01-12</span>
-					</div>
-				</li>
-
-				<li>
-					<div class="in-buimg">
-						<a href=""><img src="public/yz/images/iner-baimg8_26.jpg"/></a>
-					</div>
-					<div class="in-toptext">
-						<p><a href="">烟雾报警器什么情况下会失灵？</a></p>
-						<span>2018-01-12</span>
-					</div>
-				</li>
-				<li>
-					<div class="in-buimg">
-						<a href=""><img src="public/yz/images/iner-baimg9_26.jpg"/></a>
-					</div>
-					<div class="in-toptext">
-						<p><a href="">烟雾报警器什么情况下会失灵？</a></p>
-						<span>2018-01-12</span>
-					</div>
-				</li>
-				<li>
-					<div class="in-buimg">
-						<a href=""><img src="public/yz/images/iner-baimg10_26.jpg"/></a>
-					</div>
-					<div class="in-toptext">
-						<p><a href="">烟雾报警器什么情况下会失灵？</a></p>
-						<span>2018-01-12</span>
-					</div>
-				</li>
-				<li>
-					<div class="in-buimg">
-						<a href=""><img src="public/yz/images/iner-baimg11_26.jpg"/></a>
-					</div>
-					<div class="in-toptext">
-						<p><a href="">烟雾报警器什么情况下会失灵？</a></p>
-						<span>2018-01-12</span>
-					</div>
-				</li>
-			</ul>
+					<ul>
+						<?php if($articleDatas):?>
+							<?php foreach($articleDatas as $article):?>
+								<li>
+									<div class="in-buimg">
+										<a href="index.php?p=show&c=index&a=detail&id=<?=$article['id']?>"><img src="<?=$article['tupian']?>"/></a>
+									</div>
+									<div class="in-toptext">
+										<p><a href="index.php?p=show&c=index&a=detail&id=<?=$article['id']?>"><?=$article['biaoti']?></a></p>
+										<span><?=$article['dtime']?></span>
+									</div>
+								</li>
+							<?php endforeach;?>
+						<?php endif;?>
+					</ul>
+					<?php endif;?>
+				<?php endforeach;?>
+			<?php endif;?>
 		</div>
 	</div>
 </div>

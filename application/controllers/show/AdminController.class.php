@@ -28,13 +28,43 @@ class AdminController extends BaseController
     //>>人员管理(列表)
     public function indexAction(){
         $model = new ModelNew('yhlb');
-//        $adminDatas = $model->orderBy('{$this->paixu} desc')->all();
-        $adminDatas = $model->findBySql('select * from `sl_yhlb` WHERE shanchu=1');
-//        var_dump($adminDatas);exit();
+        //>>设置搜索条件
+            $seachList = [];
+            $seachList[] = 'shanchu=1';
+            $urlList=[];
+            //>>设置关键字搜索
+            if (!empty($_GET['keyWord'])){
+                $seachList[] = "xingming like '%".$_GET["keyWord"]."%'";
+                $urlList[] = "keyWord=".$_GET['keyWord'];
+            }
+            $where = "";
+            if (count($seachList)>0){
+                $where = "where ".implode(" and ",$seachList);
+                $url = '&'.implode('&',$urlList);
+            }
+            //>>设置分页数据
+            $count = $model->findBySql("select count(*) as total from `sl_yhlb` $where");
+            $totalNum = $count[0]["total"];//数据总数
+            $pageSize = 10;  //每页数量
+            $maxPage=$totalNum==0?1:ceil($totalNum/$pageSize); //总共有的页数
+            $page=isset($_GET['page'])?$_GET['page']:1; //当前页
+            if($page < 1)
+            {
+                $page=1;
+            }
+            if($page > $maxPage)
+            {
+                $page=$maxPage;
+            }
+            $limit=" limit ".($page-1)*$pageSize.",$pageSize"; //分页条件
+            //>>页码设置
+            $pageData = self::pageSetAction($page,$maxPage);
+            $init = $pageData["init"];
+            $max = $pageData["max"];
+            $adminDatas = $model->findBySql("select * from `sl_yhlb` $where $limit");
         //>>查找所有部门
         $jgModel = new ModelNew('zzjg');
         $bumenData = $jgModel->findBySql("select * from sl_zzjg WHERE cengji<=2");
-//        var_dump($bumenData);exit();
         include CUR_VIEW_PATH."Sadmin" . DS . "admin_index.html";
     }
     //>>添加员工
@@ -155,5 +185,29 @@ class AdminController extends BaseController
         if ($data){
             return $data["mingcheng"];
         }
+    }
+    //>>页码设置
+    public static function pageSetAction($page,$maxPage){
+        $pageNum = 5;//页码个数
+        $pageOffer = ($pageNum-1)/2;//页码偏移量
+        if($maxPage<=$pageNum){
+            $init=1;
+            $max = $maxPage;
+        }
+        if($maxPage>$pageNum){
+            if($page<=$pageOffer){
+                $init=1;
+                $max = $pageNum;
+            }else{
+                if($page+$pageOffer>=$maxPage+1){
+                    $init = $maxPage-$pageNum+1;
+                    $max = $pageNum;
+                }else{
+                    $init = $page-$pageOffer;
+                    $max = $page+$pageOffer;
+                }
+            }
+        }
+        return ["init"=>$init,'max'=>$max];
     }
 }

@@ -183,7 +183,7 @@
                     content: '审核通过！',
                     btn: ['确认'],
                     yes: function(index, layero) {
-                        window.location.href='http://www.qy.com/index.php?p=show&c=gongwen&a=accept';
+                        window.location.href="http://www.qy.com/index.php?p=show&c=gongwen&a=accept&zlId=<?=$gwData['zhuanlan']?>";
                     },
                 });
             }else {
@@ -209,7 +209,7 @@
                     content: '推荐成功！',
                     btn: ['确认'],
                     yes: function(index, layero) {
-                        window.location.href='http://www.qy.com/index.php?p=show&c=gongwen&a=accept';
+                        window.location.href="http://www.qy.com/index.php?p=show&c=gongwen&a=accept&zlId=<?=$gwData['zhuanlan']?>";
                     },
                 });
             }else {

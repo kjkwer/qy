@@ -42,18 +42,21 @@
 
     <div class="xt-wenzhan">
         <div class="xtwenz-time">
+            <form action="index.php?p=show&c=gongwen&a=list" style="height: 100%" method="get" id="sousuoForm">
             <div class="xtwen-sou xtwen-input fl box">
-                <input type="" name="" id="" value="" placeholder="关键字收索"/>
-                <a href=""><img src="public/yz/images/wenzi-sou_03.png"/></a>
+                <input type="keyWord" name="keyWord" id="keyWord" value="<?=$_GET['keyWord']?$_GET['keyWord']:'' ?>" placeholder="关键字收索"/>
+                <a class="search" href="javascript:void(0)"><img src="public/yz/images/wenzi-sou_03.png"/></a>
             </div>
 
             <div class="xtwen-fabu fr" showType="1">+ 添加人员</div>
+            </form>
         </div>
 
         <div class="xtable">
             <table>
                 <tr>
                     <th>排序</th>
+                    <th>账号</th>
                     <th>姓名</th>
                     <th>手机号码</th>
                     <th>所属部门</th>
@@ -66,6 +69,9 @@
                         <td class="table-paixu">
                             <em class="box" nameid="<?=$adminData['id']?>"></em>
                             <span>1</span>
+                        </td>
+                        <td>
+                            <p><?=$adminData['zhanghao']?></p>
                         </td>
                         <td>
                             <p><?=$adminData['xingming']?></p>
@@ -94,16 +100,17 @@
             <span id="piliangshanchu"><img src="public/yz/images/lock2_08.png"/>删除</span>
         </div>
         <div class="page fr">
-            <a href="">首页</a>
-            <strong>1</strong>
-            <a href="">2</a>
-            <a href="">3</a>
-            <a href="">4</a>
-            <a href="">5</a>
-            <a href="">6</a>
-            <em>···</em>
-            <a href="">22</a>
-            <a href="">下一页</a>
+            <?php
+              echo "<a href='index.php?p=show&c=admin&a=index&page=1{$url}'>首页</a>";
+            for($i=$init;$i<=$max;$i++){
+            if($page == $i){
+            echo  "<strong>".$i."</strong>";
+            }else{
+            echo  "<a href='index.php?p=show&c=admin&a=index&page=".$i."{$url}'>".$i."</a>";
+            }
+            }
+            echo  "<a href='index.php?p=show&c=admin&a=index&page=".($page+1)."{$url}'>下一页</a>";
+            ?>
         </div>
     </div>
 </div>
@@ -176,8 +183,8 @@
                         <div class="add-baos ">
                             <input type="button" name="submit" id="baocun" value="保存" class="add-bao"/>
                         </div>
+                    </div>
                 </form>
-
                 </div>
             </div>
         </div>
@@ -358,6 +365,18 @@
                 location.reload()
             }
         },"json")
+    })
+</script>
+
+<!--搜索-->
+<script type="text/javascript">
+    $(".search").click(function () {
+        var keyWord=$("#keyWord").val();
+        var str= "";
+        if (keyWord != ""){
+            str += "&keyWord="+keyWord;
+        }
+        window.location.href="index.php?p=show&c=admin&a=index"+str;
     })
 </script>
 </body>

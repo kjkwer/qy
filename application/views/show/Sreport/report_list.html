@@ -9,11 +9,13 @@
     <script type="text/javascript" src="public/yz/js/script.js" ></script>
     <script src="public/yz/js/mobiscroll_002.js" type="text/javascript"></script>
     <script src="public/yz/js/mobiscroll.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="public/layer/theme/default/layer.css">
-    <script src="public/layer/layer.js" type="text/javascript"></script>
     <!--[if lte IE 9]>
     <script type="text/javascript" src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js" ></script>
     <![endif]-->
+    <style>
+        .table-tai,.table-zou{width:auto !important;}
+
+    </style>
 </head>
 <body class="body">
 
@@ -31,7 +33,7 @@
         <em>&gt;</em>
         <a href="">公文</a>
         <em>&gt;</em>
-        发文章
+        举报列表
     </div>
 
     <div class="xt-wenzhan">
@@ -43,23 +45,11 @@
             <div class="xtwen-input box time-ico">
                 <input type="text" name="date2" id="appDate1" value="<?=$date2?>" />
             </div>
-            <div class="xtwen-input inp-xia box fl" style="margin-left:16px;">
-                <input type="text" name="zhuanlan" id="zhuanlan" value="<?=$_GET['zhuanlan']?$_GET['zhuanlan']:'所有' ?>" class="edit-inwidt" readonly/>
-                <div class="adit-xuan box">
-                    <p>所有</p>
-                    <?php if($zhuanlanData):?>
-                    <?php foreach($zhuanlanData as $zhuanlan):?>
-                    <p><?=$zhuanlan["fenleimingcheng"]?></p>
-                    <?php endforeach;?>
-                    <?php endif;?>
-                </div>
-            </div>
             <div class="xtwen-sou xtwen-input fl box">
                 <input type="text" name="keyword" id="keyword" value="<?=$_GET['keyword']?$_GET['keyword']:'' ?>" placeholder="关键字收索"/>
                 <a class="search" href="javascript:void(0)"><img src="public/yz/images/wenzi-sou_03.png"/></a>
             </div>
 
-            <a href="index.php?p=show&c=article&a=add"><div class="xtwen-fabu fr">+ 发布文章</div></a>
         </div>
 
         <div class="xtable">
@@ -67,55 +57,49 @@
                 <tr>
                     <th>排序</th>
                     <th>标题</th>
-                    <th>工作专栏</th>
-                    <th>人气</th>
-                    <th>发布时间</th>
+                    <th>举报人</th>
+                    <th>电话</th>
+                    <th>时间</th>
                     <th>操作</th>
                 </tr>
-                <?php if($articleData):?>
-                    <?php foreach($articleData as $article):?>
-                        <tr>
-                            <td class="table-paixu">
-                                <em class="box" nameCheck="check" nameid="<?=$article['id']?>"></em>
-                                <span>1</span>
-                            </td>
-                            <td class="table-biaoti">
-                                <p><?=$article["biaoti"]?></p>
-                            </td>
-                            <td class="table-biaoti">
-                                <p><?=self::getfenleiAction($article["zhuanlan"])?></p>
-                            </td>
-                            <td class="table-renqi">
-                                <?=$article["renqi"]?>
-                            </td>
-                            <td class="table-time">
-                                <?=$article["dtime"]?>
-                            </td>
-                            <td class="table-cao">
-                                <a href=""><img src="public/yz/images/look_07.png"/>查看</a>
-                                <a href="index.php?p=show&c=article&a=add&id=<?=$article['id']?>"><img src="public/yz/images/look1_06.png"/>编辑</a>
-                                <a href="index.php?p=show&c=article&a=delete&id=<?=$article['id']?>"><img src="public/yz/images/lock2_08.png"/>删除</a>
-                            </td>
-                        </tr>
-                    <?php endforeach;?>
+                <?php if($reportDatas):?>
+                <?php foreach($reportDatas as $report):?>
+                <tr>
+                    <td class="table-paixu">
+                        <span>1</span>
+                    </td>
+                    <td class="table-time">
+                        <?=$report["title"]?>
+                    </td>
+                    <td class="table-biaoti" >
+                        <p><?=$report["name"]?></p>
+                    </td>
+                    <td class="table-zou">
+                        <?=$report["phone"]?>
+                    </td>
+                    <td class="table-tai"><?=$report["dtime"]?></td>
+                    <td class="table-cao">
+                        <a href="index.php?p=show&c=report&a=detail&id=<?=$report['id']?>"><img src="public/yz/images/look_07.png"/>查看</a>
+                    </td>
+                </tr>
+                <?php endforeach;?>
                 <?php endif;?>
             </table>
         </div>
         <div class="xt-quanxuan fl">
-            <p><em class="box"></em>全选</p>
-            <span id="piliangshanchu"><img src="public/yz/images/lock2_08.png"/>删除</span>
+
         </div>
         <div class="page fr" style="margin-top:24px;">
             <?php
-              echo "<a href='index.php?p=show&c=gongwen&a=accept&zlId={$zlId}&page=1{$url}'>首页</a>";
+            echo "<a href='index.php?p=show&c=report&a=list&page=1{$url}'>首页</a>";
             for($i=$init;$i<=$max;$i++){
             if($page == $i){
             echo  "<strong>".$i."</strong>";
             }else{
-            echo  "<a href='index.php?p=show&c=article&a=list&page=".$i."{$url}'>".$i."</a>";
+            echo  "<a href='index.php?p=show&c=report&a=list&page=".$i."{$url}'>".$i."</a>";
             }
             }
-            echo  "<a href='index.php?p=show&c=article&a=list&page=".($page+1)."{$url}'>下一页</a>";
+            echo  "<a href='index.php?p=show&c=report&a=list&page=".($page+1)."{$url}'>下一页</a>";
             ?>
         </div>
     </div>
@@ -140,8 +124,9 @@
     for (var i=0; i<=$(".xtable tr").length-1; i++) {
         $(".xtable tr:eq("+(i+1)+")").find(".table-paixu span").text(i+1);
 
-
-
+        if($(".xtable tr:eq("+(i+1)+")").find(".table-tai").text()=="已过期"){
+            $(".xtable tr:eq("+(i+1)+")").find(".table-tai").css("color","#e83014")
+        }
     }
 
     $(".table-paixu em").on("click",function(){
@@ -193,49 +178,22 @@
         var optDateTime = $.extend(opt['datetime'], opt['default']);
     });
 </script>
-<!--批量删除-->
-<script type="text/javascript">
-    $("#piliangshanchu").click(function () {
-        var lists = $("em[class='box em-add']");
-        var ids = new Array();
-        var i = 0;
-        lists.each(function () {
-            ids[i] =  $(this).attr("nameid")
-            i++;
-        });
-        if (ids.length==0){
-            layer.alert("请选择要删除的选项")
-            return false;
-        }
-        $.post('index.php?p=show&c=article&a=deletePiliang',{'data[]':ids},function (data) {
-            if(data.code==200){
-                //>>删除成功
-                location.reload()
-            }
-        },"json")
-    })
-</script>
-<!--搜索-->
 <script type="text/javascript">
     $(".search").click(function () {
-        var date1=$("#appDate").val();
-        var date2=$("#appDate1").val();
-        var zhuanlan=$("#zhuanlan").val();
-        var keyword=$("#keyword").val();
-        var str= "";
-        if (date1 != ""){
-            str += "&date1="+date1;
-        }
-        if (date2 != ""){
-            str += "&date2="+date2;
-        }
-        if (zhuanlan != ""){
-            str += "&zhuanlan="+zhuanlan;
-        }
-        if (keyword != ""){
-            str += "&keyword="+keyword;
-        }
-        window.location.href="index.php?p=show&c=article&a=list&zlId=<?=$zlId?>"+str;
+            var date1=$("#appDate").val();
+            var date2=$("#appDate1").val();
+            var keyword=$("#keyword").val();
+            var str= "";
+            if (date1 != ""){
+                str += "&date1="+date1;
+            }
+            if (date2 != ""){
+                str += "&date2="+date2;
+            }
+            if (keyword != ""){
+                str += "&keyword="+keyword;
+            }
+            window.location.href="index.php?p=show&c=report&a=list"+str;
     })
 </script>
 </body>
