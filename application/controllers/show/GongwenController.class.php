@@ -180,9 +180,9 @@ class GongwenController extends BaseController
                 $urlList[] = "date1=".$date1;
                 $urlList[] = "date2=".$date2;
                 //>>公文状态
-                if (empty($_GET['gwStaus']) || $_GET['gwStaus'] == "所有"){
+                if (empty($_GET['gwStaus']) || $_GET['gwStaus'] == "所有（完成）"){
                     $seachList[] = "zhuangtai > 1";
-                    $urlList[] = "gwStaus=所有";
+                    $urlList[] = "gwStaus=".$_GET['gwStaus'];
                 }else{
                     $seachList[] = "zhuangtai = ".array_search($_GET['gwStaus'],self::$gwStatus);
                     $urlList[] = "gwStaus=".$_GET['gwStaus'];

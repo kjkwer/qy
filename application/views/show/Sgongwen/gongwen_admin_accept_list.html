@@ -57,9 +57,10 @@
                 </div>
             </div>
             <div class="xtwen-input inp-xia box fl" style="margin-left:16px;">
-                <input type="text" name="gwStaus" id="gwStaus" value="<?=$_GET['gwStaus']?$_GET['gwStaus']:'所有' ?>" class="edit-inwidt" readonly placeholder="选择状态"/>
+                <input type="text" name="gwStaus" id="gwStaus" value="<?=$_GET['gwStaus']?$_GET['gwStaus']:'所有（完成）' ?>" class="edit-inwidt" readonly placeholder="选择状态"/>
                 <div class="adit-xuan box">
-                    <p>所有</p>
+                    <p>所有（完成）</p>
+                    <p>未完成</p>
                     <p>未审核</p>
                     <p>已审核</p>
                     <p>已退回</p>
@@ -73,7 +74,7 @@
             </form>
 
         </div>
-
+        <?php if(isset($_GET["gwStaus"]) && $_GET["gwStaus"]!="未完成"):?>
         <div class="xtable">
             <table>
                 <tr>
@@ -123,6 +124,57 @@
                 <?php endif;?>
             </table>
         </div>
+        <?php else:?>
+        <div class="xtable">
+            <table>
+                <tr>
+                    <th>排序</th>
+                    <th>标题</th>
+                    <th>工作专栏</th>
+                    <th>来源</th>
+                    <th>收文时间</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+                <?php if($gwDate):?>
+                <?php foreach($gwDate as $gw):?>
+                <tr>
+                    <td class="table-paixu">
+                        <span>1</span>
+                    </td>
+                    <td class="table-biaoti" >
+                        <p><?=$gw["biaoti"]?></p>
+                    </td>
+                    <td class="table-zou">
+                        <?=self::getZlNameAction($gw["zhuanlan"])?>
+                    </td>
+
+                    <td class="table-time">
+                        <?=self::getCunMingchengAction($gw["xiangzhen"])."-".self::getCunMingchengAction($gw["cun"])?>
+                    </td>
+                    <td class="table-time">
+                        <?=$gw["dtime"]?>
+                    </td>
+                    <td class="table-tai">
+                        <?php if($gw["zhuangtai"]==2):?>
+                        未审核
+                        <?php elseif($gw["zhuangtai"]==3):?>
+                        退回
+                        <?php elseif($gw["zhuangtai"]==4):?>
+                        已审核
+                        <?php elseif($gw["zhuangtai"]==5):?>
+                        已推荐
+                        <?php endif;?>
+                    </td>
+                    <td class="table-cao">
+                        <a href="index.php?p=show&c=gongwen&a=acceptDetail&id=<?=$gw['id']?>"><img src="public/yz/images/look_07.png"/>查看</a>
+                    </td>
+                </tr>
+                <?php endforeach;?>
+                <?php endif;?>
+            </table>
+        </div>
+        <?php endif;?>
         <div class="xt-quanxuan fl">
 
         </div>
