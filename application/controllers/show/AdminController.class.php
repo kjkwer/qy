@@ -121,6 +121,27 @@ class AdminController extends BaseController
             }
         }
     }
+    //>>修改密码
+    public function updatePwdAction(){
+        $userId = $_POST["userId"];
+        $oldPwd = $_POST["oldPassword"];
+        $newPwd = $_POST["newPassword"];
+        //>>对比原密码是否正确
+        $yhlbModel = new ModelNew("yhlb");
+        $data = $yhlbModel->findBySql("select mima from sl_yhlb where id=$userId");
+        $srcPwd = $data[0]["mima"];
+        if (md5($oldPwd)==$srcPwd){
+            $newPwd = md5($newPwd);
+            if($yhlbModel->where(["id"=>$userId])->update(["mima"=>$newPwd])){
+                echo 200;
+            }else{
+                echo 502;
+            }
+        }else{
+            echo 501;
+        }
+
+    }
     //>>删除人员(单)
     public function deleteSingleAction($id){
         $id = $_POST["id"]?$_POST["id"]:null;
@@ -154,7 +175,7 @@ class AdminController extends BaseController
     //>>退出登录
     public function quitAction(){
         unset($_SESSION["user"]);
-        $this->jump('index.php?p=show&c=index&a=index','退出成功，回到首页',3);
+        $this->jump('index.php?p=show&c=login&a=index','退出成功，回到首页',3);
     }
 
     //>>通过id获取人员数据

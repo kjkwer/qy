@@ -42,8 +42,7 @@
                     <!--加 下拉html-->
                     <div class="min-xia">
                         <div class="min-xiadiv">
-                            <a href="">修改资料</a>
-                            <a href="">修改密码</a>
+                            <a href="javascript:void(0)">修改密码</a>
                             <a href="index.php?p=show&c=admin&a=quit">退出登录</a>
                         </div>
 
@@ -53,3 +52,97 @@
         </div>
     </div>
 </div>
+
+<!--加 下拉html-->
+<div class="min-tank fixed" style="display:none">
+    <div class="table">
+        <div class="table-cell">
+            <div class="Add-to">
+                <div class="add-top">
+                    <span>修改密码</span>
+                    <img src="public/yz/images/Close_03.png" class="Close" />
+                </div>
+                <div class="add-toinput">
+                    <form method="post" id="updatePwdForm">
+                    <div class="add-min">
+                        <input type="hidden" name="userId" id="userId" value="">
+                        <span><em>*</em> 旧密码：</span>
+                        <input type="text" name="oldPassword" id="oldPassword" value="" />
+                    </div>
+                    <div class="add-min">
+                        <span><em>*</em> 新密码：</span>
+                        <input type="text" name="newPassword" id="newPassword" value="" />
+                    </div>
+                    <div class="add-min">
+                        <span><em>*</em> 确认密码：</span>
+                        <input type="text" name="newPasswordAgain" id="newPasswordAgain" value="" />
+                    </div>
+                    <div class="add-baos ">
+                        <input type="button" value="确认修改" class="add-bao updatePassword" />
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--加 下拉js-->
+<script>
+    $(function(){
+
+        $(".min-xiadiv a").on("click",function(){
+            if($(this).index()==1){
+                $(".tanchu").show(200);
+            }else if($(this).index()==0){
+                $("#userId").val(<?=self::$userData['id']?>);
+                $(".min-tank").show(200);
+            }
+
+        })
+
+        $(".Close").on("click",function(){
+            $(".min-tank").hide(200);
+        })
+    })
+</script>
+<script type="text/javascript">
+    $(".updatePassword").click(function () {
+        var form = new FormData(document.getElementById("updatePwdForm"));
+        var newPassword = $("#newPassword").val()
+        var newPasswordAgain = $("#newPasswordAgain").val()
+        if(newPassword != newPasswordAgain){
+            layer.alert("两次新密码输入不一致");
+            return false;
+        }
+        $.ajax({
+            url:"index.php?p=show&c=admin&a=updatePwd",
+            type:"post",
+            data:form,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success:function(data){
+                if (data == 200){
+                    layer.open({
+                        content: '修改密码成功,需重新登录！',
+                        btn: ['确认'],
+                        yes: function(index, layero) {
+                            window.location.href='http://www.qy.com/index.php?p=show&c=admin&a=quit';
+                        },
+                    });
+                }else if(data == 501){
+                    layer.alert("原密码输入错误");
+                    return false;
+                }else if(data == 502){
+                    layer.alert("保存失败");
+                    return false;
+                }
+            },
+            error:function(e){
+                layer.alert("保存失败")
+                return false;
+            }
+        })
+    })
+</script>
