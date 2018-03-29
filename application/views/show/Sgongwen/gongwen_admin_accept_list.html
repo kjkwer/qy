@@ -32,11 +32,11 @@
 <div class="body-edit box">
     <div class="edit-top">
         <img src="public/yz/images/nei-dinwei_03.png"/>
-        <a href="">系统主页</a>
+        <a href="javascript:void(0)">系统主页</a>
         <em>&gt;</em>
-        <a href="">公文</a>
+        <a href="javascript:void(0)">公文</a>
         <em>&gt;</em>
-        发文章
+        收文列表
     </div>
 
     <div class="xt-wenzhan">
@@ -133,7 +133,7 @@
                     <th>排序</th>
                     <th>乡镇</th>
                     <th>状态</th>
-                    <th>操作</th>
+                    <!--<th>操作</th>-->
                 </tr>
                 <?php if($gwDate):?>
                 <?php foreach($gwDate as $gw):?>
@@ -147,9 +147,9 @@
                     <td class="table-tai">
                         未完成
                     </td>
-                    <td class="table-cao">
-                        <a href="index.php?p=show&c=gongwen&a=acceptDetail&id=<?=$gw['id']?>"><img src="public/yz/images/look_07.png"/>查看</a>
-                    </td>
+                    <!--<td class="table-cao">-->
+                        <!--<a href="index.php?p=show&c=gongwen&a=acceptDetail&id=<?=$gw['id']?>"><img src="public/yz/images/look_07.png"/>查看</a>-->
+                    <!--</td>-->
                 </tr>
                 <?php endforeach;?>
                 <?php endif;?>

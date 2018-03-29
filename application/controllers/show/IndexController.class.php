@@ -9,12 +9,19 @@
 class IndexController extends Controller
 {
     public static $userData = null;
+    public static $hotArticle = null; //>>热门文章
+    public static $newNotice = null; //>>热门公告
     public function  __construct()
     {
         ob_end_clean();
         if($_SESSION["user"]){
             self::$userData = $_SESSION["user"];
         }
+        //>>设置热门推荐文章
+        $model = new ModelNew("article");
+        self::$hotArticle = $model->findBySql("select a.* from sl_article as a join sl_wzfl as b on a.zhuanlan = b.id where b.type=1 or b.type=2 ORDER BY id DESC limit 7");
+        //>>获取最新公告
+        self::$newNotice = $model->findBySql("select a.* from sl_article as a join sl_wzfl as b on a.zhuanlan = b.id where b.type=3 ORDER BY id DESC limit 8");
     }
 
 
@@ -32,7 +39,7 @@ class IndexController extends Controller
     //>>文章详情
     public function detailAction(){
         $model = new ModelNew('wzfl');
-        $articleGlassifyData = $model->find()->limit(0,8)->all();
+        $articleGlassifyData = $model->where(["type"=>1])->find()->all();
 
         $id = $_GET["id"];
         $model = new ModelNew("article");
@@ -45,21 +52,57 @@ class IndexController extends Controller
     //>>图文列表
     public function twAction(){
         $model = new ModelNew('wzfl');
-        $articleGlassifyData = $model->find()->limit(0,8)->all();
-
+        $articleGlassifyData = $model->where(["type"=>1])->find()->all();
         $wzLxId = $_GET["id"];
         $wzModel = new ModelNew("article");
-        $articleData = $wzModel->where(["zhuanlan"=>$wzLxId])->orderBy("id desc")->find()->all();
+            //>>设置分页数据
+            $count = $wzModel->findBySql("select count(*) as total from sl_article WHERE zhuanlan=$wzLxId");
+            $totalNum = $count[0]["total"];//数据总数
+            $pageSize = 10;  //每页数量
+            $maxPage=$totalNum==0?1:ceil($totalNum/$pageSize); //总共有的页数
+            $page=isset($_GET['page'])?$_GET['page']:1; //当前页
+            if($page < 1)
+            {
+                $page=1;
+            }
+            if($page > $maxPage)
+            {
+                $page=$maxPage;
+            }
+            $limit=" limit ".($page-1)*$pageSize.",$pageSize"; //分页条件
+            //>>页码设置
+            $pageData = self::pageSetAction($page,$maxPage);
+            $init = $pageData["init"];
+            $max = $pageData["max"];
+            $articleData = $wzModel->findBySql("select * from sl_article WHERE zhuanlan=$wzLxId ORDER BY id DESC $limit");
         include CUR_VIEW_PATH."Sarticle" . DS . "article_tw_list.html";
     }
     //>>文本列表（思想理论、党史故事、入党小提示、报表下载）
     public function wbAction(){
         $model = new ModelNew('wzfl');
-        $articleGlassifyData = $model->find()->limit(0,8)->all();
-
+        $articleGlassifyData = $model->where(["type"=>1])->find()->all();
         $wzLxId = $_GET["id"];
         $wzModel = new ModelNew("article");
-        $articleData = $wzModel->where(["zhuanlan"=>$wzLxId])->orderBy("id desc")->find()->all();
+            //>>设置分页数据
+            $count = $wzModel->findBySql("select count(*) as total from sl_article WHERE zhuanlan=$wzLxId");
+            $totalNum = $count[0]["total"];//数据总数
+            $pageSize = 10;  //每页数量
+            $maxPage=$totalNum==0?1:ceil($totalNum/$pageSize); //总共有的页数
+            $page=isset($_GET['page'])?$_GET['page']:1; //当前页
+            if($page < 1)
+            {
+                $page=1;
+            }
+            if($page > $maxPage)
+            {
+                $page=$maxPage;
+            }
+            $limit=" limit ".($page-1)*$pageSize.",$pageSize"; //分页条件
+            //>>页码设置
+            $pageData = self::pageSetAction($page,$maxPage);
+            $init = $pageData["init"];
+            $max = $pageData["max"];
+            $articleData = $wzModel->findBySql("select * from sl_article WHERE zhuanlan=$wzLxId ORDER BY id DESC $limit");
         include CUR_VIEW_PATH."Sarticle" . DS . "article_wb_list.html";
     }
 
@@ -76,5 +119,35 @@ class IndexController extends Controller
         $articleModel = new ModelNew("article");
         $articleDatas = $articleModel->findBySql("select * from sl_article where zhuanlan=$id order by id DESC limit $offer");
         return $articleDatas;
+    }
+    //>>获取乡镇名称
+    public function getCunMingchengAction($id){
+        $model = new ModelNew("zzjg");
+        $data = $model ->where(["id"=>$id])->find("mingcheng")->one();
+        return $data["mingcheng"];
+    }
+    //>>页码设置
+    public static function pageSetAction($page,$maxPage){
+        $pageNum = 5;//页码个数
+        $pageOffer = ($pageNum-1)/2;//页码偏移量
+        if($maxPage<=$pageNum){
+            $init=1;
+            $max = $maxPage;
+        }
+        if($maxPage>$pageNum){
+            if($page<=$pageOffer){
+                $init=1;
+                $max = $pageNum;
+            }else{
+                if($page+$pageOffer>=$maxPage+1){
+                    $init = $maxPage-$pageNum+1;
+                    $max = $pageNum;
+                }else{
+                    $init = $page-$pageOffer;
+                    $max = $page+$pageOffer;
+                }
+            }
+        }
+        return ["init"=>$init,'max'=>$max];
     }
 }

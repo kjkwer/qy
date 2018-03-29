@@ -962,7 +962,8 @@ text-align: center; line-height:28px;color:#fe4529;
 .body-edit{
 	overflow: hidden;
 	width:100%;
-	padding-left:313px;	
+	padding-left:313px;
+	min-height: 500px;
 }
 .edit-top{
 	position: relative;
@@ -1053,6 +1054,8 @@ text-align: center; line-height:28px;color:#fe4529;
 	display:none;
 	z-index:10;
 	color:#666;
+	overflow-y: scroll;
+	max-height: 250px;
 }
 .adit-xuan p:hover{
 	background:#eee;
@@ -1615,7 +1618,7 @@ transition: 0.4s;
 	.xt-ycatou{height:85px;}
 	.xt-nav{width:230px; top:85px;}
 	.scroll{width: 246px;}
-	.body-edit{padding-left:230px;}
+	.body-edit{padding-left:230px; min-height:500px}
 	.xt-nav h1{height:50px; line-height:50px;}
 	.xt-nav li{line-height:44px;}
 	.xt-navback{height:44px;}
@@ -1638,7 +1641,7 @@ transition: 0.4s;
 	.xtwen-input input{font-size:13px; line-height:32px;}
 	.xtwen-sou{width:225px !important;}
 	.xtwen-sou img{margin-top: 7px;}
-	.adit-xuan{font-size:12px;overflow-y:scroll; max-height: 130px;}
+	.adit-xuan{font-size:12px;overflow-y:scroll; max-height: 250px;}
 	
 	.xtwen-fabu{width:118px; line-height:34px; font-size:13px;}
 	

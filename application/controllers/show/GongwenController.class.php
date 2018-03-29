@@ -692,6 +692,8 @@ class GongwenController extends BaseController
             $wz["tupian"] = $data["tupian"];
             $wz["neirong"] = $data["neirong"];
             $wz["zhuanlan"] = $data["zhuanlan"];
+            $wz["xiangzhen"] = $data["xiangzhen"];
+            $wz["cun"] = $data["cun"];
             $wz["shouye"] = 1;
             if ($wzModel->insert($wz)){
                 echo 200;

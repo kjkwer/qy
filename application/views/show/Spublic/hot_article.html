@@ -1,0 +1,23 @@
+<div class="lilun-bom">
+    <div class="liun-biao">热门推荐</div>
+    <div class="lilun-img">
+        <?php if(self::$hotArticle[0]):?>
+        <div class="liun-imgs"><a href=""><img src="<?=self::$hotArticle[0]['tupian']?>"/></a></div>
+        <div class="liunimg-tx">
+            <p><a href="index.php?p=show&c=index&a=detail&id=<?=self::$hotArticle[0]['id']?>"><?=self::$hotArticle[0]['biaoti']?></a></p>
+            <span><?=self::$hotArticle[0]['dtime']?></span>
+        </div>
+        <?php endif;?>
+        <div class="lilu-qili lilunbom-st">
+            <ul>
+                <?php if(self::$hotArticle):?>
+                <?php foreach(self::$hotArticle as $k=>$article):?>
+                <?php if($k>0):?>
+                <li><a href="index.php?p=show&c=index&a=detail&id=<?=$article['id']?>"><?=$article['biaoti']?></a></li>
+                <?php endif;?>
+                <?php endforeach;?>
+                <?php endif;?>
+            </ul>
+        </div>
+    </div>
+</div>

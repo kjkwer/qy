@@ -58,30 +58,9 @@
 						</ul>
 					</div>
 				<?php endif;?>
-
-
 			</div>
-
-			<div class="fupin-rht fr">
-				<div class="in-h1">
-					<p>最新公告</p>
-					<a href="">更多&gt;&gt;</a>
-				</div>
-				<div class="fupi-li">
-					<ul>
-						<li><a href="">许达哲主持召开省政府常务会议</a></li>
-						<li><a href="">研究部署支持企业研发等工作</a></li>
-						<li><a href="">出台财政奖补政策 支持企业加大</a></li>
-						<li><a href="">研发投入 年度补助额最高1000万</a></li>
-						<li><a href="">条智能化中低速磁浮试验线在长沙</a></li>
-						<li><a href="">动工 设计时速160公里</a></li>
-						<li><a href="">建新型轨道交通装备产业园落</a></li>
-						<li><a href="">胡湘平：用奉献抒写忠诚</a></li>
-					</ul>
-				</div>
-			</div>
+			<?php include CUR_VIEW_PATH."Spublic/new_notice.html";?>
 		</div>
-
 		<!--“不忘初心 牢记使命”教育活动-->
 		<div class="in-buwan">
 			<?php if($zhuanlanDatas[1]):?>
@@ -108,21 +87,20 @@
 				<?php endif;?>
 			</ul>
 		</div>
-
 		<!--“不忘初心 牢记使命”教育活动-->
 		<div class="in-buwan">
 			<div class="in-h1">
 				<div class="in-h1nav addnoe">
 					<?php if($zhuanlanDatas[2]):?>
-					<p class="in-h1navp"><?=$zhuanlanDatas[2]["fenleimingcheng"] ?></p>
+					<p class="in-h1navp btn" num="1" zhuanlanid="<?=$zhuanlanDatas[2]['id'] ?>"><?=$zhuanlanDatas[2]["fenleimingcheng"] ?></p>
 					<?php $articleDatasLeft = self::getArticleDatasByZlIdAction($zhuanlanDatas[2]['id'],4);?>
 					<?php endif;?>
 					<?php if($zhuanlanDatas[3]):?>
-					<p><?=$zhuanlanDatas[3]["fenleimingcheng"] ?></p>
+					<p class="btn" num="1" zhuanlanid="<?=$zhuanlanDatas[3]['id'] ?>"><?=$zhuanlanDatas[3]["fenleimingcheng"] ?></p>
 					<?php $articleDatasRight = self::getArticleDatasByZlIdAction($zhuanlanDatas[3]['id'],4);?>
 					<?php endif;?>
 				</div>
-				<a href="javascript:void(0)">更多&gt;&gt;</a>
+				<a href="javascript:void(0)"  zhuanlanid="" class="more qqqOne">更多&gt;&gt;</a>
 			</div>
 			<div class="inlto">
 				<ul>
@@ -208,15 +186,15 @@
 			<div class="in-h1">
 				<div class="in-h1nav addtwo">
 					<?php if($zhuanlanDatas[5]):?>
-					<p class="in-h1navp"><?=$zhuanlanDatas[5]["fenleimingcheng"] ?></p>
+					<p class="in-h1navp btn" num="2" zhuanlanid="<?=$zhuanlanDatas[5]['id'] ?>"><?=$zhuanlanDatas[5]["fenleimingcheng"] ?></p>
 					<?php $articleDatasLeft = self::getArticleDatasByZlIdAction($zhuanlanDatas[5]['id'],4);?>
 					<?php endif;?>
 					<?php if($zhuanlanDatas[6]):?>
-					<p><?=$zhuanlanDatas[6]["fenleimingcheng"] ?></p>
+					<p class="btn" num="2" zhuanlanid="<?=$zhuanlanDatas[6]['id'] ?>"><?=$zhuanlanDatas[6]["fenleimingcheng"] ?></p>
 					<?php $articleDatasRight = self::getArticleDatasByZlIdAction($zhuanlanDatas[6]['id'],4);?>
 					<?php endif;?>
 				</div>
-				<a href="javascript:void(0)">更多&gt;&gt;</a>
+				<a href="javascript:void(0)" zhuanlanid="" class="more qqqTwo">更多&gt;&gt;</a>
 			</div>
 			<div class="inlto">
 				<ul>
@@ -322,7 +300,6 @@
 
 </script>
 <script>
-
     $(".inlto:eq(0) ul").eq(0).show();
     $(".inlto:eq(1) ul").eq(0).show();
     $(".addnoe p").mouseover(function(){
@@ -332,6 +309,26 @@
     $(".addtwo p").mouseover(function(){
         $(this).addClass("in-h1navp").siblings().removeClass("in-h1navp");
         $(this).parent().parent().siblings().find("ul").eq($(this).index()).show().siblings().hide();
+    })
+</script>
+
+<script type="text/javascript">
+	$(".btn").mouseover(function () {
+		var zhuanlanId = $(this).attr("zhuanlanid");
+		var num = $(this).attr("num");
+		if(num==1){
+		    $(".qqqOne").attr("zhuanlanid",zhuanlanId);
+		}
+		if(num==2){
+            $(".qqqTwo").attr("zhuanlanid",zhuanlanId);
+		}
+    })
+	$(".btn").mouseover()
+</script>
+<script type="text/javascript">
+	$(".more").click(function () {
+		var zhuanlanId = $(this).attr("zhuanlanid");
+        window.location.href='http://www.qy.com/index.php?p=show&c=index&a=tw&id='+zhuanlanId;
     })
 </script>
 </body>

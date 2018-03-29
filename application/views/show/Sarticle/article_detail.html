@@ -24,7 +24,7 @@
         <div class="lilun-xxti"><?=$article["biaoti"]?></div>
         <div class="lilun-xxtime">
             <span><?=$article["dtime"]?></span>
-            <span>来源: <?=$article["laiyuan"]?"":"雅江县委" ?></span>
+            <span>来源: <?=$article["xiangzhen"]==""?"雅江党建":self::getCunMingchengAction($article["xiangzhen"])."-".self::getCunMingchengAction($article["cun"]) ?></span>
             <span> 浏览：<?=$article["renqi"]?></span>
         </div>
         <div class="lilun-nei">
@@ -83,26 +83,7 @@
             </div>
         </div>
 
-        <div class="lilun-bom">
-            <div class="liun-biao">热门推荐</div>
-            <div class="lilun-img">
-                <div class="liun-imgs"><a href=""><img src="public/yz/images/lunliimg_03.jpg"/></a></div>
-                <div class="liunimg-tx">
-                    <p><a href="">烟雾报警器什么情况下会失灵？</a></p>
-                    <span>2018-01-12</span>
-                </div>
-                <div class="lilu-qili lilunbom-st">
-                    <ul>
-                        <li><a href="">许达哲主持召开省政府常务会议</a></li>
-                        <li><a href="">研究部署支持企业研发等工作</a></li>
-                        <li><a href="">出台财政奖补政策 支持企业加大</a></li>
-                        <li><a href="">研发投入 年度补助额最高1000万</a></li>
-                        <li><a href="">条智能化中低速磁浮试验线在长沙</a></li>
-                        <li><a href="">回访湘西花垣县十八洞村</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        <?php include CUR_VIEW_PATH."Spublic/hot_article.html";?>
     </div>
 </div>
 
