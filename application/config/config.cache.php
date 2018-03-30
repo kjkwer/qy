@@ -1,7 +1,7 @@
 <?php 
  return array(
 
-	'SITEURL'=>'',
+	'SITEURL'=>'4646',
 	'SEOTITLE'=>'',
 	'SEOKEYWORDS'=>'',
 	'SEODESCRIPTION'=>'',

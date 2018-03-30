@@ -8,10 +8,13 @@
 
 class LoginController extends Controller
 {
+    public static $title = null;//>>网站标题
     public function  __construct()
     {
         ob_end_clean();
-
+        //>>获取网站标题
+        $model = new ModelNew("article");
+        self::$title = $model->findBySql("select * from sl_wzbt limit 1")[0]["title"];
     }
 
     //>>登录页

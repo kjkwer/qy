@@ -13,6 +13,7 @@ class GongwenController extends BaseController
     public static $gwStatus = [2=>"未审核",3=>"已退回",4=>"已审核",5=>"已推荐"];
     public static $gwOStatus = [1=>"未发送",2=>"已发送",3=>"已退回",4=>"已审核",5=>"已推荐"];
     public static $isRead = [1=>"未读",2=>"已读"];
+    public static $title = null;//>>网站标题
     public function  __construct()
     {
         ob_end_clean();
@@ -24,6 +25,8 @@ class GongwenController extends BaseController
         //>>获取工作专栏
         $zlModel = new ModelNew("wzfl");
         self::$workDatas = $zlModel->where(["type"=>1])->find()->all();
+        //>>获取网站标题
+        self::$title = $zlModel->findBySql("select * from sl_wzbt limit 1")[0]["title"];
     }
     //>>发文列表
     public function  listAction(){
@@ -350,8 +353,6 @@ class GongwenController extends BaseController
 //        var_dump($flData);exit();
         //>>获取公文来源
         $model = new ModelNew("zzjg");
-        $xiangzhenData = $model->findBySql("select * from sl_zzjg WHERE cengji=2");
-        $cunData = $model->findBySql("select * from sl_zzjg WHERE cengji=3");
         if(!$id){
             //>>新增
             if (self::$userData["guanliyuan"]==1){   //>>管理员
@@ -362,7 +363,9 @@ class GongwenController extends BaseController
                 $jsrys = $adminModel->findBySql("select id,xingming from sl_yhlb WHERE id != $user_id");
                 include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_admin_edit.html";
             }else{    //>>非管理员
-//                var_dump($cunData);exit();
+                //>>获取当前用户的所在部门
+                $bumen = self::$userData["bumen"];
+                $cunData = $model->findBySql("select * from sl_zzjg WHERE fuid=$bumen");
                 include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_huiyuan_edit.html";
             }
         }else{
@@ -382,6 +385,8 @@ class GongwenController extends BaseController
                 $model = new ModelNew("gw_o");
                 $gwData = $model->findOne($id);
                 $laiyuanData = $model->find()->all();
+                $bumen = self::$userData["bumen"];
+                $cunData = $model->findBySql("select * from sl_zzjg WHERE fuid=$bumen");
                 include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_huiyuan_edit.html";
             }
         }

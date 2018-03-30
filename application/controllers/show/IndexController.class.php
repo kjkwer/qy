@@ -11,6 +11,9 @@ class IndexController extends Controller
     public static $userData = null;
     public static $hotArticle = null; //>>热门文章
     public static $newNotice = null; //>>热门公告
+    public static $phone = null;//>>联系电话
+    public static $mail = null;//>>联系邮箱
+    public static $title = null;//>>网站标题
     public function  __construct()
     {
         ob_end_clean();
@@ -22,6 +25,12 @@ class IndexController extends Controller
         self::$hotArticle = $model->findBySql("select a.* from sl_article as a join sl_wzfl as b on a.zhuanlan = b.id where b.type=1 or b.type=2 ORDER BY id DESC limit 7");
         //>>获取最新公告
         self::$newNotice = $model->findBySql("select a.* from sl_article as a join sl_wzfl as b on a.zhuanlan = b.id where b.type=3 ORDER BY id DESC limit 8");
+        //>>获取联系电话
+        self::$phone = $model->findBySql("select * from sl_phone limit 1")[0]["phone"];
+        //>>获取联系邮箱
+        self::$mail = $model->findBySql("select * from sl_mail limit 1")[0]["mail"];
+        //>>获取网站标题
+        self::$title = $model->findBySql("select * from sl_wzbt limit 1")[0]["title"];
     }
 
 

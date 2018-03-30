@@ -9,7 +9,7 @@ $(function(){
 	 		$('.header').css({"position":"fixed","top":"-87px",})
 	 		$('.header').addClass("headerAB");
 	 		$('.header').animate({top:'0px'})	
-	 		$(".head-login img").attr("src","images/head-logins.png");
+	 		$(".head-login img").attr("src","public/yz/images/head-logins.png");
 	 	} else if($('.header').css('top') =='0px' && $('.header').css('position') == 'fixed') {
 	 		
 	 	}
@@ -18,7 +18,7 @@ $(function(){
 	 	if($('.header').css("position") == 'fixed'){
 		 	$('.header').css({"position":"absolute","top":"0px"})
 		 	$('.header').removeClass("headerAB");
-		 	$(".head-login img").attr("src","images/head-login_05.png");
+		 	$(".head-login img").attr("src","public/yz/images/head-login_05.png");
 	 	}
 	 		
 	 }

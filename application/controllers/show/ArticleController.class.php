@@ -11,6 +11,7 @@ class ArticleController  extends BaseController
     public static $userData = null;
     public static $shouye1 = [1=>"是",2=>"否"];
     public static $workDatas = null;
+    public static $title = null;//>>网站标题
     public function  __construct()
     {
         ob_end_clean();
@@ -22,6 +23,8 @@ class ArticleController  extends BaseController
         //>>获取工作专栏
         $zlModel = new ModelNew("wzfl");
         self::$workDatas = $zlModel->where(["type"=>1])->find()->all();
+        //>>获取网站标题
+        self::$title = $zlModel->findBySql("select * from sl_wzbt limit 1")[0]["title"];
     }
 
     public function listAction(){

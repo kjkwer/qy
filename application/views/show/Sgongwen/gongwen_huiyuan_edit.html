@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title><?=self::$title?></title>
     <link rel="stylesheet" href="public/yz/css/css.css" />
     <script type="text/javascript" src="public/yz/js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="public/yz/js/script.js"></script>
@@ -64,7 +64,7 @@
             <div class="edit-sse relative fl" style="z-index: 10000">
                 <span>乡镇</span>
                 <div class="inp-xia">
-                    <input  type="text" name="xiangzhen" id="xiangzhen" value="<?=$gwData['xiangzhen']?self::getCunMingchengAction($gwData['xiangzhen']):''  ?>" class="edit-inwidt" readonly/>
+                    <input  type="text" name="xiangzhen" id="xiangzhen" value="<?=$gwData['xiangzhen']?self::getCunMingchengAction($gwData['xiangzhen']):self::getCunMingchengAction($bumen)  ?>" class="edit-inwidt" readonly/>
                     <div class="adit-xuan box">
                         <?php if($xiangzhenData):?>
                             <?php foreach($xiangzhenData as $xiangzhen):?>

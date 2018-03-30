@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title><?=self::$title?></title>
     <link rel="stylesheet" href="public/yz/css/css.css" />
     <link href="public/yz/css/mobiscroll_002.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="public/layer/theme/default/layer.css">
@@ -86,9 +86,11 @@
                             <?=$adminData['zhuangtai']==1?"在职":"离职"?>
                         </td>
                         <td class="table-cao">
-                            <a href=""><img src="public/yz/images/look_07.png"/>查看</a>
+                            <a href="javascript:void(0)" class="detail" nameid="<?=$adminData['id']?>"><img src="public/yz/images/look_07.png"/>查看</a>
                             <a href="javascript:void(0)" nameid="<?=$adminData['id']?>" class="edit" showType="2"><img src="public/yz/images/look1_06.png"/>编辑</a>
+                            <?php if($adminData['personnel']!=1):?>
                             <a href="javascript:void(0)" class="deleteSingle" nameid="<?=$adminData['id']?>"><img src="public/yz/images/lock2_08.png"/>删除</a>
+                            <?php endif;?>
                         </td>
                     </tr>
                     <?php endforeach;?>
@@ -189,7 +191,47 @@
             </div>
         </div>
     </div>
+<!--人员详情-->
+<div class="fixed-tui fixed renyuanDetail">
+    <div class="table">
+        <div class="table-cell">
+            <div class="tui-wen box">
+                <div class="in-tanti">员工信息</div>
+                <div class="tui-nei box">
+                    <div class="tui-lei">
+                        <span>账号：</span>
+                        <p id="username">sdasaas</p>
+                    </div>
+                    <div class="tui-lei">
+                        <span>姓名：</span>
+                        <p id="name">adasd</p>
+                    </div>
+                    <div class="tui-lei">
+                        <span>手机号码：</span>
+                        <p id="phone">asdassdsa</p>
+                    </div>
+                    <div class="tui-lei">
+                        <span>部门：</span>
+                        <p id="department">asdasdsa</p>
+                    </div>
+                    <div class="tui-lei">
+                        <span>管理员：</span>
+                        <p id="isAdmin">asdasdas</p>
+                    </div>
+                    <div class="tui-lei">
+                        <span>状态：</span>
+                        <p id="status">asdasdas</p>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="tui-qudin">
+                        <a href="javascript:void(0)" class="tui-none fr tui-yes" id="tuijian" gwId="<?=$gwData['id']?>">确定</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 
 
 <script>
@@ -377,6 +419,25 @@
             str += "&keyWord="+keyWord;
         }
         window.location.href="index.php?p=show&c=admin&a=index"+str;
+    })
+</script>
+<!--人员详情-->
+<script type="text/javascript">
+    $(".tui-yes").click(function(){
+        $(".fixed-tui").hide(200);
+    })
+    $(".detail").click(function () {
+        //>>获取人员数据
+        var id = $(this).attr("nameid");
+        $.post("index.php?p=show&c=admin&a=getOne",{id:id},function (data) {
+            $("#username").text(data.zhanghao);
+            $("#name").text(data.xingming);
+            $("#phone").text(data.shoujihaoma);
+            $("#department").text(data.bumen);
+            $("#isAdmin").text(data.guanliyuan);
+            $("#status").text(data.zhuangtai);
+        },"json")
+        $(".renyuanDetail").show(200);
     })
 </script>
 </body>

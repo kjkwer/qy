@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title><?=self::$title?></title>
+    <link rel="stylesheet" href="public/yz/css/css.css" />
+    <link href="public/yz/css/mobiscroll_002.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="public/yz/js/jquery-1.9.1.min.js" ></script>
+    <script type="text/javascript" src="public/yz/js/script.js" ></script>
+    <script src="public/yz/js/mobiscroll_002.js" type="text/javascript"></script>
+    <script src="public/yz/js/mobiscroll.js" type="text/javascript"></script>
+    <!--[if lte IE 9]>
+    <script type="text/javascript" src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js" ></script>
+    <![endif]-->
+</head>
+<body class="body">
+
+<!--header-->
+<?php include CUR_VIEW_PATH."Spublic/header.html";?>
+<div class="xt-ycatou"></div>
+
+
+<?php include CUR_VIEW_PATH."Spublic/bianlan.html";?>
+
+<!--neirongbianji-->
+<div class="body-edit box">
+    <div class="edit-top">
+        <img src="public/yz/images/nei-dinwei_03.png"/>
+        <a href="javascript:void(0)">系统主页</a>
+        <em>&gt;</em>
+        <a href="javascript:void(0)">数据统计</a>
+        <em>&gt;</em>
+        发文统计
+    </div>
+
+    <div class="xt-wenzhan">
+        <div class="xtwenz-time">
+
+        </div>
+
+        <div class="xtable">
+            <div class="tongji-top">
+                <img src="public/yz/images/tongji_03.png"/>数据统计
+            </div>
+            <div id="main" class="tong-biap">
+
+
+            </div>
+        </div>
+
+        <div style="height:100px;"></div>
+    </div>
+
+</div>
+
+<script>
+    $(".adit-xuan p").on("click",function(){
+        $(this).parent().siblings().val($(this).text());
+        $(this).parent().slideUp();
+    })
+
+    $(".inp-xia input").on("click",function(){
+        $(this).siblings().slideToggle();
+    })
+
+</script>
+
+<script type="text/javascript">
+    for (var i=0; i<=$(".xtable tr").length-1; i++) {
+        $(".xtable tr:eq("+(i+1)+")").find(".table-paixu span").text(i+1);
+    }
+
+    $(".table-paixu em").on("click",function(){
+        $(this).toggleClass("em-add");
+    })
+
+    $(".xt-quanxuan p").on("click",function(){
+        $(this).find("em").toggleClass("em-add");
+        if($(this).find("em").attr("class").indexOf("em-add")>-1){
+            $(".table-paixu em").addClass("em-add");
+        }else{
+            $(".table-paixu em").removeClass("em-add");
+        }
+
+    })
+
+
+</script>
+<script type="text/javascript">
+    $(function() {
+        var oDate = new Date();
+        var currYear = (new Date()).getFullYear();
+        var opt = {};
+        opt.date = {
+            preset: 'date'
+        };
+
+        opt.datetime = {
+            preset: 'datetime'
+        };
+        opt.time = {
+            preset: 'time'
+        };
+
+        opt.default = {
+            theme: 'android-ics light', //皮肤样式
+            display: 'modal', //显示方式
+            mode: 'scroller', //日期选择模式
+            dateFormat: 'yyyy-mm-dd',
+            lang: 'zh',
+            showNow: true,
+            nowText: "今天",
+            startYear: currYear - 10, //开始年份
+            endYear: currYear + 10 //结束年份
+        };
+        $("#appDate").mobiscroll($.extend(opt['date'], opt['default']));
+        $("#appDate1").mobiscroll($.extend(opt['date'], opt['default']));
+        var optDateTime = $.extend(opt['datetime'], opt['default']);
+    });
+</script>
+//>>获取数据
+<script type="text/javascript">
+    var days;
+    var nums;
+    function getDatas() {
+        $.post("index.php?p=show&c=statistics&a=sendData",{type:1},function (data) {
+            days = data.days;
+            nums = data.nums;
+        },"json")
+    }
+    getDatas();
+</script>
+//>>数据统计
+<script src="public/echarts/build/dist/echarts.js"></script>
+<script type="text/javascript">
+    function show() {
+        require.config({
+            paths: {
+                echarts: 'public/echarts/build/dist'
+            }
+        });
+        require(
+            [
+                'echarts',
+                'echarts/chart/line',   // 按需加载所需图表，如需动态类型切换功能，别忘了同时加载相应图表
+                'echarts/chart/bar'
+            ],
+            function (ec) {
+                var myChart = ec.init(document.getElementById('main'));
+                var option = {
+                    title : {
+                        text: '发送公文',
+                        textAlign:'left',
+                    },
+                    tooltip : {
+                        trigger: 'axis'
+                    },
+                    toolbox: {
+                        show : true,
+                        feature : {
+                            magicType : {show: true, type: ['line', 'bar']},
+                            restore : {show: true},
+                            saveAsImage : {show: true}
+                        }
+                    },
+                    calculable : true,
+                    xAxis : [
+                        {
+                            type : 'category',
+                            boundaryGap : false,
+                            data : days
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type : 'value',
+                            axisLabel : {
+                                formatter: '{value}'
+                            }
+                        }
+                    ],
+                    series : [
+                        {
+                            name:'发文数量',
+                            type:'line',
+                            data:nums,
+                            markPoint : {
+                                data : [
+                                    {type : 'max', name: '最大值'},
+                                    {type : 'min', name: '最小值'}
+                                ]
+                            },
+                        }
+                    ]
+                };
+                myChart.setOption(option);
+            }
+        );
+    }
+    setTimeout(function () {
+        show();
+    },1000)
+</script>
+
+</body>
+</html>
