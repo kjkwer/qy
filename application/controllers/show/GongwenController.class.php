@@ -749,8 +749,34 @@ class GongwenController extends BaseController
     //>>工作清单
     public function inventoryAction(){
         $wzflModel = new ModelNew("wzfl");
-        $data = $wzflModel->where(["type"=>1])->find("*")->all();
+        //>>设置分页
+        $count = $wzflModel->findBySql("select count(*) as total from sl_wzfl WHERE type=1");
+        $totalNum = $count[0]["total"];//数据总数
+        $pageSize = 10;  //每页数量
+        $maxPage=$totalNum==0?1:ceil($totalNum/$pageSize); //总共有的页数
+        $page=isset($_GET['page'])?$_GET['page']:1; //当前页
+        if($page < 1)
+        {
+            $page=1;
+        }
+        if($page > $maxPage)
+        {
+            $page=$maxPage;
+        }
+        $limit=" limit ".($page-1)*$pageSize.",$pageSize"; //分页条件
+        //>>页码设置
+        $pageData = self::pageSetAction($page,$maxPage);
+        $init = $pageData["init"];
+        $max = $pageData["max"];
+        $wzflDatas = $wzflModel->findBySql("select * from sl_wzfl WHERE type=1 $limit");
         include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_inventory.html";
+    }
+    //>>清单模板
+    public function inventoryModelAction(){
+        $id = $_GET["id"];
+        $wzflModel = new ModelNew("wzfl");
+        $wzflData = $wzflModel->where(["id"=>$id])->find('*')->one();
+        include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_inventory_detail.html";
     }
     //>>页码设置
     public static function pageSetAction($page,$maxPage){
