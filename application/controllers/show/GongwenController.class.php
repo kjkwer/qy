@@ -336,7 +336,6 @@ class GongwenController extends BaseController
         //>>设置数据查询sql
         $sqlDatas = "select a.id,a.fuid from sl_zzjg as a WHERE a.fuid=$xzId and a.id not in  ($sql) $limit";
         $gwDate = $flModel->findBySql($sqlDatas);
-//        var_dump($gwDate);exit();
         include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_admin_accept_list.html";
     }
     //>>编辑文章
@@ -399,39 +398,12 @@ class GongwenController extends BaseController
         $data["zuozhe"] = self::$userData["id"];
         if ($_POST["id"] != ''){   //编辑
             if ($rs = $model->where(["id"=>$_POST["id"]])->update($data)){
-//                //>>删除原有接收人
-//                $fasongModel = new ModelNew("fasong");
-//                $fasongModel->where(["fasongren"=>$data["zuozhe"]])->where(["gongwen"=>$_POST["id"]])->delete();
-//                //>>设置新的接收人
-//                $jsrIds = $_POST["jsrs"];
-//                if ($jsrIds){
-//                    foreach ($jsrIds as $jsrId){
-//                        $model = new ModelNew("fasong");
-//                        $data["gongwen"] = $_POST["id"];
-//                        $data["fasongren"] = self::$userData["id"];
-//                        $data["jieshouren"] = $jsrId;
-//                        $data["zhuangtai"] = 1;
-//                        $model->insert($data);
-//                    }
-//                }
                 echo $_POST["id"];
             }else{
                 echo 500;
             }
         }else{    //新增
             if($rs=$model->insert($data)){
-//                //>>设置接收人
-//                $jsrIds = $_POST["jsrs"];
-//                if ($jsrIds){
-//                    foreach ($jsrIds as $jsrId){
-//                        $model = new ModelNew("fasong");
-//                        $data["gongwen"] = $rs;
-//                        $data["fasongren"] = self::$userData["id"];
-//                        $data["jieshouren"] = $jsrId;
-//                        $data["zhuangtai"] = 1;
-//                        $model->insert($data);
-//                    }
-//                }
                 echo $rs;
             }else{
                 echo 500;
@@ -767,7 +739,13 @@ class GongwenController extends BaseController
         $data = $model ->where(["id"=>$id])->find("mingcheng")->one();
         return $data["mingcheng"];
     }
-
+    //>>获取工作专栏模板内容(通过专栏名)
+    public function getZlModelAction($name){
+        $name = $_POST["name"];
+        $model = new ModelNew("wzfl");
+        $data = $model->where(["fenleimingcheng"=>$name])->find("model")->one();
+        echo json_encode($data["model"]);
+    }
     //>>页码设置
     public static function pageSetAction($page,$maxPage){
         $pageNum = 5;//页码个数

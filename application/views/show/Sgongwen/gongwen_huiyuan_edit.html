@@ -55,7 +55,7 @@
                     <div class="adit-xuan box" style="z-index: 10001">
                         <?php if($flData):?>
                         <?php foreach($flData as $fl):?>
-                        <p><?=$fl["mingcheng"]?></p>
+                        <p class="model"><?=$fl["mingcheng"]?></p>
                         <?php endforeach;?>
                         <?php endif;?>
                     </div>
@@ -111,10 +111,6 @@
                 var ue = UE.getEditor('container');
             </script>
             <div class="edit-sse relative" style="overflow: hidden; height:auto; margin:20px 0;"></div>
-
-
-
-
             <div class="edit-quedin">
                 <a id="baocun" href="javascript:void(0)" class="wdit-a box" gwStatus="<?=$gwData['zhuangtai']?$gwData['zhuangtai']:'' ?>">保存</a>
                 <a id="fabugongwen" href="javascript:void(0)" gwStatus="<?=$gwData['zhuangtai']?$gwData['zhuangtai']:'' ?>">发送公文</a>
@@ -240,21 +236,19 @@
         },"json")
     })
 </script>
-
-<!--&lt;!&ndash;乡镇 村联动&ndash;&gt;-->
-<!--<script type="text/javascript">-->
-    <!--$(".xiangzhen").click(function () {-->
-        <!--var xiangzhen = $(this).text()-->
-        <!--var str = "";-->
-        <!--$.post("index.php?p=show&c=gongwen&a=getCun",{mingcheng:xiangzhen},function (data) {-->
-            <!--$.each(data,function (index,rs) {-->
-                <!--str += "<p>"+rs.mingcheng+"</p>"-->
-            <!--})-->
-            <!--$(".cun").html(str);-->
-        <!--},"json")-->
-    <!--})-->
-<!--</script>-->
-
+<script type="text/javascript">
+    $(".model").click(function () {
+        var gwId = $("#gwId").val();
+        if(gwId==""){
+            var zhuanlanName = $(this).text()
+            $.post("index.php?p=show&c=gongwen&a=getZlModel",{name:zhuanlanName},function (data) {
+                var editor = new UE.ui.Editor();
+                editor.render('editor');
+                editor.execCommand('insertHtml', data);
+            },"json")
+        }
+    })
+</script>
 </body>
 
 </html>
