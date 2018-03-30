@@ -242,9 +242,9 @@
         if(gwId==""){
             var zhuanlanName = $(this).text()
             $.post("index.php?p=show&c=gongwen&a=getZlModel",{name:zhuanlanName},function (data) {
-                var editor = new UE.ui.Editor();
-                editor.render('editor');
-                editor.execCommand('insertHtml', data);
+                setTimeout(function () {
+                    ue.setContent(data)
+                },1000)
             },"json")
         }
     })

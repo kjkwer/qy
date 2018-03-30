@@ -744,7 +744,13 @@ class GongwenController extends BaseController
         $name = $_POST["name"];
         $model = new ModelNew("wzfl");
         $data = $model->where(["fenleimingcheng"=>$name])->find("model")->one();
-        echo json_encode($data["model"]);
+        echo json_encode(html_entity_decode($data["model"]));
+    }
+    //>>工作清单
+    public function inventoryAction(){
+        $wzflModel = new ModelNew("wzfl");
+        $data = $wzflModel->where(["type"=>1])->find("*")->all();
+        include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_inventory.html";
     }
     //>>页码设置
     public static function pageSetAction($page,$maxPage){
