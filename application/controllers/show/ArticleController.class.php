@@ -34,8 +34,8 @@ class ArticleController  extends BaseController
             $seachList = [];
             $urlList=[];
             //设置默认时间时间段为本月初至今
-            $date1 = $_GET["date1"]?$_GET["date1"]:date("Y-m",time())."-01";
-            $date2 = $_GET["date2"]?$_GET["date2"]:date("Y-m-d",time());
+            $date1 = !empty($_GET["date1"])?$_GET["date1"]:date("Y-m",time())."-01";
+            $date2 = !empty($_GET["date2"])?$_GET["date2"]:date("Y-m-d",time());
             $seachList[] = "Date(dtime) BETWEEN '".$date1."' and '".$date2."'";
             $urlList[] = "date1=".$date1;
             $urlList[] = "date2=".$date2;
@@ -153,7 +153,7 @@ class ArticleController  extends BaseController
         //>>获取所有专栏
         $fenleiModel = new ModelNew("wzfl");
         $fenleiData = $fenleiModel->findBySql("select * from sl_wzfl");
-        $id = $_GET["id"]?$_GET["id"]:null;
+        $id = !empty($_GET["id"])?$_GET["id"]:null;
         if (!$id){
             include CUR_VIEW_PATH."Sarticle" . DS . "article_add.html";
         }else{

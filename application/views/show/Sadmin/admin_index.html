@@ -44,7 +44,7 @@
         <div class="xtwenz-time">
             <form action="index.php?p=show&c=gongwen&a=list" style="height: 100%" method="get" id="sousuoForm">
             <div class="xtwen-sou xtwen-input fl box">
-                <input type="keyWord" name="keyWord" id="keyWord" value="<?=$_GET['keyWord']?$_GET['keyWord']:'' ?>" placeholder="关键字收索"/>
+                <input type="keyWord" name="keyWord" id="keyWord" value="<?=!empty($_GET['keyWord'])?$_GET['keyWord']:'' ?>" placeholder="关键字收索"/>
                 <a class="search" href="javascript:void(0)"><img src="public/yz/images/wenzi-sou_03.png"/></a>
             </div>
 
@@ -63,7 +63,7 @@
                     <th>员工状态</th>
                     <th>操作</th>
                 </tr>
-                <?php  if($adminDatas):?>
+                <?php  if(!empty($adminDatas)):?>
                     <?php foreach($adminDatas as $adminData):?>
                     <tr>
                         <td class="table-paixu">
@@ -196,7 +196,10 @@
     <div class="table">
         <div class="table-cell">
             <div class="tui-wen box">
-                <div class="in-tanti">员工信息</div>
+                <div class="add-top">
+                    <span>人员详情</span>
+                    <img src="public/yz/images/Close_03.png" class="Close"/>
+                </div>
                 <div class="tui-nei box">
                     <div class="tui-lei">
                         <span>账号：</span>
@@ -224,7 +227,7 @@
                     </div>
                     <div class="clear"></div>
                     <div class="tui-qudin">
-                        <a href="javascript:void(0)" class="tui-none fr tui-yes" id="tuijian" gwId="<?=$gwData['id']?>">确定</a>
+                        <a href="javascript:void(0)" class="tui-none fr tui-yes" id="tuijian" gwId="<?=!empty($gwData['id'])?$gwData['id']:''?>">确定</a>
                     </div>
                 </div>
             </div>
@@ -269,14 +272,15 @@
         if ($(this).attr("showType")==1){
             $("#editSpan").text("添加人员")
             $("#fumima").show();
-            $("#zhanghao").attr("value",'');
-            $("#mima").attr("value",'');
-            $("#xingming").attr("value",'');
-            $("#bumen").attr("value",'');
-            $("#shoujihaoma").attr("value",'');
-            $("#dianhua").attr("value",'');
-            $("#guanliyuan").attr("value",'');
-            $("#zhuangtai").attr("value",'');
+            $("#id").val('');
+            $("#zhanghao").val('');
+            $("#mima").val('');
+            $("#xingming").val('');
+            $("#bumen").val('');
+            $("#shoujihaoma").val('');
+            $("#dianhua").val('');
+            $("#guanliyuan").val('');
+            $("#zhuangtai").val('');
         }
         $(".tanchu").show(200);
     })

@@ -82,7 +82,6 @@ class AdminController extends BaseController
         $data["xingming"] = $_POST["xingming"]?$_POST["xingming"]:null;
         $data["bumen"] = $_POST["bumen"]?self::getBumenIdAction($_POST["bumen"]):null;
         $data["shoujihaoma"] = $_POST["shoujihaoma"]?$_POST["shoujihaoma"]:null;
-        $data["zhicheng"] = $_POST["zhicheng"]?$_POST["zhicheng"]:null;
         $data["dianhua"] = $_POST["dianhua"]?$_POST["dianhua"]:null;
         $data["guanliyuan"] = $_POST["guanliyuan"]?$_POST["guanliyuan"]:null;
         $data["shanchu"] = 1;

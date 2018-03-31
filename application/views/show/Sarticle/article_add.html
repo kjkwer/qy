@@ -41,16 +41,16 @@
 
     <div class="edit-input box">
         <form id="myfrom" action="index.php?p=show&c=article&a=addArticle" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="id" value="<?=$articleData['id']?$articleData['id']:'' ?>">
+            <input type="hidden" name="id" value="<?=!empty($articleData['id'])?$articleData['id']:'' ?>">
             <div class="edit-sse">
                 <span>文章标题</span>
-                <input type="text" name="biaoti" id="biaoti" value="<?=$articleData['biaoti']?$articleData['biaoti']:'' ?>" style="width:600px;"/>
+                <input type="text" name="biaoti" id="biaoti" value="<?=!empty($articleData['biaoti'])?$articleData['biaoti']:'' ?>" style="width:600px;"/>
                 <em>*请输入公文的标题，标题最多50字</em>
             </div>
             <div class="edit-sse relative">
                 <span>是否首页</span>
                 <div class="inp-xia">
-                    <input type="text" name="shouye" id="" value="<?=$articleData['shouye']?self::getShouye($articleData['shouye']):'' ?>" class="edit-inwidt" readonly/>
+                    <input type="text" name="shouye" id="" value="<?=!empty($articleData['shouye'])?self::getShouye($articleData['shouye']):'' ?>" class="edit-inwidt" readonly/>
                     <div class="adit-xuan box">
                         <p>是</p>
                         <p>否</p>
@@ -60,7 +60,7 @@
 
             <div class="edit-sse relative">
                 <span>缩略图</span>
-                <input type="text" name="" id="" value="<?=$articleData['tupian']?basename($articleData['tupian']):'' ?>" class="edit-inwidt" readonly/>
+                <input type="text" name="" id="" value="<?=!empty($articleData['tupian'])?basename($articleData['tupian']):'' ?>" class="edit-inwidt" readonly/>
                 <div class="edit-chuan fl">上传<input type="file" name="tupian" id="" value="" /></div>
                 <!--<div class="adit-tiqu fl">-->
                     <!--<input type="submit" name="" id="" value="提取图片" />-->
@@ -71,7 +71,7 @@
                 <span>文章正文</span>
             </div>
             <script id="container" name="neirong" id="neirong" type="text/plain" style="height:700px;width: 1000px;">
-                <?=$articleData['neirong']?$articleData['neirong']:''?>
+                <?=!empty($articleData['neirong'])?$articleData['neirong']:''?>
             </script>
             <!-- 配置文件 -->
             <script type="text/javascript" src="public/ueditor/ueditor.config.js"></script>
@@ -86,7 +86,7 @@
             <div class="edit-sse relative">
                 <span>发布栏目</span>
                 <div class="inp-xia">
-                    <input type="text" name="zhuanlan" id="" value="<?=$articleData['zhuanlan']?self::getfenleiAction($articleData['zhuanlan']):'' ?>" class="edit-inwidt" readonly/>
+                    <input type="text" name="zhuanlan" id="" value="<?=!empty($articleData['zhuanlan'])?self::getfenleiAction($articleData['zhuanlan']):'' ?>" class="edit-inwidt" readonly/>
                     <div class="adit-xuan box">
                         <?php if($fenleiData):?>
                             <?php foreach($fenleiData as $fenlei):?>
@@ -99,7 +99,7 @@
 
             <div class="edit-sse relative">
                 <span>排序</span>
-                <input type="text" name="paixu" id="paixu" value="<?=$articleData['paixu']?$articleData['paixu']:'' ?>" class="edit-inwidt" />
+                <input type="text" name="paixu" id="paixu" value="<?=!empty($articleData['paixu'])?$articleData['paixu']:'' ?>" class="edit-inwidt" />
             </div>
 
             <div class="edit-sse relative">
@@ -208,7 +208,7 @@
                         content: '保存成功！',
                         btn: ['确认'],
                         yes: function(index, layero) {
-                            window.location.href='http://www.qy.com/index.php?p=show&c=article&a=list';
+                            window.location.href='index.php?p=show&c=article&a=list';
                         },
                     });
                 }

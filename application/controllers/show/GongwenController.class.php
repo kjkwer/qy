@@ -343,7 +343,7 @@ class GongwenController extends BaseController
     }
     //>>编辑文章
     public function editAction(){
-        $id = $_GET["id"]?$_GET["id"]:null;
+        $id = !empty($_GET["id"])?$_GET["id"]:null;
         //>>获取公文类型
         $lxModel = new ModelNew("gwlx");
         $lxData = $lxModel->findBySql("select id,leixing from sl_gwlx");

@@ -44,7 +44,7 @@
                 <input type="text" name="date2" id="appDate1" value="<?=$date2?>" />
             </div>
             <div class="xtwen-input inp-xia box fl" style="margin-left:16px;">
-                <input type="text" name="zhuanlan" id="zhuanlan" value="<?=$_GET['zhuanlan']?$_GET['zhuanlan']:'所有' ?>" class="edit-inwidt" readonly/>
+                <input type="text" name="zhuanlan" id="zhuanlan" value="<?=!empty($_GET['zhuanlan'])?$_GET['zhuanlan']:'所有' ?>" class="edit-inwidt" readonly/>
                 <div class="adit-xuan box">
                     <p>所有</p>
                     <?php if($zhuanlanData):?>
@@ -55,7 +55,7 @@
                 </div>
             </div>
             <div class="xtwen-sou xtwen-input fl box">
-                <input type="text" name="keyword" id="keyword" value="<?=$_GET['keyword']?$_GET['keyword']:'' ?>" placeholder="关键字收索"/>
+                <input type="text" name="keyword" id="keyword" value="<?=!empty($_GET['keyword'])?$_GET['keyword']:'' ?>" placeholder="关键字收索"/>
                 <a class="search" href="javascript:void(0)"><img src="public/yz/images/wenzi-sou_03.png"/></a>
             </div>
 
@@ -107,7 +107,7 @@
         </div>
         <div class="page fr" style="margin-top:24px;">
             <?php
-              echo "<a href='index.php?p=show&c=gongwen&a=accept&zlId={$zlId}&page=1{$url}'>首页</a>";
+              echo "<a href='index.php?p=show&c=article&a=list&page=1{$url}'>首页</a>";
             for($i=$init;$i<=$max;$i++){
             if($page == $i){
             echo  "<strong>".$i."</strong>";
@@ -235,7 +235,7 @@
         if (keyword != ""){
             str += "&keyword="+keyword;
         }
-        window.location.href="index.php?p=show&c=article&a=list&zlId=<?=$zlId?>"+str;
+        window.location.href="index.php?p=show&c=article&a=list"+str;
     })
 </script>
 </body>

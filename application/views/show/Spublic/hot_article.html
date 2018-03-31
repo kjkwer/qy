@@ -1,7 +1,7 @@
 <div class="lilun-bom">
     <div class="liun-biao">热门推荐</div>
     <div class="lilun-img">
-        <?php if(self::$hotArticle[0]):?>
+        <?php if(!empty(self::$hotArticle[0])):?>
         <div class="liun-imgs"><a href=""><img src="<?=self::$hotArticle[0]['tupian']?>"/></a></div>
         <div class="liunimg-tx">
             <p><a href="index.php?p=show&c=index&a=detail&id=<?=self::$hotArticle[0]['id']?>"><?=self::$hotArticle[0]['biaoti']?></a></p>

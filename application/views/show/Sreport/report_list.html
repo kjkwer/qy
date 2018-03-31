@@ -48,7 +48,7 @@
                 <input type="text" name="date2" id="appDate1" value="<?=$date2?>" />
             </div>
             <div class="xtwen-sou xtwen-input fl box">
-                <input type="text" name="keyword" id="keyword" value="<?=$_GET['keyword']?$_GET['keyword']:'' ?>" placeholder="关键字收索"/>
+                <input type="text" name="keyword" id="keyword" value="<?=!empty($_GET['keyword'])?$_GET['keyword']:'' ?>" placeholder="关键字收索"/>
                 <a class="search" href="javascript:void(0)"><img src="public/yz/images/wenzi-sou_03.png"/></a>
             </div>
 

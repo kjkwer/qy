@@ -24,7 +24,7 @@
 	<div class="container">
 		<div class="fupin">
 			<div class="fupin-lft fl">
-				<?php if($zhuanlanDatas[0]):?>
+				<?php if(!empty($zhuanlanDatas[0])):?>
 					<div class="in-h1">
 						<p><?=$zhuanlanDatas[0]["fenleimingcheng"]?>  </p>
 						<a href="index.php?p=show&c=index&a=tw&id=<?=$zhuanlanDatas[0]['id']?>">更多&gt;&gt;</a>
@@ -32,7 +32,7 @@
 					<div style="height:15px;"></div>
 					<?php $articleDatas = self::getArticleDatasByZlIdAction($zhuanlanDatas[0]['id'],5);?>
 				<?php endif;?>
-				<?php if($articleDatas):?>
+				<?php if(!empty($articleDatas)):?>
 					<?php if($articleDatas[0]):?>
 						<div class="in-fptop fl">
 							<div class="in-img"><a href="index.php?p=show&c=index&a=detail&id=<?=$articleDatas[0]['id']?>"><img src="<?=$articleDatas[0]['tupian']?>"/></a></div>
@@ -69,7 +69,7 @@
 		</div>
 		<!--“不忘初心 牢记使命”教育活动-->
 		<div class="in-buwan">
-			<?php if($zhuanlanDatas[1]):?>
+			<?php if(!empty($zhuanlanDatas[1])):?>
 				<div class="in-h1">
 					<p><?=$zhuanlanDatas[1]["fenleimingcheng"] ?>  </p>
 					<a href="index.php?p=show&c=index&a=tw&id=<?=$zhuanlanDatas[1]['id']?>">更多&gt;&gt;</a>
@@ -78,7 +78,7 @@
 				<?php $articleDatas = self::getArticleDatasByZlIdAction($zhuanlanDatas[1]['id'],4);?>
 			<?php endif;?>
 			<ul>
-				<?php if($articleDatas):?>
+				<?php if(!empty($articleDatas)):?>
 					<?php foreach($articleDatas as $article):?>
 						<li>
 							<div class="in-buimg">
@@ -97,11 +97,11 @@
 		<div class="in-buwan">
 			<div class="in-h1">
 				<div class="in-h1nav addnoe">
-					<?php if($zhuanlanDatas[2]):?>
+					<?php if(!empty($zhuanlanDatas[2])):?>
 					<p class="in-h1navp btn" num="1" zhuanlanid="<?=$zhuanlanDatas[2]['id'] ?>"><?=$zhuanlanDatas[2]["fenleimingcheng"] ?></p>
 					<?php $articleDatasLeft = self::getArticleDatasByZlIdAction($zhuanlanDatas[2]['id'],4);?>
 					<?php endif;?>
-					<?php if($zhuanlanDatas[3]):?>
+					<?php if(!empty($zhuanlanDatas[3])):?>
 					<p class="btn" num="1" zhuanlanid="<?=$zhuanlanDatas[3]['id'] ?>"><?=$zhuanlanDatas[3]["fenleimingcheng"] ?></p>
 					<?php $articleDatasRight = self::getArticleDatasByZlIdAction($zhuanlanDatas[3]['id'],4);?>
 					<?php endif;?>
@@ -110,7 +110,7 @@
 			</div>
 			<div class="inlto">
 				<ul>
-					<?php if($articleDatasLeft):?>
+					<?php if(!empty($articleDatasLeft)):?>
 						<?php foreach($articleDatasLeft as $article):?>
 							<li>
 								<div class="in-buimg">
@@ -125,7 +125,7 @@
 					<?php endif;?>
 				</ul>
 				<ul>
-					<?php if($articleDatasRight):?>
+					<?php if(!empty($articleDatasRight)):?>
 						<?php foreach($articleDatasRight as $article):?>
 							<li>
 								<div class="in-buimg">
@@ -150,7 +150,7 @@
 	<div class="container">
 		<div class="fupin">
 			<div class="fupin-lft fl" style="width:100%;">
-				<?php if($zhuanlanDatas[4]):?>
+				<?php if(!empty($zhuanlanDatas[4])):?>
 					<div class="in-h1">
 						<p><?=$zhuanlanDatas[4]["fenleimingcheng"] ?>  </p>
 						<a href="index.php?p=show&c=index&a=tw&id=<?=$zhuanlanDatas[4]['id']?>">更多&gt;&gt;</a>
@@ -159,7 +159,7 @@
 					<?php $articleDatas = self::getArticleDatasByZlIdAction($zhuanlanDatas[4]['id'],7);?>
 				<?php endif;?>
 				<div style="height:15px;"></div>
-				<?php if($articleDatas):?>
+				<?php if(!empty($articleDatas)):?>
 					<?php if($articleDatas[0]):?>
 						<div class="in-fptop fl">
 							<div class="in-img"><a href="index.php?p=show&c=index&a=detail&id=<?=$articleDatas[0]['id']?>"><img src="<?=$articleDatas[0]['tupian']?>"/></a></div>
@@ -191,11 +191,11 @@
 		<div class="in-buwan">
 			<div class="in-h1">
 				<div class="in-h1nav addtwo">
-					<?php if($zhuanlanDatas[5]):?>
+					<?php if(!empty($zhuanlanDatas[5])):?>
 					<p class="in-h1navp btn" num="2" zhuanlanid="<?=$zhuanlanDatas[5]['id'] ?>"><?=$zhuanlanDatas[5]["fenleimingcheng"] ?></p>
 					<?php $articleDatasLeft = self::getArticleDatasByZlIdAction($zhuanlanDatas[5]['id'],4);?>
 					<?php endif;?>
-					<?php if($zhuanlanDatas[6]):?>
+					<?php if(!empty($zhuanlanDatas[6])):?>
 					<p class="btn" num="2" zhuanlanid="<?=$zhuanlanDatas[6]['id'] ?>"><?=$zhuanlanDatas[6]["fenleimingcheng"] ?></p>
 					<?php $articleDatasRight = self::getArticleDatasByZlIdAction($zhuanlanDatas[6]['id'],4);?>
 					<?php endif;?>
@@ -204,7 +204,7 @@
 			</div>
 			<div class="inlto">
 				<ul>
-					<?php if($articleDatasLeft):?>
+					<?php if(!empty($articleDatasLeft)):?>
 					<?php foreach($articleDatasLeft as $article):?>
 					<li>
 						<div class="in-buimg">
@@ -219,7 +219,7 @@
 					<?php endif;?>
 				</ul>
 				<ul>
-					<?php if($articleDatasRight):?>
+					<?php if(!empty($articleDatasRight)):?>
 					<?php foreach($articleDatasRight as $article):?>
 					<li>
 						<div class="in-buimg">
@@ -272,10 +272,10 @@
 <div class="in-bom">
 	<div class="container">
 		<ul>
-			<li><a href="index.php?p=show&c=index&a=wb&id=25"><img src="public/yz/images/in-bom_03.jpg"/></a></li>
-			<li><a href="index.php?p=show&c=index&a=wb&id=26"><img src="public/yz/images/in-bom1_05.jpg"/></a></li>
-			<li><a href="index.php?p=show&c=index&a=wb&id=27"><img src="public/yz/images/in-bom3_05.jpg"/></a></li>
-			<li><a href="index.php?p=show&c=index&a=wb&id=28"><img src="public/yz/images/in-bom2_05.jpg"/></a></li>
+			<li><a href="index.php?p=show&c=index&a=wb&id=41"><img src="public/yz/images/in-bom_03.jpg"/></a></li>
+			<li><a href="index.php?p=show&c=index&a=wb&id=42"><img src="public/yz/images/in-bom1_05.jpg"/></a></li>
+			<li><a href="index.php?p=show&c=index&a=wb&id=43"><img src="public/yz/images/in-bom3_05.jpg"/></a></li>
+			<li><a href="index.php?p=show&c=index&a=wb&id=44"><img src="public/yz/images/in-bom2_05.jpg"/></a></li>
 		</ul>
 
 	</div>
