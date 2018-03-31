@@ -85,6 +85,7 @@
         </div>
 
         <div class="edit-quedin" style="text-align: right;">
+            <a href="javascript:void(0)" gwStatus="<?=$gwData['zhuangtai']?>" gwId="<?=$gwData['id']?>" class="tuihui">退回公文</a>
             <a id="shenhe" gwId="<?=$gwData['id']?>" gwStatus="<?=$gwData['zhuangtai']?>" href="javascript:void(0)" class="wdit-a box">设为已审核</a>
             <a href="javascript:void(0)" gwStatus="<?=$gwData['zhuangtai']?>">推荐公文</a>
         </div>
@@ -159,7 +160,45 @@
         $(this).parent().slideUp();
     })
 </script>
-
+<!--退回公文-->
+<script type="text/javascript">
+    $(".tuihui").click(function () {
+        var gwTd = $(this).attr("gwId");
+        var gwStatus = $(this).attr("gwStatus");
+        if (gwStatus==3){
+            layer.alert("该公文已退回");
+            return false;
+        }
+        if (gwStatus==4){
+            layer.alert("该公文已审核通过");
+            return false;
+        }
+        if (gwStatus==5){
+            layer.alert("该公文已推荐");
+            return false;
+        }
+        $.post("index.php?p=show&c=gongwen&a=tuihuiGw",{gwId:gwTd},function (data) {
+            if (data==200){
+                layer.open({
+                    content: '退回成功！',
+                    btn: ['确认'],
+                    yes: function(index, layero) {
+                        window.location.href="http://www.qy.com/index.php?p=show&c=gongwen&a=accept&zlId=<?=$gwData['zhuanlan']?>";
+                    },
+                });
+            }else {
+                layer.open({
+                    content: '审核失败！',
+                    btn: ['确认'],
+                    yes: function(index, layero) {
+                        location.reload();
+                    },
+                });
+            }
+        })
+        return false;
+    })
+</script>
 <!--审核-->
 <script type="text/javascript">
     $("#shenhe").click(function () {
@@ -174,7 +213,7 @@
             return false;
         }
         if (gwStatus==5){
-            layer.alert("该公文已审核");
+            layer.alert("该公文已推荐");
             return false;
         }
         $.post("index.php?p=show&c=gongwen&a=sheheGw",{gwId:gwTd},function (data) {

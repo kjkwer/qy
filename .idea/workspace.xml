@@ -6,7 +6,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b8784d69-c6cb-43d4-8965-3c3ba56aaf9e" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/show/GongwenController.class.php" afterPath="$PROJECT_DIR$/application/controllers/show/GongwenController.class.php" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/show/StatisticsController.class.php" afterPath="$PROJECT_DIR$/application/controllers/show/StatisticsController.class.php" />
+      <change beforePath="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_accept_detail.html" afterPath="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_accept_detail.html" />
+      <change beforePath="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_accept_list.html" afterPath="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_accept_list.html" />
       <change beforePath="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_huiyuan_edit.html" afterPath="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_huiyuan_edit.html" />
+      <change beforePath="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_huiyuan_send_list.html" afterPath="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_huiyuan_send_list.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -35,52 +41,56 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="gongwen_huiyuan_edit.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_huiyuan_edit.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="52" column="37" lean-forward="true" selection-start-line="52" selection-start-column="37" selection-end-line="52" selection-end-column="37" />
-              <folding>
-                <element signature="n#style#0;n#div#3;n#form#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#script#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#script#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GongwenController.class.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GongwenController.class.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/controllers/show/GongwenController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1311">
-              <caret line="182" column="45" lean-forward="true" selection-start-line="182" selection-start-column="45" selection-end-line="182" selection-end-column="45" />
+            <state relative-caret-position="447">
+              <caret line="306" column="39" lean-forward="false" selection-start-line="306" selection-start-column="39" selection-end-line="306" selection-end-column="39" />
               <folding>
-                <element signature="e#9974#12945#0#PHP" expanded="false" />
-                <element signature="n#acceptOtherAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+                <element signature="e#9977#12948#0#PHP" expanded="false" />
+                <element signature="n#editAdminAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+                <element signature="n#setJsrAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+                <element signature="n#sendDetailAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+                <element signature="n#acceptDetailAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+                <element signature="n#getGwStatusAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+                <element signature="n#isDateAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+                <element signature="n#isfasongAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+                <element signature="n#getGwLxAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+                <element signature="n#getJsrAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+                <element signature="n#deleteSingleAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+                <element signature="n#deleteSingleOAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+                <element signature="n#deletePiliangAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+                <element signature="n#deletePiliangOAction#0;n#GongwenController#0;n#!!top" expanded="false" />
                 <element signature="n#pageSetAction#0;n#GongwenController#0;n#!!top" expanded="false" />
-                <marker date="1522397070463" expanded="true" signature="880:909" ph="select * fro... sl_wzbt" />
-                <marker date="1522397070463" expanded="true" signature="1078:1142" ph="select id,fe... sl_wzfl" />
-                <marker date="1522397070463" expanded="true" signature="2934:2972" ph="select count... sl_gw" />
-                <marker date="1522397070463" expanded="true" signature="3498:3544" ph="select * fro... sl_gw" />
-                <marker date="1522397070463" expanded="true" signature="5704:5762" ph="select count... sl_gw_o" />
-                <marker date="1522397070463" expanded="true" signature="6558:6626" ph="select * fro... sl_gw_o" />
-                <marker date="1522397070463" expanded="true" signature="6886:6950" ph="select id,fe... sl_wzfl" />
-                <marker date="1522397070463" expanded="true" signature="7341:7377" ph="select * fro... sl_zzjg" />
-                <marker date="1522397070463" expanded="true" signature="9108:9148" ph="select count... sl_gw_o" />
-                <marker date="1522397070463" expanded="true" signature="9819:9869" ph="select * fro... sl_gw_o" />
-                <marker date="1522397070463" expanded="true" signature="15411:15441" ph="select id,le... sl_gwlx" />
-                <marker date="1522397070463" expanded="true" signature="15544:15608" ph="select id,fe... sl_wzfl" />
-                <marker date="1522397070463" expanded="true" signature="16016:16060" ph="select id,xi... sl_yhlb" />
-                <marker date="1522397070463" expanded="true" signature="16315:16348" ph="select * fro... sl_zzjg" />
-                <marker date="1522397070463" expanded="true" signature="16315:16349" ph="select * fro... sl_zzjg" />
-                <marker date="1522397070463" expanded="true" signature="16888:16932" ph="select id,xi... sl_yhlb" />
-                <marker date="1522397070463" expanded="true" signature="17335:17368" ph="select * fro... sl_zzjg" />
-                <marker date="1522397070463" expanded="true" signature="22019:22083" ph="select id,fe... sl_wzfl" />
-                <marker date="1522397070463" expanded="true" signature="24226:24319" ph="select b.xin... sl_fasong" />
-                <marker date="1522397070463" expanded="true" signature="26402:26467" ph="delete from sl_gw_o... " />
-                <marker date="1522397070463" expanded="true" signature="29975:30025" ph="select count... sl_wzfl" />
-                <marker date="1522397070463" expanded="true" signature="30625:30659" ph="select * fro... sl_wzfl" />
-                <marker date="1522397070463" expanded="true" signature="30625:30660" ph="select * fro... sl_wzfl" />
+                <marker date="1522479616740" expanded="true" signature="880:909" ph="select * fro... sl_wzbt" />
+                <marker date="1522479616740" expanded="true" signature="1078:1142" ph="select id,fe... sl_wzfl" />
+                <marker date="1522479616740" expanded="true" signature="2934:2972" ph="select count... sl_gw" />
+                <marker date="1522479616740" expanded="true" signature="3498:3544" ph="select * fro... sl_gw" />
+                <marker date="1522479616740" expanded="true" signature="5704:5762" ph="select count... sl_gw_o" />
+                <marker date="1522479616740" expanded="true" signature="6558:6626" ph="select * fro... sl_gw_o" />
+                <marker date="1522479616740" expanded="true" signature="6886:6950" ph="select id,fe... sl_wzfl" />
+                <marker date="1522479616740" expanded="true" signature="7341:7377" ph="select * fro... sl_zzjg" />
+                <marker date="1522479616740" expanded="true" signature="9111:9151" ph="select count... sl_gw_o" />
+                <marker date="1522479616740" expanded="true" signature="9822:9872" ph="select * fro... sl_gw_o" />
+                <marker date="1522479616740" expanded="true" signature="11860:11990" ph="select COUNT... sl_fasong" />
+                <marker date="1522479616740" expanded="true" signature="12724:12841" ph="select b.* f... sl_fasong" />
+                <marker date="1522479616740" expanded="true" signature="13120:13184" ph="select id,fe... sl_wzfl" />
+                <marker date="1522479616740" expanded="true" signature="13235:13271" ph="select * fro... sl_zzjg" />
+                <marker date="1522479616740" expanded="true" signature="14155:14244" ph="select a.id sl_zzjg" />
+                <marker date="1522479616740" expanded="true" signature="14268:14353" ph="select COUNT... sl_zzjg" />
+                <marker date="1522479616740" expanded="true" signature="15000:15080" ph="select a.id,... sl_zzjg" />
+                <marker date="1522479616740" expanded="true" signature="15417:15447" ph="select id,le... sl_gwlx" />
+                <marker date="1522479616740" expanded="true" signature="15550:15614" ph="select id,fe... sl_wzfl" />
+                <marker date="1522479616740" expanded="true" signature="16022:16066" ph="select id,xi... sl_yhlb" />
+                <marker date="1522479616740" expanded="true" signature="16321:16354" ph="select * fro... sl_zzjg" />
+                <marker date="1522479616740" expanded="true" signature="16894:16938" ph="select id,xi... sl_yhlb" />
+                <marker date="1522479616740" expanded="true" signature="17341:17374" ph="select * fro... sl_zzjg" />
+                <marker date="1522479616740" expanded="true" signature="22086:22150" ph="select id,fe... sl_wzfl" />
+                <marker date="1522479616740" expanded="true" signature="24367:24460" ph="select b.xin... sl_fasong" />
+                <marker date="1522479616740" expanded="true" signature="26543:26608" ph="delete from sl_gw_o... " />
+                <marker date="1522479616740" expanded="true" signature="30377:30427" ph="select count... sl_wzfl" />
+                <marker date="1522479616740" expanded="true" signature="31027:31061" ph="select * fro... sl_wzfl" />
+                <marker date="1522479616740" expanded="true" signature="31027:31062" ph="select * fro... sl_wzfl" />
               </folding>
             </state>
           </provider>
@@ -150,15 +160,12 @@
         <option value="$PROJECT_DIR$/application/views/show/Slogin/login_index.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_inventory_detail.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_inventory.html" />
-        <option value="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_huiyuan_send_list.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_huiyuan_send_detail.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_huiyuan_accept_list.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_huiyuan_accept_detail.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_send_list.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_send_detail.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_edit.html" />
-        <option value="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_accept_list.html" />
-        <option value="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_accept_detail.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sarticle/article_wb_list.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sarticle/article_tw_list.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sarticle/article_list.html" />
@@ -167,15 +174,18 @@
         <option value="$PROJECT_DIR$/application/views/show/Sadmin/admin_index.html" />
         <option value="$PROJECT_DIR$/application/controllers/show/AdminController.class.php" />
         <option value="$PROJECT_DIR$/application/controllers/show/ArticleController.class.php" />
-        <option value="$PROJECT_DIR$/application/controllers/show/GongwenController.class.php" />
         <option value="$PROJECT_DIR$/application/controllers/show/LoginController.class.php" />
         <option value="$PROJECT_DIR$/application/controllers/show/organizationController.class.php" />
         <option value="$PROJECT_DIR$/application/controllers/show/ReportController.class.php" />
-        <option value="$PROJECT_DIR$/application/controllers/show/StatisticsController.class.php" />
         <option value="$PROJECT_DIR$/application/views/show/Spublic/header.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sstatistics/statistics_send.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sstatistics/statistics_accept.html" />
+        <option value="$PROJECT_DIR$/application/controllers/show/StatisticsController.class.php" />
+        <option value="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_accept_detail.html" />
+        <option value="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_accept_list.html" />
+        <option value="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_huiyuan_send_list.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_huiyuan_edit.html" />
+        <option value="$PROJECT_DIR$/application/controllers/show/GongwenController.class.php" />
       </list>
     </option>
   </component>
@@ -206,7 +216,7 @@
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="392" />
     <option name="y" value="26" />
     <option name="width" value="1400" />
@@ -231,7 +241,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -248,193 +257,31 @@
               <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
               <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
               <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="show" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
               <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="show" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="show" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Sadmin" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="show" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Sarticle" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="show" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Sgongwen" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="show" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Sindex" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="show" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Slogin" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="show" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Sorganization" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="show" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Spublic" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="show" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Sreport" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="show" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Sstatistics" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="show" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Stest" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
               <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="echarts" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="echarts" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="build" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="echarts" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="build" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="dist" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="yz" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="yz" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="css" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="yz" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="ueditor" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="ueditor" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="php" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="ueditor" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="php" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="upload" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="ueditor" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="php" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="upload" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="file" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="ueditor" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="php" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="upload" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="file" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="20180329" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -552,19 +399,19 @@
       <workItem from="1522201439309" duration="71000" />
       <workItem from="1522204461632" duration="22658000" />
       <workItem from="1522287395982" duration="25356000" />
-      <workItem from="1522374449973" duration="23068000" />
+      <workItem from="1522374449973" duration="23133000" />
+      <workItem from="1522459438734" duration="12528000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="276512000" />
+    <option name="totallyTimeSpent" value="289105000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2521322" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19669509" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -618,28 +465,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/views/show/Spublic/index_tanchukuang.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="27" column="59" lean-forward="false" selection-start-line="27" selection-start-column="59" selection-end-line="27" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/show/Spublic/updatePassword.html" />
-    <entry file="file://$PROJECT_DIR$/application/views/show/Spublic/baner.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="62" lean-forward="false" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/ueditor/php/config.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="622">
-          <caret line="65" column="48" lean-forward="true" selection-start-line="65" selection-start-column="48" selection-end-line="65" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/show/Spublic/hot_article.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
@@ -658,48 +483,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-722">
           <caret line="18958" column="10" lean-forward="false" selection-start-line="18958" selection-start-column="10" selection-end-line="18958" selection-end-column="10" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <marker date="1522374899521" expanded="true" signature="354626:354639" ph="..." />
-            <marker date="1522374899521" expanded="true" signature="359169:359186" ph="..." />
-            <marker date="1522374899521" expanded="true" signature="364507:364525" ph="..." />
-            <marker date="1522374899521" expanded="true" signature="458402:458428" ph="..." />
-            <marker date="1522374899521" expanded="true" signature="604741:604871" ph="..." />
-            <marker date="1522374899521" expanded="true" signature="825583:825678" ph="..." />
-            <marker date="1522374899521" expanded="true" signature="862429:862505" ph="..." />
-            <marker date="1522374899521" expanded="true" signature="874664:874682" ph="..." />
-            <marker date="1522374899521" expanded="true" signature="874729:874771" ph="..." />
-            <marker date="1522374899521" expanded="true" signature="874856:874886" ph="..." />
-            <marker date="1522374899521" expanded="true" signature="893272:893344" ph="..." />
-            <marker date="1522374899521" expanded="true" signature="903235:903261" ph="..." />
-            <marker date="1522374899521" expanded="true" signature="903457:903548" ph="..." />
-            <marker date="1522374899521" expanded="true" signature="903805:903880" ph="..." />
-            <marker date="1522374899521" expanded="true" signature="904067:904082" ph="..." />
-            <marker date="1522374899521" expanded="true" signature="904302:904354" ph="..." />
-            <marker date="1522374899521" expanded="true" signature="916276:916365" ph="..." />
-            <marker date="1522374899521" expanded="true" signature="980574:980646" ph="..." />
-            <marker date="1522374899521" expanded="true" signature="999656:999668" ph="..." />
-            <marker date="1522374899521" expanded="true" signature="1001900:1001924" ph="..." />
-            <marker date="1522374899521" expanded="true" signature="1026993:1026999" ph=" " />
-            <marker date="1522374899521" expanded="true" signature="1026999:1027005" ph=" " />
-            <marker date="1522374899521" expanded="true" signature="1027109:1027115" ph=" " />
-            <marker date="1522374899521" expanded="true" signature="1027115:1027121" ph=" " />
-            <marker date="1522374899521" expanded="true" signature="1027225:1027231" ph=" " />
-            <marker date="1522374899521" expanded="true" signature="1027231:1027237" ph=" " />
-            <marker date="1522374899521" expanded="true" signature="1029406:1029412" ph=" " />
-            <marker date="1522374899521" expanded="true" signature="1029412:1029418" ph=" " />
-            <marker date="1522374899521" expanded="true" signature="1030385:1030391" ph=" " />
-            <marker date="1522374899521" expanded="true" signature="1030391:1030397" ph=" " />
-            <marker date="1522374899521" expanded="true" signature="1030537:1030543" ph=" " />
-            <marker date="1522374899521" expanded="true" signature="1030543:1030549" ph=" " />
-            <marker date="1522374899521" expanded="true" signature="1030691:1030697" ph=" " />
-            <marker date="1522374899521" expanded="true" signature="1030697:1030703" ph=" " />
-            <marker date="1522374899521" expanded="true" signature="1030847:1030853" ph=" " />
-            <marker date="1522374899521" expanded="true" signature="1030853:1030859" ph=" " />
-            <marker date="1522374899521" expanded="true" signature="1031669:1031680" ph="..." />
-            <marker date="1522374899521" expanded="true" signature="1035617:1035630" ph="..." />
-            <marker date="1522374899521" expanded="true" signature="1036007:1036043" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -712,7 +495,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="18" column="20" lean-forward="true" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -720,7 +502,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
           <caret line="1635" column="37" lean-forward="true" selection-start-line="1635" selection-start-column="37" selection-end-line="1635" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -728,7 +509,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
           <caret line="20" column="55" lean-forward="false" selection-start-line="20" selection-start-column="55" selection-end-line="20" selection-end-column="55" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -736,7 +516,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="10" column="22" lean-forward="true" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -744,7 +523,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
           <caret line="22" column="25" lean-forward="false" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -752,7 +530,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="9" column="4" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="19" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -760,9 +537,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="4" column="36" lean-forward="false" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
-          <folding>
-            <element signature="n#script#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -770,7 +544,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="4" column="36" lean-forward="false" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -778,7 +551,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -786,14 +558,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
           <caret line="5" column="36" lean-forward="false" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
-          <folding>
-            <element signature="n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#script#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#script#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#script#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <marker date="1522397070201" expanded="false" signature="13187:13203" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -801,7 +565,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="4" column="36" lean-forward="false" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -809,10 +572,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="4" column="36" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="36" />
-          <folding>
-            <element signature="n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -820,7 +579,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="4" column="36" lean-forward="false" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -828,15 +586,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="4" column="36" lean-forward="false" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_huiyuan_send_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="36" lean-forward="false" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -844,7 +593,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="4" column="44" lean-forward="false" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -852,7 +600,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="4" column="36" lean-forward="false" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -860,7 +607,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="4" column="36" lean-forward="false" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -880,7 +626,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="4" column="36" lean-forward="false" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -888,19 +633,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
           <caret line="5" column="36" lean-forward="false" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_accept_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="36" lean-forward="false" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
-          <folding>
-            <element signature="n#script#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#script#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#script#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -908,7 +640,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="4" column="36" lean-forward="false" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -916,7 +647,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="4" column="36" lean-forward="false" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -932,7 +662,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="4" column="36" lean-forward="false" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -940,7 +669,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
           <caret line="5" column="36" lean-forward="false" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -948,40 +676,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="4" column="36" lean-forward="false" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
-          <folding>
-            <element signature="n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#3;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#4;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#5;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#6;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#7;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#8;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#script#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#script#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="e#11035#11557#0" expanded="false" />
-            <element signature="e#11597#11636#0" expanded="false" />
-            <element signature="n#script#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#script#3;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#script#4;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#script#5;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#script#6;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_accept_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="36" lean-forward="false" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1061,23 +755,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/show/StatisticsController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="25" column="31" lean-forward="false" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
-          <folding>
-            <marker date="1522397070121" expanded="true" signature="688:717" ph="select * fro... sl_wzbt" />
-            <marker date="1522397070121" expanded="true" signature="1410:1485" ph="select count... sl_gw" />
-            <marker date="1522397070121" expanded="true" signature="1758:1848" ph="select count... sl_gw_o" />
-            <marker date="1522397070121" expanded="true" signature="1758:1849" ph="select count... sl_gw_o" />
-            <marker date="1522397070121" expanded="true" signature="1758:1871" ph="select count... sl_gw_o" />
-            <marker date="1522397070121" expanded="true" signature="2157:2250" ph="select count... sl_gw_o" />
-            <marker date="1522397070121" expanded="true" signature="2525:2620" ph="select count... sl_fasong" />
-            <marker date="1522397070121" expanded="true" signature="2525:2621" ph="select count... sl_fasong" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/show/AdminController.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
@@ -1117,7 +794,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
           <caret line="17" column="28" lean-forward="true" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1125,18 +801,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
           <caret line="157" column="20" lean-forward="false" selection-start-line="157" selection-start-column="20" selection-end-line="164" selection-end-column="22" />
-          <folding>
-            <element signature="n#script#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#script#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#script#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/show/Sstatistics/statistics_accept.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="23" column="27" lean-forward="true" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+        <state relative-caret-position="565">
+          <caret line="114" column="65" lean-forward="false" selection-start-line="114" selection-start-column="65" selection-end-line="114" selection-end-column="65" />
           <folding>
             <element signature="n#script#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#script#1;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -1145,49 +816,152 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/show/GongwenController.class.php">
+    <entry file="file://$PROJECT_DIR$/application/controllers/show/StatisticsController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1311">
-          <caret line="182" column="45" lean-forward="true" selection-start-line="182" selection-start-column="45" selection-end-line="182" selection-end-column="45" />
+        <state relative-caret-position="475">
+          <caret line="63" column="105" lean-forward="false" selection-start-line="63" selection-start-column="105" selection-end-line="63" selection-end-column="105" />
           <folding>
-            <element signature="e#9974#12945#0#PHP" expanded="false" />
-            <element signature="n#acceptOtherAction#0;n#GongwenController#0;n#!!top" expanded="false" />
-            <element signature="n#pageSetAction#0;n#GongwenController#0;n#!!top" expanded="false" />
-            <marker date="1522397070463" expanded="true" signature="880:909" ph="select * fro... sl_wzbt" />
-            <marker date="1522397070463" expanded="true" signature="1078:1142" ph="select id,fe... sl_wzfl" />
-            <marker date="1522397070463" expanded="true" signature="2934:2972" ph="select count... sl_gw" />
-            <marker date="1522397070463" expanded="true" signature="3498:3544" ph="select * fro... sl_gw" />
-            <marker date="1522397070463" expanded="true" signature="5704:5762" ph="select count... sl_gw_o" />
-            <marker date="1522397070463" expanded="true" signature="6558:6626" ph="select * fro... sl_gw_o" />
-            <marker date="1522397070463" expanded="true" signature="6886:6950" ph="select id,fe... sl_wzfl" />
-            <marker date="1522397070463" expanded="true" signature="7341:7377" ph="select * fro... sl_zzjg" />
-            <marker date="1522397070463" expanded="true" signature="9108:9148" ph="select count... sl_gw_o" />
-            <marker date="1522397070463" expanded="true" signature="9819:9869" ph="select * fro... sl_gw_o" />
-            <marker date="1522397070463" expanded="true" signature="15411:15441" ph="select id,le... sl_gwlx" />
-            <marker date="1522397070463" expanded="true" signature="15544:15608" ph="select id,fe... sl_wzfl" />
-            <marker date="1522397070463" expanded="true" signature="16016:16060" ph="select id,xi... sl_yhlb" />
-            <marker date="1522397070463" expanded="true" signature="16315:16348" ph="select * fro... sl_zzjg" />
-            <marker date="1522397070463" expanded="true" signature="16315:16349" ph="select * fro... sl_zzjg" />
-            <marker date="1522397070463" expanded="true" signature="16888:16932" ph="select id,xi... sl_yhlb" />
-            <marker date="1522397070463" expanded="true" signature="17335:17368" ph="select * fro... sl_zzjg" />
-            <marker date="1522397070463" expanded="true" signature="22019:22083" ph="select id,fe... sl_wzfl" />
-            <marker date="1522397070463" expanded="true" signature="24226:24319" ph="select b.xin... sl_fasong" />
-            <marker date="1522397070463" expanded="true" signature="26402:26467" ph="delete from sl_gw_o... " />
-            <marker date="1522397070463" expanded="true" signature="29975:30025" ph="select count... sl_wzfl" />
-            <marker date="1522397070463" expanded="true" signature="30625:30659" ph="select * fro... sl_wzfl" />
-            <marker date="1522397070463" expanded="true" signature="30625:30660" ph="select * fro... sl_wzfl" />
+            <marker date="1522461527053" expanded="true" signature="688:717" ph="select * fro... sl_wzbt" />
+            <marker date="1522461527053" expanded="true" signature="1410:1485" ph="select count... sl_gw" />
+            <marker date="1522461527053" expanded="true" signature="1758:1851" ph="select count... sl_gw_o" />
+            <marker date="1522461527053" expanded="true" signature="1758:1852" ph="select count... sl_gw_o" />
+            <marker date="1522461527053" expanded="true" signature="1758:1874" ph="select count... sl_gw_o" />
+            <marker date="1522461527053" expanded="true" signature="2160:2256" ph="select count... sl_gw_o" />
+            <marker date="1522461527053" expanded="true" signature="2531:2626" ph="select count... sl_fasong" />
+            <marker date="1522461527053" expanded="true" signature="2531:2627" ph="select count... sl_fasong" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/databases/CPdo.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8170">
+          <caret line="430" column="38" lean-forward="false" selection-start-line="430" selection-start-column="38" selection-end-line="430" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/core/ModelNew.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-15">
+          <caret line="402" column="39" lean-forward="true" selection-start-line="402" selection-start-column="39" selection-end-line="402" selection-end-column="39" />
+          <folding>
+            <marker date="1517825712000" expanded="true" signature="7933:7998" ph="INSERT INTO `${{$this-&gt;table}}`... " />
+            <marker date="1517825712000" expanded="true" signature="9698:9742" ph="UPDATE `${{$this-&gt;table}}`... " />
+            <marker date="1517825712000" expanded="true" signature="11535:11570" ph="DELETE FROM `${{$this-&gt;table}}`... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_accept_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="114" column="68" lean-forward="false" selection-start-line="114" selection-start-column="68" selection-end-line="114" selection-end-column="68" />
+          <folding>
+            <element signature="n#script#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#script#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#script#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_accept_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="451">
+          <caret line="184" column="50" lean-forward="false" selection-start-line="184" selection-start-column="50" selection-end-line="184" selection-end-column="50" />
+          <folding>
+            <element signature="n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_huiyuan_send_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="89" column="26" lean-forward="false" selection-start-line="89" selection-start-column="26" selection-end-line="89" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/ueditor/ueditor.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_huiyuan_edit.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="52" column="37" lean-forward="true" selection-start-line="52" selection-start-column="37" selection-end-line="52" selection-end-column="37" />
+        <state relative-caret-position="413">
+          <caret line="180" column="36" lean-forward="false" selection-start-line="180" selection-start-column="36" selection-end-line="180" selection-end-column="36" />
           <folding>
-            <element signature="n#style#0;n#div#3;n#form#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#script#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#script#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#form#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#3;n#form#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#script#3;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/config/text.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/show/GongwenController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="447">
+          <caret line="306" column="39" lean-forward="false" selection-start-line="306" selection-start-column="39" selection-end-line="306" selection-end-column="39" />
+          <folding>
+            <element signature="e#9977#12948#0#PHP" expanded="false" />
+            <element signature="n#editAdminAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+            <element signature="n#setJsrAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+            <element signature="n#sendDetailAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+            <element signature="n#acceptDetailAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+            <element signature="n#getGwStatusAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+            <element signature="n#isDateAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+            <element signature="n#isfasongAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+            <element signature="n#getGwLxAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+            <element signature="n#getJsrAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+            <element signature="n#deleteSingleAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+            <element signature="n#deleteSingleOAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+            <element signature="n#deletePiliangAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+            <element signature="n#deletePiliangOAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+            <element signature="n#pageSetAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+            <marker date="1522479616740" expanded="true" signature="880:909" ph="select * fro... sl_wzbt" />
+            <marker date="1522479616740" expanded="true" signature="1078:1142" ph="select id,fe... sl_wzfl" />
+            <marker date="1522479616740" expanded="true" signature="2934:2972" ph="select count... sl_gw" />
+            <marker date="1522479616740" expanded="true" signature="3498:3544" ph="select * fro... sl_gw" />
+            <marker date="1522479616740" expanded="true" signature="5704:5762" ph="select count... sl_gw_o" />
+            <marker date="1522479616740" expanded="true" signature="6558:6626" ph="select * fro... sl_gw_o" />
+            <marker date="1522479616740" expanded="true" signature="6886:6950" ph="select id,fe... sl_wzfl" />
+            <marker date="1522479616740" expanded="true" signature="7341:7377" ph="select * fro... sl_zzjg" />
+            <marker date="1522479616740" expanded="true" signature="9111:9151" ph="select count... sl_gw_o" />
+            <marker date="1522479616740" expanded="true" signature="9822:9872" ph="select * fro... sl_gw_o" />
+            <marker date="1522479616740" expanded="true" signature="11860:11990" ph="select COUNT... sl_fasong" />
+            <marker date="1522479616740" expanded="true" signature="12724:12841" ph="select b.* f... sl_fasong" />
+            <marker date="1522479616740" expanded="true" signature="13120:13184" ph="select id,fe... sl_wzfl" />
+            <marker date="1522479616740" expanded="true" signature="13235:13271" ph="select * fro... sl_zzjg" />
+            <marker date="1522479616740" expanded="true" signature="14155:14244" ph="select a.id sl_zzjg" />
+            <marker date="1522479616740" expanded="true" signature="14268:14353" ph="select COUNT... sl_zzjg" />
+            <marker date="1522479616740" expanded="true" signature="15000:15080" ph="select a.id,... sl_zzjg" />
+            <marker date="1522479616740" expanded="true" signature="15417:15447" ph="select id,le... sl_gwlx" />
+            <marker date="1522479616740" expanded="true" signature="15550:15614" ph="select id,fe... sl_wzfl" />
+            <marker date="1522479616740" expanded="true" signature="16022:16066" ph="select id,xi... sl_yhlb" />
+            <marker date="1522479616740" expanded="true" signature="16321:16354" ph="select * fro... sl_zzjg" />
+            <marker date="1522479616740" expanded="true" signature="16894:16938" ph="select id,xi... sl_yhlb" />
+            <marker date="1522479616740" expanded="true" signature="17341:17374" ph="select * fro... sl_zzjg" />
+            <marker date="1522479616740" expanded="true" signature="22086:22150" ph="select id,fe... sl_wzfl" />
+            <marker date="1522479616740" expanded="true" signature="24367:24460" ph="select b.xin... sl_fasong" />
+            <marker date="1522479616740" expanded="true" signature="26543:26608" ph="delete from sl_gw_o... " />
+            <marker date="1522479616740" expanded="true" signature="30377:30427" ph="select count... sl_wzfl" />
+            <marker date="1522479616740" expanded="true" signature="31027:31061" ph="select * fro... sl_wzfl" />
+            <marker date="1522479616740" expanded="true" signature="31027:31062" ph="select * fro... sl_wzfl" />
           </folding>
         </state>
       </provider>

@@ -52,7 +52,7 @@ class StatisticsController extends BaseController
                 $model = new ModelNew("gw_o");
                 $zuozhe = self::$userData["id"];
                 foreach ($days as $v){
-                    $count = $model->findBySql("select count(*) as total from sl_gw_o where  Date(dtime) BETWEEN '$v' AND '$v' AND zuozhe=$zuozhe AND zhuangtai>1");
+                    $count = $model->findBySql("select count(*) as total from sl_gw_o where  Date(sendTime) BETWEEN '$v' AND '$v' AND zuozhe=$zuozhe AND zhuangtai>1");
                     $num[] = $count[0]['total'];
                 }
             }
@@ -61,7 +61,7 @@ class StatisticsController extends BaseController
             if(self::$userData["guanliyuan"]==1) {
                 $model = new ModelNew("gw_o");
                 foreach ($days as $v){
-                    $count = $model->findBySql("select count(*) as total from sl_gw_o where Date(dtime) BETWEEN '$v' AND '$v' AND zhuangtai>1");
+                    $count = $model->findBySql("select count(*) as total from sl_gw_o where Date(sendTime) BETWEEN '$v' AND '$v' AND zhuangtai>1");
                     $num[] = $count[0]['total'];
                 }
             }else{

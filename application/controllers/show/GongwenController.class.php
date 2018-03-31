@@ -179,7 +179,7 @@ class GongwenController extends BaseController
                 //>>设置默认时间时间段为本月初至今
                 $date1 = $_GET["date1"]?$_GET["date1"]:date("Y-m",time())."-01";
                 $date2 = $_GET["date2"]?$_GET["date2"]:date("Y-m-d",time());
-                $seachList[] = "Date(dtime) BETWEEN '".$date1."' and '".$date2."'";
+                $seachList[] = "Date(sendTime) BETWEEN '".$date1."' and '".$date2."'";
                 $urlList[] = "date1=".$date1;
                 $urlList[] = "date2=".$date2;
                 //>>公文状态
@@ -304,7 +304,7 @@ class GongwenController extends BaseController
         $seachList = [];
         $seachList[] = "b.zhuanlan=".$zlId;
         $seachList[] = "b.xiangzhen=".$xzId;
-        $seachList[] = "Date(b.dtime) BETWEEN '".$date1."' and '".$date2."'";
+        $seachList[] = "Date(b.sendtime) BETWEEN '".$date1."' and '".$date2."'";
         $urlList=[];
         $urlList[] = "xiangzhen=".self::getCunMingchengAction($xzId);
         $urlList[] = "date1=".$date1;
@@ -469,17 +469,18 @@ class GongwenController extends BaseController
             if ($data["tupian"]==null){
                 unset($data["tupian"]);
             }
+            $data["dtime"] = date("Y-m-d H:i:s",time());
             if ($model->where(['id'=>$_POST["id"]])->update($data)){
                 echo $_POST["id"];
             }else{
-                echo 500;
+                echo false;
             }
         }else{
             $data["yuefen"] = date("m",time());
             if($rs = $model->insert($data)){
                 echo $rs;
             }else{
-                echo 500;
+                echo false;
             }
         }
     }
@@ -529,9 +530,10 @@ class GongwenController extends BaseController
     }
     //>>发送公文
     public function fasongAction(){
+//        var_dump($_POST);exit();
         $id = $_POST["gwId"];
         $model = new ModelNew("gw_o");
-        if ($model->where(["id"=>$id])->update(["zhuangtai"=>2])){
+        if ($model->where(["id"=>$id])->update(["zhuangtai"=>2,"sendTime"=>date("Y-m-d H:i:s",time())])){
             echo 200;
         }else{
             echo 500;
@@ -646,7 +648,16 @@ class GongwenController extends BaseController
         }
         echo json_encode($result);
     }
-
+    //>>退回公文
+    public function tuihuiGwAction(){
+        $id = $_POST["gwId"];
+        $model = new ModelNew("gw_o");
+        if ($model->where(["id"=>$id])->update(["zhuangtai"=>3])){
+            echo 200;
+        }else{
+            echo 500;
+        }
+    }
     //>>审核公文
     public function sheheGwAction(){
         $id = $_POST["gwId"];

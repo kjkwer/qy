@@ -87,6 +87,7 @@
                     <th>排序</th>
                     <th>标题</th>
                     <th>工作专栏</th>
+                    <th>更新时间</th>
                     <th>发送时间</th>
                     <th>状态</th>
                     <th>操作</th>
@@ -107,7 +108,9 @@
                             <td class="table-time">
                                 <?=$gongwen["dtime"]?>
                             </td>
-
+                            <td class="table-time">
+                                <?=$gongwen["sendTime"]?>
+                            </td>
                             <td class="table-tai">
                                 <?php if($gongwen["zhuangtai"]==1):?>
                                     未发送

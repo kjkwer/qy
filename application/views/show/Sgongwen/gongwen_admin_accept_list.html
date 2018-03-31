@@ -105,13 +105,13 @@
                                 <?=self::getCunMingchengAction($gw["xiangzhen"])."-".self::getCunMingchengAction($gw["cun"])?>
                             </td>
                             <td class="table-time">
-                                <?=$gw["dtime"]?>
+                                <?=$gw["sendTime"]?>
                             </td>
                             <td class="table-tai">
                                 <?php if($gw["zhuangtai"]==2):?>
                                     未审核
                                 <?php elseif($gw["zhuangtai"]==3):?>
-                                    退回
+                                    已退回
                                 <?php elseif($gw["zhuangtai"]==4):?>
                                     已审核
                                 <?php elseif($gw["zhuangtai"]==5):?>
