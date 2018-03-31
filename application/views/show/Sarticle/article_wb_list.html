@@ -50,34 +50,22 @@
         </div>
         <div class="page">
             <?php
-              echo "<a href='index.php?p=show&c=index&a=tw&id=".$wzLxId."&page=1{$url}'>首页</a>";
+              echo "<a href='index.php?p=show&c=index&a=tw&id=".$wzLxId."&page=1'>首页</a>";
             for($i=$init;$i<=$max;$i++){
             if($page == $i){
             echo  "<strong>".$i."</strong>";
             }else{
-            echo  "<a href='index.php?p=show&c=index&a=tw&id=".$wzLxId."&page=".$i."{$url}'>".$i."</a>";
+            echo  "<a href='index.php?p=show&c=index&a=tw&id=".$wzLxId."&page=".$i."'>".$i."</a>";
             }
             }
-            echo  "<a href='index.php?p=show&c=index&a=tw&id=".$wzLxId."&page=".($page+1)."{$url}'>下一页</a>";
+            echo  "<a href='index.php?p=show&c=index&a=tw&id=".$wzLxId."&page=".($page+1)."'>下一页</a>";
             ?>
         </div>
     </div>
     <div class="lilun-rht fr">
         <div class="lilun-top">
             <div class="lilun-toti">最新公告</div>
-            <div class="lilu-qili">
-                <ul>
-                    <li><a href="">许达哲主持召开省政府常务会议</a></li>
-                    <li><a href="">研究部署支持企业研发等工作</a></li>
-                    <li><a href="">出台财政奖补政策 支持企业加大</a></li>
-                    <li><a href="">研发投入 年度补助额最高1000万</a></li>
-                    <li><a href="">条智能化中低速磁浮试验线在长沙</a></li>
-                    <li><a href="">动工 设计时速160公里</a></li>
-                    <li><a href="">建新型轨道交通装备产业园落</a></li>
-                    <li><a href="">胡湘平：用奉献抒写忠诚</a></li>
-                    <li><a href="">回访湘西花垣县十八洞村</a></li>
-                </ul>
-            </div>
+            <?php include CUR_VIEW_PATH."Spublic/new_notice.html";?>
         </div>
 
         <?php include CUR_VIEW_PATH."Spublic/hot_article.html";?>

@@ -2,8 +2,8 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="1236c7a3-d5e6-4a20-9217-7f5c3d1a7cac" name="jiupinku" url="http://218.247.81.68">
-        <fileTransfer host="218.247.81.68" port="21">
+      <webServer id="1236c7a3-d5e6-4a20-9217-7f5c3d1a7cac" name="jiupinku" url="http://211.149.197.112">
+        <fileTransfer host="211.149.197.112" port="21" rootFolder="/new29/wwwroot">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" />
           </advancedOptions>

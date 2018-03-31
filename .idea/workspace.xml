@@ -2,17 +2,19 @@
 <project version="4">
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/application/views/show/Sarticle/article_list.html" line="209" />
-    <bookmark url="file://$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_send_list.html" line="279" />
+    <bookmark url="file://$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_send_list.html" line="273" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b8784d69-c6cb-43d4-8965-3c3ba56aaf9e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" afterPath="$PROJECT_DIR$/.idea/webServers.xml" />
       <change beforePath="$PROJECT_DIR$/application/controllers/show/GongwenController.class.php" afterPath="$PROJECT_DIR$/application/controllers/show/GongwenController.class.php" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/show/StatisticsController.class.php" afterPath="$PROJECT_DIR$/application/controllers/show/StatisticsController.class.php" />
-      <change beforePath="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_accept_detail.html" afterPath="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_accept_detail.html" />
-      <change beforePath="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_accept_list.html" afterPath="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_accept_list.html" />
-      <change beforePath="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_huiyuan_edit.html" afterPath="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_huiyuan_edit.html" />
-      <change beforePath="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_huiyuan_send_list.html" afterPath="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_huiyuan_send_list.html" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/show/IndexController.class.php" afterPath="$PROJECT_DIR$/application/controllers/show/IndexController.class.php" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/show/LoginController.class.php" afterPath="$PROJECT_DIR$/application/controllers/show/LoginController.class.php" />
+      <change beforePath="$PROJECT_DIR$/application/views/show/Sarticle/article_tw_list.html" afterPath="$PROJECT_DIR$/application/views/show/Sarticle/article_tw_list.html" />
+      <change beforePath="$PROJECT_DIR$/application/views/show/Sarticle/article_wb_list.html" afterPath="$PROJECT_DIR$/application/views/show/Sarticle/article_wb_list.html" />
+      <change beforePath="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_send_list.html" afterPath="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_send_list.html" />
+      <change beforePath="$PROJECT_DIR$/application/views/show/Sindex/index_index.html" afterPath="$PROJECT_DIR$/application/views/show/Sindex/index_index.html" />
+      <change beforePath="$PROJECT_DIR$/application/views/show/Spublic/new_notice.html" afterPath="$PROJECT_DIR$/application/views/show/Spublic/new_notice.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -40,63 +42,7 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GongwenController.class.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/controllers/show/GongwenController.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="447">
-              <caret line="306" column="39" lean-forward="false" selection-start-line="306" selection-start-column="39" selection-end-line="306" selection-end-column="39" />
-              <folding>
-                <element signature="e#9977#12948#0#PHP" expanded="false" />
-                <element signature="n#editAdminAction#0;n#GongwenController#0;n#!!top" expanded="false" />
-                <element signature="n#setJsrAction#0;n#GongwenController#0;n#!!top" expanded="false" />
-                <element signature="n#sendDetailAction#0;n#GongwenController#0;n#!!top" expanded="false" />
-                <element signature="n#acceptDetailAction#0;n#GongwenController#0;n#!!top" expanded="false" />
-                <element signature="n#getGwStatusAction#0;n#GongwenController#0;n#!!top" expanded="false" />
-                <element signature="n#isDateAction#0;n#GongwenController#0;n#!!top" expanded="false" />
-                <element signature="n#isfasongAction#0;n#GongwenController#0;n#!!top" expanded="false" />
-                <element signature="n#getGwLxAction#0;n#GongwenController#0;n#!!top" expanded="false" />
-                <element signature="n#getJsrAction#0;n#GongwenController#0;n#!!top" expanded="false" />
-                <element signature="n#deleteSingleAction#0;n#GongwenController#0;n#!!top" expanded="false" />
-                <element signature="n#deleteSingleOAction#0;n#GongwenController#0;n#!!top" expanded="false" />
-                <element signature="n#deletePiliangAction#0;n#GongwenController#0;n#!!top" expanded="false" />
-                <element signature="n#deletePiliangOAction#0;n#GongwenController#0;n#!!top" expanded="false" />
-                <element signature="n#pageSetAction#0;n#GongwenController#0;n#!!top" expanded="false" />
-                <marker date="1522479616740" expanded="true" signature="880:909" ph="select * fro... sl_wzbt" />
-                <marker date="1522479616740" expanded="true" signature="1078:1142" ph="select id,fe... sl_wzfl" />
-                <marker date="1522479616740" expanded="true" signature="2934:2972" ph="select count... sl_gw" />
-                <marker date="1522479616740" expanded="true" signature="3498:3544" ph="select * fro... sl_gw" />
-                <marker date="1522479616740" expanded="true" signature="5704:5762" ph="select count... sl_gw_o" />
-                <marker date="1522479616740" expanded="true" signature="6558:6626" ph="select * fro... sl_gw_o" />
-                <marker date="1522479616740" expanded="true" signature="6886:6950" ph="select id,fe... sl_wzfl" />
-                <marker date="1522479616740" expanded="true" signature="7341:7377" ph="select * fro... sl_zzjg" />
-                <marker date="1522479616740" expanded="true" signature="9111:9151" ph="select count... sl_gw_o" />
-                <marker date="1522479616740" expanded="true" signature="9822:9872" ph="select * fro... sl_gw_o" />
-                <marker date="1522479616740" expanded="true" signature="11860:11990" ph="select COUNT... sl_fasong" />
-                <marker date="1522479616740" expanded="true" signature="12724:12841" ph="select b.* f... sl_fasong" />
-                <marker date="1522479616740" expanded="true" signature="13120:13184" ph="select id,fe... sl_wzfl" />
-                <marker date="1522479616740" expanded="true" signature="13235:13271" ph="select * fro... sl_zzjg" />
-                <marker date="1522479616740" expanded="true" signature="14155:14244" ph="select a.id sl_zzjg" />
-                <marker date="1522479616740" expanded="true" signature="14268:14353" ph="select COUNT... sl_zzjg" />
-                <marker date="1522479616740" expanded="true" signature="15000:15080" ph="select a.id,... sl_zzjg" />
-                <marker date="1522479616740" expanded="true" signature="15417:15447" ph="select id,le... sl_gwlx" />
-                <marker date="1522479616740" expanded="true" signature="15550:15614" ph="select id,fe... sl_wzfl" />
-                <marker date="1522479616740" expanded="true" signature="16022:16066" ph="select id,xi... sl_yhlb" />
-                <marker date="1522479616740" expanded="true" signature="16321:16354" ph="select * fro... sl_zzjg" />
-                <marker date="1522479616740" expanded="true" signature="16894:16938" ph="select id,xi... sl_yhlb" />
-                <marker date="1522479616740" expanded="true" signature="17341:17374" ph="select * fro... sl_zzjg" />
-                <marker date="1522479616740" expanded="true" signature="22086:22150" ph="select id,fe... sl_wzfl" />
-                <marker date="1522479616740" expanded="true" signature="24367:24460" ph="select b.xin... sl_fasong" />
-                <marker date="1522479616740" expanded="true" signature="26543:26608" ph="delete from sl_gw_o... " />
-                <marker date="1522479616740" expanded="true" signature="30377:30427" ph="select count... sl_wzfl" />
-                <marker date="1522479616740" expanded="true" signature="31027:31061" ph="select * fro... sl_wzfl" />
-                <marker date="1522479616740" expanded="true" signature="31027:31062" ph="select * fro... sl_wzfl" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -127,6 +73,7 @@
       <find>setAttribute</find>
       <find>neirong</find>
       <find>head-logins</find>
+      <find>new</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -135,25 +82,17 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/public/xz/ueditor_p/ueditor.config.js" />
-        <option value="$PROJECT_DIR$/public/xz/ueditor_p/php/Uploader.class.php" />
-        <option value="$PROJECT_DIR$/public/xz/ueditor_p/php/config.json" />
-        <option value="$PROJECT_DIR$/application/controllers/show/TestController.class.php" />
-        <option value="$PROJECT_DIR$/application/views/show/Stest/index.html" />
         <option value="$PROJECT_DIR$/application/views/show/Spublic/baner.html" />
         <option value="$PROJECT_DIR$/application/views/show/Spublic/index_tanchukuang.html" />
         <option value="$PROJECT_DIR$/application/views/show/Spublic/updatePassword.html" />
         <option value="$PROJECT_DIR$/public/ueditor/php/config.json" />
         <option value="$PROJECT_DIR$/application/views/show/Spublic/hot_article.html" />
         <option value="$PROJECT_DIR$/public/yz/css/css.css" />
-        <option value="$PROJECT_DIR$/application/views/show/Spublic/new_notice.html" />
         <option value="$PROJECT_DIR$/public/ueditor/ueditor.all.js" />
         <option value="$PROJECT_DIR$/application/views/show/Spublic/bianlan.html" />
         <option value="$PROJECT_DIR$/public/yz/js/script.js" />
         <option value="$PROJECT_DIR$/application/views/show/Spublic/index_cebianlan.html" />
         <option value="$PROJECT_DIR$/application/views/show/Spublic/title.html" />
-        <option value="$PROJECT_DIR$/application/controllers/show/IndexController.class.php" />
-        <option value="$PROJECT_DIR$/application/views/show/Sindex/index_index.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sreport/report_list.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sreport/report_detail.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sorganization/organization_index.html" />
@@ -163,18 +102,14 @@
         <option value="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_huiyuan_send_detail.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_huiyuan_accept_list.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_huiyuan_accept_detail.html" />
-        <option value="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_send_list.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_send_detail.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_edit.html" />
-        <option value="$PROJECT_DIR$/application/views/show/Sarticle/article_wb_list.html" />
-        <option value="$PROJECT_DIR$/application/views/show/Sarticle/article_tw_list.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sarticle/article_list.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sarticle/article_detail.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sarticle/article_add.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sadmin/admin_index.html" />
         <option value="$PROJECT_DIR$/application/controllers/show/AdminController.class.php" />
         <option value="$PROJECT_DIR$/application/controllers/show/ArticleController.class.php" />
-        <option value="$PROJECT_DIR$/application/controllers/show/LoginController.class.php" />
         <option value="$PROJECT_DIR$/application/controllers/show/organizationController.class.php" />
         <option value="$PROJECT_DIR$/application/controllers/show/ReportController.class.php" />
         <option value="$PROJECT_DIR$/application/views/show/Spublic/header.html" />
@@ -185,7 +120,19 @@
         <option value="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_accept_list.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_huiyuan_send_list.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_huiyuan_edit.html" />
+        <option value="&lt;1236c7a3-d5e6-4a20-9217-7f5c3d1a7cac&gt;/application/config/config.php" />
+        <option value="&lt;1236c7a3-d5e6-4a20-9217-7f5c3d1a7cac&gt;/application/controllers/show/IndexController.class.php" />
+        <option value="&lt;1236c7a3-d5e6-4a20-9217-7f5c3d1a7cac&gt;/application/views/admin/Sautotable/autotable_list.html" />
+        <option value="&lt;1236c7a3-d5e6-4a20-9217-7f5c3d1a7cac&gt;/application/views/show/Sarticle/article_wb_list.html" />
+        <option value="&lt;1236c7a3-d5e6-4a20-9217-7f5c3d1a7cac&gt;/application/views/show/Sarticle/article_tw_list.html" />
+        <option value="$PROJECT_DIR$/application/controllers/show/IndexController.class.php" />
+        <option value="$PROJECT_DIR$/application/views/show/Spublic/new_notice.html" />
+        <option value="$PROJECT_DIR$/application/views/show/Sindex/index_index.html" />
+        <option value="$PROJECT_DIR$/application/views/show/Sarticle/article_tw_list.html" />
+        <option value="$PROJECT_DIR$/application/views/show/Sarticle/article_wb_list.html" />
+        <option value="$PROJECT_DIR$/application/controllers/show/LoginController.class.php" />
         <option value="$PROJECT_DIR$/application/controllers/show/GongwenController.class.php" />
+        <option value="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_send_list.html" />
       </list>
     </option>
   </component>
@@ -216,7 +163,7 @@
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="392" />
     <option name="y" value="26" />
     <option name="width" value="1400" />
@@ -275,7 +222,58 @@
             <path>
               <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
               <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="show" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="show" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Sarticle" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="show" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Sgongwen" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="show" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Sindex" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="show" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Spublic" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="qyu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="qyu" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="layer" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -400,18 +398,18 @@
       <workItem from="1522204461632" duration="22658000" />
       <workItem from="1522287395982" duration="25356000" />
       <workItem from="1522374449973" duration="23133000" />
-      <workItem from="1522459438734" duration="12528000" />
+      <workItem from="1522459438734" duration="15744000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="289105000" />
+    <option name="totallyTimeSpent" value="292321000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19669509" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1401919" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23081024" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -469,13 +467,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
           <caret line="14" column="29" lean-forward="false" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/show/Spublic/new_notice.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="25" lean-forward="false" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -568,13 +559,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/show/Sindex/index_index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="36" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_inventory_detail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
@@ -610,18 +594,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_send_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="36" lean-forward="false" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
-          <folding>
-            <element signature="n#script#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#script#3;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#script#4;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_send_detail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
@@ -633,20 +605,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
           <caret line="5" column="36" lean-forward="false" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/show/Sarticle/article_wb_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="36" lean-forward="false" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/show/Sarticle/article_tw_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="36" lean-forward="false" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -695,16 +653,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/show/LoginController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="14" column="8" lean-forward="false" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
-          <folding>
-            <marker date="1522397070757" expanded="true" signature="337:366" ph="select * fro... sl_wzbt" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/show/organizationController.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
@@ -724,51 +672,6 @@
             <marker date="1522397070569" expanded="true" signature="2190:2232" ph="select count... sl_report" />
             <marker date="1522397070569" expanded="true" signature="2910:2957" ph="select * fro... sl_report" />
             <marker date="1522397070569" expanded="true" signature="2910:2958" ph="select * fro... sl_report" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/show/IndexController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="32" column="86" lean-forward="false" selection-start-line="31" selection-start-column="8" selection-end-line="32" selection-end-column="86" />
-          <folding>
-            <element signature="n#pageSetAction#0;n#IndexController#0;n#!!top" expanded="false" />
-            <marker date="1522396699072" expanded="true" signature="644:728" ph="select * fro... sl_article" />
-            <marker date="1522396699072" expanded="true" signature="644:766" ph="select a.* f... sl_article" />
-            <marker date="1522396699072" expanded="true" signature="835:945" ph="select a.* f... sl_article" />
-            <marker date="1522396699072" expanded="true" signature="1010:1040" ph="select * fro... sl_phone" />
-            <marker date="1522396699072" expanded="true" signature="1116:1145" ph="select * fro... sl_mail" />
-            <marker date="1522396699072" expanded="true" signature="1221:1250" ph="select * fro... sl_wzbt" />
-            <marker date="1522396699072" expanded="true" signature="1553:1605" ph="select * fro... sl_wzfl" />
-            <marker date="1522396699072" expanded="true" signature="1998:2045" ph="update sl_article... " />
-            <marker date="1522396699072" expanded="true" signature="2469:2525" ph="select count... sl_article" />
-            <marker date="1522396699072" expanded="true" signature="3204:3234" ph="select * fro... sl_article" />
-            <marker date="1522396699072" expanded="true" signature="3204:3244" ph="select * fro... sl_article" />
-            <marker date="1522396699072" expanded="true" signature="3204:3268" ph="select * fro... sl_article" />
-            <marker date="1522396699072" expanded="true" signature="3204:3269" ph="select * fro... sl_article" />
-            <marker date="1522396699072" expanded="true" signature="3677:3733" ph="select count... sl_article" />
-            <marker date="1522396699072" expanded="true" signature="4412:4477" ph="select * fro... sl_article" />
-            <marker date="1522396699072" expanded="true" signature="4997:5064" ph="select * fro... sl_article" />
-            <marker date="1522396699072" expanded="true" signature="4997:5065" ph="select * fro... sl_article" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/show/AdminController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="27" column="31" lean-forward="false" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
-          <folding>
-            <element signature="n#pageSetAction#0;n#AdminController#0;n#!!top" expanded="false" />
-            <marker date="1522397070490" expanded="true" signature="778:807" ph="select * fro... sl_wzbt" />
-            <marker date="1522397070490" expanded="true" signature="1499:1539" ph="select count... sl_yhlb" />
-            <marker date="1522397070490" expanded="true" signature="2214:2238" ph="select * fro... sl_yhlb" />
-            <marker date="1522397070490" expanded="true" signature="2214:2245" ph="select * fro... sl_yhlb" />
-            <marker date="1522397070490" expanded="true" signature="2357:2394" ph="select * fro... sl_zzjg" />
-            <marker date="1522397070490" expanded="true" signature="4675:4709" ph="select mima sl_yhlb" />
-            <marker date="1522397070490" expanded="true" signature="4675:4710" ph="select mima sl_yhlb" />
-            <marker date="1522397070490" expanded="true" signature="5817:5856" ph="update sl_yhlb... " />
           </folding>
         </state>
       </provider>
@@ -913,13 +816,116 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/show/IndexController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="19" column="38" lean-forward="true" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
+          <folding>
+            <element signature="n#pageSetAction#0;n#IndexController#0;n#!!top" expanded="false" />
+            <marker date="1522483057591" expanded="true" signature="652:736" ph="select * fro... sl_article" />
+            <marker date="1522483057591" expanded="true" signature="652:774" ph="select a.* f... sl_article" />
+            <marker date="1522483057591" expanded="true" signature="843:953" ph="select a.* f... sl_article" />
+            <marker date="1522483057591" expanded="true" signature="1018:1048" ph="select * fro... sl_phone" />
+            <marker date="1522483057591" expanded="true" signature="1124:1153" ph="select * fro... sl_mail" />
+            <marker date="1522483057591" expanded="true" signature="1229:1258" ph="select * fro... sl_wzbt" />
+            <marker date="1522483057591" expanded="true" signature="1561:1613" ph="select * fro... sl_wzfl" />
+            <marker date="1522483057591" expanded="true" signature="2006:2053" ph="update sl_article... " />
+            <marker date="1522483057591" expanded="true" signature="2477:2533" ph="select count... sl_article" />
+            <marker date="1522483057591" expanded="true" signature="3212:3242" ph="select * fro... sl_article" />
+            <marker date="1522483057591" expanded="true" signature="3212:3252" ph="select * fro... sl_article" />
+            <marker date="1522483057591" expanded="true" signature="3212:3276" ph="select * fro... sl_article" />
+            <marker date="1522483057591" expanded="true" signature="3212:3277" ph="select * fro... sl_article" />
+            <marker date="1522483057591" expanded="true" signature="3685:3741" ph="select count... sl_article" />
+            <marker date="1522483057591" expanded="true" signature="4420:4485" ph="select * fro... sl_article" />
+            <marker date="1522483057591" expanded="true" signature="5005:5072" ph="select * fro... sl_article" />
+            <marker date="1522483057591" expanded="true" signature="5005:5073" ph="select * fro... sl_article" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/show/Spublic/new_notice.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="6" lean-forward="true" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/show/Sarticle/article_tw_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="64" column="68" lean-forward="false" selection-start-line="64" selection-start-column="68" selection-end-line="64" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/show/Sarticle/article_wb_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="67" column="68" lean-forward="false" selection-start-line="67" selection-start-column="68" selection-end-line="67" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/show/AdminController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="93" column="24" lean-forward="false" selection-start-line="93" selection-start-column="15" selection-end-line="93" selection-end-column="24" />
+          <folding>
+            <element signature="n#pageSetAction#0;n#AdminController#0;n#!!top" expanded="false" />
+            <marker date="1522397070490" expanded="true" signature="778:807" ph="select * fro... sl_wzbt" />
+            <marker date="1522397070490" expanded="true" signature="1499:1539" ph="select count... sl_yhlb" />
+            <marker date="1522397070490" expanded="true" signature="2214:2238" ph="select * fro... sl_yhlb" />
+            <marker date="1522397070490" expanded="true" signature="2214:2245" ph="select * fro... sl_yhlb" />
+            <marker date="1522397070490" expanded="true" signature="2357:2394" ph="select * fro... sl_zzjg" />
+            <marker date="1522397070490" expanded="true" signature="4675:4709" ph="select mima sl_yhlb" />
+            <marker date="1522397070490" expanded="true" signature="4675:4710" ph="select mima sl_yhlb" />
+            <marker date="1522397070490" expanded="true" signature="5817:5856" ph="update sl_yhlb... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/show/LoginController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="32" column="34" lean-forward="false" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
+          <folding>
+            <marker date="1522483546593" expanded="true" signature="337:366" ph="select * fro... sl_wzbt" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/show/Sindex/index_index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="452">
+          <caret line="66" column="72" lean-forward="true" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="72" />
+          <folding>
+            <element signature="n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="e#2450#2454#0" expanded="true" />
+            <element signature="e#2454#2458#0" expanded="true" />
+            <element signature="n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_send_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="90" column="49" lean-forward="true" selection-start-line="90" selection-start-column="49" selection-end-line="90" selection-end-column="49" />
+          <folding>
+            <element signature="n#script#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#script#3;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#script#4;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/show/GongwenController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="306" column="39" lean-forward="false" selection-start-line="306" selection-start-column="39" selection-end-line="306" selection-end-column="39" />
+        <state relative-caret-position="513">
+          <caret line="348" column="72" lean-forward="true" selection-start-line="348" selection-start-column="72" selection-end-line="348" selection-end-column="72" />
           <folding>
-            <element signature="e#9977#12948#0#PHP" expanded="false" />
-            <element signature="n#editAdminAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+            <element signature="e#9993#12964#0#PHP" expanded="false" />
             <element signature="n#setJsrAction#0;n#GongwenController#0;n#!!top" expanded="false" />
             <element signature="n#sendDetailAction#0;n#GongwenController#0;n#!!top" expanded="false" />
             <element signature="n#acceptDetailAction#0;n#GongwenController#0;n#!!top" expanded="false" />
@@ -927,41 +933,36 @@
             <element signature="n#isDateAction#0;n#GongwenController#0;n#!!top" expanded="false" />
             <element signature="n#isfasongAction#0;n#GongwenController#0;n#!!top" expanded="false" />
             <element signature="n#getGwLxAction#0;n#GongwenController#0;n#!!top" expanded="false" />
-            <element signature="n#getJsrAction#0;n#GongwenController#0;n#!!top" expanded="false" />
             <element signature="n#deleteSingleAction#0;n#GongwenController#0;n#!!top" expanded="false" />
             <element signature="n#deleteSingleOAction#0;n#GongwenController#0;n#!!top" expanded="false" />
             <element signature="n#deletePiliangAction#0;n#GongwenController#0;n#!!top" expanded="false" />
             <element signature="n#deletePiliangOAction#0;n#GongwenController#0;n#!!top" expanded="false" />
             <element signature="n#pageSetAction#0;n#GongwenController#0;n#!!top" expanded="false" />
-            <marker date="1522479616740" expanded="true" signature="880:909" ph="select * fro... sl_wzbt" />
-            <marker date="1522479616740" expanded="true" signature="1078:1142" ph="select id,fe... sl_wzfl" />
-            <marker date="1522479616740" expanded="true" signature="2934:2972" ph="select count... sl_gw" />
-            <marker date="1522479616740" expanded="true" signature="3498:3544" ph="select * fro... sl_gw" />
-            <marker date="1522479616740" expanded="true" signature="5704:5762" ph="select count... sl_gw_o" />
-            <marker date="1522479616740" expanded="true" signature="6558:6626" ph="select * fro... sl_gw_o" />
-            <marker date="1522479616740" expanded="true" signature="6886:6950" ph="select id,fe... sl_wzfl" />
-            <marker date="1522479616740" expanded="true" signature="7341:7377" ph="select * fro... sl_zzjg" />
-            <marker date="1522479616740" expanded="true" signature="9111:9151" ph="select count... sl_gw_o" />
-            <marker date="1522479616740" expanded="true" signature="9822:9872" ph="select * fro... sl_gw_o" />
-            <marker date="1522479616740" expanded="true" signature="11860:11990" ph="select COUNT... sl_fasong" />
-            <marker date="1522479616740" expanded="true" signature="12724:12841" ph="select b.* f... sl_fasong" />
-            <marker date="1522479616740" expanded="true" signature="13120:13184" ph="select id,fe... sl_wzfl" />
-            <marker date="1522479616740" expanded="true" signature="13235:13271" ph="select * fro... sl_zzjg" />
-            <marker date="1522479616740" expanded="true" signature="14155:14244" ph="select a.id sl_zzjg" />
-            <marker date="1522479616740" expanded="true" signature="14268:14353" ph="select COUNT... sl_zzjg" />
-            <marker date="1522479616740" expanded="true" signature="15000:15080" ph="select a.id,... sl_zzjg" />
-            <marker date="1522479616740" expanded="true" signature="15417:15447" ph="select id,le... sl_gwlx" />
-            <marker date="1522479616740" expanded="true" signature="15550:15614" ph="select id,fe... sl_wzfl" />
-            <marker date="1522479616740" expanded="true" signature="16022:16066" ph="select id,xi... sl_yhlb" />
-            <marker date="1522479616740" expanded="true" signature="16321:16354" ph="select * fro... sl_zzjg" />
-            <marker date="1522479616740" expanded="true" signature="16894:16938" ph="select id,xi... sl_yhlb" />
-            <marker date="1522479616740" expanded="true" signature="17341:17374" ph="select * fro... sl_zzjg" />
-            <marker date="1522479616740" expanded="true" signature="22086:22150" ph="select id,fe... sl_wzfl" />
-            <marker date="1522479616740" expanded="true" signature="24367:24460" ph="select b.xin... sl_fasong" />
-            <marker date="1522479616740" expanded="true" signature="26543:26608" ph="delete from sl_gw_o... " />
-            <marker date="1522479616740" expanded="true" signature="30377:30427" ph="select count... sl_wzfl" />
-            <marker date="1522479616740" expanded="true" signature="31027:31061" ph="select * fro... sl_wzfl" />
-            <marker date="1522479616740" expanded="true" signature="31027:31062" ph="select * fro... sl_wzfl" />
+            <marker date="1522484030879" expanded="true" signature="880:909" ph="select * fro... sl_wzbt" />
+            <marker date="1522484030879" expanded="true" signature="1078:1142" ph="select id,fe... sl_wzfl" />
+            <marker date="1522484030879" expanded="true" signature="2950:2988" ph="select count... sl_gw" />
+            <marker date="1522484030879" expanded="true" signature="3514:3560" ph="select * fro... sl_gw" />
+            <marker date="1522484030879" expanded="true" signature="5720:5778" ph="select count... sl_gw_o" />
+            <marker date="1522484030879" expanded="true" signature="6574:6642" ph="select * fro... sl_gw_o" />
+            <marker date="1522484030879" expanded="true" signature="6902:6966" ph="select id,fe... sl_wzfl" />
+            <marker date="1522484030879" expanded="true" signature="7357:7393" ph="select * fro... sl_zzjg" />
+            <marker date="1522484030879" expanded="true" signature="9127:9167" ph="select count... sl_gw_o" />
+            <marker date="1522484030879" expanded="true" signature="9838:9888" ph="select * fro... sl_gw_o" />
+            <marker date="1522484030879" expanded="true" signature="13136:13200" ph="select id,fe... sl_wzfl" />
+            <marker date="1522484030879" expanded="true" signature="13251:13287" ph="select * fro... sl_zzjg" />
+            <marker date="1522484030879" expanded="true" signature="14171:14260" ph="select a.id sl_zzjg" />
+            <marker date="1522484030879" expanded="true" signature="14284:14369" ph="select COUNT... sl_zzjg" />
+            <marker date="1522484030879" expanded="true" signature="15016:15096" ph="select a.id,... sl_zzjg" />
+            <marker date="1522484030879" expanded="true" signature="15433:15463" ph="select id,le... sl_gwlx" />
+            <marker date="1522484030879" expanded="true" signature="15566:15630" ph="select id,fe... sl_wzfl" />
+            <marker date="1522484030879" expanded="true" signature="16038:16082" ph="select id,xi... sl_yhlb" />
+            <marker date="1522484030879" expanded="true" signature="16337:16370" ph="select * fro... sl_zzjg" />
+            <marker date="1522484030879" expanded="true" signature="16910:16954" ph="select id,xi... sl_yhlb" />
+            <marker date="1522484030879" expanded="true" signature="17357:17390" ph="select * fro... sl_zzjg" />
+            <marker date="1522484030879" expanded="true" signature="24383:24476" ph="select b.xin... sl_fasong" />
+            <marker date="1522484030879" expanded="true" signature="30393:30443" ph="select count... sl_wzfl" />
+            <marker date="1522484030879" expanded="true" signature="31043:31077" ph="select * fro... sl_wzfl" />
+            <marker date="1522484030879" expanded="true" signature="31043:31078" ph="select * fro... sl_wzfl" />
           </folding>
         </state>
       </provider>

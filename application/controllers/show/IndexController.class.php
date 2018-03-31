@@ -17,7 +17,7 @@ class IndexController extends Controller
     public function  __construct()
     {
         ob_end_clean();
-        if($_SESSION["user"]){
+        if(!empty($_SESSION["user"])){
             self::$userData = $_SESSION["user"];
         }
         //>>设置热门推荐文章

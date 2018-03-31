@@ -30,7 +30,7 @@ class LoginController extends Controller
         if ($rs){
             $mima=md5($_POST['mima']);
             if ($rs['mima']==$mima){
-                if ($rs['status']==2){
+                if ($rs['zhuangtai']==2){
                     //>>已离职
                     $this->jump('index.php?p=show&c=login&a=index','已离职，禁止登录',3);
                 }
