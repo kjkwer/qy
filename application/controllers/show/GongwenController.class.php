@@ -101,8 +101,8 @@ class GongwenController extends BaseController
                 $seachList = [];
                 $urlList=[];
                 //设置默认时间时间段为本月初至今
-                $date1 = $_GET["date1"]?$_GET["date1"]:date("Y-m",time())."-01";
-                $date2 = $_GET["date2"]?$_GET["date2"]:date("Y-m-d",time());
+                $date1 = !empty($_GET["date1"])?$_GET["date1"]:date("Y-m",time())."-01";
+                $date2 = !empty($_GET["date2"])?$_GET["date2"]:date("Y-m-d",time());
                 $seachList[] = "Date(dtime) BETWEEN '".$date1."' and '".$date2."'";
                 $urlList[] = "date1=".$date1;
                 $urlList[] = "date2=".$date2;
@@ -449,7 +449,6 @@ class GongwenController extends BaseController
         $data["zhuanlan"] = $_POST["zhuanlan"]?self::getZlIdAction($_POST["zhuanlan"]):null;
         $data["xiangzhen"] = $_POST["xiangzhen"]?self::getCunAction($_POST["xiangzhen"]):null;
         $data["cun"] = $_POST["cun"]?self::getCunAction($_POST["cun"]):null;
-        $data["laiyuan"] = $_POST["laiyuan"]?self::getLaiyuanIdAction($_POST["laiyuan"]):null;
         $data["neirong"] = $_POST["neirong"]?$_POST["neirong"]:null;
         $data["zuozhe"] = self::$userData["id"];
         //>>保存图片
@@ -756,7 +755,7 @@ class GongwenController extends BaseController
         return $data["mingcheng"];
     }
     //>>获取工作专栏模板内容(通过专栏名)
-    public function getZlModelAction($name){
+    public function getZlModelAction(){
         $name = $_POST["name"];
         $model = new ModelNew("wzfl");
         $data = $model->where(["fenleimingcheng"=>$name])->find("model")->one();

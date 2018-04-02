@@ -37,21 +37,21 @@
 
     <div class="edit-input box">
         <form id="myform">
-            <input type="hidden" name="id" id="gwId" value="<?=$gwData['id']?$gwData['id']:'' ?>">
+            <input type="hidden" name="id" id="gwId" value="<?=!empty($gwData['id'])?$gwData['id']:'' ?>">
             <div class="edit-sse">
                 <span>公文标题</span>
-                <input type="text" name="biaoti" id="biaoti" value="<?=$gwData['biaoti']?$gwData['biaoti']:'' ?>" style="width:600px;" />
+                <input type="text" name="biaoti" id="biaoti" value="<?=!empty($gwData['biaoti'])?$gwData['biaoti']:'' ?>" style="width:600px;" />
                 <em>*请输入公文的标题，标题最多50字</em>
             </div>
             <div class="edit-sse">
                 <span>公文编号</span>
-                <input type="text" name="bianhao" id="bianhao" value="<?=$gwData['bianhao']?$gwData['bianhao']:'' ?>" style="width:600px;" />
+                <input type="text" name="bianhao" id="bianhao" value="<?=!empty($gwData['bianhao'])?$gwData['bianhao']:'' ?>" style="width:600px;" />
                 <em>*请按照公文标签的编号进行输入</em>
             </div>
             <div class="edit-sse">
                 <span>工作专栏</span>
                 <div class="inp-xia">
-                    <input type="text" name="zhuanlan" id="zhuanlan" value="<?=$gwData['zhuanlan']?self::getZlNameAction($gwData['zhuanlan']):''  ?>" class="edit-inwidt" readonly/>
+                    <input type="text" name="zhuanlan" id="zhuanlan" value="<?=!empty($gwData['zhuanlan'])?self::getZlNameAction($gwData['zhuanlan']):''  ?>" class="edit-inwidt" readonly/>
                     <div class="adit-xuan box" style="z-index: 10001">
                         <?php if($flData):?>
                         <?php foreach($flData as $fl):?>
@@ -64,9 +64,9 @@
             <div class="edit-sse relative fl" style="z-index: 9999">
                 <span>乡镇</span>
                 <div class="inp-xia">
-                    <input  type="text" name="xiangzhen" id="xiangzhen" value="<?=$gwData['xiangzhen']?self::getCunMingchengAction($gwData['xiangzhen']):self::getCunMingchengAction($bumen)  ?>" class="edit-inwidt" readonly/>
+                    <input  type="text" name="xiangzhen" id="xiangzhen" value="<?=!empty($gwData['xiangzhen'])?self::getCunMingchengAction($gwData['xiangzhen']):self::getCunMingchengAction($bumen)  ?>" class="edit-inwidt" readonly/>
                     <div class="adit-xuan box">
-                        <?php if($xiangzhenData):?>
+                        <?php if(!empty($xiangzhenData)):?>
                             <?php foreach($xiangzhenData as $xiangzhen):?>
                                 <p class="xiangzhen"><?=$xiangzhen["mingcheng"]?></p>
                             <?php endforeach;?>
@@ -75,7 +75,7 @@
                 </div>
                 <span>村</span>
                 <div class="inp-xia">
-                    <input  type="text" name="cun" id="cun" value="<?=$gwData['cun']?self::getCunMingchengAction($gwData['cun']):''  ?>" class="edit-inwidt" readonly/>
+                    <input  type="text" name="cun" id="cun" value="<?=!empty($gwData['cun'])?self::getCunMingchengAction($gwData['cun']):''  ?>" class="edit-inwidt" readonly/>
                     <div class="adit-xuan box cun">
                         <?php if($cunData):?>
                         <?php foreach($cunData as $cun):?>
@@ -89,7 +89,7 @@
             <div class="clear"></div>
             <div class="edit-sse relative">
                 <span>缩略图</span>
-                <input type="text" name="" id="" value="<?=$gwData['tupian']?basename($gwData['tupian']):'' ?>" class="edit-inwidt" readonly/>
+                <input type="text" name="" id="" value="<?=!empty($gwData['tupian'])?basename($gwData['tupian']):'' ?>" class="edit-inwidt" readonly/>
                 <div class="edit-chuan fl">上传<input type="file" name="tupian" id="tupian" value="" /></div>
                 <!--<div class="adit-tiqu fl">
                     <input type="submit" name="" id="" value="提取图片" />
@@ -100,7 +100,7 @@
                 <span>文章正文</span>
             </div>
             <script id="container" name="neirong" id="neirong" type="text/plain" style="height:700px;width: 1000px;">
-                <?=$gwData['neirong']?$gwData['neirong']:'' ?>
+                <?=!empty($gwData['neirong'])?$gwData['neirong']:'' ?>
             </script>
             <!-- 配置文件 -->
             <script type="text/javascript" src="public/ueditor/ueditor.config.js"></script>
@@ -112,8 +112,8 @@
             </script>
             <div class="edit-sse relative" style="overflow: hidden; height:auto; margin:20px 0;"></div>
             <div class="edit-quedin">
-                <a id="baocun" href="javascript:void(0)" class="wdit-a box" gwStatus="<?=$gwData['zhuangtai']?$gwData['zhuangtai']:'' ?>">保存</a>
-                <a id="fabugongwen" href="javascript:void(0)" gwStatus="<?=$gwData['zhuangtai']?$gwData['zhuangtai']:'' ?>">发送公文</a>
+                <a id="baocun" href="javascript:void(0)" class="wdit-a box" gwStatus="<?=!empty($gwData['zhuangtai'])?$gwData['zhuangtai']:'' ?>">保存</a>
+                <a id="fabugongwen" href="javascript:void(0)" gwStatus="<?=!empty($gwData['zhuangtai'])?$gwData['zhuangtai']:'' ?>">发送公文</a>
             </div>
         </form>
     </div>
@@ -198,7 +198,8 @@
                 content: '保存成功！',
                 btn: ['确认'],
                 yes: function(index, layero) {
-                    window.location.href='http://www.qy.com/index.php?p=show&c=gongwen&a=list';
+                    // window.location.href='index.php?p=show&c=article&a=list';
+                    window.history.back()
                 },
             });
         }else {
@@ -232,7 +233,8 @@
                         content: '发送成功！',
                         btn: ['确认'],
                         yes: function(index, layero) {
-                            window.location.href='http://www.qy.com/index.php?p=show&c=gongwen&a=list';
+                            // window.location.href='index.php?p=show&c=article&a=list';
+                            window.history.back()
                         },
                     });
                 }else {

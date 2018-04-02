@@ -271,7 +271,8 @@
                             content: '保存成功！',
                             btn: ['确认'],
                             yes: function(index, layero) {
-                                window.location.href='index.php?p=show&c=gongwen&a=list';
+                                // window.location.href='index.php?p=show&c=article&a=list';
+                                window.history.back()
                             },
                         });
                     });
