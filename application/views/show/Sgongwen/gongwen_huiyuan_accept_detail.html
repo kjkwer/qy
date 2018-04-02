@@ -76,9 +76,17 @@
                 </li>
             </ul>
         </div>
+        <div style="overflow: hidden; margin-top: 25px;">
+            <div class="xtwen-fabu fr huifu" bianhao="<?=$gwData['bianhao']?>">回复公文</div>
+        </div>
         <div style="height:100px;"></div>
     </div>
 </div>
-
+<script type="text/javascript">
+    $(".huifu").click(function () {
+        var bianhao = $(this).attr("bianhao");
+        window.location.href='index.php?p=show&c=gongwen&a=edit&bianhao='+bianhao;
+    })
+</script>
 </body>
 </html>

@@ -14,6 +14,7 @@ class IndexController extends Controller
     public static $phone = null;//>>联系电话
     public static $mail = null;//>>联系邮箱
     public static $title = null;//>>网站标题
+    public static $articleGlassifyData = null;
     public function  __construct()
     {
         ob_end_clean();
@@ -31,13 +32,13 @@ class IndexController extends Controller
         self::$mail = $model->findBySql("select * from sl_mail limit 1")[0]["mail"];
         //>>获取网站标题
         self::$title = $model->findBySql("select * from sl_wzbt limit 1")[0]["title"];
+        //>>获取工作专栏列表
+        self::$articleGlassifyData = $model->findBySql("select * from sl_wzfl WHERE type=1 ORDER BY sort ASC ");
     }
 
 
     //>>网站首页
     public function indexAction(){
-        $model = new ModelNew('wzfl');
-        $articleGlassifyData = $model->where(["type"=>1])->find()->all();
         //>>获取所有专栏
         $zhuanlanModel = new ModelNew('wzfl');
         $zhuanlanDatas = $zhuanlanModel->findBySql("select * from sl_wzfl WHERE type=1 ORDER by sort asc ");
@@ -47,8 +48,6 @@ class IndexController extends Controller
 
     //>>文章详情
     public function detailAction(){
-        $model = new ModelNew('wzfl');
-        $articleGlassifyData = $model->where(["type"=>1])->find()->all();
 
         $id = $_GET["id"];
         $model = new ModelNew("article");
@@ -60,8 +59,6 @@ class IndexController extends Controller
 
     //>>图文列表
     public function twAction(){
-        $model = new ModelNew('wzfl');
-        $articleGlassifyData = $model->where(["type"=>1])->find()->all();
         $wzLxId = $_GET["id"];
         $wzModel = new ModelNew("article");
             //>>设置分页数据
@@ -88,8 +85,6 @@ class IndexController extends Controller
     }
     //>>文本列表（思想理论、党史故事、入党小提示、报表下载）
     public function wbAction(){
-        $model = new ModelNew('wzfl');
-        $articleGlassifyData = $model->where(["type"=>1])->find()->all();
         $wzLxId = $_GET["id"];
         $wzModel = new ModelNew("article");
             //>>设置分页数据

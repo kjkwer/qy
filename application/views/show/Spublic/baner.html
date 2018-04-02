@@ -5,8 +5,8 @@
                 <div class="banner-scroll">
                     <div class="banner-nav ">
                         <ul>
-                            <?php if($articleGlassifyData):?>
-                            <?php foreach($articleGlassifyData as $articleGlassify):?>
+                            <?php if(self::$articleGlassifyData):?>
+                            <?php foreach(self::$articleGlassifyData as $articleGlassify):?>
                             <li><a href="index.php?p=show&c=index&a=tw&id=<?=$articleGlassify['id']?>"><?=$articleGlassify['fenleimingcheng']?></a></li>
                             <?php endforeach;?>
                             <?php endif;?>

@@ -32,6 +32,14 @@
     </div>
     <div class="xt-wenzhan">
         <div class="xtwenz-time">
+            <div class="xtwen-input inp-xia box fl" style="margin-left:16px;">
+                <input type="text" name="" id="" value="" class="edit-inwidt" readonly placeholder="最近7天"/>
+                <div class="adit-xuan box">
+                    <p class="tongji">最近7天</p>
+                    <p class="tongji">最近15天</p>
+                    <p class="tongji">最近30天</p>
+                </div>
+            </div>
         </div>
         <div class="xtable">
             <div class="tongji-top">
@@ -111,13 +119,23 @@
 <script type="text/javascript">
     var days;
     var nums;
-    function getDatas() {
-        $.post("index.php?p=show&c=statistics&a=sendData",{type:2},function (data) {
+    function getDatas(dayNum) {
+        $.post("index.php?p=show&c=statistics&a=sendData",{type:2,dayNum:dayNum},function (data) {
             days = data.days;
             nums = data.nums;
+            setTimeout(function () {
+                show();
+            },1000)
         },"json")
     }
-    getDatas();
+    getDatas('最近7天');
+</script>
+//>>数据统计
+<script type="text/javascript">
+    $(".tongji").click(function () {
+        var dayNum = $(this).text();
+        getDatas(dayNum);
+    })
 </script>
 //>>数据统计
 <script src="public/echarts/build/dist/echarts.js"></script>
@@ -186,9 +204,7 @@
             }
         );
     }
-    setTimeout(function () {
-        show();
-    },1000)
+
 </script>
 </body>
 </html>

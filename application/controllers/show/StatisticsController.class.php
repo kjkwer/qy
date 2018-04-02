@@ -11,6 +11,7 @@ class StatisticsController extends BaseController
     public static $userData = null;
     public static $workDatas = null;
     public static $title = null;//>>网站标题
+    public static $dayNum = array(7=>'最近7天',15=>'最近15天',30=>'最近30天');
     public function  __construct()
     {
         ob_end_clean();
@@ -35,9 +36,11 @@ class StatisticsController extends BaseController
     }
 
     public function sendDataAction(){
+        $dayNum = $_POST["dayNum"];
+        $n = array_search($dayNum,self::$dayNum);
         $days = array();
         $num = array();
-        for ($i=0;$i<7;$i++){
+        for ($i=0;$i<$n;$i++){
             $days[] = date("Y-m-d",time()-24*3600*$i);
         }
         $days = array_reverse($days);

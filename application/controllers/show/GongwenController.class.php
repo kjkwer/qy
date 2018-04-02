@@ -365,6 +365,7 @@ class GongwenController extends BaseController
             }else{    //>>非管理员
                 //>>获取当前用户的所在部门
                 $bumen = self::$userData["bumen"];
+                $gwData['bianhao'] = !empty($_GET["bianhao"])?$_GET["bianhao"]:'';
                 $cunData = $model->findBySql("select * from sl_zzjg WHERE fuid=$bumen");
                 include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_huiyuan_edit.html";
             }
