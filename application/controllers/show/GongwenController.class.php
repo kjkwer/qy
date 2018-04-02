@@ -233,8 +233,8 @@ class GongwenController extends BaseController
                 $seachList = [];
                 $urlList=[];
                 //设置默认时间时间段为本月初至今
-                $date1 = $_GET["date1"]?$_GET["date1"]:date("Y-m",time())."-01";
-                $date2 = $_GET["date2"]?$_GET["date2"]:date("Y-m-d",time());
+                $date1 = !empty($_GET["date1"])?$_GET["date1"]:date("Y-m",time())."-01";
+                $date2 = !empty($_GET["date2"])?$_GET["date2"]:date("Y-m-d",time());
                 $seachList[] = "Date(b.dtime) BETWEEN '".$date1."' and '".$date2."'";
                 $urlList[] = "date1=".$date1;
                 $urlList[] = "date2=".$date2;

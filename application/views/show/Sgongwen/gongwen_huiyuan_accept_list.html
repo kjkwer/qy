@@ -48,7 +48,7 @@
                 <input type="text" name="date2" id="appDate1" value="<?=$date2?>" />
             </div>
             <div class="xtwen-input inp-xia box fl" style="margin-left:16px;">
-                <input type="text" name="zhuanlan" id="zhuanlan" value="<?=$_GET['zhuanlan']?$_GET['zhuanlan']:'所有' ?>" class="edit-inwidt" readonly placeholder="工作专栏"/>
+                <input type="text" name="zhuanlan" id="zhuanlan" value="<?=!empty($_GET['zhuanlan'])?$_GET['zhuanlan']:'所有' ?>" class="edit-inwidt" readonly placeholder="工作专栏"/>
                 <div class="adit-xuan box">
                     <?php if($flData):?>
                     <p>所有</p>
@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="xtwen-input inp-xia box fl" style="margin-left:16px;">
-                <input type="text" name="zhuangtai" id="zhuangtai" value="<?=$_GET['zhuangtai']?$_GET['zhuangtai']:'所有' ?>" class="edit-inwidt" readonly placeholder="选择状态"/>
+                <input type="text" name="zhuangtai" id="zhuangtai" value="<?=!empty($_GET['zhuangtai'])?$_GET['zhuangtai']:'所有' ?>" class="edit-inwidt" readonly placeholder="选择状态"/>
                 <div class="adit-xuan box">
                     <p>所有</p>
                     <p>已读</p>
@@ -67,7 +67,7 @@
                 </div>
             </div>
             <div class="xtwen-sou xtwen-input fl box">
-                <input type="text" name="guanjianci" id="guanjianci" value="<?=$_GET['guanjianci']?$_GET['guanjianci']:'' ?>" placeholder="关键字收索"/>
+                <input type="text" name="guanjianci" id="guanjianci" value="<?=!empty($_GET['guanjianci'])?$_GET['guanjianci']:'' ?>" placeholder="关键字收索"/>
                 <a class="sousuo" href="javascript:void(0)"><img src="public/yz/images/wenzi-sou_03.png"/></a>
             </div>
             </form>

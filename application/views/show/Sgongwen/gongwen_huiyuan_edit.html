@@ -140,7 +140,7 @@
         var biaoti = $("#biaoti").val();
         var bianhao = $("#bianhao").val();
         var id = $("#gwId").val();
-        var tupian = $("#tupian").val();
+        var cun = $("#cun").val();
         if (biaoti==""){
             layer.alert("标题不能为空")
             return false;
@@ -151,6 +151,10 @@
         }
         if (ue.hasContents()==false){
             layer.alert("内容不能为空")
+            return false;
+        }
+        if (cun==""){
+            layer.alert("编号不能为空")
             return false;
         }
         // console.log(form);return;

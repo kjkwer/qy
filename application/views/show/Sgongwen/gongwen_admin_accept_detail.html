@@ -85,9 +85,9 @@
         </div>
 
         <div class="edit-quedin" style="text-align: right;">
-            <a href="javascript:void(0)" gwStatus="<?=$gwData['zhuangtai']?>" gwId="<?=$gwData['id']?>" class="tuihui">退回公文</a>
             <a id="shenhe" gwId="<?=$gwData['id']?>" gwStatus="<?=$gwData['zhuangtai']?>" href="javascript:void(0)" class="wdit-a box">设为已审核</a>
             <a href="javascript:void(0)" gwStatus="<?=$gwData['zhuangtai']?>">推荐公文</a>
+            <a href="javascript:void(0)" gwStatus="<?=$gwData['zhuangtai']?>" gwId="<?=$gwData['id']?>" class="tuihui">退回公文</a>
         </div>
 
 
@@ -183,7 +183,8 @@
                     content: '退回成功！',
                     btn: ['确认'],
                     yes: function(index, layero) {
-                        window.location.href="http://www.qy.com/index.php?p=show&c=gongwen&a=accept&zlId=<?=$gwData['zhuanlan']?>";
+                        // window.location.href="http://www.qy.com/index.php?p=show&c=gongwen&a=accept&zlId=<?=$gwData['zhuanlan']?>";
+                        window.history.back()
                     },
                 });
             }else {
@@ -222,7 +223,8 @@
                     content: '审核通过！',
                     btn: ['确认'],
                     yes: function(index, layero) {
-                        window.location.href="http://www.qy.com/index.php?p=show&c=gongwen&a=accept&zlId=<?=$gwData['zhuanlan']?>";
+                        // window.location.href="http://www.qy.com/index.php?p=show&c=gongwen&a=accept&zlId=<?=$gwData['zhuanlan']?>";
+                        window.history.back()
                     },
                 });
             }else {
@@ -248,7 +250,8 @@
                     content: '推荐成功！',
                     btn: ['确认'],
                     yes: function(index, layero) {
-                        window.location.href="http://www.qy.com/index.php?p=show&c=gongwen&a=accept&zlId=<?=$gwData['zhuanlan']?>";
+                        // window.location.href="http://www.qy.com/index.php?p=show&c=gongwen&a=accept&zlId=<?=$gwData['zhuanlan']?>";
+                        window.history.back()
                     },
                 });
             }else {
