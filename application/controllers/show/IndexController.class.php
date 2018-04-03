@@ -58,7 +58,11 @@ class IndexController extends Controller
         //>>增加人气
         $model->query("update sl_article set renqi = renqi+1 WHERE id=$id");
         $article = $model->findOne($id);
-        include CUR_VIEW_PATH."Sarticle" . DS . "article_detail.html";
+        if(self::isWapAction()) {
+            include CUR_VIEW_PATH."Sarticle" . DS . "wap_article_detail.html";
+        }else{
+            include CUR_VIEW_PATH."Sarticle" . DS . "article_detail.html";
+        }
     }
 
     //>>图文列表

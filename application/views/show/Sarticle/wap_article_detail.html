@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<?php include CUR_VIEW_PATH."Spublic/wap_head.html";?>
+<body style="background:#e3e3e3;">
+<div class="max">
+    <!--header-->
+    <div class="header bai relative">
+        <div class="container">
+            <div class="fanhui fl">
+                <a href="javascript:history.go(-1);">
+                    <img src="public/wapyz/images/fanhui_03.png"/>
+                </a>
+            </div>
+            <div class="head-biao absolute"><?=self::getZhuanlanAction($article["zhuanlan"])?></div>
+            <div class="head-click fr" style="background:url(public/wapyz/images/click-navs_03.png) no-repeat;"></div>
+        </div>
+    </div>
+
+
+
+    <!--neirong-->
+    <div class="fuoin-nei">
+        <div class="container">
+            <div class="fupin-top">
+                <div class="fupin-xxti"><?=$article["biaoti"]?></div>
+                <div class="fupin-xxtime">
+                    <span><?=$article["dtime"]?></span>
+                    <span>来源: <?=$article["xiangzhen"]==""?"雅江党建":self::getCunMingchengAction($article["xiangzhen"])."-".self::getCunMingchengAction($article["cun"]) ?></span>
+                    <span>浏览：<?=$article["renqi"]?></span>
+                </div>
+            </div>
+
+            <div class="neirong">
+                <?=$article["neirong"]?>
+            </div>
+
+            <style>
+                .bdshare-button-style0-24 a, .bdshare-button-style0-24 .bds_more{
+                    background-image:url(/public/wapyz/images/fenxiang_03.jpg);
+                    background-size:1.11rem;
+                    background-repeat:no-repeat;
+                }
+                .bdshare-button-style0-24 .bds_qzone{
+                    background-position:0 0 !important;
+                    padding-left:0.24rem;
+                    height:0.24rem;
+                }
+                .bdshare-button-style0-24 .bds_sqq{
+                    background-position:-0.29rem 0 !important;
+                    padding-left:0.24rem;
+                    height:0.24rem;
+                }
+                .bdshare-button-style0-24 .bds_tsina{
+                    background-position:-0.58rem 0 !important;
+                    padding-left:0.24rem;
+                    height:0.24rem;
+                }
+                .bdshare-button-style0-24 .bds_weixin{
+                    background-position:100% 0 !important;
+                    padding-left:0.24rem;
+                    height:0.24rem;
+                }
+            </style>
+            <div class="clear" style="height:0.35rem;"></div>
+            <div class="fl" style="color:#666; margin-top:0.01rem; font-size:0.24rem;">分享到：</div>
+
+            <div class="fenxiang">
+                <div class="bdsharebuttonbox"><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+                <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+            </div>
+        </div>
+        <div class="clear" style="height:0.35rem;"></div>
+    </div>
+
+
+    <!---->
+</div>
+
+<!--fixed-bottom-->
+<div style="height:1.05rem;"></div>
+<?php include CUR_VIEW_PATH."Spublic/wap_index_relation.html";?>
+<script type="text/javascript">
+    var mySwiper = new Swiper('.banner', {
+        loop: true,
+        autoplay:4000,
+        pagination: '.swiper-pagination',
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        paginationClickable: true,
+        calculateHeight: true
+
+    });
+
+</script>
+<script>
+
+
+
+
+
+</script>
+</body>
+</html>
