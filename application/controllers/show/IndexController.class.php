@@ -23,7 +23,7 @@ class IndexController extends Controller
         }
         //>>设置热门推荐文章
         $model = new ModelNew("article");
-        self::$hotArticle = $model->findBySql("select a.* from sl_article as a join sl_wzfl as b on a.zhuanlan = b.id where b.type=1 or b.type=2 ORDER BY id DESC limit 7");
+        self::$hotArticle = $model->findBySql("select a.* from sl_article as a join sl_wzfl as b on a.zhuanlan=b.id WHERE b.type!=3 ORDER BY a.renqi DESC limit 7");
         //>>获取最新公告
         self::$newNotice = $model->findBySql("select a.* from sl_article as a join sl_wzfl as b on a.zhuanlan = b.id where b.type=3 ORDER BY id DESC limit 8");
         //>>获取联系电话

@@ -96,7 +96,7 @@ class ArticleController  extends BaseController
         }
         $data["neirong"] = $_POST["neirong"]?$_POST["neirong"]:null;
         $data["zhuanlan"] = $_POST["zhuanlan"]?self::getfenleiIdAction($_POST["zhuanlan"]):null;
-        $data["paixu"] = $_POST["paixu"]?$_POST["paixu"]:null;
+//        $data["paixu"] = $_POST["paixu"]?$_POST["paixu"]:null;
         $data["gengxinshijian"] = $_POST["gengxinshijian"]?$_POST["gengxinshijian"]:null;
         //>>保存图片
         $imageArray = $_FILES["tupian"]?$_FILES["tupian"]:null;

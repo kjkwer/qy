@@ -98,11 +98,6 @@
             </div>
 
             <div class="edit-sse relative">
-                <span>排序</span>
-                <input type="text" name="paixu" id="paixu" value="<?=!empty($articleData['paixu'])?$articleData['paixu']:'' ?>" class="edit-inwidt" />
-            </div>
-
-            <div class="edit-sse relative">
                 <span>更新时间</span>
                 <div class="time-ico">
                     <input type="text" name="gengxinshijian" id="appDateTime" value="" class="edit-inwidt" />
@@ -208,8 +203,8 @@
                         content: '保存成功！',
                         btn: ['确认'],
                         yes: function(index, layero) {
-                            // window.location.href='index.php?p=show&c=article&a=list';
-                            window.history.back()
+                            window.location.href='index.php?p=show&c=article&a=list';
+                            // window.history.back()
                         },
                     });
                 }
