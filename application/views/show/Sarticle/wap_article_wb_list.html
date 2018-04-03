@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<?php include CUR_VIEW_PATH."Spublic/wap_head.html";?>
+<body style="background:#e3e3e3;">
+<div class="max">
+    <!--header-->
+    <div class="header bai relative">
+        <div class="container">
+            <div class="fanhui fl">
+                <a href="javascript:history.go(-1);">
+                    <img src="public/wapyz/images/fanhui_03.png"/>
+                </a>
+            </div>
+            <div class="head-biao absolute">思想理论</div>
+            <div class="head-click fr" style="background:url(public/wapyz/images/click-navs_03.png) no-repeat;"></div>
+        </div>
+    </div>
+    <!--nei-nav-->
+    <div class="nei-nav">
+        <ul>
+            <li class="<?=$wzLxId==41?'nav-li':''?>"><a href="index.php?p=show&c=index&a=wb&id=41">思想理论</a></li>
+            <li class="<?=$wzLxId==42?'nav-li':''?>"><a href="index.php?p=show&c=index&a=wb&id=42">党史故事</a></li>
+            <li class="<?=$wzLxId==43?'nav-li':''?>"><a href="index.php?p=show&c=index&a=wb&id=43">入党小提示</a></li>
+            <li class="<?=$wzLxId==44?'nav-li':''?>"><a href="index.php?p=show&c=index&a=wb&id=44">报表下载</a></li>
+        </ul>
+    </div>
+
+    <!--neirong-->
+    <div class="fuoin-list">
+
+        <ul>
+            <?php if($articleData):?>
+            <?php foreach($articleData as $article):?>
+            <li>
+                <a href="index.php?p=show&c=index&a=detail&id=<?=$article['id']?>">
+                    <div class="fipin-text fr">
+                        <p><?=$article["biaoti"] ?></p>
+                        <em><?=$article["dtime"]?></em>
+                    </div>
+                </a>
+            </li>
+            <?php endforeach;?>
+            <?php endif;?>
+        </ul>
+    </div>
+    <div class="jiazai">
+        <?php
+            if($page!=$max){
+                echo  "<a href='index.php?p=show&c=index&a=wb&id=".$wzLxId."&page=".($page+1)."'>加载更多&gt;&gt;</a>";
+                }else{
+                echo  "<a href='javascript:void(0)'>已到最后一页</a>";
+                }
+        ?>
+    </div>
+
+    <!---->
+</div>
+
+<!--fixed-bottom-->
+<div style="height:1.05rem;"></div>
+<?php include CUR_VIEW_PATH."Spublic/wap_index_relation.html";?>
+<script type="text/javascript">
+    var mySwiper = new Swiper('.banner', {
+        loop: true,
+        autoplay:4000,
+        pagination: '.swiper-pagination',
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        paginationClickable: true,
+        calculateHeight: true
+
+    });
+
+</script>
+<script>
+
+
+
+
+
+</script>
+</body>
+</html>

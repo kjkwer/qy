@@ -89,7 +89,12 @@ class IndexController extends Controller
             $init = $pageData["init"];
             $max = $pageData["max"];
             $articleData = $wzModel->findBySql("select * from sl_article WHERE zhuanlan=$wzLxId ORDER BY id DESC $limit");
-        include CUR_VIEW_PATH."Sarticle" . DS . "article_tw_list.html";
+
+        if(self::isWapAction()) {
+            include CUR_VIEW_PATH."Sarticle" . DS . "wap_article_tw_list.html";
+        }else{
+            include CUR_VIEW_PATH."Sarticle" . DS . "article_tw_list.html";
+        }
     }
     //>>文本列表（思想理论、党史故事、入党小提示、报表下载）
     public function wbAction(){
@@ -115,7 +120,11 @@ class IndexController extends Controller
             $init = $pageData["init"];
             $max = $pageData["max"];
             $articleData = $wzModel->findBySql("select * from sl_article WHERE zhuanlan=$wzLxId ORDER BY id DESC $limit");
-        include CUR_VIEW_PATH."Sarticle" . DS . "article_wb_list.html";
+        if(self::isWapAction()) {
+            include CUR_VIEW_PATH."Sarticle" . DS . "wap_article_wb_list.html";
+        }else{
+            include CUR_VIEW_PATH."Sarticle" . DS . "article_wb_list.html";
+        }
     }
 
 
