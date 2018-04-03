@@ -1,0 +1,24 @@
+<div class="header fixed">
+    <div class="container">
+        <div class="logo fl">
+            <a href="index.php"></a>
+        </div>
+        <div class="head-sou fl box">
+            <input type="text" name="" id="" value="" placeholder="请输入关键字"class="box"/>
+        </div>
+        <div class="head-login fl">
+            <?php if(self::$userData==null):?>
+            <a href="index.php?p=show&c=login&a=index">
+                <img src="public/wapyz/images/head-login_06.png"/>
+                登录
+            </a>
+            <?php else:?>
+            <a href="index.php?p=show&c=admin&a=index">
+                <img src="public/wapyz/images/head-login_06.png"/>
+                <?=self::$userData["xingming"]?>
+            </a>
+            <?php endif;?>
+        </div>
+        <div class="head-click fr"></div>
+    </div>
+</div>

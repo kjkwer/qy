@@ -1,0 +1,24 @@
+<div class="head-nav fixed box">
+    <div class="max relative">
+        <div class="guanbi">关闭</div>
+        <div class="container">
+            <ul>
+                <?php if(self::$articleGlassifyData):?>
+                <?php foreach(self::$articleGlassifyData as $articleGlassify):?>
+                <li><a href="index.php?p=show&c=index&a=tw&id=<?=$articleGlassify['id']?>"><?=$articleGlassify['fenleimingcheng']?></a></li>
+                <?php endforeach;?>
+                <?php endif;?>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!--banner-->
+<div class="swiper-container banner">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide"><a href=""><img src="public/wapyz/images/banner_02.jpg" width="100%"/></a></div>
+        <div class="swiper-slide"><a href=""><img src="public/wapyz/images/banner_02.jpg" width="100%"/></a></div>
+        <div class="swiper-slide"><a href=""><img src="public/wapyz/images/banner_02.jpg" width="100%"/></a></div>
+    </div>
+    <div class="swiper-pagination"></div>
+</div>

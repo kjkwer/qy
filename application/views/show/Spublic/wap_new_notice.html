@@ -1,0 +1,17 @@
+<div class="in-loucen">
+    <div class="container">
+        <div class="in-h1">
+            <span>最新公告</span>
+            <a href="">更多&gt;&gt;</a>
+        </div>
+        <div class="in-newgao">
+            <ul>
+                <?php if(self::$newNotice):?>
+                <?php foreach(self::$newNotice as $notice):?>
+                <li><a href="index.php?p=show&c=index&a=detail&id=<?=$notice['id']?>"><?=$notice["biaoti"]?></a></li>
+                <?php endforeach;?>
+                <?php endif;?>
+            </ul>
+        </div>
+    </div>
+</div>

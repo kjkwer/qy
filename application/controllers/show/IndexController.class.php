@@ -43,7 +43,11 @@ class IndexController extends Controller
         $zhuanlanModel = new ModelNew('wzfl');
         $zhuanlanDatas = $zhuanlanModel->findBySql("select * from sl_wzfl WHERE type=1 ORDER by sort asc ");
 //        var_dump($zhuanlanDatas);exit();
-        include CUR_VIEW_PATH."Sindex" . DS . "index_index.html";
+        if(self::isWapAction()) {
+            include CUR_VIEW_PATH."Sindex" . DS . "wap_index_index.html";
+        }else{
+            include CUR_VIEW_PATH."Sindex" . DS . "index_index.html";
+        }
     }
 
     //>>文章详情
@@ -153,5 +157,26 @@ class IndexController extends Controller
             }
         }
         return ["init"=>$init,'max'=>$max];
+    }
+    //>>检测用户是否为手机登录
+    public static function isWapAction(){
+        // 先检查是否为wap代理，准确度高
+        if(!empty($_SERVER['HTTP_VIA'])){
+            if(stristr($_SERVER['HTTP_VIA'],"wap")){
+                return true;
+            }
+        }
+
+        // 检查浏览器是否接受 WML.
+        elseif(strpos(strtoupper($_SERVER['HTTP_ACCEPT']),"VND.WAP.WML") > 0){
+            return true;
+        }
+        //检查USER_AGENT
+        elseif(preg_match('/(blackberry|configuration\/cldc|hp |hp-|htc |htc_|htc-|iemobile|kindle|midp|mmp|motorola|mobile|nokia|opera mini|opera |Googlebot-Mobile|YahooSeeker\/M1A1-R2D2|android|iphone|ipod|mobi|palm|palmos|pocket|portalmmm|ppc;|smartphone|sonyericsson|sqh|spv|symbian|treo|up.browser|up.link|vodafone|windows ce|xda |xda_)/i', $_SERVER['HTTP_USER_AGENT'])){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }
