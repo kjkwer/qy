@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<?php include CUR_VIEW_PATH."Spublic/wap_head.html";?>
+<body style="background:#e3e3e3;">
+
+<div class="max">
+
+    <?php include CUR_VIEW_PATH."Spublic/wap_head_ei.html";?>
+
+    <!--neirong-->
+    <div class="fabu-input">
+        <div class="container">
+            <form id="myfrom" action="index.php?p=show&c=gongwen&a=editAdmin" method="get" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="<?=!empty($gwData['id'])?$gwData['id']:'' ?>">
+                <input type="text" name="biaoti" id="biaoti" value="<?=!empty($gwData['biaoti'])?$gwData['biaoti']:'' ?>" placeholder="公文标题" class="input-li"/>
+                <input type="text" name="bianhao" id="bianhao" value="<?=!empty($gwData['bianhao'])?$gwData['bianhao']:'' ?>" placeholder="公文编号" class="input-li"/>
+                <div class="div-fabu">
+                    <input type="text" name="zhuanlan" id="zhuanlan" value="<?=!empty($gwData['zhuanlan'])?self::getZlNameAction($gwData['zhuanlan']):''  ?> " placeholder="工作专栏" class="input-li" readonly/>
+                    <div class="div-fabux">
+                        <?php if($flData):?>
+                        <?php foreach($flData as $fl):?>
+                        <p><?=$fl["mingcheng"]?></p>
+                        <?php endforeach;?>
+                        <?php endif;?>
+                    </div>
+                </div>
+                <input type="text" name="jiezhishijian" id="appDateTime" value="" placeholder="截至时间" class="input-li"/>
+                <div class="edit-sse relative" style="overflow: hidden; height:auto;">
+                </div>
+                <script id="container" name="neirong" id="neirong" type="text/plain" style="height:700px;width: 100%;">
+                    <?=!empty($gwData['neirong'])?$gwData['neirong']:'' ?>
+                </script>
+                <!-- 配置文件 -->
+                <script type="text/javascript" src="public/ueditor/ueditor.config.js"></script>
+                <!-- 编辑器源码文件 -->
+                <script type="text/javascript" src="public/ueditor/ueditor.all.js"></script>
+                <!-- 实例化编辑器 -->
+                <script type="text/javascript">
+                    var ue = UE.getEditor('container');
+                </script>
+                <div class="edit-sse relative" style="overflow: hidden; height:auto; margin:20px 0;"></div>
+                <div class="fabu-song">抄送人</div>
+                <div class="fabu-rideo">
+                    <div class="fabu-rideos">
+                        <?php if($jsrys):?>
+                        <?php foreach($jsrys as $jsry):?>
+                        <label nameid="<?=$jsry['id']?>" class="<?=!empty($gwData['id'])?self::isfasongAction($jsry['id'],$gwData['id']):''   ?>"><em></em><?=$jsry["xingming"]?></label>
+                        <?php endforeach;?>
+                        <?php endif;?>
+                    </div>
+                </div>
+
+                <div class="qun-fan">
+                    <ul>
+                        <li><em></em>全选</li>
+                        <li><em></em>反选</li>
+                    </ul>
+                </div>
+                <input type="button" name="baocun" id="baocun" value="发布公文" class="fabu-submit"/>
+            </form>
+        </div>
+    </div>
+
+
+
+
+    <div style="height:0.2rem;"></div>
+
+
+</div>
+<script>
+    $(".ck-state tr").each(function(){
+        if($(this).find(".state-te em").text()=="未完成"){
+            $(this).find(".state-te img").show();
+            $(this).find(".state-te em").css("color","#9d9d9d");
+        }
+    })
+
+    $(".fabu-rideo label").on("click",function(){
+        $(this).toggleClass("em-add");
+    })
+    $(".qun-fan li").on("click",function(){
+
+        if($(this).index()==0){
+            $(this).toggleClass("em-add").siblings().removeClass("em-add");
+            if($(this).attr("class").indexOf("em-add")>-1){
+                $(".fabu-rideo label").addClass("em-add");
+            }else{
+                $(".fabu-rideo label").removeClass("em-add");
+            }
+        }else if($(this).index()==1){
+            $(this).addClass("em-add").siblings().removeClass("em-add");
+            $(".fabu-rideo label").each(function(){
+
+                if($(this).attr("class")=="em-add"){
+                    $(this).removeClass("em-add");
+                }else{
+                    $(this).addClass("em-add");
+                }
+            })
+
+        }
+    })
+</script>
+<script type="text/javascript">
+    $(function() {
+        var oDate = new Date();
+        var currYear = (new Date()).getFullYear();
+        var opt = {};
+        opt.date = {
+            preset: 'date'
+        };
+
+        opt.datetime = {
+            preset: 'datetime'
+        };
+        opt.time = {
+            preset: 'time'
+        };
+
+        opt.default = {
+            theme: 'android-ics light', //皮肤样式
+            display: 'modal', //显示方式
+            mode: 'scroller', //日期选择模式
+            dateFormat: 'yyyy-mm-dd',
+            lang: 'zh',
+            showNow: true,
+            nowText: "今天",
+            startYear: currYear - 10, //开始年份
+            endYear: currYear + 10 //结束年份
+        };
+
+        var optDateTime = $.extend(opt['datetime'], opt['default']);
+        console.log()
+        $("#appDateTime").mobiscroll(optDateTime).datetime(optDateTime);
+
+        $("#appDateTime").val(oDate.getFullYear() + "-" + (oDate.getMonth() + 1) + "-" + oDate.getDate() + " " + oDate.getHours() + ":" + oDate.getMinutes() + ":" + oDate.getSeconds())
+    });
+</script>
+<!--保存公文-->
+<script type="text/javascript">
+    $("#baocun").click(function () {
+        var form = new FormData(document.getElementById("myfrom"));
+        var biaoti = $("#biaoti").val();
+        var bianhao = $("#bianhao").val();
+        var id = $("#gwId").val();
+        if (biaoti==""){
+            layer.alert("标题不能为空")
+            return false;
+        }
+        if (bianhao==""){
+            layer.alert("编号不能为空")
+            return false;
+        }
+        if (ue.hasContents()==false){
+            layer.alert("内容不能为空")
+            return false;
+        }
+
+        var lists = $("label[class='em-add']");
+        var ids = new Array();
+        var i = 0;
+        lists.each(function () {
+            if ($(this).attr("nameid")){
+                ids[i] = $(this).attr("nameid")
+            }
+            i++;
+        });
+       if (ids.length==0){
+           layer.alert("请选择抄送人")
+           return false;
+       }
+
+        $.ajax({
+            url:"index.php?p=show&c=gongwen&a=editAdmin",
+            type:"post",
+            data:form,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success:function(data){
+                if (data != 500){
+                    //>>保存成功
+                    // layer.alert("保存成功")
+                    // window.location.href='http://www.qy.com/index.php?p=show&c=gongwen&a=list';
+                    $.post("index.php?p=show&c=gongwen&a=setJsr",{gwId:data,jsrs:ids},function (data) {
+                        layer.open({
+                            content: '保存成功！',
+                            btn: ['确认'],
+                            yes: function(index, layero) {
+                                window.location.href='index.php?p=show&c=gongwen&a=list';
+                            },
+                        });
+                    });
+                }
+            },
+            error:function(e){
+                layer.alert("保存失败")
+                return false;
+            }
+        })
+    })
+</script>
+</body>
+</html>

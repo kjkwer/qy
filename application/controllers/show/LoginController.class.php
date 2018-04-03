@@ -46,6 +46,7 @@ class LoginController extends Controller
                 $_SESSION["user"]['zhicheng']=$rs['zhicheng'];
                 $_SESSION["user"]['guanliyuan']=$rs['guanliyuan'];
                 $_SESSION["user"]['personnel']=$rs['personnel'];
+
                 $this->jump('index.php?p=show&c=gongwen&a=list','登录成功',3);
             }else{
                 $this->jump('index.php?p=show&c=login&a=index','密码错误',3);

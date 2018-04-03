@@ -249,10 +249,10 @@
             }
             i++;
         });
-//        if (ids.length==0){
-//            layer.alert("请选择抄送人")
-//            return false;
-//        }
+       if (ids.length==0){
+           layer.alert("请选择抄送人")
+           return false;
+       }
 
         $.ajax({
             url:"index.php?p=show&c=gongwen&a=editAdmin",

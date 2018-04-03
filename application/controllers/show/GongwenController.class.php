@@ -92,7 +92,11 @@ class GongwenController extends BaseController
             $pageData = self::pageSetAction($page,$maxPage);
             $init = $pageData["init"];
             $max = $pageData["max"];
-            include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_admin_send_list.html";
+            if(self::isWapAction()) {
+                include CUR_VIEW_PATH."Sgongwen" . DS . "wap_gongwen_admin_send_list.html";
+            }else{
+                include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_admin_send_list.html";
+            }
         }else{    //>>非管理员
             //>>获取用户发送的公文数据
             $user_id = self::$userData["id"];
@@ -361,7 +365,11 @@ class GongwenController extends BaseController
                 //>>获取接收公文人员数据
                 $adminModel = new ModelNew("yhlb");
                 $jsrys = $adminModel->findBySql("select id,xingming from sl_yhlb WHERE id != $user_id");
-                include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_admin_edit.html";
+                if(self::isWapAction()) {
+                    include CUR_VIEW_PATH."Sgongwen" . DS . "wap_gongwen_admin_edit.html";
+                }else{
+                    include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_admin_edit.html";
+                }
             }else{    //>>非管理员
                 //>>获取当前用户的所在部门
                 $bumen = self::$userData["bumen"];
@@ -380,7 +388,11 @@ class GongwenController extends BaseController
                 //>>获取接收公文人员数据
                 $adminModel = new ModelNew("yhlb");
                 $jsrys = $adminModel->findBySql("select id,xingming from sl_yhlb WHERE id != $user_id");
-                include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_admin_edit.html";
+                if(self::isWapAction()) {
+                    include CUR_VIEW_PATH."Sgongwen" . DS . "wap_gongwen_admin_edit.html";
+                }else{
+                    include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_admin_edit.html";
+                }
             }else{    //>>非管理员
                 //>>获取需编辑公文的数据
                 $model = new ModelNew("gw_o");
@@ -496,7 +508,11 @@ class GongwenController extends BaseController
             $model = new ModelNew("gw");
             $gwData = $model->findOne($id);
             //>>获取公文内容
-            include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_admin_send_detail.html";
+            if(self::isWapAction()) {
+                include CUR_VIEW_PATH."Sgongwen" . DS . "wap_gongwen_admin_send_detail.html";
+            }else{
+                include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_admin_send_detail.html";
+            }
         }else{     //非管理员
             //>>获取公文内容
             $model = new ModelNew("gw_o");
@@ -817,5 +833,27 @@ class GongwenController extends BaseController
             }
         }
         return ["init"=>$init,'max'=>$max];
+    }
+
+    //>>检测用户是否为手机登录
+    public static function isWapAction(){
+        // 先检查是否为wap代理，准确度高
+        if(!empty($_SERVER['HTTP_VIA'])){
+            if(stristr($_SERVER['HTTP_VIA'],"wap")){
+                return true;
+            }
+        }
+
+        // 检查浏览器是否接受 WML.
+        elseif(strpos(strtoupper($_SERVER['HTTP_ACCEPT']),"VND.WAP.WML") > 0){
+            return true;
+        }
+        //检查USER_AGENT
+        elseif(preg_match('/(blackberry|configuration\/cldc|hp |hp-|htc |htc_|htc-|iemobile|kindle|midp|mmp|motorola|mobile|nokia|opera mini|opera |Googlebot-Mobile|YahooSeeker\/M1A1-R2D2|android|iphone|ipod|mobi|palm|palmos|pocket|portalmmm|ppc;|smartphone|sonyericsson|sqh|spv|symbian|treo|up.browser|up.link|vodafone|windows ce|xda |xda_)/i', $_SERVER['HTTP_USER_AGENT'])){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }
