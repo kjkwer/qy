@@ -16,7 +16,7 @@ class AdminController extends BaseController
     public function  __construct()
     {
         ob_end_clean();
-        if(!$_SESSION["user"]){
+        if(empty($_SESSION["user"])){
             $this->jump('index.php?p=show&c=login&a=index','请先登录',3);
         }else{
             self::$userData = $_SESSION["user"];

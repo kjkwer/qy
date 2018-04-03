@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<?php include CUR_VIEW_PATH."Spublic/wap_head.html";?>
+<body style="background:#e3e3e3;">
+<div class="logins fixed">
+    <div class="max">
+        <div class="table">
+            <div class="table-cell">
+                <div class="login">
+                    <form action="index.php?p=show&c=login&a=check" id="myfrom" method="post">
+                    <div class="xt-logo"><img src="public/wapyz/images/xt-logo_03.png"/></div>
+                    <div class="input-lgin">
+                        <div class="lohin-input">
+                            <input type="text" name="zhanghao" id="zhanghao"  value="" style="background:url(public/wapyz/images/login-ico1_03.png) no-repeat 0.15rem center;background-size:0.26rem;" placeholder="请输入账号"/>
+                        </div>
+                        <div class="lohin-input">
+                            <input type="password" name="mima" id="mima"  value="" style="background:url(public/wapyz/images/login-ico_03.png) no-repeat 0.15rem center;background-size:0.26rem;" placeholder="请输入密码"/>
+                        </div>
+                    </div>
+                    <input type="submit" name="" id="" value="登  录" class="login-submit"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="max">
+
+
+</div>
+<!--数据验证-->
+<script type="text/javascript">
+    $("#myfrom").submit(function () {
+        var zhanghao = $("#zhanghao").val();
+        var mima = $("#mima").val();
+        if (zhanghao==""){
+            layer.alert("请输入账号")
+            return false;
+        }
+        if (mima==""){
+            layer.alert("请输入密码")
+            return false;
+        }
+    })
+</script>
+</body>
+</html>
