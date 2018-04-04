@@ -14,7 +14,6 @@
                 <td class="nav-fanli">选择状态<img src="public/wapyz/images/xiala_06.png"/><em></em></td>
             </tr>
         </table>
-        <form action="index.php?p=show&c=gongwen&a=list" style="height: 100%" method="get" id="sousuoForm">
         <div class="wen-fixd absolute">
             <ul>
                 <li class="wen-dinoe">
@@ -33,11 +32,11 @@
                     </div>
                 </li>
                 <li class="wen-di">
-                    <div class="zhongbao">
+                    <div class="zhongbao" id="zhuanlan">
                         <?php if($flData):?>
-                        <p>所有</p>
+                        <p class="<?=!empty($_GET['zhuanlan'])?'':'p-hover' ?>">所有</p>
                         <?php foreach($flData as $fl):?>
-                        <p><?=$fl["mingcheng"]?></p>
+                        <p class="<?=!empty($_GET['zhuanlan'])&&$_GET['zhuanlan']==$fl['mingcheng']?'p-hover':'' ?>"><?=$fl["mingcheng"]?></p>
                         <?php endforeach;?>
                         <?php endif;?>
                     </div>
@@ -50,10 +49,10 @@
                 </li>
                 <li class="wen-ditwo">
 
-                    <div class="posin-zutai">
-                        <p>所有</p>
-                        <p>正常</p>
-                        <p>已过期</p>
+                    <div class="posin-zutai" id="zhuangtai">
+                        <p class="<?=!empty($_GET['zhuangtai'])?'':'p-hover' ?>">所有</p>
+                        <p class="<?=!empty($_GET['zhuangtai'])&&$_GET['zhuangtai']=='正常'?'p-hover':'' ?>">正常</p>
+                        <p class="<?=!empty($_GET['zhuangtai'])&&$_GET['zhuangtai']=='已过期'?'p-hover':'' ?>">已过期</p>
                     </div>
 
                     <div class="que-con">
@@ -67,15 +66,27 @@
         </div>
     </div>
     <!--neirong-->
+    <!--neirong-->
+    <style>
+        .nei-sou-inp p{
+            position: absolute;
+            top:0;
+            right: 0.17rem;
+            height:100%;
+            width:0.5rem;
+            z-index: 66;
+            cursor: pointer;
+        }
+    </style>
     <div class="nei-sou">
         <div class="container">
-            <div class="nei-sou-inp">
+            <div class="nei-sou-inp relative">
                 <input type="text" name="guanjianci" id="guanjianci" value="<?=!empty($_GET['guanjianci'])?$_GET['guanjianci']:'' ?>" class="" placeholder="关键字收索"/>
+                <p id="search"></p>
             </div>
             <a href="index.php?p=show&c=gongwen&a=edit">+发布公文</a>
         </div>
     </div>
-    </form>
 
     <div class="wen-list">
         <ul>
@@ -117,7 +128,7 @@
     <div class="jiazai">
         <?php
             if($page!=$max){
-                echo  "<a href='index.php?p=show&c=gongwen&a=list&page=".($page+1)."'>加载更多&gt;&gt;</a>";
+                echo  "<a href='index.php?p=show&c=gongwen&a=list&page=".($page+1)."{$url}'>加载更多&gt;&gt;</a>";
         }else{
         echo  "<a href='javascript:void(0)'>已到最后一页</a>";
         }
@@ -170,8 +181,8 @@
         $("#appDate1").mobiscroll($.extend(opt['date'], opt['default']));
     });
 
-    var Datemy=new Date();
-    $(".wen-input input").val(Datemy.getFullYear()+"-"+(Datemy.getMonth()+1)+"-"+Datemy.getDate())
+    // var Datemy=new Date();
+    // $(".wen-input input").val(Datemy.getFullYear()+"-"+(Datemy.getMonth()+1)+"-"+Datemy.getDate())
 
 
 
@@ -248,6 +259,33 @@
                 location.reload()
             }
         },"json")
+    })
+</script>
+<!--搜索-->
+<script type="text/javascript">
+    $("#search").click(function () {
+        var date1=$("#appDate").val();
+        var date2=$("#appDate1").val();
+        var zhuanlan = $("#zhuanlan .p-hover").text()
+        var zhuangtai = $("#zhuangtai .p-hover").text()
+        var guanjianci=$("#guanjianci").val();
+        var str= "";
+        if (date1 != ""){
+            str += "&date1="+date1;
+        }
+        if (date2 != ""){
+            str += "&date2="+date2;
+        }
+        if (zhuanlan != ""){
+            str += "&zhuanlan="+zhuanlan;
+        }
+        if (zhuangtai != ""){
+            str += "&zhuangtai="+zhuangtai;
+        }
+        if (guanjianci != ""){
+            str += "&guanjianci="+guanjianci;
+        }
+        window.location.href="index.php?p=show&c=gongwen&a=list"+str;
     })
 </script>
 </body>
