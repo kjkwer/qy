@@ -19,9 +19,9 @@
                 <li class="wen-dinoe">
                     <div class="wen-input">
                         <div class="divp">
-                            <input type="text" name="" id="appDate" value="" class="box"/>
+                            <input type="text" name="date1" id="appDate" value="<?=$date1?>" class="box"/>
                             <em>至</em>
-                            <input type="text" name="" id="appDate1" value="" class="box"/>
+                            <input type="text" name="date2" id="appDate1" value="<?=$date2?>" class="box"/>
                         </div>
                     </div>
                     <div class="que-con">
@@ -32,10 +32,13 @@
                     </div>
                 </li>
                 <li class="wen-di">
-                    <div class="zhongbao">
-                        <p>周报一</p>
-                        <p>周报二</p>
-                        <p>周报三</p>
+                    <div class="zhongbao"  id="zhuanlan">
+                        <?php if($flData):?>
+                        <p class="<?=!empty($_GET['zhuanlan'])?'':'p-hover' ?>">所有</p>
+                        <?php foreach($flData as $fl):?>
+                        <p class="<?=!empty($_GET['zhuanlan'])&&$_GET['zhuanlan']==$fl['mingcheng']?'p-hover':'' ?>"><?=$fl["mingcheng"]?></p>
+                        <?php endforeach;?>
+                        <?php endif;?>
                     </div>
                     <div class="que-con">
                         <p>
@@ -46,9 +49,13 @@
                 </li>
                 <li class="wen-ditwo">
 
-                    <div class="posin-zutai">
-                        <p>已发送</p>
-                        <p>已过期</p>
+                    <div class="posin-zutai" id="zhuangtai">
+                        <p class="<?=!empty($_GET['zhuangtai'])?'':'p-hover' ?>">所有</p>
+                        <p class="<?=!empty($_GET['zhuangtai'])&&$_GET['zhuangtai']=='未发送'?'p-hover':'' ?>">未发送</p>
+                        <p class="<?=!empty($_GET['zhuangtai'])&&$_GET['zhuangtai']=='已发送'?'p-hover':'' ?>">已发送</p>
+                        <p class="<?=!empty($_GET['zhuangtai'])&&$_GET['zhuangtai']=='已退回'?'p-hover':'' ?>">已退回</p>
+                        <p class="<?=!empty($_GET['zhuangtai'])&&$_GET['zhuangtai']=='已审核'?'p-hover':'' ?>">已审核</p>
+                        <p class="<?=!empty($_GET['zhuangtai'])&&$_GET['zhuangtai']=='已推荐'?'p-hover':'' ?>">已推荐</p>
                     </div>
 
                     <div class="que-con">
@@ -76,7 +83,7 @@
     <div class="nei-sou">
         <div class="container">
             <div class="nei-sou-inp relative">
-                <input type="text" name="" id="" value="" class="" placeholder="关键字收索"/>
+                <input type="text" name="guanjianci" id="guanjianci" value="<?=!empty($_GET['guanjianci'])?$_GET['guanjianci']:'' ?>" placeholder="关键字收索"/>
                 <p id="search"></p>
             </div>
             <a href="index.php?p=show&c=gongwen&a=edit">+发布公文</a>
@@ -136,9 +143,16 @@
             <?php endif;?>
         </ul>
     </div>
-
+    <div class="jiazai">
+        <?php
+            if($page!=$max){
+                echo  "<a href='index.php?p=show&c=gongwen&a=list&page=".($page+1)."{$url}'>加载更多&gt;&gt;</a>";
+        }else{
+        echo  "<a href='javascript:void(0)'>已到最后一页</a>";
+        }
+        ?>
+    </div>
     <div style="height:0.84rem;"></div>
-
 </div>
 
 
@@ -184,8 +198,8 @@
         $("#appDate1").mobiscroll($.extend(opt['date'], opt['default']));
     });
 
-    var Datemy=new Date();
-    $(".wen-input input").val(Datemy.getFullYear()+"-"+(Datemy.getMonth()+1)+"-"+Datemy.getDate())
+    // var Datemy=new Date();
+    // $(".wen-input input").val(Datemy.getFullYear()+"-"+(Datemy.getMonth()+1)+"-"+Datemy.getDate())
 
 
 
@@ -285,7 +299,34 @@
 <!--搜索-->
 <script type="text/javascript">
     $("#search").click(function () {
-        alert(1);
+        var date1=$("#appDate").val();
+        var date2=$("#appDate1").val();
+        var zhuanlan = $("#zhuanlan .p-hover").text()
+        var zhuangtai = $("#zhuangtai .p-hover").text()
+        var guanjianci=$("#guanjianci").val();
+        // alert(date1)
+        // alert(date2)
+        // alert(zhuanlan)
+        // alert(zhuangtai)
+        // alert(guanjianci)
+        // return false;
+        var str= "";
+        if (date1 != ""){
+            str += "&date1="+date1;
+        }
+        if (date2 != ""){
+            str += "&date2="+date2;
+        }
+        if (zhuanlan != ""){
+            str += "&zhuanlan="+zhuanlan;
+        }
+        if (zhuangtai != ""){
+            str += "&zhuangtai="+zhuangtai;
+        }
+        if (guanjianci != ""){
+            str += "&guanjianci="+guanjianci;
+        }
+        window.location.href="index.php?p=show&c=gongwen&a=list"+str;
     })
 </script>
 </body>
