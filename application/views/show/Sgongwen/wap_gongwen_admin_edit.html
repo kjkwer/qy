@@ -16,7 +16,7 @@
                 <input type="text" name="bianhao" id="bianhao" value="<?=!empty($gwData['bianhao'])?$gwData['bianhao']:'' ?>" placeholder="公文编号" class="input-li"/>
                 <div class="div-fabu">
                     <input type="text" name="zhuanlan" id="zhuanlan" value="<?=!empty($gwData['zhuanlan'])?self::getZlNameAction($gwData['zhuanlan']):''  ?> " placeholder="工作专栏" class="input-li" readonly/>
-                    <div class="div-fabux">
+                    <div class="div-fabux" style="z-index: 10000">
                         <?php if($flData):?>
                         <?php foreach($flData as $fl):?>
                         <p><?=$fl["mingcheng"]?></p>

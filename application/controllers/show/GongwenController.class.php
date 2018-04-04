@@ -289,7 +289,11 @@ class GongwenController extends BaseController
                 $init = $pageData["init"];
                 $max = $pageData["max"];
             $gwDate = $Model->findBySql("select b.* from sl_fasong as a join sl_gw as b on a.gongwen=b.id $where and a.jieshouren=$user_id ORDER BY b.id DESC $limit");
-            include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_huiyuan_accept_list.html";
+            if(self::isWapAction()) {
+                include CUR_VIEW_PATH."Sgongwen" . DS . "wap_gongwen_huiyuan_accept_list.html";
+            }else{
+                include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_huiyuan_accept_list.html";
+            }
         }
     }
     //>>管理员收文----未完成任务列表
@@ -541,7 +545,11 @@ class GongwenController extends BaseController
             //>>设置为已读
             $fsModel = new ModelNew("fasong");
             $fsModel->where(["jieshouren"=>self::$userData["id"]])->where(["gongwen"=>$id])->update(["zhuangtai"=>2]);
-            include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_huiyuan_accept_detail.html";
+            if(self::isWapAction()) {
+                include CUR_VIEW_PATH."Sgongwen" . DS . "wap_gongwen_huiyuan_accept_detail.html";
+            }else{
+                include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_huiyuan_accept_detail.html";
+            }
         }
     }
     //>>发送公文
