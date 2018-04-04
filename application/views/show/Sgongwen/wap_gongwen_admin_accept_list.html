@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<?php include CUR_VIEW_PATH."Spublic/wap_head.html";?>
+<body style="background:#e3e3e3;">
+
+<div class="max relative">
+
+    <?php include CUR_VIEW_PATH."Spublic/wap_head_ei.html";?>
+    <div class="nav-fen box absolute">
+        <table>
+            <tr>
+                <td class="nav-fanli">时间筛选<img src="public/wapyz/images/xiala_06.png"/><em></em></td>
+                <td class="nav-fanli">类型选择<img src="public/wapyz/images/xiala_06.png"/><em></em></td>
+                <td class="nav-fanli">选择状态<img src="public/wapyz/images/xiala_06.png"/><em></em></td>
+            </tr>
+        </table>
+        <div class="wen-fixd absolute">
+            <ul>
+                <li class="wen-dinoe">
+                    <div class="wen-input">
+                        <div class="divp">
+                            <input type="text" name="" id="appDate" value="" class="box"/>
+                            <em>至</em>
+                            <input type="text" name="" id="appDate1" value="" class="box"/>
+                        </div>
+                    </div>
+                    <div class="que-con">
+                        <p>
+                            <a href="javascript:void(0)" class="box" style="border-top:1px solid #d1d1d1;">重置</a>
+                            <a href="javascript:void(0)" class="que-conli box">确定</a>
+                        </p>
+                    </div>
+                </li>
+                <li class="wen-di">
+                    <div class="zhongbao">
+                        <p>周报一</p>
+                        <p>周报二</p>
+                        <p>周报三</p>
+                    </div>
+                    <div class="que-con">
+                        <p>
+                            <a href="javascript:void(0)" class="box" style="border-top:1px solid #d1d1d1;">重置</a>
+                            <a href="javascript:void(0)" class="que-conli box">确定</a>
+                        </p>
+                    </div>
+                </li>
+                <li class="wen-ditwo">
+
+                    <div class="posin-zutai">
+                        <p>已发送</p>
+                        <p>已过期</p>
+                    </div>
+
+                    <div class="que-con">
+                        <p>
+                            <a href="javascript:void(0)" class="box" style="border-top:1px solid #d1d1d1;">重置</a>
+                            <a href="javascript:void(0)" class="que-conli box">确定</a>
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--neirong-->
+    <div class="nei-sou">
+        <div class="container">
+            <div class="nei-sou-inp" style="width:100%;">
+                <input type="text" name="" id="" value="" class="" placeholder="关键字收索"/>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="wen-list">
+        <ul>
+            <?php if($gwDate):?>
+            <?php foreach($gwDate as $gw):?>
+            <li class="em-add">
+                <!--<div class="em fl"></div>-->
+                <div class="wen-text fr">
+                    <div class="wen-textop"><?=$gw["biaoti"]?></div>
+                    <div class="wen-leib">
+                        <label>
+                            <em>编号:</em>
+                            <span><?=$gw["bianhao"]?></span>
+                        </label>
+                        <label>
+                            <em>专栏:</em>
+                            <span><?=self::getZlNameAction($gw["zhuanlan"])?></span>
+                        </label>
+                        <label>
+                            <em>收文时间:</em>
+                            <span><?=$gw["sendTime"]?></span>
+                        </label>
+                        <label>
+                            <em>发送人:</em>
+                            <span><?=self::getfsrAction($gw["zuozhe"])?></span>
+                        </label>
+                        <label>
+                            <em>状态:</em>
+                            <span>
+                                <?php if($gw["zhuangtai"]==2):?>
+                                未审核
+                                <?php elseif($gw["zhuangtai"]==3):?>
+                                已退回
+                                <?php elseif($gw["zhuangtai"]==4):?>
+                                已审核
+                                <?php elseif($gw["zhuangtai"]==5):?>
+                                已推荐
+                                <?php endif;?>
+                            </span>
+                        </label>
+                    </div>
+                    <div class="wen-caoz">
+                        <a href="index.php?p=show&c=gongwen&a=acceptDetail&id=<?=$gw['id']?>"><img src="public/wapyz/images/table-ico_21.jpg"/>查看</a>
+                        <a href="javascript:void(0)" gwStatus="<?=$gw['zhuangtai']?>" gwId="<?=$gw['id']?>" class="tuijian"><img src="public/wapyz/images/table-ico2.jpg"/>推荐</a>
+                    </div>
+                </div>
+            </li>
+            <?php endforeach;?>
+            <?php endif;?>
+        </ul>
+    </div>
+
+    <!--<div style="height:0.84rem;"></div>-->
+
+</div>
+
+<div class="jiazai">
+    <?php
+            if($page!=$max){
+                echo  "<a href='index.php?p=show&c=gongwen&a=accept&page=".($page+1)."'>加载更多&gt;&gt;</a>";
+    }else{
+    echo  "<a href='javascript:void(0)'>已到最后一页</a>";
+    }
+    ?>
+</div>
+
+<!--全选-->
+<div class="quan-x fixed">
+    <!--<div class="max">-->
+        <!--<div class="quan-xu fl">-->
+            <!--<em></em>-->
+            <!--全选-->
+        <!--</div>-->
+        <!--<div class="quan-san fr">-->
+            <!--<img src="images/baishan_06.png"/>-->
+            <!--删除-->
+        <!--</div>-->
+
+    <!--</div>-->
+</div>
+
+
+
+<script type="text/javascript">
+
+
+    $(function () {
+        var currYear = (new Date()).getFullYear();
+        var opt={};
+        opt.date = {preset : 'date'};
+        opt.datetime = {preset : 'datetime'};
+        opt.time = {preset : 'time'};
+        opt.default = {
+            theme: 'android-ics light', //皮肤样式
+            display: 'modal', //显示方式
+            mode: 'scroller', //日期选择模式
+            dateFormat: 'yyyy-mm-dd',
+            lang: 'zh',
+            showNow: true,
+            nowText: "今天",
+            startYear: currYear - 10, //开始年份
+            endYear: currYear + 10 //结束年份
+        };
+        $("#appDate").mobiscroll($.extend(opt['date'], opt['default']));
+        $("#appDate1").mobiscroll($.extend(opt['date'], opt['default']));
+    });
+
+    var Datemy=new Date();
+    $(".wen-input input").val(Datemy.getFullYear()+"-"+(Datemy.getMonth()+1)+"-"+Datemy.getDate())
+
+
+
+    $(".appDate input").on("click",function(){
+        $(this).siblings(".appDate-xia").slideToggle();
+    })
+    $(".appDate-xia p").on("click",function(){
+        $(this).parent().siblings("input").val($(this).text());
+        $(this).parent().slideUp();
+    })
+    $(".nav-fanli").on("click",function(){
+        $(this).parents(".nav-fen").css("height","100%");
+        $(".wen-fixd").show();
+        $(".wen-fixd li").eq($(this).index()).show().siblings().hide();
+    })
+
+
+    $(".em").on("click",function(){
+        $(this).parent().toggleClass("em-add");
+    })
+
+    $(".quan-xu").on("click",function(){
+        $(this).find("em").toggleClass("em-add");
+        if($(this).find("em").attr("class").indexOf("em-add")>-1){
+            $(".wen-list li").addClass("em-add");
+        }else{
+            $(".wen-list li").removeClass("em-add");
+        }
+    })
+
+
+    $(".que-conli").on("click",function(){
+        $(".wen-fixd").hide();
+        $(".nav-fen").css("height","auto");
+    })
+
+    $(".zhongbao p,.posin-zutai p").on("click",function(){
+        $(this).addClass("p-hover").siblings().removeClass("p-hover");
+    })
+</script>
+<!--推荐公文-->
+<script type="text/javascript">
+    $(".tuijian").click(function () {
+        var id = $(this).attr("gwId");
+        var gwStatus = $(this).attr("gwStatus");
+        if (gwStatus==3){
+            layer.alert("该公文已退回，需重新提交");
+            return false;
+        }
+        if (gwStatus==5){
+            layer.alert("该公文已推荐");
+            return false;
+        }
+        $.post("index.php?p=show&c=gongwen&a=tuijianGw",{gwId:id},function (data) {
+            if (data==200){
+                layer.open({
+                    content: '推荐成功！',
+                    btn: ['确认'],
+                    yes: function(index, layero) {
+                        location.reload();
+                    },
+                });
+            }else {
+                layer.open({
+                    content: '推荐失败！',
+                    btn: ['确认'],
+                    yes: function(index, layero) {
+                        location.reload();
+                    },
+                });
+            }
+        })
+    })
+</script>
+</body>
+</html>

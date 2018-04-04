@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<?php include CUR_VIEW_PATH."Spublic/wap_head.html";?>
+<body style="background:#e3e3e3;">
+
+<div class="max">
+
+    <?php include CUR_VIEW_PATH."Spublic/wap_head_ei.html";?>
+
+    <!--neirong-->
+    <div class="xt-neirong">
+        <div class="container">
+            <div class="cakan-list">
+                <ul>
+                    <li>
+                        <span>公文标题：</span>
+                        <p><?=$gwData["biaoti"]?></p>
+                    </li>
+                    <li>
+                        <span>公文编号：</span>
+                        <p><?=$gwData["bianhao"]?></p>
+                    </li>
+                    <li>
+                        <span>工作专栏：</span>
+                        <p><?=self::getZlNameAction($gwData['zhuanlan'])?></p>
+                    </li>
+                    <li>
+                        <span>公文来源：</span>
+                        <p><?=self::getCunMingchengAction($gwData["xiangzhen"])."-".self::getCunMingchengAction($gwData["cun"])?></p>
+                    </li>
+                    <li>
+                        <span>发送人：</span>
+                        <p><?=self::getfsrAction($gwData["zuozhe"])?></p>
+                    </li>
+                    <li>
+                        <span>收文时间：</span>
+                        <p><?=$gwData["dtime"]?></p>
+                    </li>
+                    <li>
+                        <span style="line-height:1.3rem;">缩略图：</span>
+                        <p><img src="<?=$gwData['tupian']?>" style=" width:3.03rem;height:1.32rem;"/></p>
+                    </li>
+                    <li style="border-bottom:none;">
+                        <span class="fl">文章正文：</span>
+                        <div class="ck-liwen fr" style="width:586px;">
+                            <?=$gwData["neirong"]?>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="cakan-adit cakan-adits">
+        <div class="container">
+            <p>
+                <a id="shenhe" gwId="<?=$gwData['id']?>" gwStatus="<?=$gwData['zhuangtai']?>" href="javascript:void(0)" class="heshi box">设为已审核</a>
+                <a href="javascript:void(0)" gwStatus="<?=$gwData['zhuangtai']?>" gwId="<?=$gwData['id']?>" class="tuijian">推荐公文</a>
+                <a href="javascript:void(0)" gwStatus="<?=$gwData['zhuangtai']?>" gwId="<?=$gwData['id']?>" class="tuihui">退回公文</a>
+            </p>
+        </div>
+    </div>
+    <div style="height:0.2rem;"></div>
+</div>
+
+<!--tuijiankuang -->
+<div class="pixd-tui fixed">
+    <div class="max">
+        <div class="table">
+            <div class="table-cell">
+                <div class="tui-kuan">
+                    <div class="tui-top">确定推荐本条公文？</div>
+                    <div class="gon-biao">
+                        <p><span>公文标题：</span><em>四川加快优质米产业发展国标</em></p>
+                        <p><span>公文编号：</span><em>ML-9600</em></p>
+                        <p><span>公文类型：</span><em>周报一</em></p>
+                        <p><span>抄送人：</span><em>张三</em></p>
+                        <p><span>发布时间：</span><em>2018-01-15 15:25:22</em></p>
+                    </div>
+                    <div class="tui-dao relative">
+                        <span>推荐到：</span>
+                        <input type="text" name="" id="" value="党的建设"  readonly/>
+                        <div class="tui-libiao absolute">
+                            <p>党的建设</p>
+                            <p>党的建设</p>
+                            <p>党的建设</p>
+                        </div>
+                    </div>
+                    <div class="tui-que">
+                        <a href="javascript:void(0)" class="tui-quequ">取消</a>
+                        <a href="" >确定推荐</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(".tui-dao input").on("click",function(){
+        $(this).siblings(".tui-libiao").slideToggle();
+    })
+    $(".tui-libiao p").on("click",function(){
+        $(this).parent().siblings("input").val($(this).text());
+        $(this).parent().slideUp();
+    })
+
+    $(".tui-quequ").on("click",function(){
+        $(".pixd-tui").hide();
+    })
+</script>
+<!--审核-->
+<script type="text/javascript">
+    $("#shenhe").click(function () {
+        var gwTd = $(this).attr("gwId");
+        var gwStatus = $(this).attr("gwStatus");
+        if (gwStatus==3){
+            layer.alert("该公文已退回，需重新提交");
+            return false;
+        }
+        if (gwStatus==4){
+            layer.alert("该公文已审核");
+            return false;
+        }
+        if (gwStatus==5){
+            layer.alert("该公文已推荐");
+            return false;
+        }
+        $.post("index.php?p=show&c=gongwen&a=sheheGw",{gwId:gwTd},function (data) {
+            if (data==200){
+                layer.open({
+                    content: '审核通过！',
+                    btn: ['确认'],
+                    yes: function(index, layero) {
+                        // window.location.href="http://www.qy.com/index.php?p=show&c=gongwen&a=accept&zlId=<?=$gwData['zhuanlan']?>";
+                        window.history.back()
+                    },
+                });
+            }else {
+                layer.open({
+                    content: '审核失败！',
+                    btn: ['确认'],
+                    yes: function(index, layero) {
+                        location.reload();
+                    },
+                });
+            }
+        })
+        return false;
+    })
+</script>
+<!--推荐公文-->
+<script type="text/javascript">
+    $(".tuijian").click(function () {
+        var id = $(this).attr("gwId");
+        var gwStatus = $(this).attr("gwStatus");
+        if (gwStatus==3){
+            layer.alert("该公文已退回，需重新提交");
+            return false;
+        }
+        if (gwStatus==5){
+            layer.alert("该公文已推荐");
+            return false;
+        }
+        $.post("index.php?p=show&c=gongwen&a=tuijianGw",{gwId:id},function (data) {
+            if (data==200){
+                layer.open({
+                    content: '推荐成功！',
+                    btn: ['确认'],
+                    yes: function(index, layero) {
+                        // window.location.href="http://www.qy.com/index.php?p=show&c=gongwen&a=accept&zlId=<?=$gwData['zhuanlan']?>";
+                        window.history.back()
+                    },
+                });
+            }else {
+                layer.open({
+                    content: '推荐失败！',
+                    btn: ['确认'],
+                    yes: function(index, layero) {
+                        location.reload();
+                    },
+                });
+            }
+        })
+    })
+</script>
+<!--退回公文-->
+<script type="text/javascript">
+    $(".tuihui").click(function () {
+        var gwTd = $(this).attr("gwId");
+        var gwStatus = $(this).attr("gwStatus");
+        if (gwStatus==3){
+            layer.alert("该公文已退回");
+            return false;
+        }
+        if (gwStatus==4){
+            layer.alert("该公文已审核通过");
+            return false;
+        }
+        if (gwStatus==5){
+            layer.alert("该公文已推荐");
+            return false;
+        }
+        $.post("index.php?p=show&c=gongwen&a=tuihuiGw",{gwId:gwTd},function (data) {
+            if (data==200){
+                layer.open({
+                    content: '退回成功！',
+                    btn: ['确认'],
+                    yes: function(index, layero) {
+                        // window.location.href="http://www.qy.com/index.php?p=show&c=gongwen&a=accept&zlId=<?=$gwData['zhuanlan']?>";
+                        window.history.back()
+                    },
+                });
+            }else {
+                layer.open({
+                    content: '审核失败！',
+                    btn: ['确认'],
+                    yes: function(index, layero) {
+                        location.reload();
+                    },
+                });
+            }
+        })
+        return false;
+    })
+</script>
+</body>
+</html>

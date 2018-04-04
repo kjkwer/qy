@@ -1,58 +1,22 @@
 <!DOCTYPE html>
 <html>
+<?php include CUR_VIEW_PATH."Spublic/wap_head.html";?>
+<body style="background:#f5f5f6;">
 
-<head>
-    <meta charset="utf-8" />
-    <title><?=self::$title?></title>
-    <link rel="stylesheet" href="public/yz/css/css.css" />
-    <script type="text/javascript" src="public/yz/js/jquery-1.9.1.min.js"></script>
-    <script type="text/javascript" src="public/yz/js/script.js"></script>
+<div class="max">
 
-    <link rel="stylesheet" href="public/layer/theme/default/layer.css">
-    <script src="public/layer/layer.js" type="text/javascript"></script>
-    <!--[if lte IE 9]>
-    <script type="text/javascript" src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js" ></script>
-    <![endif]-->
-    <link rel="stylesheet" href="public/layer/theme/default/layer.css">
-    <script src="public/layer/layer.js" type="text/javascript"></script>
-</head>
+    <?php include CUR_VIEW_PATH."Spublic/wap_head_ei.html";?>
 
-<body class="body">
-
-<!--header-->
-<?php include CUR_VIEW_PATH."Spublic/header.html";?>
-<div class="xt-ycatou"></div>
-
-<?php include CUR_VIEW_PATH."Spublic/bianlan.html";?>
-
-<!--neirongbianji-->
-<div class="body-edit box">
-    <div class="edit-top">
-        <img src="public/yz/images/nei-dinwei_03.png" />
-        <a href="javascript:void(0)">系统主页</a>
-        <em>&gt;</em>
-        <a href="javascript:void(0)">公文</a>
-        <em>&gt;</em> 编辑公文
-    </div>
-
-    <div class="edit-input box">
-        <form id="myform">
-            <input type="hidden" name="id" id="gwId" value="<?=!empty($gwData['id'])?$gwData['id']:'' ?>">
-            <div class="edit-sse">
-                <span>公文标题</span>
-                <input type="text" name="biaoti" id="biaoti" value="<?=!empty($gwData['biaoti'])?$gwData['biaoti']:'' ?>" style="width:600px;" />
-                <em>*请输入公文的标题，标题最多50字</em>
-            </div>
-            <div class="edit-sse">
-                <span>公文编号</span>
-                <input type="text" name="bianhao" id="bianhao" value="<?=!empty($gwData['bianhao'])?$gwData['bianhao']:'' ?>" style="width:600px;" />
-                <em>*请按照公文标签的编号进行输入</em>
-            </div>
-            <div class="edit-sse">
-                <span>工作专栏</span>
-                <div class="inp-xia">
-                    <input type="text" name="zhuanlan" id="zhuanlan" value="<?=!empty($gwData['zhuanlan'])?self::getZlNameAction($gwData['zhuanlan']):''  ?>" class="edit-inwidt" readonly/>
-                    <div class="adit-xuan box" style="z-index: 10001">
+    <!--neirong-->
+    <div class="fabu-input">
+        <div class="container">
+            <form id="myform">
+                <input type="hidden" name="id" id="gwId" value="<?=!empty($gwData['id'])?$gwData['id']:'' ?>">
+                <input type="text" name="biaoti" id="biaoti" value="<?=!empty($gwData['biaoti'])?$gwData['biaoti']:'' ?>" placeholder="公文标题" class="input-li"/>
+                <input type="text" name="bianhao" id="bianhao" value="<?=!empty($gwData['bianhao'])?$gwData['bianhao']:'' ?>" placeholder="公文编号" class="input-li"/>
+                <div class="div-fabu">
+                    <input type="text" name="zhuanlan" id="zhuanlan" value="<?=!empty($gwData['zhuanlan'])?self::getZlNameAction($gwData['zhuanlan']):''  ?>" placeholder="工作专栏" class="input-li" readonly/>
+                    <div class="div-fabux" style="z-index: 10000">
                         <?php if($flData):?>
                         <?php foreach($flData as $fl):?>
                         <p class="model"><?=$fl["mingcheng"]?></p>
@@ -60,23 +24,14 @@
                         <?php endif;?>
                     </div>
                 </div>
-            </div>
-            <div class="edit-sse relative fl" style="z-index: 9999">
-                <span>乡镇</span>
-                <div class="inp-xia">
-                    <input  type="text" name="xiangzhen" id="xiangzhen" value="<?=!empty($gwData['xiangzhen'])?self::getCunMingchengAction($gwData['xiangzhen']):self::getCunMingchengAction($bumen)  ?>" class="edit-inwidt" readonly/>
-                    <div class="adit-xuan box">
-                        <?php if(!empty($xiangzhenData)):?>
-                            <?php foreach($xiangzhenData as $xiangzhen):?>
-                                <p class="xiangzhen"><?=$xiangzhen["mingcheng"]?></p>
-                            <?php endforeach;?>
-                        <?php endif;?>
+                <div class="div-fabu">
+                    <input type="text" name="xiangzhen" id="xiangzhen" value="<?=!empty($gwData['xiangzhen'])?self::getCunMingchengAction($gwData['xiangzhen']):self::getCunMingchengAction($bumen)  ?>" placeholder="乡镇" class="input-li" readonly/>
+                    <div class="div-fabux">
                     </div>
                 </div>
-                <span>村</span>
-                <div class="inp-xia">
-                    <input  type="text" name="cun" id="cun" value="<?=!empty($gwData['cun'])?self::getCunMingchengAction($gwData['cun']):''  ?>" class="edit-inwidt" readonly/>
-                    <div class="adit-xuan box cun">
+                <div class="div-fabu">
+                    <input type="text" name="cun" id="cun" value="<?=!empty($gwData['cun'])?self::getCunMingchengAction($gwData['cun']):''  ?>" placeholder="村" class="input-li" readonly/>
+                    <div class="div-fabux" style="z-index: 10000">
                         <?php if($cunData):?>
                         <?php foreach($cunData as $cun):?>
                         <p><?=$cun["mingcheng"]?></p>
@@ -84,54 +39,52 @@
                         <?php endif;?>
                     </div>
                 </div>
-            </div>
+                <div class="div-fabu">
+                    <input type="text" name="" id="" value="<?=!empty($gwData['tupian'])?basename($gwData['tupian']):'' ?>" placeholder="上传缩略图" class="input-li"/>
+                    <div class="shanchuan">
+                        上传
+                        <input type="file" name="tupian" id="tupian" value="" />
+                    </div>
+                </div>
+                <script id="container" name="neirong" id="neirong" type="text/plain" style="height:700px;width: 100%;">
+                    <?=!empty($gwData['neirong'])?$gwData['neirong']:'' ?>
+                </script>
+                <!-- 配置文件 -->
+                <script type="text/javascript" src="public/ueditor/ueditor.config.js"></script>
+                <!-- 编辑器源码文件 -->
+                <script type="text/javascript" src="public/ueditor/ueditor.all.js"></script>
+                <!-- 实例化编辑器 -->
+                <script type="text/javascript">
+                    var ue = UE.getEditor('container');
+                </script>
 
-            <div class="clear"></div>
-            <div class="edit-sse relative">
-                <span>缩略图</span>
-                <input type="text" name="" id="" value="<?=!empty($gwData['tupian'])?basename($gwData['tupian']):'' ?>" class="edit-inwidt" readonly/>
-                <div class="edit-chuan fl">上传<input type="file" name="tupian" id="tupian" value="" /></div>
-                <!--<div class="adit-tiqu fl">
-                    <input type="submit" name="" id="" value="提取图片" />
-                </div>-->
-            </div>
-
-            <div class="edit-sse relative" style="overflow: hidden; height:auto;">
-                <span>文章正文</span>
-            </div>
-            <script id="container" name="neirong" id="neirong" type="text/plain" style="height:700px;width: 1000px;">
-                <?=!empty($gwData['neirong'])?$gwData['neirong']:'' ?>
-            </script>
-            <!-- 配置文件 -->
-            <script type="text/javascript" src="public/ueditor/ueditor.config.js"></script>
-            <!-- 编辑器源码文件 -->
-            <script type="text/javascript" src="public/ueditor/ueditor.all.js"></script>
-            <!-- 实例化编辑器 -->
-            <script type="text/javascript">
-                var ue = UE.getEditor('container');
-            </script>
-            <div class="edit-sse relative" style="overflow: hidden; height:auto; margin:20px 0;"></div>
-            <div class="edit-quedin">
-                <a id="baocun" href="javascript:void(0)" class="wdit-a box" gwStatus="<?=!empty($gwData['zhuangtai'])?$gwData['zhuangtai']:'' ?>">保存</a>
-                <a id="fabugongwen" href="javascript:void(0)" gwStatus="<?=!empty($gwData['zhuangtai'])?$gwData['zhuangtai']:'' ?>">发送公文</a>
-            </div>
-        </form>
+                <div class="cakan-adit cakan-adits">
+                    <div class="container">
+                        <p>
+                            <a id="baocun" href="javascript:void(0)" class="heshi box" gwStatus="<?=!empty($gwData['zhuangtai'])?$gwData['zhuangtai']:'' ?>">保存</a>
+                            <a id="fabugongwen" href="javascript:void(0)" gwStatus="<?=!empty($gwData['zhuangtai'])?$gwData['zhuangtai']:'' ?>">发送公文</a>
+                        </p>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 
-</div>
 
+
+
+    <div style="height:0.2rem;"></div>
+
+
+</div>
 <script>
-    $(".edit-inwidt").on("click", function() {
-        $(this).siblings(".adit-xuan").slideToggle();
-    })
-    $(".adit-xuan p").on("click",function(){
-        $(this).parent().siblings().val($(this).text());
-        $(this).parent().slideUp();
+    $(".ck-state tr").each(function(){
+        if($(this).find(".state-te em").text()=="未完成"){
+            $(this).find(".state-te img").show();
+            $(this).find(".state-te em").css("color","#9d9d9d");
+        }
     })
 </script>
-
-<!--验证表单-->
-
 <!--保存数据-->
 <script type="text/javascript">
     $("#baocun").click(function () {
@@ -295,5 +248,4 @@
     })
 </script>
 </body>
-
 </html>

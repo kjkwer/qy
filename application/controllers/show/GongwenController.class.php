@@ -158,7 +158,11 @@ class GongwenController extends BaseController
                 $max = $pageData["max"];
 //                var_dump($count);exit();
             $gongwenData = $gongwenModel->findBySql("select * from `sl_gw_o` $where and zuozhe=$user_id ORDER BY id DESC $limit");
-            include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_huiyuan_send_list.html";
+            if(self::isWapAction()) {
+                include CUR_VIEW_PATH."Sgongwen" . DS . "wap_gongwen_huiyuan_send_list.html";
+            }else{
+                include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_huiyuan_send_list.html";
+            }
         }
     }
     //>>接收列表
@@ -166,69 +170,137 @@ class GongwenController extends BaseController
         //>>获取分类数据
         $flModel = new ModelNew("wzfl");
         $flData = $flModel->findBySql("select id,fenleimingcheng as mingcheng from sl_wzfl WHERE type=1");
-        if (self::$userData["guanliyuan"]==1){   //>>管理员
-            //>>工作专栏id
-            $zlId = $_GET["zlId"];
-            //>>设置筛选条件
+        if (self::$userData["guanliyuan"]==1) {   //>>管理员
+            if (self::isWapAction()) {
+                //>>设置筛选条件
                 $seachList = [];
-                $seachList[] = "zhuanlan = ".$zlId;
-                $urlList=[];
+                $urlList = [];
+                //>>设置专栏
+                if (!empty($_GET['zhuanlan'])){
+                    if ($_GET['zhuanlan']!="所有"){
+                        $zhuanlanId = self::getZlIdAction($_GET["zhuanlan"]);
+                        if ($zhuanlanId){
+                            $seachList[] = "zhuanlan = ".$zhuanlanId;
+                        }
+                        $urlList[] = "zhuanlan=".$_GET['zhuanlan'];
+                    }
+                }
                 //>>设置默认乡镇
                 $zzjgModel = new ModelNew("zzjg");
                 $xiangzhenDatas = $zzjgModel->findBySql("select * from sl_zzjg WHERE cengji=2");
                 $defaultXz = $xiangzhenDatas[0]["id"];
-                $xzId = !empty($_GET["xiangzhen"])?self::getCunAction($_GET["xiangzhen"]):$defaultXz;
-                $seachList[] = "xiangzhen = ".$xzId;
-                $urlList[] = "xiangzhen=".self::getCunMingchengAction($xzId);
+                $xzId = !empty($_GET["xiangzhen"]) ? self::getCunAction($_GET["xiangzhen"]) : $defaultXz;
+                $seachList[] = "xiangzhen = " . $xzId;
+                $urlList[] = "xiangzhen=" . self::getCunMingchengAction($xzId);
                 //>>设置默认时间时间段为本月初至今
-                $date1 = !empty($_GET["date1"])?$_GET["date1"]:date("Y-m",time())."-01";
-                $date2 = !empty($_GET["date2"])?$_GET["date2"]:date("Y-m-d",time());
-                $seachList[] = "Date(sendTime) BETWEEN '".$date1."' and '".$date2."'";
-                $urlList[] = "date1=".$date1;
-                $urlList[] = "date2=".$date2;
+                $date1 = !empty($_GET["date1"]) ? $_GET["date1"] : date("Y-m", time()) . "-01";
+                $date2 = !empty($_GET["date2"]) ? $_GET["date2"] : date("Y-m-d", time());
+                $seachList[] = "Date(sendTime) BETWEEN '" . $date1 . "' and '" . $date2 . "'";
+                $urlList[] = "date1=" . $date1;
+                $urlList[] = "date2=" . $date2;
                 //>>公文状态
-                if (empty($_GET['gwStaus']) || $_GET['gwStaus'] == "所有（完成）"){
+                if (empty($_GET['gwStaus']) || $_GET['gwStaus'] == "所有（完成）") {
                     $seachList[] = "zhuangtai > 1";
                     $urlList[] = "gwStaus=所有（完成）";
-                }else{
-                    $seachList[] = "zhuangtai = ".array_search($_GET['gwStaus'],self::$gwStatus);
-                    $urlList[] = "gwStaus=".$_GET['gwStaus'];
+                } else {
+                    $seachList[] = "zhuangtai = " . array_search($_GET['gwStaus'], self::$gwStatus);
+                    $urlList[] = "gwStaus=" . $_GET['gwStaus'];
                 }
                 //>>设置关键字搜索
-                if (!empty($_GET['guanjianci'])){
-                    $seachList[] = "biaoti like '%".$_GET["guanjianci"]."%'";
-                    $urlList[] = "guanjianci=".$_GET['guanjianci'];
+                if (!empty($_GET['guanjianci'])) {
+                    $seachList[] = "biaoti like '%" . $_GET["guanjianci"] . "%'";
+                    $urlList[] = "guanjianci=" . $_GET['guanjianci'];
                 }
                 //>>创建where条件
                 $where = "";
-                if (count($seachList)>0){
-                    $where = "where ".implode(" and ",$seachList);
-                    $url = '&'.implode('&',$urlList);
+                if (count($seachList) > 0) {
+                    $where = "where " . implode(" and ", $seachList);
+                    $url = '&' . implode('&', $urlList);
                 }
-            //>>获取所有公文数据
-            $user_id = self::$userData["id"];
-            $Model = new ModelNew("gw_o");
-            //>>设置分页数据
-            $count = $Model->findBySql("select count(*) as total from `sl_gw_o` $where");
-            $totalNum = $count[0]["total"];//数据总数
-            $pageSize = 10;  //每页数量
-            $maxPage=$totalNum==0?1:ceil($totalNum/$pageSize); //总共有的页数
-            $page=isset($_GET['page'])?$_GET['page']:1; //当前页
-            if($page < 1)
-            {
-                $page=1;
+                //>>获取所有公文数据
+                $user_id = self::$userData["id"];
+                $Model = new ModelNew("gw_o");
+                //>>设置分页数据
+                $count = $Model->findBySql("select count(*) as total from `sl_gw_o` $where");
+                $totalNum = $count[0]["total"];//数据总数
+                $pageSize = 10;  //每页数量
+                $maxPage = $totalNum == 0 ? 1 : ceil($totalNum / $pageSize); //总共有的页数
+                $page = isset($_GET['page']) ? $_GET['page'] : 1; //当前页
+                if ($page < 1) {
+                    $page = 1;
+                }
+                if ($page > $maxPage) {
+                    $page = $maxPage;
+                }
+                $limit = " limit " . ($page - 1) * $pageSize . ",$pageSize"; //分页条件
+                //>>页码设置
+                $pageData = self::pageSetAction($page, $maxPage);
+                $init = $pageData["init"];
+                $max = $pageData["max"];
+                $gwDate = $Model->findBySql("select * from sl_gw_o " . $where . " ORDER BY id DESC $limit");
+                include CUR_VIEW_PATH . "Sgongwen" . DS . "wap_gongwen_admin_accept_list.html";
+            } else {
+                //>>工作专栏id
+                $zlId = $_GET["zlId"];
+                //>>设置筛选条件
+                $seachList = [];
+                $seachList[] = "zhuanlan = " . $zlId;
+                $urlList = [];
+                //>>设置默认乡镇
+                $zzjgModel = new ModelNew("zzjg");
+                $xiangzhenDatas = $zzjgModel->findBySql("select * from sl_zzjg WHERE cengji=2");
+                $defaultXz = $xiangzhenDatas[0]["id"];
+                $xzId = !empty($_GET["xiangzhen"]) ? self::getCunAction($_GET["xiangzhen"]) : $defaultXz;
+                $seachList[] = "xiangzhen = " . $xzId;
+                $urlList[] = "xiangzhen=" . self::getCunMingchengAction($xzId);
+                //>>设置默认时间时间段为本月初至今
+                $date1 = !empty($_GET["date1"]) ? $_GET["date1"] : date("Y-m", time()) . "-01";
+                $date2 = !empty($_GET["date2"]) ? $_GET["date2"] : date("Y-m-d", time());
+                $seachList[] = "Date(sendTime) BETWEEN '" . $date1 . "' and '" . $date2 . "'";
+                $urlList[] = "date1=" . $date1;
+                $urlList[] = "date2=" . $date2;
+                //>>公文状态
+                if (empty($_GET['gwStaus']) || $_GET['gwStaus'] == "所有（完成）") {
+                    $seachList[] = "zhuangtai > 1";
+                    $urlList[] = "gwStaus=所有（完成）";
+                } else {
+                    $seachList[] = "zhuangtai = " . array_search($_GET['gwStaus'], self::$gwStatus);
+                    $urlList[] = "gwStaus=" . $_GET['gwStaus'];
+                }
+                //>>设置关键字搜索
+                if (!empty($_GET['guanjianci'])) {
+                    $seachList[] = "biaoti like '%" . $_GET["guanjianci"] . "%'";
+                    $urlList[] = "guanjianci=" . $_GET['guanjianci'];
+                }
+                //>>创建where条件
+                $where = "";
+                if (count($seachList) > 0) {
+                    $where = "where " . implode(" and ", $seachList);
+                    $url = '&' . implode('&', $urlList);
+                }
+                //>>获取所有公文数据
+                $user_id = self::$userData["id"];
+                $Model = new ModelNew("gw_o");
+                //>>设置分页数据
+                $count = $Model->findBySql("select count(*) as total from `sl_gw_o` $where");
+                $totalNum = $count[0]["total"];//数据总数
+                $pageSize = 10;  //每页数量
+                $maxPage = $totalNum == 0 ? 1 : ceil($totalNum / $pageSize); //总共有的页数
+                $page = isset($_GET['page']) ? $_GET['page'] : 1; //当前页
+                if ($page < 1) {
+                    $page = 1;
+                }
+                if ($page > $maxPage) {
+                    $page = $maxPage;
+                }
+                $limit = " limit " . ($page - 1) * $pageSize . ",$pageSize"; //分页条件
+                //>>页码设置
+                $pageData = self::pageSetAction($page, $maxPage);
+                $init = $pageData["init"];
+                $max = $pageData["max"];
+                $gwDate = $Model->findBySql("select * from sl_gw_o " . $where . " ORDER BY id DESC $limit");
+                include CUR_VIEW_PATH . "Sgongwen" . DS . "gongwen_admin_accept_list.html";
             }
-            if($page > $maxPage)
-            {
-                $page=$maxPage;
-            }
-            $limit=" limit ".($page-1)*$pageSize.",$pageSize"; //分页条件
-            //>>页码设置
-            $pageData = self::pageSetAction($page,$maxPage);
-            $init = $pageData["init"];
-            $max = $pageData["max"];
-            $gwDate = $Model->findBySql("select * from sl_gw_o ".$where." ORDER BY id DESC $limit");
-            include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_admin_accept_list.html";
         }else{    //>>非管理员
             //>>获取所有公文数据
             $user_id = self::$userData["id"];
@@ -379,7 +451,11 @@ class GongwenController extends BaseController
                 $bumen = self::$userData["bumen"];
                 $gwData['bianhao'] = !empty($_GET["bianhao"])?$_GET["bianhao"]:'';
                 $cunData = $model->findBySql("select * from sl_zzjg WHERE fuid=$bumen");
-                include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_huiyuan_edit.html";
+                if(self::isWapAction()) {
+                    include CUR_VIEW_PATH."Sgongwen" . DS . "wap_gongwen_huiyuan_edit.html";
+                }else{
+                    include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_huiyuan_edit.html";
+                }
             }
         }else{
             //>>编辑
@@ -404,7 +480,11 @@ class GongwenController extends BaseController
                 $laiyuanData = $model->find()->all();
                 $bumen = self::$userData["bumen"];
                 $cunData = $model->findBySql("select * from sl_zzjg WHERE fuid=$bumen");
-                include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_huiyuan_edit.html";
+                if(self::isWapAction()) {
+                    include CUR_VIEW_PATH."Sgongwen" . DS . "wap_gongwen_huiyuan_edit.html";
+                }else{
+                    include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_huiyuan_edit.html";
+                }
             }
         }
 
@@ -521,7 +601,11 @@ class GongwenController extends BaseController
             //>>获取公文内容
             $model = new ModelNew("gw_o");
             $gwData = $model->findOne($id);
-            include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_huiyuan_send_detail.html";
+            if(self::isWapAction()) {
+                include CUR_VIEW_PATH."Sgongwen" . DS . "wap_gongwen_huiyuan_send_detail.html";
+            }else{
+                include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_huiyuan_send_detail.html";
+            }
         }
     }
     //>>接收公文详情
@@ -537,7 +621,11 @@ class GongwenController extends BaseController
             $flModel = new ModelNew("wzfl");
             $flData = $flModel->findBySql("select id,fenleimingcheng as mingcheng from sl_wzfl WHERE type=1");
             //>>获取公文内容
-            include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_admin_accept_detail.html";
+            if(self::isWapAction()) {
+                include CUR_VIEW_PATH."Sgongwen" . DS . "wap_gongwen_admin_accept_detail.html";
+            }else{
+                include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_admin_accept_detail.html";
+            }
         }else{     //非管理员
             //>>获取公文内容
             $model = new ModelNew("gw");
