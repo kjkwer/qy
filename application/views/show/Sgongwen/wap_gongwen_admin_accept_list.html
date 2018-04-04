@@ -10,7 +10,8 @@
         <table>
             <tr>
                 <td class="nav-fanli">时间筛选<img src="public/wapyz/images/xiala_06.png"/><em></em></td>
-                <td class="nav-fanli">类型选择<img src="public/wapyz/images/xiala_06.png"/><em></em></td>
+                <td class="nav-fanli">专栏选择<img src="public/wapyz/images/xiala_06.png"/><em></em></td>
+                <td class="nav-fanli">乡镇选择<img src="public/wapyz/images/xiala_06.png"/><em></em></td>
                 <td class="nav-fanli">选择状态<img src="public/wapyz/images/xiala_06.png"/><em></em></td>
             </tr>
         </table>
@@ -19,9 +20,9 @@
                 <li class="wen-dinoe">
                     <div class="wen-input">
                         <div class="divp">
-                            <input type="text" name="" id="appDate" value="" class="box"/>
+                            <input type="text" name="date1" id="appDate" value="<?=$date1?>" class="box"/>
                             <em>至</em>
-                            <input type="text" name="" id="appDate1" value="" class="box"/>
+                            <input type="text" name="date2" id="appDate1" value="<?=$date2?>" class="box"/>
                         </div>
                     </div>
                     <div class="que-con">
@@ -32,10 +33,27 @@
                     </div>
                 </li>
                 <li class="wen-di">
-                    <div class="zhongbao">
-                        <p>周报一</p>
-                        <p>周报二</p>
-                        <p>周报三</p>
+                    <div class="zhongbao" id="zhuanlan">
+                        <?php if($flData):?>
+                        <?php foreach($flData as $fl):?>
+                        <p class="<?=!empty($_GET['zhuanlan'])&&$_GET['zhuanlan']==$fl['mingcheng']?'p-hover':'' ?>"><?=$fl["mingcheng"]?></p>
+                        <?php endforeach;?>
+                        <?php endif;?>
+                    </div>
+                    <div class="que-con">
+                        <p>
+                            <a href="javascript:void(0)" class="box" style="border-top:1px solid #d1d1d1;">重置</a>
+                            <a href="javascript:void(0)" class="que-conli box">确定</a>
+                        </p>
+                    </div>
+                </li>
+                <li class="wen-di">
+                    <div class="zhongbao" id="xiangzhen">
+                        <?php if($xiangzhenDatas):?>
+                        <?php foreach($xiangzhenDatas as $xiangzhen):?>
+                        <p class="<?=!empty($_GET['xiangzhen'])&&$_GET['xiangzhen']==$xiangzhen['mingcheng']?'p-hover':'' ?>"><?=$xiangzhen["mingcheng"]?></p>
+                        <?php endforeach;?>
+                        <?php endif;?>
                     </div>
                     <div class="que-con">
                         <p>
@@ -46,9 +64,13 @@
                 </li>
                 <li class="wen-ditwo">
 
-                    <div class="posin-zutai">
-                        <p>已发送</p>
-                        <p>已过期</p>
+                    <div class="posin-zutai" id="gwStaus">
+                        <p class="<?=empty($_GET['gwStaus'])||$_GET['gwStaus']==='所有（完成）'?'p-hover':'' ?>">所有（完成）</p>
+                        <p class="<?=!empty($_GET['gwStaus'])&&$_GET['gwStaus']=='未完成'?'p-hover':'' ?>">未完成</p>
+                        <p class="<?=!empty($_GET['gwStaus'])&&$_GET['gwStaus']=='未审核'?'p-hover':'' ?>">未审核</p>
+                        <p class="<?=!empty($_GET['gwStaus'])&&$_GET['gwStaus']=='已审核'?'p-hover':'' ?>">已审核</p>
+                        <p class="<?=!empty($_GET['gwStaus'])&&$_GET['gwStaus']=='已退回'?'p-hover':'' ?>">已退回</p>
+                        <p class="<?=!empty($_GET['gwStaus'])&&$_GET['gwStaus']=='已过期'?'p-hover':'' ?>">已推荐</p>
                     </div>
 
                     <div class="que-con">
@@ -62,16 +84,29 @@
         </div>
     </div>
     <!--neirong-->
+    <style>
+        .nei-sou-inp p{
+            position: absolute;
+            top:0;
+            right: 0.17rem;
+            height:100%;
+            width:0.5rem;
+            z-index: 66;
+            cursor: pointer;
+        }
+    </style>
     <div class="nei-sou">
         <div class="container">
-            <div class="nei-sou-inp" style="width:100%;">
-                <input type="text" name="" id="" value="" class="" placeholder="关键字收索"/>
+            <div class="nei-sou-inp relative" style="width:100%;">
+                <input type="text" name="guanjianci" id="guanjianci" value="<?=!empty($_GET['guanjianci'])?$_GET['guanjianci']:'' ?>" class="" placeholder="关键字收索"/>
+                <p id="search"></p>
             </div>
 
         </div>
     </div>
 
     <div class="wen-list">
+        <?php if(!isset($_GET["gwStaus"]) || $_GET["gwStaus"]!="未完成"):?>
         <ul>
             <?php if($gwDate):?>
             <?php foreach($gwDate as $gw):?>
@@ -120,6 +155,34 @@
             <?php endforeach;?>
             <?php endif;?>
         </ul>
+        <?php else:?>
+        <ul>
+            <?php if($gwDate):?>
+            <?php foreach($gwDate as $gw):?>
+            <li class="em-add">
+                <!--<div class="em fl"></div>-->
+                <div class="wen-text fr">
+                    <div class="wen-textop"></div>
+                    <div class="wen-leib">
+                        <label>
+                            <em>乡镇:</em>
+                            <span><?=self::getCunMingchengAction($gw["fuid"])."-".self::getCunMingchengAction($gw["id"])?></span>
+                        </label>
+                        <label>
+                            <em>专栏:</em>
+                            <span><?=$_GET["zhuanlan"]?></span>
+                        </label>
+                        <label>
+                            <em>状态:</em>
+                            <span>未完成</span>
+                        </label>
+                    </div>
+                </div>
+            </li>
+            <?php endforeach;?>
+            <?php endif;?>
+        </ul>
+        <?php endif;?>
     </div>
 
     <!--<div style="height:0.84rem;"></div>-->
@@ -177,8 +240,8 @@
         $("#appDate1").mobiscroll($.extend(opt['date'], opt['default']));
     });
 
-    var Datemy=new Date();
-    $(".wen-input input").val(Datemy.getFullYear()+"-"+(Datemy.getMonth()+1)+"-"+Datemy.getDate())
+    // var Datemy=new Date();
+    // $(".wen-input input").val(Datemy.getFullYear()+"-"+(Datemy.getMonth()+1)+"-"+Datemy.getDate())
 
 
 
@@ -251,6 +314,49 @@
                 });
             }
         })
+    })
+</script>
+<!--搜索-->
+<script type="text/javascript">
+    $("#search").click(function () {
+        var date1=$("#appDate").val();
+        var date2=$("#appDate1").val();
+        var zhuanlan=$("#zhuanlan .p-hover").text()
+        var xiangzhen=$("#xiangzhen .p-hover").text()
+        var gwStaus=$("#gwStaus .p-hover").text()
+        var guanjianci=$("#guanjianci").val();
+        var str= "";
+        if (date1 != ""){
+            str += "&date1="+date1;
+        }
+        if (date2 != ""){
+            str += "&date2="+date2;
+        }
+        if (xiangzhen != ""){
+            str += "&xiangzhen="+xiangzhen;
+        }
+        if (gwStaus != ""){
+            str += "&gwStaus="+gwStaus;
+        }
+        if (guanjianci != ""){
+            str += "&guanjianci="+guanjianci;
+        }
+        if (zhuanlan != ""){
+            str += "&zhuanlan="+zhuanlan;
+        }
+        if(gwStaus != "未完成"){
+            window.location.href="index.php?p=show&c=gongwen&a=accept"+str;
+        }else {
+            if (xiangzhen == ""){
+                layer.alert("请选择乡镇");
+                return false;
+            }
+            if (zhuanlan == ""){
+                layer.alert("请选择专栏");
+                return false;
+            }
+            window.location.href="index.php?p=show&c=gongwen&a=acceptOther"+str;
+        }
     })
 </script>
 </body>

@@ -375,12 +375,22 @@ class GongwenController extends BaseController
         $flData = $flModel->findBySql("select id,fenleimingcheng as mingcheng from sl_wzfl WHERE type=1");
         $xiangzhenDatas = $flModel->findBySql("select * from sl_zzjg WHERE cengji=2");
         //>>获取数据
-        $zlId = $_GET["zlId"];//>>工作专栏
+//        $zlId = $_GET["zlId"];//>>工作专栏
         $xzId = self::getCunAction($_GET["xiangzhen"]); //>>乡镇
         $date1 = $_GET["date1"]; //>>起始时间
         $date2 = $_GET["date2"]; //>>结束时间
         $guanjianci = !empty($_GET["guanjianci"])?$_GET["guanjianci"]:'';//>>关键词
         //>>设置删选条件
+        //>>设置专栏
+        if (!empty($_GET['zhuanlan'])){
+            if ($_GET['zhuanlan']!="所有"){
+                $zlId = self::getZlIdAction($_GET["zhuanlan"]);
+                if ($zlId){
+                    $seachList[] = "zhuanlan = ".$zlId;
+                }
+                $urlList[] = "zhuanlan=".$_GET['zhuanlan'];
+            }
+        }
         $seachList = [];
         $seachList[] = "b.zhuanlan=".$zlId;
         $seachList[] = "b.xiangzhen=".$xzId;
@@ -419,7 +429,11 @@ class GongwenController extends BaseController
         //>>设置数据查询sql
         $sqlDatas = "select a.id,a.fuid from sl_zzjg as a WHERE a.fuid=$xzId and a.id not in  ($sql) $limit";
         $gwDate = $flModel->findBySql($sqlDatas);
-        include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_admin_accept_list.html";
+        if(self::isWapAction()) {
+            include CUR_VIEW_PATH."Sgongwen" . DS . "wap_gongwen_admin_accept_list.html";
+        }else{
+            include CUR_VIEW_PATH."Sgongwen" . DS . "gongwen_admin_accept_list.html";
+        }
     }
     //>>编辑文章
     public function editAction(){

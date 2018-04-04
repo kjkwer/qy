@@ -34,7 +34,7 @@
                 <li class="wen-di">
                     <div class="zhongbao" id="zhuanlan">
                         <?php if($flData):?>
-                        <p class="<?=!empty($_GET['zhuanlan'])?'':'p-hover' ?>">所有</p>
+                        <p class="<?=empty($_GET['zhuanlan'])||$_GET['zhuanlan']==='所有'?'p-hover':'' ?>">所有</p>
                         <?php foreach($flData as $fl):?>
                         <p class="<?=!empty($_GET['zhuanlan'])&&$_GET['zhuanlan']==$fl['mingcheng']?'p-hover':'' ?>"><?=$fl["mingcheng"]?></p>
                         <?php endforeach;?>
@@ -50,7 +50,7 @@
                 <li class="wen-ditwo">
 
                     <div class="posin-zutai" id="zhuangtai">
-                        <p class="<?=!empty($_GET['zhuangtai'])?'':'p-hover' ?>">所有</p>
+                        <p class="<?=empty($_GET['zhuangtai'])||$_GET['zhuangtai']==='所有'?'p-hover':'' ?>">所有</p>
                         <p class="<?=!empty($_GET['zhuangtai'])&&$_GET['zhuangtai']=='正常'?'p-hover':'' ?>">正常</p>
                         <p class="<?=!empty($_GET['zhuangtai'])&&$_GET['zhuangtai']=='已过期'?'p-hover':'' ?>">已过期</p>
                     </div>

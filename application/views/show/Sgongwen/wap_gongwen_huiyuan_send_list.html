@@ -10,7 +10,7 @@
         <table>
             <tr>
                 <td class="nav-fanli">时间筛选<img src="public/wapyz/images/xiala_06.png"/><em></em></td>
-                <td class="nav-fanli">类型选择<img src="public/wapyz/images/xiala_06.png"/><em></em></td>
+                <td class="nav-fanli">专栏选择<img src="public/wapyz/images/xiala_06.png"/><em></em></td>
                 <td class="nav-fanli">选择状态<img src="public/wapyz/images/xiala_06.png"/><em></em></td>
             </tr>
         </table>
@@ -34,7 +34,7 @@
                 <li class="wen-di">
                     <div class="zhongbao"  id="zhuanlan">
                         <?php if($flData):?>
-                        <p class="<?=!empty($_GET['zhuanlan'])?'':'p-hover' ?>">所有</p>
+                        <p class="<?=empty($_GET['zhuanlan'])||$_GET['zhuanlan']=='所有'?'p-hover':'' ?>">所有</p>
                         <?php foreach($flData as $fl):?>
                         <p class="<?=!empty($_GET['zhuanlan'])&&$_GET['zhuanlan']==$fl['mingcheng']?'p-hover':'' ?>"><?=$fl["mingcheng"]?></p>
                         <?php endforeach;?>
@@ -50,7 +50,7 @@
                 <li class="wen-ditwo">
 
                     <div class="posin-zutai" id="zhuangtai">
-                        <p class="<?=!empty($_GET['zhuangtai'])?'':'p-hover' ?>">所有</p>
+                        <p class="<?=empty($_GET['zhuangtai'])||$_GET['zhuangtai']=='所有'?'p-hover':'' ?>">所有</p>
                         <p class="<?=!empty($_GET['zhuangtai'])&&$_GET['zhuangtai']=='未发送'?'p-hover':'' ?>">未发送</p>
                         <p class="<?=!empty($_GET['zhuangtai'])&&$_GET['zhuangtai']=='已发送'?'p-hover':'' ?>">已发送</p>
                         <p class="<?=!empty($_GET['zhuangtai'])&&$_GET['zhuangtai']=='已退回'?'p-hover':'' ?>">已退回</p>
