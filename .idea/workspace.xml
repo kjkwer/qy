@@ -6,11 +6,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b8784d69-c6cb-43d4-8965-3c3ba56aaf9e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/deployment.xml" afterPath="$PROJECT_DIR$/.idea/deployment.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/webServers.xml" afterPath="$PROJECT_DIR$/.idea/webServers.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/show/GongwenController.class.php" afterPath="$PROJECT_DIR$/application/controllers/show/GongwenController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_accept_list.html" afterPath="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_accept_list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/show/StatisticsController.class.php" afterPath="$PROJECT_DIR$/application/controllers/show/StatisticsController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/show/Spublic/bianlan.html" afterPath="$PROJECT_DIR$/application/views/show/Spublic/bianlan.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/show/Sstatistics/statistics_send.html" afterPath="$PROJECT_DIR$/application/views/show/Sstatistics/statistics_send.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -43,15 +41,86 @@
       <file leaf-file-name="StatisticsController.class.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/controllers/show/StatisticsController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="57" column="167" lean-forward="true" selection-start-line="57" selection-start-column="167" selection-end-line="57" selection-end-column="167" />
+            <state relative-caret-position="550">
+              <caret line="64" column="54" lean-forward="true" selection-start-line="64" selection-start-column="54" selection-end-line="64" selection-end-column="54" />
               <folding>
-                <marker date="1523437968807" expanded="true" signature="758:787" ph="select * fro... sl_wzbt" />
-                <marker date="1523437968807" expanded="true" signature="1567:1642" ph="select count... sl_gw" />
-                <marker date="1523437968807" expanded="true" signature="1915:2031" ph="select count... sl_gw_o" />
-                <marker date="1523437968807" expanded="true" signature="2317:2413" ph="select count... sl_gw_o" />
-                <marker date="1523437968807" expanded="true" signature="2688:2783" ph="select count... sl_fasong" />
+                <marker date="1523441811470" expanded="true" signature="758:787" ph="select * fro... sl_wzbt" />
+                <marker date="1523441811470" expanded="true" signature="1496:1571" ph="select count... sl_gw" />
+                <marker date="1523441811470" expanded="true" signature="1733:1829" ph="select count... sl_gw_o" />
+                <marker date="1523441811470" expanded="true" signature="2062:2178" ph="select count... sl_gw_o" />
+                <marker date="1523441811470" expanded="true" signature="2389:2484" ph="select count... sl_fasong" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GongwenController.class.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/controllers/show/GongwenController.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="407">
+              <caret line="467" column="109" lean-forward="false" selection-start-line="467" selection-start-column="20" selection-end-line="467" selection-end-column="109" />
+              <folding>
+                <element signature="n#editAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+                <element signature="n#editAdminAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+                <element signature="n#setJsrAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+                <element signature="n#editHuiyuanAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+                <element signature="n#sendDetailAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+                <element signature="n#acceptDetailAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+                <element signature="n#getGwStatusAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+                <element signature="n#isDateAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+                <element signature="n#getGwLxAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+                <element signature="n#deleteSingleAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+                <element signature="n#deletePiliangOAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+                <element signature="n#pageSetAction#0;n#GongwenController#0;n#!!top" expanded="false" />
+                <marker date="1523436007676" expanded="true" signature="880:909" ph="select * fro... sl_wzbt" />
+                <marker date="1523436007676" expanded="true" signature="1078:1142" ph="select id,fe... sl_wzfl" />
+                <marker date="1523436007676" expanded="true" signature="2950:2988" ph="select count... sl_gw" />
+                <marker date="1523436007676" expanded="true" signature="3514:3560" ph="select * fro... sl_gw" />
+                <marker date="1523436007676" expanded="true" signature="5903:5961" ph="select count... sl_gw_o" />
+                <marker date="1523436007676" expanded="true" signature="6757:6825" ph="select * fro... sl_gw_o" />
+                <marker date="1523436007676" expanded="true" signature="7254:7318" ph="select id,fe... sl_wzfl" />
+                <marker date="1523436007676" expanded="true" signature="8092:8128" ph="select * fro... sl_zzjg" />
+                <marker date="1523436007676" expanded="true" signature="9951:9991" ph="select count... sl_gw_o" />
+                <marker date="1523436007676" expanded="true" signature="10735:10789" ph="select * fro... sl_gw_o" />
+                <marker date="1523436007676" expanded="true" signature="11563:11599" ph="select * fro... sl_zzjg" />
+                <marker date="1523436007676" expanded="true" signature="13126:13166" ph="select count... sl_gw_o" />
+                <marker date="1523436007676" expanded="true" signature="13910:13964" ph="select * fro... sl_gw_o" />
+                <marker date="1523436007676" expanded="true" signature="15988:16118" ph="select COUNT... sl_fasong" />
+                <marker date="1523436007676" expanded="true" signature="16852:16969" ph="select b.* f... sl_fasong" />
+                <marker date="1523436007676" expanded="true" signature="17466:17530" ph="select id,fe... sl_wzfl" />
+                <marker date="1523436007676" expanded="true" signature="17585:17621" ph="select * fro... sl_zzjg" />
+                <marker date="1523436007676" expanded="true" signature="19019:19108" ph="select a.id sl_zzjg" />
+                <marker date="1523436007676" expanded="true" signature="19136:19221" ph="select COUNT... sl_zzjg" />
+                <marker date="1523436007676" expanded="true" signature="19948:20028" ph="select a.id,... sl_zzjg" />
+                <marker date="1523436007676" expanded="true" signature="20307:20371" ph="select id,fe... sl_wzfl" />
+                <marker date="1523436007676" expanded="true" signature="20426:20462" ph="select * fro... sl_zzjg" />
+                <marker date="1523436007676" expanded="true" signature="21575:21664" ph="select a.id sl_zzjg" />
+                <marker date="1523436007676" expanded="true" signature="21739:21824" ph="select COUNT... sl_zzjg" />
+                <marker date="1523436007676" expanded="true" signature="21875:21958" ph="select COUNT... sl_zzjg" />
+                <marker date="1523436007676" expanded="true" signature="22747:22827" ph="select a.id,... sl_zzjg" />
+                <marker date="1523436007676" expanded="true" signature="22884:22962" ph="select a.id,... sl_zzjg" />
+                <marker date="1523436007676" expanded="true" signature="23340:23370" ph="select id,le... sl_gwlx" />
+                <marker date="1523436007676" expanded="true" signature="23473:23537" ph="select id,fe... sl_wzfl" />
+                <marker date="1523436007676" expanded="true" signature="23945:23989" ph="select id,xi... sl_yhlb" />
+                <marker date="1523436007676" expanded="true" signature="24505:24538" ph="select * fro... sl_zzjg" />
+                <marker date="1523436007676" expanded="true" signature="25258:25302" ph="select id,xi... sl_yhlb" />
+                <marker date="1523436007676" expanded="true" signature="25883:25916" ph="select * fro... sl_zzjg" />
+                <marker date="1523436007676" expanded="true" signature="31053:31117" ph="select id,fe... sl_wzfl" />
+                <marker date="1523436007676" expanded="true" signature="33678:33771" ph="select b.xin... sl_fasong" />
+                <marker date="1523436007676" expanded="true" signature="35854:35919" ph="delete from " />
+                <marker date="1523436007676" expanded="true" signature="39683:39733" ph="select count... sl_wzfl" />
+                <marker date="1523436007676" expanded="true" signature="40333:40368" ph="select * fro... sl_wzfl" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bianlan.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/show/Spublic/bianlan.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="406">
+              <caret line="85" column="77" lean-forward="false" selection-start-line="85" selection-start-column="77" selection-end-line="85" selection-end-column="77" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -59,8 +128,8 @@
       <file leaf-file-name="statistics_send.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/show/Sstatistics/statistics_send.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="189" column="22" lean-forward="true" selection-start-line="189" selection-start-column="22" selection-end-line="189" selection-end-column="22" />
+            <state relative-caret-position="807">
+              <caret line="227" column="0" lean-forward="true" selection-start-line="227" selection-start-column="0" selection-end-line="227" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -77,7 +146,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>shen</find>
       <find>element</find>
       <find>$gongwenData</find>
       <find>imagePath</find>
@@ -107,6 +175,7 @@
       <find>edui-for-insertimage</find>
       <find>acceptA</find>
       <find>$xiangzhenDatas</find>
+      <find>据统计</find>
     </findStrings>
     <replaceStrings>
       <replace>public/wapyz/</replace>
@@ -118,7 +187,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_huiyuan_send_list.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_huiyuan_accept_list.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sstatistics/statistics_accept.html" />
         <option value="$PROJECT_DIR$/application/views/show/Spublic/baner.html" />
@@ -167,8 +235,9 @@
         <option value="&lt;1236c7a3-d5e6-4a20-9217-7f5c3d1a7cac&gt;/application/views/show/Sgongwen/gongwen_admin_accept_list.html" />
         <option value="$PROJECT_DIR$/application/views/show/Sgongwen/gongwen_admin_accept_list.html" />
         <option value="$PROJECT_DIR$/application/controllers/show/GongwenController.class.php" />
-        <option value="$PROJECT_DIR$/application/views/show/Sstatistics/statistics_send.html" />
+        <option value="$PROJECT_DIR$/application/views/show/Spublic/bianlan.html" />
         <option value="$PROJECT_DIR$/application/controllers/show/StatisticsController.class.php" />
+        <option value="$PROJECT_DIR$/application/views/show/Sstatistics/statistics_send.html" />
       </list>
     </option>
   </component>
@@ -313,6 +382,32 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Sstatistics" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="YajiangDangjian" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="YajiangDangjian" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="show" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Spublic" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -565,12 +660,12 @@
       <workItem from="1523152622417" duration="1155000" />
       <workItem from="1523157704773" duration="97000" />
       <workItem from="1523264868459" duration="1818000" />
-      <workItem from="1523431194166" duration="6782000" />
+      <workItem from="1523431194166" duration="10401000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="373491000" />
+    <option name="totallyTimeSpent" value="377110000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -830,13 +925,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/show/Spublic/bianlan.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="34" column="46" lean-forward="true" selection-start-line="34" selection-start-column="46" selection-end-line="34" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/show/Spublic/wap_head_ei.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="456">
@@ -980,10 +1068,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/show/Spublic/bianlan.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="85" column="77" lean-forward="false" selection-start-line="85" selection-start-column="77" selection-end-line="85" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/show/GongwenController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="498" column="53" lean-forward="false" selection-start-line="498" selection-start-column="53" selection-end-line="498" selection-end-column="53" />
+        <state relative-caret-position="407">
+          <caret line="467" column="109" lean-forward="false" selection-start-line="467" selection-start-column="20" selection-end-line="467" selection-end-column="109" />
           <folding>
             <element signature="n#editAction#0;n#GongwenController#0;n#!!top" expanded="false" />
             <element signature="n#editAdminAction#0;n#GongwenController#0;n#!!top" expanded="false" />
@@ -1041,22 +1137,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/show/Sstatistics/statistics_send.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="189" column="22" lean-forward="true" selection-start-line="189" selection-start-column="22" selection-end-line="189" selection-end-column="22" />
+        <state relative-caret-position="807">
+          <caret line="227" column="0" lean-forward="true" selection-start-line="227" selection-start-column="0" selection-end-line="227" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/show/StatisticsController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="57" column="167" lean-forward="true" selection-start-line="57" selection-start-column="167" selection-end-line="57" selection-end-column="167" />
+        <state relative-caret-position="550">
+          <caret line="64" column="54" lean-forward="true" selection-start-line="64" selection-start-column="54" selection-end-line="64" selection-end-column="54" />
           <folding>
-            <marker date="1523437968807" expanded="true" signature="758:787" ph="select * fro... sl_wzbt" />
-            <marker date="1523437968807" expanded="true" signature="1567:1642" ph="select count... sl_gw" />
-            <marker date="1523437968807" expanded="true" signature="1915:2031" ph="select count... sl_gw_o" />
-            <marker date="1523437968807" expanded="true" signature="2317:2413" ph="select count... sl_gw_o" />
-            <marker date="1523437968807" expanded="true" signature="2688:2783" ph="select count... sl_fasong" />
+            <marker date="1523441811470" expanded="true" signature="758:787" ph="select * fro... sl_wzbt" />
+            <marker date="1523441811470" expanded="true" signature="1496:1571" ph="select count... sl_gw" />
+            <marker date="1523441811470" expanded="true" signature="1733:1829" ph="select count... sl_gw_o" />
+            <marker date="1523441811470" expanded="true" signature="2062:2178" ph="select count... sl_gw_o" />
+            <marker date="1523441811470" expanded="true" signature="2389:2484" ph="select count... sl_fasong" />
           </folding>
         </state>
       </provider>

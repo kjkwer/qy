@@ -125,14 +125,17 @@
         var optDateTime = $.extend(opt['datetime'], opt['default']);
     });
 </script>
-//>>获取数据
+<!--//>>获取数据-->
 <script type="text/javascript">
     var days;
-    var nums;
+    var sendNum;
+    var acceptNum;
     function getDatas(dayNum) {
         $.post("index.php?p=show&c=statistics&a=sendData",{type:1,dayNum:dayNum},function (data) {
+            console.log(data);
             days = data.days;
-            nums = data.nums;
+            sendNum = data.sendNum;
+            acceptNum =data.acceptNum;
             setTimeout(function () {
                 show();
             },1000)
@@ -140,14 +143,14 @@
     }
     getDatas('最近7天');
 </script>
-//>>数据统计
+<!--//>>数据统计-->
 <script type="text/javascript">
     $(".tongji").click(function () {
         var dayNum = $(this).text();
         getDatas(dayNum);
     })
 </script>
-//>>数据统计
+<!--//>>数据统计-->
 <script src="public/echarts/build/dist/echarts.js"></script>
 <script type="text/javascript">
     function show() {
@@ -171,6 +174,9 @@
                     },
                     tooltip : {
                         trigger: 'axis'
+                    },
+                    legend: {
+                        data:['发送数量','接收数量']
                     },
                     toolbox: {
                         show : true,
@@ -198,15 +204,28 @@
                     ],
                     series : [
                         {
-                            name:'发文数量',
+                            name:'发送数量',
                             type:'line',
-                            data:nums,
+                            data:sendNum,
                             markPoint : {
                                 data : [
                                     {type : 'max', name: '最大值'},
                                     {type : 'min', name: '最小值'}
                                 ]
                             },
+
+                        },
+                        {
+                            name:'接收数量',
+                            type:'line',
+                            data:acceptNum,
+                            markPoint : {
+                                data : [
+                                    {type : 'max', name: '最大值'},
+                                    {type : 'min', name: '最小值'}
+                                ]
+                            },
+
                         }
                     ]
                 };
