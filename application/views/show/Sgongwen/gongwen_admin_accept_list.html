@@ -50,9 +50,10 @@
                 <input type="text" name="date2" id="appDate1" value="<?=$date2?>" />
             </div>
             <div class="xtwen-input inp-xia box fl" style="margin-left:16px;">
-                <input type="text" name="xiangzhen" id="xiangzhen" value="<?=self::getCunMingchengAction($xzId)?>" class="edit-inwidt" readonly placeholder="乡镇选择"/>
+                <input type="text" name="xiangzhen" id="xiangzhen" value="<?=!empty($_GET['xiangzhen'])?$_GET['xiangzhen']:'所有' ?>" class="edit-inwidt" readonly placeholder="乡镇选择"/>
                 <div class="adit-xuan box">
                     <?php if($xiangzhenDatas):?>
+                    <p>所有</p>
                     <?php foreach($xiangzhenDatas as $xiangzhen):?>
                         <p><?=$xiangzhen["mingcheng"]?></p>
                     <?php endforeach;?>
@@ -135,7 +136,7 @@
                     <th>状态</th>
                     <!--<th>操作</th>-->
                 </tr>
-                <?php if($gwDate):?>
+                <?php if(!empty($gwDate)):?>
                 <?php foreach($gwDate as $gw):?>
                 <tr>
                     <td class="table-paixu">
