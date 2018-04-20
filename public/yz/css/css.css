@@ -954,6 +954,9 @@ text-align: center; line-height:28px;color:#fe4529;
 .xtli-ulli p a{
 	color:#8c8c8c;
 }
+.xtli-ulli p{
+	overflow: hidden;
+}
 .xtli-ulli p:hover a,.xtli-ulli-p a{
 	color:#cf2107 !important;
 	font-weight:bold;

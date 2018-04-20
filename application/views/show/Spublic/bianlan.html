@@ -30,7 +30,7 @@
                             <div class="tree-selsct">
                                 <?php if(self::$workDatas):?>
                                 <?php foreach(self::$workDatas as $data):?>
-                                    <p><a href="index.php?p=show&c=gongwen&a=accept&zlId=<?=$data['id']?>"><?=$data["fenleimingcheng"]?></a></p>
+                                    <p><a href="index.php?p=show&c=gongwen&a=accept&zlId=<?=$data['id']?>" title="<?=$data['fenleimingcheng']?>"><?=$data['fenleimingcheng']?></a></p>
                                 <?php endforeach;?>
                                 <?php endif;?>
                             </div>
